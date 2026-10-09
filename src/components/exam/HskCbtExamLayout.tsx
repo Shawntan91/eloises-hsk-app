@@ -1,0 +1,514 @@
+"use client";
+
+import React, { useState } from "react";
+import { Exam } from "@/types/exam";
+import { Question, OptionKey } from "@/types/question";
+import { formatSeconds, getRemainingSeconds } from "@/utils/timer";
+import AudioPlayerBar from "./AudioPlayerBar";
+import AiTutorModal from "@/components/tutor/AiTutorModal";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Flag,
+  Send,
+  Headphones,
+  BookOpen,
+  PenTool,
+  Columns,
+  Languages,
+  CheckCircle2,
+  Clock,
+  Sparkles,
+  Bot,
+  LayoutGrid,
+  X,
+} from "lucide-react";
+
+interface HskCbtExamLayoutProps {
+  exam: Exam;
+  currentIndex: number;
+  onSelectQuestionIndex: (index: number) => void;
+  onSelectAnswer: (ans: string) => void;
+  onToggleMark: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+  onSubmitClick: () => void;
+  onToggleIeltsLayout: () => void;
+  locale: "ko" | "zh" | "bilingual";
+}
+
+export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
+  exam,
+  currentIndex,
+  onSelectQuestionIndex,
+  onSelectAnswer,
+  onToggleMark,
+  onPrev,
+  onNext,
+  onSubmitClick,
+  onToggleIeltsLayout,
+  locale,
+}) => {
+  const currentQ = exam.questions[currentIndex];
+  const [showKoreanHelp, setShowKoreanHelp] = useState(true);
+  const [showAiModal, setShowAiModal] = useState(false);
+  const [showMobilePalette, setShowMobilePalette] = useState(false);
+
+  const answeredCount = Object.keys(exam.answers).length;
+  const isMarked = currentQ ? exam.markedQuestions.includes(currentQ.id) : false;
+  const selectedAnswer = currentQ ? exam.answers[currentQ.id] : "";
+
+  const optionKeys: OptionKey[] = ["A", "B", "C", "D", "E", "F"].filter(
+    (k) => currentQ?.options && (currentQ.options as any)[k] !== undefined
+  ) as OptionKey[];
+
+  const remaining = getRemainingSeconds(exam.startTime || Date.now(), exam.duration);
+  const categories = ["听力", "阅读", "书写"] as const;
+
+  return (
+    <div className="flex-1 flex flex-col bg-slate-100 min-h-screen text-slate-900 select-none font-sans pb-16 sm:pb-0">
+      {/* 1. Official HSK CBT Top Header */}
+      <header className="sticky top-0 z-30 bg-slate-900 text-white shadow-md border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-3">
+          {/* Left: Test title & Candidate badge */}
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-red-600 font-extrabold flex items-center justify-center text-xs sm:text-sm shadow-md shadow-red-600/30 shrink-0">
+              HSK{exam.level}
+            </span>
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <h2 className="text-xs sm:text-base font-bold truncate text-slate-100">
+                  {locale === "zh" ? exam.title : exam.titleKo || exam.title}
+                </h2>
+                <span className="hidden md:inline-block px-2 py-0.2 rounded-full text-[10px] bg-red-950 text-red-300 border border-red-800/60 font-medium">
+                  {locale === "zh" ? "官方机考网考界面" : "공식 CBT 모의고사"}
+                </span>
+              </div>
+              <div className="text-[10px] sm:text-[11px] text-slate-400 flex items-center gap-1.5 sm:gap-2">
+                <span className="text-amber-400 font-semibold truncate max-w-[80px] sm:max-w-none">
+                  👤 Eloise
+                </span>
+                <span>·</span>
+                <span>
+                  {locale === "zh" ? "已作答" : "답안 완료"}: {answeredCount} / {exam.questions.length}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Timer, Layout Switcher & Submit */}
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+            {/* Countdown Timer */}
+            <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 bg-slate-800 rounded-xl border border-slate-700 text-amber-400 font-mono font-bold text-xs sm:text-sm">
+              <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 animate-pulse text-amber-400" />
+              <span>{formatSeconds(remaining)}</span>
+            </div>
+
+            {/* Toggle IELTS split screen layout */}
+            <button
+              type="button"
+              onClick={onToggleIeltsLayout}
+              className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold rounded-xl transition"
+              title="切换为雅思双栏分屏界面"
+            >
+              <Columns className="w-3.5 h-3.5 text-blue-400" />
+              <span>{locale === "zh" ? "雅思分屏" : "아이엘츠 분할"}</span>
+            </button>
+
+            {/* Submit Button */}
+            <button
+              type="button"
+              onClick={onSubmitClick}
+              className="flex items-center gap-1 sm:gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl text-xs sm:text-sm font-bold shadow-md shadow-red-600/30 transition transform active:scale-95"
+            >
+              <Send className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+              <span>{locale === "zh" ? "交卷" : "답안 제출"}</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* 2. Audio Player Header for Listening section */}
+      {exam.audioUrl && (
+        <div className="max-w-7xl mx-auto w-full px-3 sm:px-4 pt-2 sm:pt-3">
+          <AudioPlayerBar audioUrl={exam.audioUrl} title={exam.title} />
+        </div>
+      )}
+
+      {/* 3. Main Body: Question Card (8 cols) and Navigator (4 cols) */}
+      <main className="flex-1 max-w-7xl mx-auto w-full px-3 sm:px-4 py-3 sm:py-4 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-start">
+        {/* Left: Question Card */}
+        <div className="lg:col-span-8 w-full flex flex-col">
+          {currentQ ? (
+            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-4 sm:p-8 shadow-xs flex flex-col justify-between min-h-[460px] sm:min-h-[520px]">
+              <div>
+                {/* Section & Part Badge */}
+                <div className="flex items-center justify-between pb-3 sm:pb-4 mb-4 sm:mb-5 border-b border-slate-100 flex-wrap gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-red-600 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center shrink-0">
+                      {currentQ.number}
+                    </span>
+                    <span className="px-2 sm:px-2.5 py-0.5 sm:py-1 bg-red-50 text-red-700 border border-red-200 rounded-lg text-[11px] sm:text-xs font-bold flex items-center gap-1.5">
+                      {currentQ.partCategory === "听力" ? (
+                        <Headphones className="w-3.5 h-3.5 text-red-600 shrink-0" />
+                      ) : currentQ.partCategory === "阅读" ? (
+                        <BookOpen className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                      ) : (
+                        <PenTool className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                      )}
+                      <span className="truncate max-w-[150px] sm:max-w-none">
+                        {locale === "zh" ? currentQ.section : currentQ.sectionKo || currentQ.section}
+                      </span>
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    {/* Ask AI Tutor */}
+                    <button
+                      type="button"
+                      onClick={() => setShowAiModal(true)}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200 transition"
+                      title="AI에게 이 문제에 대해 물어보기"
+                    >
+                      <Bot className="w-3.5 h-3.5 text-purple-600" />
+                      <span>AI 튜터</span>
+                    </button>
+
+                    {/* Korean Help Toggle */}
+                    <button
+                      type="button"
+                      onClick={() => setShowKoreanHelp(!showKoreanHelp)}
+                      className={`flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-lg text-xs font-bold transition border ${
+                        showKoreanHelp
+                          ? "bg-amber-50 text-amber-800 border-amber-300"
+                          : "bg-slate-50 text-slate-600 border-slate-200"
+                      }`}
+                    >
+                      <Languages className="w-3.5 h-3.5 text-amber-600" />
+                      <span className="hidden sm:inline">
+                        {showKoreanHelp ? "한국어 도움 ON" : "한국어 도움 OFF"}
+                      </span>
+                      <span className="sm:hidden">도움</span>
+                    </button>
+
+                    {/* Mark Button */}
+                    <button
+                      type="button"
+                      onClick={onToggleMark}
+                      className={`flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-lg text-xs font-bold transition border ${
+                        isMarked
+                          ? "bg-amber-100 text-amber-800 border-amber-300"
+                          : "bg-slate-50 text-slate-600 border-slate-200"
+                      }`}
+                    >
+                      <Flag
+                        className={`w-3.5 h-3.5 ${isMarked ? "fill-amber-500 text-amber-500" : ""}`}
+                      />
+                      <span className="hidden sm:inline">{isMarked ? "표시됨" : "표시"}</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Question Stem Content */}
+                <div className="text-base sm:text-xl text-slate-900 leading-relaxed font-normal whitespace-pre-line mb-4 font-sans">
+                  {currentQ.content}
+                </div>
+
+                {/* Korean Help & Vocabulary Box */}
+                {showKoreanHelp && currentQ.vocabList && currentQ.vocabList.length > 0 && (
+                  <div className="my-3 sm:my-4 bg-amber-50/70 border border-amber-200/80 rounded-xl p-3 sm:p-3.5 text-xs text-amber-950">
+                    <div className="font-bold flex items-center gap-1.5 text-amber-900 mb-2">
+                      <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                      <span>💡 Eloise를 위한 핵심 어휘 및 병음:</span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
+                      {currentQ.vocabList.map((v, i) => (
+                        <div
+                          key={i}
+                          className="bg-white/80 p-1.5 rounded-lg border border-amber-200/60 flex items-center justify-between text-[11px] sm:text-xs"
+                        >
+                          <span className="font-bold text-slate-800">
+                            {v.word} <span className="font-mono text-amber-700 font-normal">[{v.pinyin}]</span>
+                          </span>
+                          <span className="text-slate-600 truncate ml-2">{v.meaning}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Question Image if present */}
+                {currentQ.image && (
+                  <div className="my-3 sm:my-4 p-2 bg-slate-50 border border-slate-200 rounded-xl inline-block max-w-full">
+                    <img
+                      src={currentQ.image}
+                      alt={`第 ${currentQ.number} 题插图`}
+                      className="max-h-48 sm:max-h-60 max-w-full rounded object-contain"
+                    />
+                  </div>
+                )}
+
+                {/* Option Buttons */}
+                <div className="space-y-2.5 sm:space-y-3 pt-2 sm:pt-3">
+                  {optionKeys.map((key) => {
+                    const optText = (currentQ.options as any)[key];
+                    const optTextKo = (currentQ.optionsKo as any)?.[key];
+                    const isSelected = selectedAnswer === key;
+
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={() => onSelectAnswer(key)}
+                        className={`w-full text-left p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border flex items-start gap-3 sm:gap-4 transition group cursor-pointer ${
+                          isSelected
+                            ? "border-red-600 bg-red-50/70 text-red-950 shadow-xs"
+                            : "border-slate-200 hover:border-red-300 hover:bg-slate-50/80 text-slate-800"
+                        }`}
+                      >
+                        <div
+                          className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 transition ${
+                            isSelected
+                              ? "bg-red-600 text-white shadow-xs"
+                              : "bg-white border border-slate-300 text-slate-600 group-hover:border-red-400 group-hover:text-red-600"
+                          }`}
+                        >
+                          {key}
+                        </div>
+                        <div className="flex-1 pt-0.5 text-sm sm:text-base leading-relaxed min-w-0">
+                          <div>{optText}</div>
+                          {showKoreanHelp && optTextKo && optTextKo !== optText && (
+                            <div className="text-xs text-slate-500 mt-0.5 font-sans">
+                              {optTextKo}
+                            </div>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Prev / Next navigation */}
+              <div className="flex items-center justify-between pt-5 sm:pt-6 mt-5 sm:mt-6 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={onPrev}
+                  disabled={currentIndex === 0}
+                  className={`flex items-center gap-1 sm:gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition ${
+                    currentIndex === 0
+                      ? "text-slate-300 cursor-not-allowed"
+                      : "text-slate-700 hover:bg-slate-100"
+                  }`}
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  <span>{locale === "zh" ? "上一题" : "이전"}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={onNext}
+                  className="flex items-center gap-1 sm:gap-1.5 px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-red-600 text-white hover:bg-red-700 shadow-md shadow-red-600/20 transition transform active:scale-95"
+                >
+                  <span>
+                    {currentIndex === exam.questions.length - 1
+                      ? locale === "zh"
+                        ? "准备交卷"
+                        : "답안 제출"
+                      : locale === "zh"
+                      ? "下一题"
+                      : "다음"}
+                  </span>
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="p-8 bg-white rounded-2xl border text-center text-slate-400">
+              未找到题目
+            </div>
+          )}
+        </div>
+
+        {/* Right: Section Question Palette (Desktop) */}
+        <div className="hidden lg:block lg:col-span-4 w-full">
+          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs sticky top-20">
+            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+              <h3 className="font-extrabold text-slate-900 text-sm flex items-center gap-2">
+                <span>📋 {locale === "zh" ? "答题卡题号导航" : "답안지 문항 이동"}</span>
+              </h3>
+              <span className="text-xs text-slate-500 font-mono">
+                {answeredCount} / {exam.questions.length}
+              </span>
+            </div>
+
+            {/* Sections Accordion */}
+            <div className="space-y-4 max-h-[calc(100vh-220px)] overflow-y-auto pr-1">
+              {categories.map((cat) => {
+                const catQuestions = exam.questions.filter((q) => q.partCategory === cat);
+                if (catQuestions.length === 0) return null;
+
+                const catKo =
+                  cat === "听力"
+                    ? "듣기 (1~45)"
+                    : cat === "阅读"
+                    ? "독해 (46~85)"
+                    : "쓰기 (86~100)";
+
+                return (
+                  <div key={cat} className="space-y-2">
+                    <div className="text-xs font-bold text-slate-700 flex items-center justify-between">
+                      <span className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
+                        <span>{locale === "zh" ? cat : catKo}</span>
+                      </span>
+                      <span className="text-[11px] text-slate-400 font-normal">
+                        {catQuestions.filter((q) => exam.answers[q.id]).length} /{" "}
+                        {catQuestions.length}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-5 gap-1.5">
+                      {catQuestions.map((q) => {
+                        const qIdx = exam.questions.findIndex((item) => item.id === q.id);
+                        const isCurrent = qIdx === currentIndex;
+                        const isDone = !!exam.answers[q.id];
+                        const isQMarked = exam.markedQuestions.includes(q.id);
+
+                        let btnClass = "border-slate-200 text-slate-700 hover:border-slate-300 bg-white";
+                        if (isDone) {
+                          btnClass = "border-red-500 bg-red-600 text-white font-bold shadow-xs";
+                        }
+                        if (isCurrent) {
+                          btnClass =
+                            "border-2 border-slate-900 ring-2 ring-red-400 font-black text-slate-900 bg-amber-50";
+                        }
+
+                        return (
+                          <button
+                            key={q.id}
+                            type="button"
+                            onClick={() => onSelectQuestionIndex(qIdx)}
+                            className={`h-8 rounded-lg border text-xs flex items-center justify-center relative transition ${btnClass}`}
+                            title={`第 ${q.number} 题 (${q.section})`}
+                          >
+                            <span>{q.number}</span>
+                            {isQMarked && (
+                              <span className="absolute top-0.5 right-0.5 w-1.5 h-1.5 rounded-full bg-amber-400 ring-1 ring-white" />
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Mobile Bottom Fixed Bar: Quick Navigator Button */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur border-t border-slate-200 px-4 py-2.5 flex items-center justify-between shadow-lg">
+        <button
+          type="button"
+          onClick={() => setShowMobilePalette(true)}
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 text-slate-800 rounded-xl text-xs font-bold"
+        >
+          <LayoutGrid className="w-4 h-4 text-red-600" />
+          <span>답안표 ({answeredCount}/{exam.questions.length})</span>
+        </button>
+
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onPrev}
+            disabled={currentIndex === 0}
+            className="p-2 bg-slate-100 rounded-xl text-slate-700 disabled:opacity-30"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <span className="text-xs font-bold font-mono">
+            {currentIndex + 1} / {exam.questions.length}
+          </span>
+          <button
+            type="button"
+            onClick={onNext}
+            className="p-2 bg-red-600 text-white rounded-xl active:scale-95 shadow-xs"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Question Navigator Drawer */}
+      {showMobilePalette && (
+        <div className="lg:hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex flex-col justify-end">
+          <div className="bg-white rounded-t-3xl max-h-[80vh] flex flex-col p-5 overflow-hidden animate-in slide-in-from-bottom-5">
+            <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+              <h3 className="font-extrabold text-slate-900 text-sm">
+                전체 문항 바로가기 ({answeredCount}/{exam.questions.length})
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowMobilePalette(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-700"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto space-y-4 pr-1">
+              {categories.map((cat) => {
+                const catQuestions = exam.questions.filter((q) => q.partCategory === cat);
+                if (catQuestions.length === 0) return null;
+
+                return (
+                  <div key={cat}>
+                    <div className="text-xs font-bold text-slate-700 mb-2">{cat}</div>
+                    <div className="grid grid-cols-6 gap-1.5">
+                      {catQuestions.map((q) => {
+                        const qIdx = exam.questions.findIndex((item) => item.id === q.id);
+                        const isCur = qIdx === currentIndex;
+                        const isDone = !!exam.answers[q.id];
+
+                        return (
+                          <button
+                            key={q.id}
+                            type="button"
+                            onClick={() => {
+                              onSelectQuestionIndex(qIdx);
+                              setShowMobilePalette(false);
+                            }}
+                            className={`h-9 rounded-xl border text-xs font-bold flex items-center justify-center transition ${
+                              isCur
+                                ? "bg-slate-900 text-white border-slate-900"
+                                : isDone
+                                ? "bg-red-600 text-white border-red-600"
+                                : "bg-slate-50 text-slate-700 border-slate-200"
+                            }`}
+                          >
+                            {q.number}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI Tutor Modal */}
+      <AiTutorModal
+        isOpen={showAiModal}
+        onClose={() => setShowAiModal(false)}
+        question={currentQ}
+      />
+    </div>
+  );
+};
+
+export default HskCbtExamLayout;
