@@ -3,7 +3,10 @@
 > **专为 Eloise 打造的 HSK 4 级与 5 级全功能在线备考平台。**  
 > 还原官方真题机考 (CBT) 与雅思双栏模考体验，深度集成全题型韩文解析对照、1000 核心词汇记忆库与 1 对 1 AI 辅导导师。
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FShawntan91%2Feloises-hsk-app)
+
 ---
+
 
 ## 🌟 核心特色 (Core Features)
 
