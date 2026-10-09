@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#be123c"/>
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="url(#bg)"/>
+
+  <!-- Panda Ears -->
+  <circle cx="21" cy="21" r="7.5" fill="#1e293b"/>
+  <circle cx="43" cy="21" r="7.5" fill="#1e293b"/>
+  <circle cx="21" cy="21" r="4" fill="#475569"/>
+  <circle cx="43" cy="21" r="4" fill="#475569"/>
+
+  <!-- Panda Face -->
+  <ellipse cx="32" cy="35" rx="18" ry="16" fill="#ffffff"/>
+
+  <!-- Eye Patches -->
+  <ellipse cx="25.5" cy="33.5" rx="5" ry="6.2" fill="#1e293b" transform="rotate(-15 25.5 33.5)"/>
+  <ellipse cx="38.5" cy="33.5" rx="5" ry="6.2" fill="#1e293b" transform="rotate(15 38.5 33.5)"/>
+
+  <!-- Eye Sparkles -->
+  <circle cx="25.5" cy="32" r="1.8" fill="#ffffff"/>
+  <circle cx="38.5" cy="32" r="1.8" fill="#ffffff"/>
+  <circle cx="27" cy="35" r="0.9" fill="#ffffff"/>
+  <circle cx="40" cy="35" r="0.9" fill="#ffffff"/>
+
+  <!-- Cute Pink Blush -->
+  <ellipse cx="19" cy="39" rx="2.5" ry="1.6" fill="#fca5a5" opacity="0.9"/>
+  <ellipse cx="45" cy="39" rx="2.5" ry="1.6" fill="#fca5a5" opacity="0.9"/>
+
+  <!-- Nose & Mouth -->
+  <ellipse cx="32" cy="38" rx="2.6" ry="1.9" fill="#1e293b"/>
+  <path d="M29.5 41 Q32 43.5 34.5 41" stroke="#1e293b" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+
+  <!-- Star Crown on top -->
+  <polygon points="32,7 33.8,12.5 39.5,12.5 34.8,16 36.5,21.5 32,18 27.5,21.5 29.2,16 24.5,12.5 30.2,12.5" fill="#fbbf24"/>
+</svg>
