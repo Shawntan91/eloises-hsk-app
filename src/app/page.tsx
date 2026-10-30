@@ -117,7 +117,7 @@ export default function HomePage() {
             Eloise&apos;s HSK APP 🎓
           </h2>
           <p className="text-xs sm:text-base text-slate-600 leading-relaxed mb-4 sm:mb-6">
-            공식 기출 5세트 (4급 4세트 + 5급 1세트 · 470문항) + <strong>필수 1000단어장</strong>
+            공식 기출 {hskExamsData.length}세트 (4급 {hsk4Exams.length}세트 + 5급 {hsk5Exams.length}세트 · {(hskExamsData as any[]).reduce((sum, e) => sum + (e.questions?.length || 0), 0)}문항) + <strong>필수 1000단어장</strong>
             <br className="hidden sm:inline" />
             <strong>한국인을 위한 문항별 심층 한국어 해설</strong> · HSK 공식 CBT 및 좌우 분할 독해 지원
           </p>
