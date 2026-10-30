@@ -5,26 +5,28 @@ import { createPortal } from "react-dom";
 import {
   X,
   Palette,
+  Image as ImageIcon,
   Upload,
-  Link2,
+  Link as LinkIcon,
+  RotateCcw,
   Sliders,
   Check,
-  RefreshCw,
-  Image as ImageIcon,
   Sparkles,
   Eye,
   Trash2,
+  CheckCircle2,
 } from "lucide-react";
 import {
-  BackgroundConfig,
-  getBackgroundConfig,
-  saveBackgroundConfig,
-  saveWallpaperBlobToDB,
-  getWallpaperBlobFromDB,
-  clearWallpaperBlobFromDB,
-  PRESET_THEMES,
-  PresetThemeId,
-  DEFAULT_BG_CONFIG,
+  BackgroundSettings,
+  PRESET_BACKGROUNDS,
+  SAMPLE_WALLPAPERS,
+  DEFAULT_BG_SETTINGS,
+  getBackgroundSettings,
+  saveBackgroundSettings,
+  saveUploadedWallpaper,
+  getUploadedWallpaper,
+  clearUploadedWallpaper,
+  resetBackgroundSettings,
 } from "@/utils/backgroundStorage";
 import { getLocale } from "@/utils/i18n";
 
@@ -38,12 +40,20 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
   onClose,
 }) => {
   const [mounted, setMounted] = useState<boolean>(false);
-  const [config, setConfig] = useState<BackgroundConfig>(DEFAULT_BG_CONFIG);
+  const [settings, setSettings] = useState<BackgroundSettings>(DEFAULT_BG_SETTINGS);
+  const [uploadedPreview, setUploadedPreview] = useState<string | null>(null);
   const [urlInput, setUrlInput] = useState<string>("");
-  const [previewDbUrl, setPreviewDbUrl] = useState<string | null>(null);
-  const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<"preset" | "upload" | "url">("preset");
+  const [uploadLoading, setUploadLoading] = useState(false);
+  const [toastMsg, setToastMsg] = useState<string | null>(null);
   const [locale, setLocale] = useState<string>("ko");
+
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(null), 2500);
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -52,13 +62,18 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
   useEffect(() => {
     setLocale(getLocale());
     if (isOpen) {
-      const current = getBackgroundConfig();
-      setConfig(current);
-      if (current.type === "url" && current.imageUrl) {
-        setUrlInput(current.imageUrl);
-      }
-      if (current.type === "image" && current.hasCustomUpload) {
-        getWallpaperBlobFromDB().then((url) => setPreviewDbUrl(url));
+      const s = getBackgroundSettings();
+      setSettings(s);
+      setUrlInput(s.customUrl || "");
+      if (s.type === "custom_image" || s.hasCustomUpload) {
+        setActiveTab("upload");
+        getUploadedWallpaper().then((img) => {
+          setUploadedPreview(img);
+        });
+      } else if (s.type === "custom_url") {
+        setActiveTab("url");
+      } else {
+        setActiveTab("preset");
       }
     }
   }, [isOpen]);
@@ -67,76 +82,111 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
 
   const isKo = locale === "ko";
 
-  const handleSelectPreset = (id: PresetThemeId) => {
-    const updated: BackgroundConfig = {
-      ...config,
+  // 1. Select Preset
+  const handleSelectPreset = (presetId: string) => {
+    const updated: BackgroundSettings = {
+      ...settings,
+      enabled: presetId !== "default",
       type: "preset",
-      presetId: id,
+      presetId,
     };
-    setConfig(updated);
-    saveBackgroundConfig(updated);
+    setSettings(updated);
+    saveBackgroundSettings(updated);
+    showToast(isKo ? "배경 테마가 적용되었습니다" : "已切换至预设主题");
   };
 
+  // 2. Upload Local Image
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    setIsUploading(true);
-    try {
-      await saveWallpaperBlobToDB(file);
-      const url = URL.createObjectURL(file);
-      setPreviewDbUrl(url);
+    if (!file.type.startsWith("image/")) {
+      showToast(isKo ? "이미지 파일만 업로드할 수 있습니다" : "仅支持上传图片文件");
+      return;
+    }
 
-      const updated: BackgroundConfig = {
-        ...config,
-        type: "image",
+    setUploadLoading(true);
+    try {
+      await saveUploadedWallpaper(file);
+      const previewUrl = URL.createObjectURL(file);
+      setUploadedPreview(previewUrl);
+
+      const updated: BackgroundSettings = {
+        ...settings,
+        enabled: true,
+        type: "custom_image",
         hasCustomUpload: true,
       };
-      setConfig(updated);
-      saveBackgroundConfig(updated);
+      setSettings(updated);
+      saveBackgroundSettings(updated);
+      showToast(isKo ? "로컬 사진 배경이 적용되었습니다" : "自定义本地壁纸已成功应用");
     } catch (err) {
-      console.error("Failed to upload image:", err);
-      alert(isKo ? "이미지 업로드에 실패했습니다." : "图片上传失败，请重试");
+      console.error(err);
+      showToast(isKo ? "업로드 중 오류가 발생했습니다" : "壁纸上传失败，请重试");
     } finally {
-      setIsUploading(false);
+      setUploadLoading(false);
     }
   };
 
-  const handleApplyUrl = () => {
-    if (!urlInput.trim()) return;
-    const updated: BackgroundConfig = {
-      ...config,
-      type: "url",
-      imageUrl: urlInput.trim(),
+  const handleClearUpload = async () => {
+    await clearUploadedWallpaper();
+    setUploadedPreview(null);
+    const updated: BackgroundSettings = {
+      ...settings,
+      type: "preset",
+      presetId: "default",
+      hasCustomUpload: false,
+      enabled: false,
     };
-    setConfig(updated);
-    saveBackgroundConfig(updated);
+    setSettings(updated);
+    saveBackgroundSettings(updated);
+    showToast(isKo ? "업로드된 벽지가 삭제되었습니다" : "已清除自定义壁纸并恢复默认");
   };
 
-  const handleOpacityChange = (val: number) => {
-    const updated = { ...config, overlayOpacity: val };
-    setConfig(updated);
-    saveBackgroundConfig(updated);
+  // 3. Online Image URL
+  const handleApplyUrl = (directUrl?: string) => {
+    const targetUrl = directUrl || urlInput.trim();
+    if (!targetUrl) {
+      showToast(isKo ? "이미지 링크를 입력해주세요" : "请输入有效的图片链接");
+      return;
+    }
+    const updated: BackgroundSettings = {
+      ...settings,
+      enabled: true,
+      type: "custom_url",
+      customUrl: targetUrl,
+    };
+    setSettings(updated);
+    saveBackgroundSettings(updated);
+    setUrlInput(targetUrl);
+    showToast(isKo ? "온라인 배경 사진이 적용되었습니다" : "网络壁纸已成功应用");
+  };
+
+  // 4. Sliders & Switch
+  const handleMaskChange = (val: number) => {
+    const updated = { ...settings, opacityMask: val };
+    setSettings(updated);
+    saveBackgroundSettings(updated);
   };
 
   const handleBlurChange = (val: number) => {
-    const updated = { ...config, blur: val };
-    setConfig(updated);
-    saveBackgroundConfig(updated);
+    const updated = { ...settings, blur: val };
+    setSettings(updated);
+    saveBackgroundSettings(updated);
   };
 
-  const handleToggleExam = (enable: boolean) => {
-    const updated = { ...config, enableInExam: enable };
-    setConfig(updated);
-    saveBackgroundConfig(updated);
+  const handleToggleExam = () => {
+    const updated = { ...settings, enableInExam: !settings.enableInExam };
+    setSettings(updated);
+    saveBackgroundSettings(updated);
   };
 
-  const handleReset = async () => {
-    await clearWallpaperBlobFromDB();
-    setPreviewDbUrl(null);
+  const handleResetAll = () => {
+    resetBackgroundSettings();
+    setUploadedPreview(null);
     setUrlInput("");
-    setConfig(DEFAULT_BG_CONFIG);
-    saveBackgroundConfig(DEFAULT_BG_CONFIG);
+    setSettings(DEFAULT_BG_SETTINGS);
+    showToast(isKo ? "모든 배경 설정이 초기화되었습니다" : "已重置为系统默认外观");
   };
 
   return createPortal(
@@ -145,13 +195,21 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-lg my-auto flex flex-col max-h-[85vh] sm:max-h-[88vh] overflow-hidden"
+        className="bg-white rounded-3xl shadow-2xl border border-slate-200 w-full max-w-xl my-auto flex flex-col max-h-[85vh] sm:max-h-[88vh] overflow-hidden relative"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Header (Pinned / Non-collapsing) */}
-        <div className="shrink-0 px-5 py-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-rose-500 to-amber-500 flex items-center justify-center text-white shadow-xs">
+        {/* Toast Feedback */}
+        {toastMsg && (
+          <div className="absolute top-16 left-1/2 -translate-x-1/2 z-50 bg-slate-900/90 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg flex items-center gap-2 animate-in fade-in slide-in-from-top-2">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+            <span>{toastMsg}</span>
+          </div>
+        )}
+
+        {/* Modal Header (Fixed / Non-collapsing) */}
+        <div className="shrink-0 px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-2xl bg-gradient-to-tr from-rose-500 to-amber-500 flex items-center justify-center text-white shadow-xs">
               <Palette className="w-4 h-4" />
             </div>
             <div>
@@ -159,144 +217,247 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
                 {isKo ? "웹 배경 및 테마 설정" : "全局网页背景与外观"}
               </h3>
               <p className="text-[11px] text-slate-500 mt-0.5">
-                {isKo ? "원하는 배경색 또는 사진으로 학습 환경을 꾸며보세요" : "自定义专属学习壁纸、遮罩透明度与护眼色彩"}
+                {isKo
+                  ? "원하는 배경색 또는 사진으로 편안한 학습 환경을 꾸며보세요"
+                  : "选择护眼主题、上传专属壁纸，支持暗化遮罩与毛玻璃特效"}
               </p>
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-200/50 transition cursor-pointer"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-200/50 transition cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
+        {/* Tabs Bar */}
+        <div className="shrink-0 px-6 pt-3 border-b border-slate-100 flex items-center gap-4 bg-slate-50/40">
+          {[
+            { id: "preset", labelZh: "预设护眼色彩", labelKo: "추천 프리셋 테마", icon: Palette },
+            { id: "upload", labelZh: "本地电脑壁纸", labelKo: "컴퓨터 사진 업로드", icon: Upload },
+            { id: "url", labelZh: "网络壁纸链接", labelKo: "온라인 이미지 URL", icon: LinkIcon },
+          ].map((tab) => {
+            const Icon = tab.icon;
+            const isTabActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setActiveTab(tab.id as any)}
+                className={`flex items-center gap-1.5 pb-2.5 text-xs font-bold border-b-2 transition cursor-pointer ${
+                  isTabActive
+                    ? "border-red-600 text-red-600"
+                    : "border-transparent text-slate-500 hover:text-slate-800"
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                <span>{isKo ? tab.labelKo : tab.labelZh}</span>
+              </button>
+            );
+          })}
+        </div>
+
         {/* Modal Body (Scrollable with min-h-0) */}
-        <div className="flex-1 min-h-0 overflow-y-auto p-5 space-y-6">
-          {/* Section 1: Preset Themes */}
-          <div>
-            <label className="text-xs font-bold text-slate-700 block mb-2.5 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-              <span>{isKo ? "1. 추천 프리셋 테마" : "1. 预设推荐主题"}</span>
-            </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-              {PRESET_THEMES.map((theme) => {
-                const isSelected = config.type === "preset" && config.presetId === theme.id;
-                return (
-                  <button
-                    key={theme.id}
-                    type="button"
-                    onClick={() => handleSelectPreset(theme.id)}
-                    className={`p-3 rounded-xl border text-left flex flex-col justify-between h-20 transition relative overflow-hidden group cursor-pointer ${
-                      isSelected
-                        ? "border-red-500 ring-2 ring-red-500/20 bg-red-50/30"
-                        : "border-slate-200 hover:border-slate-300 bg-white"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between w-full">
-                      <div
-                        className="w-5 h-5 rounded-full border border-slate-300 shadow-xs"
-                        style={{ background: theme.previewColor }}
-                      />
-                      {isSelected && (
-                        <div className="w-4 h-4 rounded-full bg-red-600 text-white flex items-center justify-center">
-                          <Check className="w-3 h-3 stroke-[3]" />
-                        </div>
-                      )}
-                    </div>
-                    <div className="mt-1">
-                      <p className="text-xs font-bold text-slate-800 leading-tight">
-                        {isKo ? theme.nameKo : theme.nameZh}
+        <div className="flex-1 min-h-0 overflow-y-auto p-6 space-y-6">
+          {/* TAB 1: PRESETS */}
+          {activeTab === "preset" && (
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                  <span>{isKo ? "7가지 감성 프리셋 선택" : "推荐护眼色彩与渐变主题"}</span>
+                </span>
+                <span className="text-[11px] text-slate-400">
+                  {isKo ? "클릭 즉시 실시간 반영" : "点击即可实时预览"}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {PRESET_BACKGROUNDS.map((item) => {
+                  const isSelected =
+                    settings.type === "preset" && settings.presetId === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => handleSelectPreset(item.id)}
+                      className={`relative p-3.5 rounded-2xl text-left border-2 transition-all cursor-pointer flex flex-col justify-between h-28 group ${
+                        isSelected
+                          ? "border-red-600 ring-2 ring-red-500/20 shadow-md"
+                          : "border-slate-200 hover:border-red-300 hover:shadow-xs"
+                      }`}
+                      style={{
+                        background: item.value,
+                      }}
+                    >
+                      <div className="flex items-start justify-between w-full">
+                        <span
+                          className={`text-xs font-bold px-2 py-0.5 rounded-full ${
+                            item.isDark
+                              ? "bg-slate-800/80 text-white"
+                              : "bg-white/80 text-slate-800 shadow-2xs backdrop-blur-xs"
+                          }`}
+                        >
+                          {isKo ? item.nameKo : item.nameZh}
+                        </span>
+                        {isSelected && (
+                          <div className="w-5 h-5 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xs">
+                            <Check className="w-3.5 h-3.5 stroke-[3]" />
+                          </div>
+                        )}
+                      </div>
+                      <p
+                        className={`text-[11px] leading-snug ${
+                          item.isDark ? "text-slate-300" : "text-slate-600"
+                        }`}
+                      >
+                        {isKo ? item.descriptionKo : item.descriptionZh}
                       </p>
-                    </div>
-                  </button>
-                );
-              })}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Section 2: Custom Wallpaper */}
-          <div>
-            <label className="text-xs font-bold text-slate-700 block mb-2.5 flex items-center gap-1.5">
-              <ImageIcon className="w-3.5 h-3.5 text-blue-500" />
-              <span>{isKo ? "2. 나만의 이미지 배경 업로드" : "2. 自定义本地图片 / 网络壁纸"}</span>
-            </label>
-
-            <div className="space-y-3">
-              {/* Local File Upload */}
-              <div className="flex items-center gap-2">
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileUpload}
-                  className="hidden"
-                />
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  disabled={isUploading}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-xl border text-xs font-bold transition shadow-xs cursor-pointer ${
-                    config.type === "image"
-                      ? "border-red-500 bg-red-50 text-red-700"
-                      : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
-                  }`}
-                >
-                  <Upload className="w-3.5 h-3.5" />
-                  <span>{isUploading ? (isKo ? "업로드 중..." : "正在读取...") : (isKo ? "컴퓨터에서 사진 선택" : "上传本地壁纸图片")}</span>
-                </button>
-                {previewDbUrl && config.type === "image" && (
+          {/* TAB 2: LOCAL IMAGE UPLOAD */}
+          {activeTab === "upload" && (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-xs font-bold text-slate-800">
+                    {isKo ? "컴퓨터에서 나만의 사진 업로드" : "上传自定义本地壁纸"}
+                  </h4>
+                  <p className="text-[11px] text-slate-500">
+                    {isKo
+                      ? "브라우저 고속 IndexedDB에 안전하게 저장되어 서버로 전송되지 않습니다"
+                      : "自动存储在浏览器高速 IndexedDB 中，大图流畅不卡顿"}
+                  </p>
+                </div>
+                {uploadedPreview && (
                   <button
                     type="button"
-                    onClick={async () => {
-                      await clearWallpaperBlobFromDB();
-                      setPreviewDbUrl(null);
-                      handleSelectPreset("default");
-                    }}
-                    className="p-2 text-rose-600 hover:bg-rose-50 rounded-xl border border-rose-200 cursor-pointer"
-                    title={isKo ? "업로드 사진 삭제" : "删除壁纸"}
+                    onClick={handleClearUpload}
+                    className="text-xs text-rose-600 hover:text-rose-800 font-semibold cursor-pointer"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    {isKo ? "현재 벽지 지우기" : "清除壁纸"}
                   </button>
                 )}
               </div>
 
-              {/* Online Image URL */}
-              <div className="flex items-center gap-2">
-                <div className="relative flex-1">
-                  <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-slate-400">
-                    <Link2 className="w-3.5 h-3.5" />
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileUpload}
+                className="hidden"
+              />
+
+              {uploadedPreview ? (
+                <div className="relative rounded-2xl overflow-hidden border-2 border-red-500 shadow-md h-48 bg-slate-900 group">
+                  <img
+                    src={uploadedPreview}
+                    alt="Custom Wallpaper"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="px-4 py-2 bg-white/90 hover:bg-white text-slate-900 text-xs font-bold rounded-xl shadow-lg transition cursor-pointer"
+                    >
+                      {isKo ? "다른 사진으로 교체" : "重新上传更换"}
+                    </button>
                   </div>
+                  <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold">
+                    {isKo ? "현재 적용된 배경" : "当前生效壁纸"}
+                  </div>
+                </div>
+              ) : (
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  className="border-2 border-dashed border-slate-300 hover:border-red-500 rounded-2xl p-8 text-center cursor-pointer transition bg-slate-50/50 hover:bg-red-50/20"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mx-auto mb-3 shadow-inner">
+                    <Upload className="w-6 h-6" />
+                  </div>
+                  <p className="text-sm font-bold text-slate-700">
+                    {uploadLoading ? (isKo ? "고화질 처리 중..." : "正在处理高清图片...") : (isKo ? "컴퓨터에서 사진 선택" : "点击选择电脑本地图片")}
+                  </p>
+                  <p className="text-xs text-slate-400 mt-1">
+                    JPG, PNG, WebP (1920×1080 권장)
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* TAB 3: ONLINE URL & SAMPLES */}
+          {activeTab === "url" && (
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-xs font-bold text-slate-800 mb-1">
+                  {isKo ? "온라인 이미지 주소 입력" : "输入在线图片链接"}
+                </h4>
+                <div className="flex gap-2">
                   <input
-                    type="text"
+                    type="url"
+                    placeholder="https://images.unsplash.com/..."
                     value={urlInput}
                     onChange={(e) => setUrlInput(e.target.value)}
-                    placeholder={isKo ? "이미지 링크 붙여넣기 (https://...)" : "输入在线图片 URL (https://...)"}
-                    className="w-full pl-8 pr-3 py-1.5 text-xs rounded-xl border border-slate-200 focus:outline-hidden focus:ring-2 focus:ring-red-500/20 focus:border-red-500 text-slate-800"
+                    className="flex-1 px-3.5 py-2 text-xs border border-slate-300 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-red-500"
                   />
+                  <button
+                    type="button"
+                    onClick={() => handleApplyUrl()}
+                    className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl shadow-xs transition cursor-pointer"
+                  >
+                    {isKo ? "적용" : "应用"}
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={handleApplyUrl}
-                  disabled={!urlInput.trim()}
-                  className="px-3 py-1.5 bg-slate-800 hover:bg-slate-900 disabled:opacity-40 text-white text-xs font-bold rounded-xl transition shrink-0 cursor-pointer"
-                >
-                  {isKo ? "적용" : "应用"}
-                </button>
+              </div>
+
+              {/* Sample Wallpapers */}
+              <div className="pt-2">
+                <span className="text-[11px] font-bold text-slate-500 block mb-2">
+                  {isKo ? "추천 고화질 자습 벽지 (클릭 시 즉시 적용):" : "一键试用高清自习壁纸："}
+                </span>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {SAMPLE_WALLPAPERS.map((sample) => (
+                    <button
+                      key={sample.nameZh}
+                      type="button"
+                      onClick={() => handleApplyUrl(sample.url)}
+                      className="group relative h-20 rounded-xl overflow-hidden border border-slate-200 hover:border-red-500 transition text-left cursor-pointer shadow-2xs"
+                    >
+                      <img
+                        src={sample.url}
+                        alt={sample.nameZh}
+                        className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-2">
+                        <span className="text-[11px] font-bold text-white drop-shadow">
+                          {isKo ? sample.nameKo : sample.nameZh}
+                        </span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
-          {/* Section 3: Blur & Overlay Sliders */}
-          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-4">
+          {/* SECTION: SLIDERS & EXAM TOGGLE */}
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                 <Sliders className="w-3.5 h-3.5 text-slate-500" />
                 <span>{isKo ? "어둡기 조절 (오버레이)" : "背景暗化遮罩透明度"}</span>
               </span>
               <span className="text-xs font-mono font-bold text-slate-600">
-                {config.overlayOpacity || 0}%
+                {settings.opacityMask || 0}%
               </span>
             </div>
             <input
@@ -304,8 +465,8 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
               min="0"
               max="80"
               step="5"
-              value={config.overlayOpacity || 0}
-              onChange={(e) => handleOpacityChange(Number(e.target.value))}
+              value={settings.opacityMask || 0}
+              onChange={(e) => handleMaskChange(Number(e.target.value))}
               className="w-full accent-red-600 cursor-pointer h-1.5 bg-slate-200 rounded-lg appearance-none"
             />
 
@@ -315,7 +476,7 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
                 <span>{isKo ? "배경 블러 (흐림 효과)" : "背景模糊度"}</span>
               </span>
               <span className="text-xs font-mono font-bold text-slate-600">
-                {config.blur || 0}px
+                {settings.blur || 0}px
               </span>
             </div>
             <input
@@ -323,7 +484,7 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
               min="0"
               max="20"
               step="1"
-              value={config.blur || 0}
+              value={settings.blur || 0}
               onChange={(e) => handleBlurChange(Number(e.target.value))}
               className="w-full accent-red-600 cursor-pointer h-1.5 bg-slate-200 rounded-lg appearance-none"
             />
@@ -335,14 +496,16 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
                   {isKo ? "모의고사 응시 중 배경 활성화" : "考场内启用自定义背景"}
                 </p>
                 <p className="text-[11px] text-slate-500">
-                  {isKo ? "비활성화 시 모의고사 풀이 화면은 표준 집중 배경으로 유지됩니다" : "关闭后，全真模考界面将恢复纯净白底以提高专注度"}
+                  {isKo
+                    ? "비활성화 시 모의고사 풀이 화면은 표준 집중 배경으로 유지됩니다"
+                    : "关闭后，全真模考界面将恢复纯净白底以提高专注度"}
                 </p>
               </div>
               <button
                 type="button"
-                onClick={() => handleToggleExam(!config.enableInExam)}
+                onClick={handleToggleExam}
                 className={`w-11 h-6 flex items-center rounded-full p-1 transition duration-300 cursor-pointer ${
-                  config.enableInExam ? "bg-red-600 justify-end" : "bg-slate-300 justify-start"
+                  settings.enableInExam ? "bg-red-600 justify-end" : "bg-slate-300 justify-start"
                 }`}
               >
                 <div className="bg-white w-4 h-4 rounded-full shadow-md transform transition" />
@@ -351,20 +514,20 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
           </div>
         </div>
 
-        {/* Modal Footer (Pinned / Non-collapsing) */}
-        <div className="shrink-0 px-5 py-3 border-t border-slate-100 bg-slate-50/80 flex items-center justify-between">
+        {/* Modal Footer (Fixed / Non-collapsing) */}
+        <div className="shrink-0 px-6 py-3.5 border-t border-slate-100 bg-slate-50/80 flex items-center justify-between">
           <button
             type="button"
-            onClick={handleReset}
+            onClick={handleResetAll}
             className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-800 font-semibold px-2 py-1 rounded-lg hover:bg-slate-200/50 transition cursor-pointer"
           >
-            <RefreshCw className="w-3.5 h-3.5" />
+            <RotateCcw className="w-3.5 h-3.5" />
             <span>{isKo ? "기본값 복원" : "恢复默认"}</span>
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-xs transition cursor-pointer"
+            className="px-6 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-xs transition cursor-pointer"
           >
             {isKo ? "완료" : "确定"}
           </button>

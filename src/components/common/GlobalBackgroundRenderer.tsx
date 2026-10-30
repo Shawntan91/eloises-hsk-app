@@ -1,99 +1,136 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import {
-  BackgroundConfig,
-  getBackgroundConfig,
-  getWallpaperBlobFromDB,
-  PRESET_THEMES,
-  DEFAULT_BG_CONFIG,
+  BackgroundSettings,
+  DEFAULT_BG_SETTINGS,
+  PRESET_BACKGROUNDS,
+  getBackgroundSettings,
+  getUploadedWallpaper,
 } from "@/utils/backgroundStorage";
 
 export const GlobalBackgroundRenderer: React.FC = () => {
   const pathname = usePathname();
-  const [config, setConfig] = useState<BackgroundConfig>(DEFAULT_BG_CONFIG);
-  const [dbImageUrl, setDbImageUrl] = useState<string | null>(null);
-
-  const loadConfigAndWallpaper = async () => {
-    const current = getBackgroundConfig();
-    setConfig(current);
-
-    if (current.type === "image" && current.hasCustomUpload) {
-      const url = await getWallpaperBlobFromDB();
-      setDbImageUrl(url);
-    } else {
-      setDbImageUrl(null);
-    }
-  };
+  const [settings, setSettings] = useState<BackgroundSettings>(DEFAULT_BG_SETTINGS);
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    loadConfigAndWallpaper();
-
-    const handleBgChange = () => {
-      loadConfigAndWallpaper();
+    setMounted(true);
+    const loadSettings = async () => {
+      const s = getBackgroundSettings();
+      setSettings(s);
+      if (s.type === "custom_image" || s.hasCustomUpload) {
+        const img = await getUploadedWallpaper();
+        setUploadedImage(img);
+      }
     };
 
-    window.addEventListener("hsk-background-changed", handleBgChange);
+    loadSettings();
+
+    const handleBgChange = async (e: Event) => {
+      const customEvt = e as CustomEvent<BackgroundSettings>;
+      if (customEvt.detail) {
+        setSettings(customEvt.detail);
+        if (customEvt.detail.type === "custom_image" || customEvt.detail.hasCustomUpload) {
+          const img = await getUploadedWallpaper();
+          setUploadedImage(img);
+        }
+      }
+    };
+
+    window.addEventListener("eloise-hsk-bg-changed", handleBgChange);
     return () => {
-      window.removeEventListener("hsk-background-changed", handleBgChange);
+      window.removeEventListener("eloise-hsk-bg-changed", handleBgChange);
     };
   }, []);
 
-  const isExamRoute = pathname?.startsWith("/exam");
-  if (isExamRoute && !config.enableInExam) {
+  // Check if in exam room
+  const isExamPage = pathname ? pathname.startsWith("/exam") : false;
+  const shouldApplyBg =
+    settings.enabled &&
+    (settings.type !== "preset" || settings.presetId !== "default") &&
+    (!isExamPage || settings.enableInExam);
+
+  const activePreset = PRESET_BACKGROUNDS.find((p) => p.id === settings.presetId);
+  const isDark =
+    shouldApplyBg &&
+    ((settings.type === "preset" && activePreset?.isDark) ||
+      (settings.type !== "preset" && settings.opacityMask >= 50));
+
+  // Sync body classes
+  useEffect(() => {
+    if (!mounted || typeof document === "undefined") return;
+
+    if (shouldApplyBg) {
+      document.body.classList.add("has-custom-bg");
+    } else {
+      document.body.classList.remove("has-custom-bg");
+    }
+
+    if (isDark) {
+      document.body.classList.add("dark-theme");
+    } else {
+      document.body.classList.remove("dark-theme");
+    }
+
+    return () => {
+      document.body.classList.remove("has-custom-bg");
+      document.body.classList.remove("dark-theme");
+    };
+  }, [mounted, shouldApplyBg, isDark]);
+
+  if (!mounted || !shouldApplyBg) {
     return null;
   }
 
-  // Determine what style to apply
-  let bgStyle: React.CSSProperties = {
-    backgroundColor: "#f8fafc",
-  };
-
-  if (config.type === "preset") {
-    const preset = PRESET_THEMES.find((p) => p.id === config.presetId) || PRESET_THEMES[0];
-    bgStyle = { ...preset.style };
-  } else if (config.type === "image" && dbImageUrl) {
-    bgStyle = {
-      backgroundImage: `url(${dbImageUrl})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-    };
-  } else if (config.type === "url" && config.imageUrl) {
-    bgStyle = {
-      backgroundImage: `url(${config.imageUrl})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-    };
+  // Calculate background image URL
+  let bgImageUrl: string | null = null;
+  if (settings.type === "custom_image" && uploadedImage) {
+    bgImageUrl = uploadedImage;
+  } else if (settings.type === "custom_url" && settings.customUrl) {
+    bgImageUrl = settings.customUrl;
   }
-
-  const blurStyle: React.CSSProperties = {
-    filter: config.blur > 0 ? `blur(${config.blur}px)` : undefined,
-    transform: config.blur > 0 ? "scale(1.05)" : undefined, // prevent blurry edge artifacts
-  };
-
-  const overlayOpacity = Math.max(0, Math.min(80, config.overlayOpacity || 0)) / 100;
 
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-0 -z-10 pointer-events-none overflow-hidden transition-all duration-300"
+      className="fixed inset-0 -z-10 pointer-events-none overflow-hidden transition-all duration-500 ease-in-out"
     >
-      {/* Background layer */}
-      <div
-        className="absolute inset-0 w-full h-full transition-all duration-500 ease-out"
-        style={{ ...bgStyle, ...blurStyle }}
-      />
-
-      {/* Dimming overlay layer */}
-      {overlayOpacity > 0 && (
+      {/* 1. Preset Background Layer */}
+      {settings.type === "preset" && activePreset && (
         <div
-          className="absolute inset-0 bg-black transition-opacity duration-300"
-          style={{ opacity: overlayOpacity }}
+          className="absolute inset-0 w-full h-full transition-all duration-500"
+          style={{
+            background: activePreset.value,
+          }}
+        />
+      )}
+
+      {/* 2. Image Wallpaper Layer */}
+      {bgImageUrl && (
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-300"
+          style={{
+            backgroundImage: `url(${bgImageUrl})`,
+            filter: settings.blur > 0 ? `blur(${settings.blur}px)` : undefined,
+            transform: settings.blur > 0 ? "scale(1.06)" : undefined,
+          }}
+        />
+      )}
+
+      {/* 3. Darkening Overlay Layer */}
+      {settings.opacityMask > 0 && (
+        <div
+          className="absolute inset-0 transition-opacity duration-300"
+          style={{
+            backgroundColor: `rgba(0, 0, 0, ${settings.opacityMask / 100})`,
+          }}
         />
       )}
     </div>
   );
 };
+
+export default GlobalBackgroundRenderer;

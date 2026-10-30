@@ -7,3 +7,82 @@
     @apply bg-slate-50 text-slate-900 min-h-screen antialiased;
   }
 }
+
+/* ================= 全局自定义背景与毛玻璃通透特效 (参考考研站) ================= */
+
+/* 1. 启用自定义壁纸时，清空外层背景色，使壁纸透出 */
+body.has-custom-bg {
+  background-color: transparent !important;
+}
+
+body.has-custom-bg .bg-slate-50 {
+  background-color: transparent !important;
+}
+
+/* 2. 吸顶栏与半透明容器保留毛玻璃质感，避免死白或遮挡 */
+body.has-custom-bg .bg-slate-50\/95,
+body.has-custom-bg .bg-slate-50\/90,
+body.has-custom-bg .bg-slate-50\/80,
+body.has-custom-bg .bg-slate-50\/70,
+body.has-custom-bg .bg-slate-50\/60,
+body.has-custom-bg .bg-slate-50\/50 {
+  background-color: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* 3. 卡片支持通透的微毛玻璃 (bg-white/90 backdrop-blur-sm) */
+body.has-custom-bg .bg-white {
+  background-color: rgba(255, 255, 255, 0.90) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+body.has-custom-bg .bg-white\/90 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+body.has-custom-bg header.sticky,
+body.has-custom-bg .sticky.top-0 {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+/* 4. 深色夜间模式 (#0f172a) 下的自适应高对比适配 */
+body.dark-theme {
+  color: #f1f5f9 !important;
+}
+
+body.dark-theme .bg-white {
+  background-color: rgba(30, 41, 59, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #f8fafc !important;
+}
+
+body.dark-theme .text-slate-900 {
+  color: #f8fafc !important;
+}
+
+body.dark-theme .text-slate-800 {
+  color: #f1f5f9 !important;
+}
+
+body.dark-theme .text-slate-700 {
+  color: #e2e8f0 !important;
+}
+
+body.dark-theme .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+body.dark-theme .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+body.dark-theme .border-slate-200,
+body.dark-theme .border-slate-100 {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
