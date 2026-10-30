@@ -1,0 +1,2279 @@
+{
+  "id": "hsk4-sample",
+  "level": 4,
+  "title": "HSK 4级 官方大纲样卷",
+  "titleKo": "HSK 4급 공식 가이드라인 모의평가",
+  "subTitle": "全卷70题 · 汉考国际大纲基准样题精练",
+  "subTitleKo": "전체 70문항 · 한카우(CTI) 공식 출제 기준 표준 문제",
+  "tag": "4级样卷",
+  "tagKo": "4급 표준",
+  "durationMinutes": 75,
+  "duration": 4500,
+  "questionCount": 70,
+  "hasOfficialAnswers": true,
+  "audioUrl": "/audio/HSK4_样卷_听力.mp3",
+  "audioFileName": "HSK4_样卷_听力.mp3",
+  "questions": [
+    {
+      "id": "hsk4-sample-1",
+      "number": 1,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (判断题)",
+      "sectionKo": "1영역 · 듣기 (OX 판단)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "地点",
+        "B": "方式",
+        "C": "时间",
+        "D": "人员"
+      },
+      "optionsKo": {
+        "A": "地点",
+        "B": "方式",
+        "C": "时间",
+        "D": "人员"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：地点。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【해설】: 제시문(녹음 내용)의 핵심 진술과 문제의 명제가 완벽히 일치합니다. 따라서 올바른 내용(√)인 **A**가 정답입니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 35
+    },
+    {
+      "id": "hsk4-sample-2",
+      "number": 2,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (判断题)",
+      "sectionKo": "1영역 · 듣기 (OX 판단)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "做生意",
+        "B": "弹钢琴",
+        "C": "演话剧",
+        "D": "写文章"
+      },
+      "optionsKo": {
+        "A": "做生意",
+        "B": "弹钢琴",
+        "C": "演话剧",
+        "D": "写文章"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：弹钢琴。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【해설】: 제시문(녹음 내용)의 실제 의미와 문제의 명제가 상반되거나 언급되지 않은 왜곡된 서술입니다. 따라서 틀린 내용(×)인 **B**가 정답입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 60
+    },
+    {
+      "id": "hsk4-sample-3",
+      "number": 3,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (判断题)",
+      "sectionKo": "1영역 · 듣기 (OX 판단)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "推迟了",
+        "B": "任务复杂",
+        "C": "没订旅馆",
+        "D": "由小周负责"
+      },
+      "optionsKo": {
+        "A": "推迟了 (미루다, 연기하다)",
+        "B": "任务复杂",
+        "C": "没订旅馆",
+        "D": "由小周负责 (책임지다)"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：任务复杂。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【해설】: 제시문(녹음 내용)의 실제 의미와 문제의 명제가 상반되거나 언급되지 않은 왜곡된 서술입니다. 따라서 틀린 내용(×)인 **B**가 정답입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "推迟",
+          "pinyin": "tuī chí",
+          "meaning": "미루다, 연기하다"
+        },
+        {
+          "word": "负责",
+          "pinyin": "fù zé",
+          "meaning": "책임지다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 85
+    },
+    {
+      "id": "hsk4-sample-4",
+      "number": 4,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (判断题)",
+      "sectionKo": "1영역 · 듣기 (OX 판단)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "讲笑话",
+        "B": "擦窗户",
+        "C": "买白酒",
+        "D": "选沙发"
+      },
+      "optionsKo": {
+        "A": "讲笑话",
+        "B": "擦窗户",
+        "C": "买白酒",
+        "D": "选沙发"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：选沙发。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【해설】: 제시문(녹음 내용)의 실제 의미와 문제의 명제가 상반되거나 언급되지 않은 왜곡된 서술입니다. 따라서 틀린 내용(×)인 **B**가 정답입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 110
+    },
+    {
+      "id": "hsk4-sample-5",
+      "number": 5,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (判断题)",
+      "sectionKo": "1영역 · 듣기 (OX 판단)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "还没有想法",
+        "B": "准备回老家",
+        "C": "计划去北京",
+        "D": "后悔留校了"
+      },
+      "optionsKo": {
+        "A": "还没有想法",
+        "B": "准备回老家",
+        "C": "计划去北京 (계획)",
+        "D": "后悔留校了"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：计划去北京。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【해설】: 제시문(녹음 내용)의 실제 의미와 문제의 명제가 상반되거나 언급되지 않은 왜곡된 서술입니다. 따라서 틀린 내용(×)인 **B**가 정답입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "计划",
+          "pinyin": "jì huà",
+          "meaning": "계획"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 135
+    },
+    {
+      "id": "hsk4-sample-6",
+      "number": 6,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (判断题)",
+      "sectionKo": "1영역 · 듣기 (OX 판단)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "放松一下",
+        "B": "批评儿子",
+        "C": "祝贺小方",
+        "D": "转发消息"
+      },
+      "optionsKo": {
+        "A": "放松一下 (긴장을 풀다, 휴식하다)",
+        "B": "批评儿子",
+        "C": "祝贺小方",
+        "D": "转发消息"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：祝贺小方。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【해설】: 제시문(녹음 내용)의 실제 의미와 문제의 명제가 상반되거나 언급되지 않은 왜곡된 서술입니다. 따라서 틀린 내용(×)인 **B**가 정답입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "放松",
+          "pinyin": "fàng sōng",
+          "meaning": "긴장을 풀다, 휴식하다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 160
+    },
+    {
+      "id": "hsk4-sample-7",
+      "number": 7,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (判断题)",
+      "sectionKo": "1영역 · 듣기 (OX 판단)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "性格好",
+        "B": "很细心",
+        "C": "有点儿懒",
+        "D": "非常骄傲"
+      },
+      "optionsKo": {
+        "A": "性格好 (성격, 인품)",
+        "B": "很细心",
+        "C": "有点儿懒",
+        "D": "非常骄傲 (자만하다, 자랑스럽다)"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：性格好。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【해설】: 제시문(녹음 내용)의 핵심 진술과 문제의 명제가 완벽히 일치합니다. 따라서 올바른 내용(√)인 **A**가 정답입니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "性格",
+          "pinyin": "xìng gé",
+          "meaning": "성격, 인품"
+        },
+        {
+          "word": "骄傲",
+          "pinyin": "jiāo ào",
+          "meaning": "자만하다, 자랑스럽다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 185
+    },
+    {
+      "id": "hsk4-sample-8",
+      "number": 8,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (判断题)",
+      "sectionKo": "1영역 · 듣기 (OX 판단)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "半小时内",
+        "B": "大概一小时",
+        "C": "两小时左右",
+        "D": "至少三小时"
+      },
+      "optionsKo": {
+        "A": "半小时内",
+        "B": "大概一小时",
+        "C": "两小时左右",
+        "D": "至少三小时"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：两小时左右。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【해설】: 제시문(녹음 내용)의 실제 의미와 문제의 명제가 상반되거나 언급되지 않은 왜곡된 서술입니다. 따라서 틀린 내용(×)인 **B**가 정답입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 210
+    },
+    {
+      "id": "hsk4-sample-9",
+      "number": 9,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (判断题)",
+      "sectionKo": "1영역 · 듣기 (OX 판단)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "袜子破了",
+        "B": "特别吃惊",
+        "C": "误会女的了",
+        "D": "忘带钥匙了"
+      },
+      "optionsKo": {
+        "A": "袜子破了",
+        "B": "特别吃惊",
+        "C": "误会女的了",
+        "D": "忘带钥匙了"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：忘带钥匙了。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【해설】: 제시문(녹음 내용)의 실제 의미와 문제의 명제가 상반되거나 언급되지 않은 왜곡된 서술입니다. 따라서 틀린 내용(×)인 **B**가 정답입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 235
+    },
+    {
+      "id": "hsk4-sample-10",
+      "number": 10,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (判断题)",
+      "sectionKo": "1영역 · 듣기 (OX 판단)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "厕所对面",
+        "B": "院子里面",
+        "C": "大厅旁边",
+        "D": "餐厅后面"
+      },
+      "optionsKo": {
+        "A": "厕所对面",
+        "B": "院子里面",
+        "C": "大厅旁边",
+        "D": "餐厅后面"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：厕所对面。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【해설】: 제시문(녹음 내용)의 핵심 진술과 문제의 명제가 완벽히 일치합니다. 따라서 올바른 내용(√)인 **A**가 정답입니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 260
+    },
+    {
+      "id": "hsk4-sample-11",
+      "number": 11,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (短对话)",
+      "sectionKo": "2영역 · 듣기 (단문 대화)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "学费",
+        "B": "车牌号",
+        "C": "门的密码",
+        "D": "租车的价格"
+      },
+      "optionsKo": {
+        "A": "学费",
+        "B": "车牌号",
+        "C": "门的密码",
+        "D": "租车的价格"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：门的密码。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 C：门的密码。\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 300
+    },
+    {
+      "id": "hsk4-sample-12",
+      "number": 12,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (短对话)",
+      "sectionKo": "2영역 · 듣기 (단문 대화)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "他的孙子",
+        "B": "他的同事",
+        "C": "他的兄弟",
+        "D": "他的爱人"
+      },
+      "optionsKo": {
+        "A": "他的孙子",
+        "B": "他的同事",
+        "C": "他的兄弟",
+        "D": "他的爱人"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：他的孙子。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 A：他的孙子。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 326
+    },
+    {
+      "id": "hsk4-sample-13",
+      "number": 13,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (短对话)",
+      "sectionKo": "2영역 · 듣기 (단문 대화)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "工厂",
+        "B": "食堂",
+        "C": "加油站",
+        "D": "健身房"
+      },
+      "optionsKo": {
+        "A": "工厂",
+        "B": "食堂",
+        "C": "加油站",
+        "D": "健身房"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：加油站。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 C：加油站。\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 352
+    },
+    {
+      "id": "hsk4-sample-14",
+      "number": 14,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (短对话)",
+      "sectionKo": "2영역 · 듣기 (단문 대화)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "堵车了",
+        "B": "雨太大了",
+        "C": "错过了公交",
+        "D": "身份证丢了"
+      },
+      "optionsKo": {
+        "A": "堵车了 (차가 막히다)",
+        "B": "雨太大了",
+        "C": "错过了公交",
+        "D": "身份证丢了"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：堵车了。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 A：堵车了。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "堵车",
+          "pinyin": "dǔ chē",
+          "meaning": "차가 막히다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 378
+    },
+    {
+      "id": "hsk4-sample-15",
+      "number": 15,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (短对话)",
+      "sectionKo": "2영역 · 듣기 (단문 대화)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "洗毛衣",
+        "B": "点外卖",
+        "C": "寄快递",
+        "D": "买酸奶"
+      },
+      "optionsKo": {
+        "A": "洗毛衣",
+        "B": "点外卖",
+        "C": "寄快递",
+        "D": "买酸奶"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：寄快递。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 C：寄快递。\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 404
+    },
+    {
+      "id": "hsk4-sample-16",
+      "number": 16,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (短对话)",
+      "sectionKo": "2영역 · 듣기 (단문 대화)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "休假一天",
+        "B": "举办活动",
+        "C": "安排参观",
+        "D": "请客庆祝"
+      },
+      "optionsKo": {
+        "A": "休假一天",
+        "B": "举办活动",
+        "C": "安排参观",
+        "D": "请客庆祝"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：举办活动。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 B：举办活动。\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 430
+    },
+    {
+      "id": "hsk4-sample-17",
+      "number": 17,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (短对话)",
+      "sectionKo": "2영역 · 듣기 (단문 대화)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "十分精彩",
+        "B": "绿队赢了",
+        "C": "有球员受伤",
+        "D": "是网球比赛"
+      },
+      "optionsKo": {
+        "A": "十分精彩 (훌륭하다, 멋지다)",
+        "B": "绿队赢了",
+        "C": "有球员受伤",
+        "D": "是网球比赛"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：十分精彩。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 A：十分精彩。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "精彩",
+          "pinyin": "jīng cǎi",
+          "meaning": "훌륭하다, 멋지다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 456
+    },
+    {
+      "id": "hsk4-sample-18",
+      "number": 18,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (短对话)",
+      "sectionKo": "2영역 · 듣기 (단문 대화)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "咳嗽",
+        "B": "胳膊痛",
+        "C": "流鼻血",
+        "D": "体温过高"
+      },
+      "optionsKo": {
+        "A": "咳嗽 (기침하다)",
+        "B": "胳膊痛",
+        "C": "流鼻血",
+        "D": "体温过高"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：咳嗽。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 A：咳嗽。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "咳嗽",
+          "pinyin": "ké sou",
+          "meaning": "기침하다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 482
+    },
+    {
+      "id": "hsk4-sample-19",
+      "number": 19,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (短对话)",
+      "sectionKo": "2영역 · 듣기 (단문 대화)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "打开手机",
+        "B": "放好行李",
+        "C": "收拾垃圾",
+        "D": "不能用耳机"
+      },
+      "optionsKo": {
+        "A": "打开手机",
+        "B": "放好行李 (수하물, 짐)",
+        "C": "收拾垃圾",
+        "D": "不能用耳机"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：不能用耳机。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 D：不能用耳机。\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "行李",
+          "pinyin": "xíng li",
+          "meaning": "수하물, 짐"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 508
+    },
+    {
+      "id": "hsk4-sample-20",
+      "number": 20,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (短对话)",
+      "sectionKo": "2영역 · 듣기 (단문 대화)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "很感人",
+        "B": "很流行",
+        "C": "非常难听",
+        "D": "缺点很多"
+      },
+      "optionsKo": {
+        "A": "很感人",
+        "B": "很流行",
+        "C": "非常难听",
+        "D": "缺点很多"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：很感人。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 A：很感人。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 534
+    },
+    {
+      "id": "hsk4-sample-21",
+      "number": 21,
+      "type": "single_choice",
+      "section": "第三部分 · 听力 (短文理解)",
+      "sectionKo": "3영역 · 듣기 (단문 이해)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "赚钱不容易",
+        "B": "家庭的重要",
+        "C": "母亲很辛苦",
+        "D": "怎样照顾儿童"
+      },
+      "optionsKo": {
+        "A": "赚钱不容易",
+        "B": "家庭的重要",
+        "C": "母亲很辛苦",
+        "D": "怎样照顾儿童"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：母亲很辛苦。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 C：母亲很辛苦。\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 560
+    },
+    {
+      "id": "hsk4-sample-22",
+      "number": 22,
+      "type": "single_choice",
+      "section": "第三部分 · 听力 (短文理解)",
+      "sectionKo": "3영역 · 듣기 (단문 이해)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "进水了",
+        "B": "太旧了",
+        "C": "不停地响",
+        "D": "无法打印"
+      },
+      "optionsKo": {
+        "A": "进水了",
+        "B": "太旧了",
+        "C": "不停地响",
+        "D": "无法打印"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：无法打印。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 D：无法打印。\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 586
+    },
+    {
+      "id": "hsk4-sample-23",
+      "number": 23,
+      "type": "single_choice",
+      "section": "第三部分 · 听力 (短文理解)",
+      "sectionKo": "3영역 · 듣기 (단문 이해)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "李师傅",
+        "B": "刘队长",
+        "C": "王教授",
+        "D": "赵教练"
+      },
+      "optionsKo": {
+        "A": "李师傅 (기사님, 사부)",
+        "B": "刘队长",
+        "C": "王教授",
+        "D": "赵教练"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：李师傅。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 A：李师傅。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "师傅",
+          "pinyin": "shī fu",
+          "meaning": "기사님, 사부"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 612
+    },
+    {
+      "id": "hsk4-sample-24",
+      "number": 24,
+      "type": "single_choice",
+      "section": "第三部分 · 听力 (短文理解)",
+      "sectionKo": "3영역 · 듣기 (단문 이해)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "成都",
+        "B": "长春",
+        "C": "南京",
+        "D": "上海"
+      },
+      "optionsKo": {
+        "A": "成都",
+        "B": "长春",
+        "C": "南京",
+        "D": "上海"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：成都。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 A：成都。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 638
+    },
+    {
+      "id": "hsk4-sample-25",
+      "number": 25,
+      "type": "single_choice",
+      "section": "第三部分 · 听力 (短文理解)",
+      "sectionKo": "3영역 · 듣기 (단문 이해)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "很香",
+        "B": "特别咸",
+        "C": "有些苦",
+        "D": "一点儿也不辣"
+      },
+      "optionsKo": {
+        "A": "很香",
+        "B": "特别咸",
+        "C": "有些苦",
+        "D": "一点儿也不辣"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：很香。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 A：很香。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 664
+    },
+    {
+      "id": "hsk4-sample-26",
+      "number": 26,
+      "type": "single_choice",
+      "section": "第三部分 · 听力 (短文理解)",
+      "sectionKo": "3영역 · 듣기 (단문 이해)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "开演唱会",
+        "B": "考上博士",
+        "C": "成为律师",
+        "D": "当一名警察"
+      },
+      "optionsKo": {
+        "A": "开演唱会",
+        "B": "考上博士",
+        "C": "成为律师 (변호사)",
+        "D": "当一名警察"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：成为律师。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 C：成为律师。\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "律师",
+          "pinyin": "lǜ shī",
+          "meaning": "변호사"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 700
+    },
+    {
+      "id": "hsk4-sample-27",
+      "number": 27,
+      "type": "single_choice",
+      "section": "第三部分 · 听力 (短文理解)",
+      "sectionKo": "3영역 · 듣기 (단문 이해)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "明年入学",
+        "B": "硕士毕业",
+        "C": "在广东打工",
+        "D": "普通话标准"
+      },
+      "optionsKo": {
+        "A": "明年入学",
+        "B": "硕士毕业 (졸업하다)",
+        "C": "在广东打工",
+        "D": "普通话标准"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：硕士毕业。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 B：硕士毕业。\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "毕业",
+          "pinyin": "bì yè",
+          "meaning": "졸업하다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 728
+    },
+    {
+      "id": "hsk4-sample-28",
+      "number": 28,
+      "type": "single_choice",
+      "section": "第三部分 · 听力 (短文理解)",
+      "sectionKo": "3영역 · 듣기 (단문 이해)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "力气很大",
+        "B": "喜欢热闹",
+        "C": "听力极好",
+        "D": "速度较慢"
+      },
+      "optionsKo": {
+        "A": "力气很大 (힘, 기운)",
+        "B": "喜欢热闹",
+        "C": "听力极好",
+        "D": "速度较慢"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：力气很大。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 A：力气很大。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "力气",
+          "pinyin": "lì qi",
+          "meaning": "힘, 기운"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 756
+    },
+    {
+      "id": "hsk4-sample-29",
+      "number": 29,
+      "type": "single_choice",
+      "section": "第三部分 · 听力 (短文理解)",
+      "sectionKo": "3영역 · 듣기 (단문 이해)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "江边",
+        "B": "森林里",
+        "C": "中国南方",
+        "D": "亚洲西部"
+      },
+      "optionsKo": {
+        "A": "江边",
+        "B": "森林里",
+        "C": "中国南方",
+        "D": "亚洲西部"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：森林里。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 B：森林里。\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 784
+    },
+    {
+      "id": "hsk4-sample-30",
+      "number": 30,
+      "type": "single_choice",
+      "section": "第三部分 · 听力 (短文理解)",
+      "sectionKo": "3영역 · 듣기 (단문 이해)",
+      "partCategory": "听力",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "留学",
+        "B": "工作",
+        "C": "经济困难",
+        "D": "给孩子看病"
+      },
+      "optionsKo": {
+        "A": "留学",
+        "B": "工作",
+        "C": "经济困难",
+        "D": "给孩子看病"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：工作。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 B：工作。\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 812
+    },
+    {
+      "id": "hsk4-sample-31",
+      "number": 31,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (빈칸 어휘 채우기)",
+      "partCategory": "阅读",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "写信",
+        "B": "发邮件",
+        "C": "发短信",
+        "D": "打电话"
+      },
+      "optionsKo": {
+        "A": "写信",
+        "B": "发邮件",
+        "C": "发短信",
+        "D": "打电话"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：打电话。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 D：打电话。\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 840
+    },
+    {
+      "id": "hsk4-sample-32",
+      "number": 32,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (빈칸 어휘 채우기)",
+      "partCategory": "阅读",
+      "content": "【听力题·对话与短文】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "兴趣相同",
+        "B": "感情很好",
+        "C": "每天都散步",
+        "D": "结婚十年了"
+      },
+      "optionsKo": {
+        "A": "兴趣相同",
+        "B": "感情很好",
+        "C": "每天都散步",
+        "D": "结婚十年了"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：感情很好。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 듣기 녹음 확인 결과, 정답은 B：感情很好。\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 868
+    },
+    {
+      "id": "hsk4-sample-33",
+      "number": 33,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (빈칸 어휘 채우기)",
+      "partCategory": "阅读",
+      "content": "选词填空：\n（     ）一下，同学，请不要在自习室里大声讨论。",
+      "options": {
+        "A": "之间",
+        "B": "打扰",
+        "C": "免费",
+        "D": "也许"
+      },
+      "optionsKo": {
+        "A": "之间",
+        "B": "打扰",
+        "C": "免费",
+        "D": "也许"
+      },
+      "officialAnswer": "B",
+      "explanation": "选词填空：正确答案为 B（打扰）。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 选词填空：正确答案为 B（打扰）。\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 896
+    },
+    {
+      "id": "hsk4-sample-34",
+      "number": 34,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (빈칸 어휘 채우기)",
+      "partCategory": "阅读",
+      "content": "选词填空：\n从1 月1 日起，我市60 岁以上的老年人可以（     ）乘坐公共汽车。",
+      "options": {
+        "A": "之间",
+        "B": "打扰",
+        "C": "免费",
+        "D": "街道"
+      },
+      "optionsKo": {
+        "A": "之间",
+        "B": "打扰",
+        "C": "免费",
+        "D": "街道"
+      },
+      "officialAnswer": "C",
+      "explanation": "选词填空：正确答案为 C（免费）。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 选词填空：正确答案为 C（免费）。\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 924
+    },
+    {
+      "id": "hsk4-sample-35",
+      "number": 35,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (빈칸 어휘 채우기)",
+      "partCategory": "阅读",
+      "content": "选词填空：\n我父母都很幽默，爱开玩笑，他们（     ）的对话总是十分有趣。",
+      "options": {
+        "A": "之间",
+        "B": "免费",
+        "C": "也许",
+        "D": "实在"
+      },
+      "optionsKo": {
+        "A": "之间",
+        "B": "免费",
+        "C": "也许",
+        "D": "实在"
+      },
+      "officialAnswer": "A",
+      "explanation": "选词填空：正确答案为 A（之间）。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 选词填空：正确答案为 A（之间）。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "幽默",
+          "pinyin": "yōu mò",
+          "meaning": "유머러스하다"
+        },
+        {
+          "word": "开玩笑",
+          "pinyin": "kāi wán xiào",
+          "meaning": "농담하다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 952
+    },
+    {
+      "id": "hsk4-sample-36",
+      "number": 36,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (빈칸 어휘 채우기)",
+      "partCategory": "阅读",
+      "content": "选词填空：\n如果你当时没那么粗心，（     ）结果会完全不一样。",
+      "options": {
+        "A": "之间",
+        "B": "打扰",
+        "C": "免费",
+        "D": "也许"
+      },
+      "optionsKo": {
+        "A": "之间",
+        "B": "打扰",
+        "C": "免费",
+        "D": "也许"
+      },
+      "officialAnswer": "D",
+      "explanation": "选词填空：正确答案为 D（也许）。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 选词填空：正确答案为 D（也许）。\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 980
+    },
+    {
+      "id": "hsk4-sample-37",
+      "number": 37,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (빈칸 어휘 채우기)",
+      "partCategory": "阅读",
+      "content": "选词填空：\n最近几周天天加班，（     ）辛苦，等到年底我给大家放几天假。",
+      "options": {
+        "A": "实在",
+        "B": "打扰",
+        "C": "免费",
+        "D": "街道"
+      },
+      "optionsKo": {
+        "A": "实在",
+        "B": "打扰",
+        "C": "免费",
+        "D": "街道"
+      },
+      "officialAnswer": "A",
+      "explanation": "选词填空：正确答案为 A（实在）。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 选词填空：正确答案为 A（实在）。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "加班",
+          "pinyin": "jiā bān",
+          "meaning": "야근하다, 초과 근무하다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 1008
+    },
+    {
+      "id": "hsk4-sample-38",
+      "number": 38,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (빈칸 어휘 채우기)",
+      "partCategory": "阅读",
+      "content": "选词填空：\nA：冰箱里还有我上午做的葡萄汁，给你（     ）一杯？\nB：不用了，我肚子有点儿难受，喝不了凉的。",
+      "options": {
+        "A": "倒",
+        "B": "自信",
+        "C": "心情",
+        "D": "修理"
+      },
+      "optionsKo": {
+        "A": "倒",
+        "B": "自信",
+        "C": "心情",
+        "D": "修理"
+      },
+      "officialAnswer": "A",
+      "explanation": "选词填空：正确答案为 A（倒）。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 选词填空：正确答案为 A（倒）。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "难受",
+          "pinyin": "nán shòu",
+          "meaning": "괴롭다, 몸이 불편하다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 1036
+    },
+    {
+      "id": "hsk4-sample-39",
+      "number": 39,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (빈칸 어휘 채우기)",
+      "partCategory": "阅读",
+      "content": "选词填空：\nA：我都睡一觉了，你怎么还在看小说？\nB：就剩几页了，我想知道最后（     ）怎么样了。",
+      "options": {
+        "A": "自信",
+        "B": "心情",
+        "C": "修理",
+        "D": "到底"
+      },
+      "optionsKo": {
+        "A": "自信",
+        "B": "心情",
+        "C": "修理",
+        "D": "到底 (도대체, 결국, 마침내)"
+      },
+      "officialAnswer": "D",
+      "explanation": "选词填空：正确答案为 D（到底）。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 选词填空：正确答案为 D（到底）。\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "到底",
+          "pinyin": "dào dǐ",
+          "meaning": "도대체, 결국, 마침내"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 1064
+    },
+    {
+      "id": "hsk4-sample-40",
+      "number": 40,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (빈칸 어휘 채우기)",
+      "partCategory": "阅读",
+      "content": "选词填空：\nA：明天就要面试了，我感觉自己还没准备好。\nB：别担心，表现得（     ）点儿，你肯定能行。",
+      "options": {
+        "A": "自信",
+        "B": "心情",
+        "C": "修理",
+        "D": "可惜"
+      },
+      "optionsKo": {
+        "A": "自信",
+        "B": "心情",
+        "C": "修理",
+        "D": "可惜"
+      },
+      "officialAnswer": "A",
+      "explanation": "选词填空：正确答案为 A（自信）。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 选词填空：正确答案为 A（自信）。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 1092
+    },
+    {
+      "id": "hsk4-sample-41",
+      "number": 41,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (排列顺序)",
+      "sectionKo": "2영역 · 독해 (문장 순서 배열)",
+      "partCategory": "阅读",
+      "content": "选词填空：\nA：昨晚的京剧演出邀请了许多有名的演员，特别好看。\nB：早知道我就和你一起去了，真是太（     ）了。",
+      "options": {
+        "A": "自信",
+        "B": "心情",
+        "C": "可惜",
+        "D": "修理"
+      },
+      "optionsKo": {
+        "A": "自信",
+        "B": "心情",
+        "C": "可惜",
+        "D": "修理"
+      },
+      "officialAnswer": "C",
+      "explanation": "选词填空：正确答案为 C（可惜）。",
+      "explanationKo": "【정답 안내】: 정답은 **C** (**可惜**) 입니다.\n\n【어순 논리 분석】: 올바른 문장 배열 순서는 **可惜** 입니다.\n\n• 논리 전개: 접속사 호응(관련사), 지시 대명사의 지칭 대상, 시간 순서 및 인과 관계를 파악하면 자연스럽게 연결됩니다.\n\n• 상세 어순: 选词填空：正确答案为 C（可惜）。\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 1120
+    },
+    {
+      "id": "hsk4-sample-42",
+      "number": 42,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (排列顺序)",
+      "sectionKo": "2영역 · 독해 (문장 순서 배열)",
+      "partCategory": "阅读",
+      "content": "选词填空：\nA：你的小猫脾气真好，可以随便让人抱。\nB：可能是因为它刚吃饱，（     ）比较好，平时才不这样呢。",
+      "options": {
+        "A": "自信",
+        "B": "心情",
+        "C": "修理",
+        "D": "倒"
+      },
+      "optionsKo": {
+        "A": "自信",
+        "B": "心情",
+        "C": "修理",
+        "D": "倒"
+      },
+      "officialAnswer": "B",
+      "explanation": "选词填空：正确答案为 B（心情）。",
+      "explanationKo": "【정답 안내】: 정답은 **B** (**心情**) 입니다.\n\n【어순 논리 분석】: 올바른 문장 배열 순서는 **心情** 입니다.\n\n• 논리 전개: 접속사 호응(관련사), 지시 대명사의 지칭 대상, 시간 순서 및 인과 관계를 파악하면 자연스럽게 연결됩니다.\n\n• 상세 어순: 选词填空：正确答案为 B（心情）。\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 1148
+    },
+    {
+      "id": "hsk4-sample-43",
+      "number": 43,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (排列顺序)",
+      "sectionKo": "2영역 · 독해 (문장 순서 배열)",
+      "partCategory": "阅读",
+      "content": "最近气温变得太快了！昨天最高温度才10℃，我穿着厚外套都觉得冷，今天最高温竟然达到了25℃，虽然我只穿了一件衬衫，但还是热得直出汗。\n★ 最近：",
+      "options": {
+        "A": "多云",
+        "B": "常常下雪",
+        "C": "气温变化大",
+        "D": "夜晚降温了"
+      },
+      "optionsKo": {
+        "A": "多云",
+        "B": "常常下雪",
+        "C": "气温变化大",
+        "D": "夜晚降温了"
+      },
+      "officialAnswer": "C",
+      "explanation": "官方参考答案为 C：气温变化大。",
+      "explanationKo": "【정답 안내】: 정답은 **C** (**气温变化大**) 입니다.\n\n【어순 논리 분석】: 올바른 문장 배열 순서는 **气温变化大** 입니다.\n\n• 논리 전개: 접속사 호응(관련사), 지시 대명사의 지칭 대상, 시간 순서 및 인과 관계를 파악하면 자연스럽게 연결됩니다.\n\n• 상세 어순: 官方参考答案为 C：气温变化大。\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 1176
+    },
+    {
+      "id": "hsk4-sample-44",
+      "number": 44,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (排列顺序)",
+      "sectionKo": "2영역 · 독해 (문장 순서 배열)",
+      "partCategory": "阅读",
+      "content": "北京大兴国际机场的地铁站内，所有工作人员都有一部外语翻译机。这种翻译机支持34 种语言翻译，方便与国际旅客交流，提供有效服务。\n★ 那种翻译机：",
+      "options": {
+        "A": "翻译准确",
+        "B": "每部300 元",
+        "C": "仅售票员有",
+        "D": "支持多种语言"
+      },
+      "optionsKo": {
+        "A": "翻译准确",
+        "B": "每部300 元",
+        "C": "仅售票员有",
+        "D": "支持多种语言"
+      },
+      "officialAnswer": "D",
+      "explanation": "官方参考答案为 D：支持多种语言。",
+      "explanationKo": "【정답 안내】: 정답은 **D** (**支持多种语言**) 입니다.\n\n【어순 논리 분석】: 올바른 문장 배열 순서는 **支持多种语言** 입니다.\n\n• 논리 전개: 접속사 호응(관련사), 지시 대명사의 지칭 대상, 시간 순서 및 인과 관계를 파악하면 자연스럽게 연결됩니다.\n\n• 상세 어순: 官方参考答案为 D：支持多种语言。\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 1204
+    },
+    {
+      "id": "hsk4-sample-45",
+      "number": 45,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (排列顺序)",
+      "sectionKo": "2영역 · 독해 (문장 순서 배열)",
+      "partCategory": "阅读",
+      "content": "老张，放弃很简单，难的是面对压力还能坚持到底。即使别人都怀疑你、反对你，你也要记住，我会永远在你身边陪着你、鼓励你。\n★ 他认为老张该怎样做？",
+      "options": {
+        "A": "改变主意",
+        "B": "接受道歉",
+        "C": "坚持到底",
+        "D": "要有目标"
+      },
+      "optionsKo": {
+        "A": "改变主意 (생각, 아이디어, 방책)",
+        "B": "接受道歉",
+        "C": "坚持到底 (견지하다, 지속하다)",
+        "D": "要有目标"
+      },
+      "officialAnswer": "C",
+      "explanation": "官方参考答案为 C：坚持到底。",
+      "explanationKo": "【정답 안내】: 정답은 **C** (**坚持到底**) 입니다.\n\n【어순 논리 분석】: 올바른 문장 배열 순서는 **坚持到底** 입니다.\n\n• 논리 전개: 접속사 호응(관련사), 지시 대명사의 지칭 대상, 시간 순서 및 인과 관계를 파악하면 자연스럽게 연결됩니다.\n\n• 상세 어순: 官方参考答案为 C：坚持到底。\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "坚持",
+          "pinyin": "jiān chí",
+          "meaning": "견지하다, 지속하다"
+        },
+        {
+          "word": "到底",
+          "pinyin": "dào dǐ",
+          "meaning": "도대체, 결국, 마침내"
+        },
+        {
+          "word": "主意",
+          "pinyin": "zhǔ yi",
+          "meaning": "생각, 아이디어, 방책"
+        },
+        {
+          "word": "压力",
+          "pinyin": "yā lì",
+          "meaning": "스트레스, 압박"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "audioTimestamp": 1232
+    },
+    {
+      "id": "hsk4-sample-46",
+      "number": 46,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (排列顺序)",
+      "sectionKo": "2영역 · 독해 (문장 순서 배열)",
+      "partCategory": "阅读",
+      "content": "记课堂笔记有很多好处，它不仅可以加强我们对知识内容的理解，还可以帮我们快速弄清学习的重点，便于期末复习。\n★ 记课堂笔记的好处是：",
+      "options": {
+        "A": "练习汉字",
+        "B": "加强理解",
+        "C": "便于预习",
+        "D": "能发现错误"
+      },
+      "optionsKo": {
+        "A": "练习汉字",
+        "B": "加强理解",
+        "C": "便于预习",
+        "D": "能发现错误"
+      },
+      "officialAnswer": "B",
+      "explanation": "官方参考答案为 B：加强理解。",
+      "explanationKo": "【정답 안내】: 정답은 **B** (**加强理解**) 입니다.\n\n【어순 논리 분석】: 올바른 문장 배열 순서는 **加强理解** 입니다.\n\n• 논리 전개: 접속사 호응(관련사), 지시 대명사의 지칭 대상, 시간 순서 및 인과 관계를 파악하면 자연스럽게 연결됩니다.\n\n• 상세 어순: 官方参考答案为 B：加强理解。\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "好处",
+          "pinyin": "hǎo chu",
+          "meaning": "이점, 좋은 점, 혜택"
+        },
+        {
+          "word": "不仅",
+          "pinyin": "bù jǐn",
+          "meaning": "~뿐만 아니라"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-47",
+      "number": 47,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (排列顺序)",
+      "sectionKo": "2영역 · 독해 (문장 순서 배열)",
+      "partCategory": "阅读",
+      "content": "同学们，明天秋游，大家最好带瓶矿泉水，可以顺便再拿些小零食，比如饼干、巧克力什么的。但是不用带太多东西，学校为每个人都准备了午餐。\n★ 同学们明天最好带上：",
+      "options": {
+        "A": "零钱",
+        "B": "早餐",
+        "C": "毛巾",
+        "D": "矿泉水"
+      },
+      "optionsKo": {
+        "A": "零钱",
+        "B": "早餐",
+        "C": "毛巾",
+        "D": "矿泉水"
+      },
+      "officialAnswer": "D",
+      "explanation": "官方参考答案为 D：矿泉水。",
+      "explanationKo": "【정답 안내】: 정답은 **D** (**矿泉水**) 입니다.\n\n【어순 논리 분석】: 올바른 문장 배열 순서는 **矿泉水** 입니다.\n\n• 논리 전개: 접속사 호응(관련사), 지시 대명사의 지칭 대상, 시간 순서 및 인과 관계를 파악하면 자연스럽게 연결됩니다.\n\n• 상세 어순: 官方参考答案为 D：矿泉水。\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "顺便",
+          "pinyin": "shùn biàn",
+          "meaning": "…하는 길에, 겸사겸사"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-48",
+      "number": 48,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (排列顺序)",
+      "sectionKo": "2영역 · 독해 (문장 순서 배열)",
+      "partCategory": "阅读",
+      "content": "我的家乡有一座山，小时候我经常和朋友们一起去山上，躺在草地上看风景，特别开心。长大后，尽管我去过很多地方，看了很多美景，但那座山的景色一直都是我心中最美好的回忆。\n★ 那座山：",
+      "options": {
+        "A": "有很多树",
+        "B": "路非常难走",
+        "C": "带给他美好回忆",
+        "D": "现在是著名景点"
+      },
+      "optionsKo": {
+        "A": "有很多树",
+        "B": "路非常难走",
+        "C": "带给他美好回忆",
+        "D": "现在是著名景点"
+      },
+      "officialAnswer": "C",
+      "explanation": "官方参考答案为 C：带给他美好回忆。",
+      "explanationKo": "【정답 안내】: 정답은 **C** (**带给他美好回忆**) 입니다.\n\n【어순 논리 분석】: 올바른 문장 배열 순서는 **带给他美好回忆** 입니다.\n\n• 논리 전개: 접속사 호응(관련사), 지시 대명사의 지칭 대상, 시간 순서 및 인과 관계를 파악하면 자연스럽게 연결됩니다.\n\n• 상세 어순: 官方参考答案为 C：带给他美好回忆。\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "尽管",
+          "pinyin": "jǐn guǎn",
+          "meaning": "비록 ~일지라도"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-49",
+      "number": 49,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (排列顺序)",
+      "sectionKo": "2영역 · 독해 (문장 순서 배열)",
+      "partCategory": "阅读",
+      "content": "遇见认识的人时，打个招呼很正常，但有些人对此却非常紧张。为了不打招呼，他们甚至在看见熟悉的人之后，故意低着头走。如果你遇到了这样的朋友，请不要感到不满，可能他只是比较容易害羞，不敢开口。\n★ 有的人会对什么感到紧张？",
+      "options": {
+        "A": "聚会",
+        "B": "考试",
+        "C": "打招呼",
+        "D": "拒绝别人"
+      },
+      "optionsKo": {
+        "A": "聚会",
+        "B": "考试",
+        "C": "打招呼",
+        "D": "拒绝别人 (거절하다)"
+      },
+      "officialAnswer": "C",
+      "explanation": "官方参考答案为 C：打招呼。",
+      "explanationKo": "【정답 안내】: 정답은 **C** (**打招呼**) 입니다.\n\n【어순 논리 분석】: 올바른 문장 배열 순서는 **打招呼** 입니다.\n\n• 논리 전개: 접속사 호응(관련사), 지시 대명사의 지칭 대상, 시간 순서 및 인과 관계를 파악하면 자연스럽게 연결됩니다.\n\n• 상세 어순: 官方参考答案为 C：打招呼。\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "害羞",
+          "pinyin": "hài xiū",
+          "meaning": "부끄러워하다, 수줍어하다"
+        },
+        {
+          "word": "拒绝",
+          "pinyin": "jù jué",
+          "meaning": "거절하다"
+        },
+        {
+          "word": "甚至",
+          "pinyin": "shèn zhì",
+          "meaning": "심지어, ~까지도"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-50",
+      "number": 50,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (排列顺序)",
+      "sectionKo": "2영역 · 독해 (문장 순서 배열)",
+      "partCategory": "阅读",
+      "content": "根据调查，人们从关上灯到睡着一般需要10 到20 分钟。如果经常超过30 分钟还没睡着，就是入睡困难了。但也有人一躺下就能睡着，能够“秒睡”，这是一件让很多人羡慕的事情。\n★ 根据这段话，什么让人羡慕？",
+      "options": {
+        "A": "入睡快",
+        "B": "收入高",
+        "C": "没有烦恼",
+        "D": "浪漫的爱情"
+      },
+      "optionsKo": {
+        "A": "入睡快",
+        "B": "收入高",
+        "C": "没有烦恼",
+        "D": "浪漫的爱情"
+      },
+      "officialAnswer": "A",
+      "explanation": "官方参考答案为 A：入睡快。",
+      "explanationKo": "【정답 안내】: 정답은 **A** (**入睡快**) 입니다.\n\n【어순 논리 분석】: 올바른 문장 배열 순서는 **入睡快** 입니다.\n\n• 논리 전개: 접속사 호응(관련사), 지시 대명사의 지칭 대상, 시간 순서 및 인과 관계를 파악하면 자연스럽게 연결됩니다.\n\n• 상세 어순: 官方参考答案为 A：入睡快。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "羡慕",
+          "pinyin": "xiàn mù",
+          "meaning": "부러워하다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-51",
+      "number": 51,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (阅读理解)",
+      "sectionKo": "3영역 · 독해 (단문 독해 선택)",
+      "partCategory": "阅读",
+      "content": "【短文阅读】小谢，我了解了一下你目前的情况。考虑到你刚进我们公司，缺少这方面的经验，所以我打算让你去市场部，从基础学起，慢慢积累经验。明天上午，张经理会向你详细介绍市场部的工作内容，你有任何问题都可以问他。\n★ 小谢将去：",
+      "options": {
+        "A": "市场部",
+        "B": "管理部",
+        "C": "信息部",
+        "D": "广告部"
+      },
+      "optionsKo": {
+        "A": "市场部",
+        "B": "管理部",
+        "C": "信息部",
+        "D": "广告部"
+      },
+      "officialAnswer": "A",
+      "explanation": "官方参考答案为 A：市场部。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 官方参考答案为 A：市场部。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "考虑",
+          "pinyin": "kǎo lǜ",
+          "meaning": "고려하다, 생각하다"
+        },
+        {
+          "word": "基础",
+          "pinyin": "jī chǔ",
+          "meaning": "기초, 토대"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-52",
+      "number": 52,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (阅读理解)",
+      "sectionKo": "3영역 · 독해 (단문 독해 선택)",
+      "partCategory": "阅读",
+      "content": "【短文阅读】小谢，我了解了一下你目前的情况。考虑到你刚进我们公司，缺少这方面的经验，所以我打算让你去市场部，从基础学起，慢慢积累经验。明天上午，张经理会向你详细介绍市场部的工作内容，你有任何问题都可以问他。\n★ 说话人让小谢去那个部门，是为了让他：",
+      "options": {
+        "A": "整理文件",
+        "B": "积累经验",
+        "C": "招聘新人",
+        "D": "证明自己"
+      },
+      "optionsKo": {
+        "A": "整理文件 (문건, 서류, 파일)",
+        "B": "积累经验",
+        "C": "招聘新人 (초빙하다, 채용하다)",
+        "D": "证明自己"
+      },
+      "officialAnswer": "B",
+      "explanation": "官方参考答案为 B：积累经验。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 官方参考答案为 B：积累经验。\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "文件",
+          "pinyin": "wén jiàn",
+          "meaning": "문건, 서류, 파일"
+        },
+        {
+          "word": "招聘",
+          "pinyin": "zhāo pìn",
+          "meaning": "초빙하다, 채용하다"
+        },
+        {
+          "word": "考虑",
+          "pinyin": "kǎo lǜ",
+          "meaning": "고려하다, 생각하다"
+        },
+        {
+          "word": "基础",
+          "pinyin": "jī chǔ",
+          "meaning": "기초, 토대"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-53",
+      "number": 53,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (阅读理解)",
+      "sectionKo": "3영역 · 독해 (단문 독해 선택)",
+      "partCategory": "阅读",
+      "content": "【短文阅读】申请签证时，首先需要在线上填写申请表，接着通过签证申请服务网站选择线下办理时间，然后按时去使馆交护照、照片等材料，并支付费用。同时，在办理签证的过程中，可以通过网站查看办理的情况。申请通过后，使馆会通知申请人的。\n★ 申请签证的第一步是：",
+      "options": {
+        "A": "体检",
+        "B": "答题",
+        "C": "交费",
+        "D": "填写申请表"
+      },
+      "optionsKo": {
+        "A": "体检",
+        "B": "答题",
+        "C": "交费",
+        "D": "填写申请表"
+      },
+      "officialAnswer": "D",
+      "explanation": "官方参考答案为 D：填写申请表。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 官方参考答案为 D：填写申请表。\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "按时",
+          "pinyin": "àn shí",
+          "meaning": "제때에, 정각에"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-54",
+      "number": 54,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (阅读理解)",
+      "sectionKo": "3영역 · 독해 (단문 독해 선택)",
+      "partCategory": "阅读",
+      "content": "【短文阅读】申请签证时，首先需要在线上填写申请表，接着通过签证申请服务网站选择线下办理时间，然后按时去使馆交护照、照片等材料，并支付费用。同时，在办理签证的过程中，可以通过网站查看办理的情况。申请通过后，使馆会通知申请人的。\n★ 根据这段话，办理签证时，可以通过什么方式了解情况？",
+      "options": {
+        "A": "读报纸",
+        "B": "查看网站",
+        "C": "联系使馆",
+        "D": "查找资料"
+      },
+      "optionsKo": {
+        "A": "读报纸",
+        "B": "查看网站",
+        "C": "联系使馆",
+        "D": "查找资料"
+      },
+      "officialAnswer": "B",
+      "explanation": "官方参考答案为 B：查看网站。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 官方参考答案为 B：查看网站。\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "按时",
+          "pinyin": "àn shí",
+          "meaning": "제때에, 정각에"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-55",
+      "number": 55,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (阅读理解)",
+      "sectionKo": "3영역 · 독해 (단문 독해 선택)",
+      "partCategory": "阅读",
+      "content": "【短文阅读】海菜花是一种中国才有的，在水中生活的植物。它喜欢阳光多又暖和的地方，并且对水的要求非常严格，稍微有一点儿污染都会受到影响。所以环保部门往往通过海菜花来判断水是否受到了污染，因此它也被叫作“环保菜”。在过去几十年里，受水、气候条件等影响，海菜花的数量一直在减少，不过近几年，由于云南大理加强环境保护，海菜花的数量不断增加。现在，每年5 月到10 月，洱海北部20 公里全部开满了海菜花，十分美丽。\n★ 海菜花长在：",
+      "options": {
+        "A": "树上",
+        "B": "山脚下",
+        "C": "深海区",
+        "D": "暖和的水中"
+      },
+      "optionsKo": {
+        "A": "树上",
+        "B": "山脚下",
+        "C": "深海区",
+        "D": "暖和的水中"
+      },
+      "officialAnswer": "D",
+      "explanation": "官方参考答案为 D：暖和的水中。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 官方参考答案为 D：暖和的水中。\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "要求",
+          "pinyin": "yāo qiú",
+          "meaning": "요구, 조건; 요구하다"
+        },
+        {
+          "word": "保护",
+          "pinyin": "bǎo hù",
+          "meaning": "보호하다"
+        },
+        {
+          "word": "环境",
+          "pinyin": "huán jìng",
+          "meaning": "환경"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-56",
+      "number": 56,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (阅读理解)",
+      "sectionKo": "3영역 · 독해 (단문 독해 선택)",
+      "partCategory": "阅读",
+      "content": "【短文阅读】海菜花是一种中国才有的，在水中生活的植物。它喜欢阳光多又暖和的地方，并且对水的要求非常严格，稍微有一点儿污染都会受到影响。所以环保部门往往通过海菜花来判断水是否受到了污染，因此它也被叫作“环保菜”。在过去几十年里，受水、气候条件等影响，海菜花的数量一直在减少，不过近几年，由于云南大理加强环境保护，海菜花的数量不断增加。现在，每年5 月到10 月，洱海北部20 公里全部开满了海菜花，十分美丽。\n★ 关于海菜花，可以知道：",
+      "options": {
+        "A": "叶子很大",
+        "B": "晚上开花",
+        "C": "又叫“富菜”",
+        "D": "对生活环境要求严格"
+      },
+      "optionsKo": {
+        "A": "叶子很大",
+        "B": "晚上开花",
+        "C": "又叫“富菜”",
+        "D": "对生活环境要求严格 (요구, 조건; 요구하다)"
+      },
+      "officialAnswer": "D",
+      "explanation": "官方参考答案为 D：对生活环境要求严格。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 官方参考答案为 D：对生活环境要求严格。\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "要求",
+          "pinyin": "yāo qiú",
+          "meaning": "요구, 조건; 요구하다"
+        },
+        {
+          "word": "保护",
+          "pinyin": "bǎo hù",
+          "meaning": "보호하다"
+        },
+        {
+          "word": "环境",
+          "pinyin": "huán jìng",
+          "meaning": "환경"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-57",
+      "number": 57,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (阅读理解)",
+      "sectionKo": "3영역 · 독해 (단문 독해 선택)",
+      "partCategory": "阅读",
+      "content": "【短文阅读】海菜花是一种中国才有的，在水中生活的植物。它喜欢阳光多又暖和的地方，并且对水的要求非常严格，稍微有一点儿污染都会受到影响。所以环保部门往往通过海菜花来判断水是否受到了污染，因此它也被叫作“环保菜”。在过去几十年里，受水、气候条件等影响，海菜花的数量一直在减少，不过近几年，由于云南大理加强环境保护，海菜花的数量不断增加。现在，每年5 月到10 月，洱海北部20 公里全部开满了海菜花，十分美丽。\n★ 这段话最可能出现在下列哪本杂志中？",
+      "options": {
+        "A": "《足球少年》",
+        "B": "《植物研究》",
+        "C": "《科技中国》",
+        "D": "《艺术人生》"
+      },
+      "optionsKo": {
+        "A": "《足球少年》",
+        "B": "《植物研究》",
+        "C": "《科技中国》",
+        "D": "《艺术人生》"
+      },
+      "officialAnswer": "B",
+      "explanation": "官方参考答案为 B：《植物研究》。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 官方参考答案为 B：《植物研究》。\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "要求",
+          "pinyin": "yāo qiú",
+          "meaning": "요구, 조건; 요구하다"
+        },
+        {
+          "word": "保护",
+          "pinyin": "bǎo hù",
+          "meaning": "보호하다"
+        },
+        {
+          "word": "环境",
+          "pinyin": "huán jìng",
+          "meaning": "환경"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-58",
+      "number": 58,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (阅读理解)",
+      "sectionKo": "3영역 · 독해 (단문 독해 선택)",
+      "partCategory": "阅读",
+      "content": "【选句填空】请为（58）处选择最恰当的句子：\n一位作家花了四个月的时间，（58）______，去了41 个城市的56 家动物园，然后根据这段经历，写了一本与动物园有关的书。有人问这位作家为什么专门去逛动物园，（59）______，一直想把全中国的动物园都逛一遍。他认为只有了解动物，（60）______，才能使我们成为更好的人。",
+      "options": {
+        "A": "走遍了中国几乎所有的省",
+        "B": "他说自己从小就很喜欢动物园",
+        "C": "尊重生命",
+        "D": "在世界各地旅游"
+      },
+      "optionsKo": {
+        "A": "走遍了中国几乎所有的省 (번, 차례 (동작의 전 과정을 나타냄))",
+        "B": "他说自己从小就很喜欢动物园",
+        "C": "尊重生命",
+        "D": "在世界各地旅游"
+      },
+      "officialAnswer": "A",
+      "explanation": "根据上下文语境，此处选择：走遍了中国几乎所有的省。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 根据上下文语境，此处选择：走遍了中国几乎所有的省。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "经历",
+          "pinyin": "jīng lì",
+          "meaning": "경험, 겪다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-59",
+      "number": 59,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (阅读理解)",
+      "sectionKo": "3영역 · 독해 (단문 독해 선택)",
+      "partCategory": "阅读",
+      "content": "【选句填空】请为（59）处选择最恰当的句子：\n一位作家花了四个月的时间，（58）______，去了41 个城市的56 家动物园，然后根据这段经历，写了一本与动物园有关的书。有人问这位作家为什么专门去逛动物园，（59）______，一直想把全中国的动物园都逛一遍。他认为只有了解动物，（60）______，才能使我们成为更好的人。",
+      "options": {
+        "A": "他说自己从小就很喜欢动物园",
+        "B": "尊重生命",
+        "C": "走遍了中国几乎所有的省",
+        "D": "想成为一名优秀的摄影师"
+      },
+      "optionsKo": {
+        "A": "他说自己从小就很喜欢动物园",
+        "B": "尊重生命",
+        "C": "走遍了中国几乎所有的省 (번, 차례 (동작의 전 과정을 나타냄))",
+        "D": "想成为一名优秀的摄影师"
+      },
+      "officialAnswer": "A",
+      "explanation": "根据上下文语境，此处选择：他说自己从小就很喜欢动物园。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 根据上下文语境，此处选择：他说自己从小就很喜欢动物园。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "经历",
+          "pinyin": "jīng lì",
+          "meaning": "경험, 겪다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-60",
+      "number": 60,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (阅读理解)",
+      "sectionKo": "3영역 · 독해 (단문 독해 선택)",
+      "partCategory": "阅读",
+      "content": "【选句填空】请为（60）处选择最恰当的句子：\n一位作家花了四个月的时间，（58）______，去了41 个城市的56 家动物园，然后根据这段经历，写了一本与动物园有关的书。有人问这位作家为什么专门去逛动物园，（59）______，一直想把全中国的动物园都逛一遍。他认为只有了解动物，（60）______，才能使我们成为更好的人。",
+      "options": {
+        "A": "尊重生命",
+        "B": "他说自己从小就很喜欢动物园",
+        "C": "走遍了中国几乎所有的省",
+        "D": "保护大自然"
+      },
+      "optionsKo": {
+        "A": "尊重生命",
+        "B": "他说自己从小就很喜欢动物园",
+        "C": "走遍了中国几乎所有的省 (번, 차례 (동작의 전 과정을 나타냄))",
+        "D": "保护大自然 (보호하다)"
+      },
+      "officialAnswer": "A",
+      "explanation": "根据上下文语境，此处选择：尊重生命。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 根据上下文语境，此处选择：尊重生命。\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문에 언급되지 않았거나 부분적인 단어만 차용한 혼동 유발 함정입니다.",
+      "vocabList": [
+        {
+          "word": "经历",
+          "pinyin": "jīng lì",
+          "meaning": "경험, 겪다"
+        },
+        {
+          "word": "保护",
+          "pinyin": "bǎo hù",
+          "meaning": "보호하다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3"
+    },
+    {
+      "id": "hsk4-sample-61",
+      "number": 61,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "演出的歌手除了专业人员外",
+      "explanation": "根据上下文语境，此处选择：演出的歌手除了专业人员外。",
+      "explanationKo": "【정답 문장】: **演出的歌手除了专业人员外**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: 根据上下文语境，此处选择：演出的歌手除了专业人员外。\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 시간/부사어 + 술어동사 + 목적어] 규칙과 수식어(보어/한정어) 위치를 점검하세요.",
+      "vocabList": [
+        {
+          "word": "热情",
+          "pinyin": "rè qíng",
+          "meaning": "열정적이다, 친절하다"
+        },
+        {
+          "word": "丰富",
+          "pinyin": "fēng fù",
+          "meaning": "풍부하다"
+        },
+        {
+          "word": "引起",
+          "pinyin": "yǐn qǐ",
+          "meaning": "야기하다, 일으키다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "wordsToOrder": [
+        "2023 年7 月，一些喜爱音乐的人在贵阳举行了一场路边音乐会。（61）______，还有不少来自各个职业的普通人。这场音乐会无需门票，人人都能参加，（62）______，同时也引起了许多网友关注，很快就在互联网上火了起来，想要参加的人也越来越多，（63）______。于是，这样的音乐会开始慢慢从路边走进了大学城、商场前、城市路口……到2025 年5 月，（64）______，参加的总人数超过300 万。路边音乐会不但丰富了人们的夜生活，也为有音乐梦想的人提供了一定机会。"
+      ],
+      "standardSentence": "演出的歌手除了专业人员外"
+    },
+    {
+      "id": "hsk4-sample-62",
+      "number": 62,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "因此吸引了不少热情的观众",
+      "explanation": "根据上下文语境，此处选择：因此吸引了不少热情的观众。",
+      "explanationKo": "【정답 문장】: **因此吸引了不少热情的观众**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: 根据上下文语境，此处选择：因此吸引了不少热情的观众。\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 시간/부사어 + 술어동사 + 목적어] 규칙과 수식어(보어/한정어) 위치를 점검하세요.",
+      "vocabList": [
+        {
+          "word": "热情",
+          "pinyin": "rè qíng",
+          "meaning": "열정적이다, 친절하다"
+        },
+        {
+          "word": "丰富",
+          "pinyin": "fēng fù",
+          "meaning": "풍부하다"
+        },
+        {
+          "word": "引起",
+          "pinyin": "yǐn qǐ",
+          "meaning": "야기하다, 일으키다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "wordsToOrder": [
+        "2023 年7 月，一些喜爱音乐的人在贵阳举行了一场路边音乐会。（61）______，还有不少来自各个职业的普通人。这场音乐会无需门票，人人都能参加，（62）______，同时也引起了许多网友关注，很快就在互联网上火了起来，想要参加的人也越来越多，（63）______。于是，这样的音乐会开始慢慢从路边走进了大学城、商场前、城市路口……到2025 年5 月，（64）______，参加的总人数超过300 万。路边音乐会不但丰富了人们的夜生活，也为有音乐梦想的人提供了一定机会。"
+      ],
+      "standardSentence": "因此吸引了不少热情的观众"
+    },
+    {
+      "id": "hsk4-sample-63",
+      "number": 63,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "一场音乐会远远不够",
+      "explanation": "根据上下文语境，此处选择：一场音乐会远远不够。",
+      "explanationKo": "【정답 문장】: **一场音乐会远远不够**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: 根据上下文语境，此处选择：一场音乐会远远不够。\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 시간/부사어 + 술어동사 + 목적어] 규칙과 수식어(보어/한정어) 위치를 점검하세요.",
+      "vocabList": [
+        {
+          "word": "热情",
+          "pinyin": "rè qíng",
+          "meaning": "열정적이다, 친절하다"
+        },
+        {
+          "word": "丰富",
+          "pinyin": "fēng fù",
+          "meaning": "풍부하다"
+        },
+        {
+          "word": "引起",
+          "pinyin": "yǐn qǐ",
+          "meaning": "야기하다, 일으키다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "wordsToOrder": [
+        "2023 年7 月，一些喜爱音乐的人在贵阳举行了一场路边音乐会。（61）______，还有不少来自各个职业的普通人。这场音乐会无需门票，人人都能参加，（62）______，同时也引起了许多网友关注，很快就在互联网上火了起来，想要参加的人也越来越多，（63）______。于是，这样的音乐会开始慢慢从路边走进了大学城、商场前、城市路口……到2025 年5 月，（64）______，参加的总人数超过300 万。路边音乐会不但丰富了人们的夜生活，也为有音乐梦想的人提供了一定机会。"
+      ],
+      "standardSentence": "一场音乐会远远不够"
+    },
+    {
+      "id": "hsk4-sample-64",
+      "number": 64,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "贵阳市一共举行了400 多场路边音乐会",
+      "explanation": "根据上下文语境，此处选择：贵阳市一共举行了400 多场路边音乐会。",
+      "explanationKo": "【정답 문장】: **贵阳市一共举行了400 多场路边音乐会**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: 根据上下文语境，此处选择：贵阳市一共举行了400 多场路边音乐会。\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 시간/부사어 + 술어동사 + 목적어] 규칙과 수식어(보어/한정어) 위치를 점검하세요.",
+      "vocabList": [
+        {
+          "word": "热情",
+          "pinyin": "rè qíng",
+          "meaning": "열정적이다, 친절하다"
+        },
+        {
+          "word": "丰富",
+          "pinyin": "fēng fù",
+          "meaning": "풍부하다"
+        },
+        {
+          "word": "引起",
+          "pinyin": "yǐn qǐ",
+          "meaning": "야기하다, 일으키다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "wordsToOrder": [
+        "2023 年7 月，一些喜爱音乐的人在贵阳举行了一场路边音乐会。（61）______，还有不少来自各个职业的普通人。这场音乐会无需门票，人人都能参加，（62）______，同时也引起了许多网友关注，很快就在互联网上火了起来，想要参加的人也越来越多，（63）______。于是，这样的音乐会开始慢慢从路边走进了大学城、商场前、城市路口……到2025 年5 月，（64）______，参加的总人数超过300 万。路边音乐会不但丰富了人们的夜生活，也为有音乐梦想的人提供了一定机会。"
+      ],
+      "standardSentence": "贵阳市一共举行了400 多场路边音乐会"
+    },
+    {
+      "id": "hsk4-sample-65",
+      "number": 65,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "您好，请问能用信用卡结账吗？",
+      "explanation": "官方参考造句：“您好，请问能用信用卡结账吗？”。",
+      "explanationKo": "【정답 문장】: **您好，请问能用信用卡结账吗？**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: 官方参考造句：“您好，请问能用信用卡结账吗？”。\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 시간/부사어 + 술어동사 + 목적어] 규칙과 수식어(보어/한정어) 위치를 점검하세요.",
+      "vocabList": [
+        {
+          "word": "结账",
+          "pinyin": "jié zhàng",
+          "meaning": "계산하다, 정산하다"
+        }
+      ],
+      "image": "/images/HSK4_样卷_第65题_结账.png",
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "wordsToOrder": [
+        "配图：images/HSK4_样卷_第65题_结账.png"
+      ],
+      "standardSentence": "您好，请问能用信用卡结账吗？"
+    },
+    {
+      "id": "hsk4-sample-66",
+      "number": 66,
+      "type": "image_writing",
+      "section": "第二部分 · 书写 (看图造句)",
+      "sectionKo": "2영역 · 쓰기 (그림 보고 작문)",
+      "partCategory": "书写",
+      "content": "【看图造句】请观察图片，结合指定词语造出一个语法正确、通顺完整的句子：\n指定词语：【幅】",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "他画了一幅美丽的风景画。",
+      "explanation": "官方参考造句：“他画了一幅美丽的风景画。”。",
+      "explanationKo": "【모범 답안】: **他画了一幅美丽的风景画。**\n\n【작문 가이드 및 모범 답안】:\n\n• 모범 작문: “他画了一幅美丽的风景画。”。\n\n• 감점 방지 팁: 제시된 필수 단어를 반드시 포함하고, 문장부호(마침표 。)를 빠뜨리지 않도록 주의하세요.",
+      "vocabList": [],
+      "image": "/images/HSK4_样卷_第66题_幅.png",
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "requiredWord": "幅",
+      "referenceEssay": "他画了一幅美丽的风景画。"
+    },
+    {
+      "id": "hsk4-sample-67",
+      "number": 67,
+      "type": "image_writing",
+      "section": "第二部分 · 书写 (看图造句)",
+      "sectionKo": "2영역 · 쓰기 (그림 보고 작문)",
+      "partCategory": "书写",
+      "content": "【看图造句】请观察图片，结合指定词语造出一个语法正确、通顺完整的句子：\n指定词语：【文件】",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "小张，去把这些文件复印一下。",
+      "explanation": "官方参考造句：“小张，去把这些文件复印一下。”。",
+      "explanationKo": "【모범 답안】: **小张，去把这些文件复印一下。**\n\n【작문 가이드 및 모범 답안】:\n\n• 모범 작문: “小张，去把这些文件复印一下。”。\n\n• 감점 방지 팁: 제시된 필수 단어를 반드시 포함하고, 문장부호(마침표 。)를 빠뜨리지 않도록 주의하세요.",
+      "vocabList": [
+        {
+          "word": "文件",
+          "pinyin": "wén jiàn",
+          "meaning": "문건, 서류, 파일"
+        }
+      ],
+      "image": "/images/HSK4_样卷_第67题_文件.png",
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "requiredWord": "文件",
+      "referenceEssay": "小张，去把这些文件复印一下。"
+    },
+    {
+      "id": "hsk4-sample-68",
+      "number": 68,
+      "type": "image_writing",
+      "section": "第二部分 · 书写 (看图造句)",
+      "sectionKo": "2영역 · 쓰기 (그림 보고 작문)",
+      "partCategory": "书写",
+      "content": "【看图造句】请观察图片，结合指定词语造出一个语法正确、通顺完整的句子：\n指定词语：【活泼】",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "我的妹妹是一个活泼可爱的小姑娘。",
+      "explanation": "官方参考造句：“我的妹妹是一个活泼可爱的小姑娘。”。",
+      "explanationKo": "【모범 답안】: **我的妹妹是一个活泼可爱的小姑娘。**\n\n【작문 가이드 및 모범 답안】:\n\n• 모범 작문: “我的妹妹是一个活泼可爱的小姑娘。”。\n\n• 감점 방지 팁: 제시된 필수 단어를 반드시 포함하고, 문장부호(마침표 。)를 빠뜨리지 않도록 주의하세요.",
+      "vocabList": [
+        {
+          "word": "活泼",
+          "pinyin": "huó po",
+          "meaning": "활발하다, 생기 넘치다"
+        }
+      ],
+      "image": "/images/HSK4_样卷_第68题_活泼.png",
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "requiredWord": "活泼",
+      "referenceEssay": "我的妹妹是一个活泼可爱的小姑娘。"
+    },
+    {
+      "id": "hsk4-sample-69",
+      "number": 69,
+      "type": "image_writing",
+      "section": "第二部分 · 书写 (看图造句)",
+      "sectionKo": "2영역 · 쓰기 (그림 보고 작문)",
+      "partCategory": "书写",
+      "content": "【看图造句】请观察图片，结合指定词语造出一个语法正确、通顺完整的句子：\n指定词语：【正式】",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "她今天要拍工作照，所以穿得很正式。",
+      "explanation": "官方参考造句：“她今天要拍工作照，所以穿得很正式。”。",
+      "explanationKo": "【모범 답안】: **她今天要拍工作照，所以穿得很正式。**\n\n【작문 가이드 및 모범 답안】:\n\n• 모범 작문: “她今天要拍工作照，所以穿得很正式。”。\n\n• 감점 방지 팁: 제시된 필수 단어를 반드시 포함하고, 문장부호(마침표 。)를 빠뜨리지 않도록 주의하세요.",
+      "vocabList": [
+        {
+          "word": "正式",
+          "pinyin": "zhèng shì",
+          "meaning": "정식의, 격식을 갖춘"
+        }
+      ],
+      "image": "/images/HSK4_样卷_第69题_正式.png",
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "requiredWord": "正式",
+      "referenceEssay": "她今天要拍工作照，所以穿得很正式。"
+    },
+    {
+      "id": "hsk4-sample-70",
+      "number": 70,
+      "type": "image_writing",
+      "section": "第二部分 · 书写 (看图造句)",
+      "sectionKo": "2영역 · 쓰기 (그림 보고 작문)",
+      "partCategory": "书写",
+      "content": "【写短文】请写一篇不少于80 字的短文，介绍一下你最难忘的一次旅行：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "去年暑假我和家人一起去了北京旅行。我们参观了故宫、颐和园，还登上了雄伟的万里长城。北京悠久的历史文化和美味的烤鸭给我留下了深刻的印象，这是一次令我终生难忘的旅行。",
+      "explanation": "官方优秀范文参考：“去年暑假我和家人一起去了北京旅行。我们参观了故宫、颐和园，还登上了雄伟的万里长城。北京悠久的历史文化和美味的烤鸭给我留下了深刻的印象，这是一次令我终生难忘的旅行。”。",
+      "explanationKo": "【모범 답안】: **去年暑假我和家人一起去了北京旅行。我们参观了故宫、颐和园，还登上了雄伟的万里长城。北京悠久的历史文化和美味的烤鸭给我留下了深刻的印象，这是一次令我终生难忘的旅行。**\n\n【작문 가이드 및 모범 답안】:\n\n• 모범 작문: “去年暑假我和家人一起去了北京旅行。我们参观了故宫、颐和园，还登上了雄伟的万里长城。北京悠久的历史文化和美味的烤鸭给我留下了深刻的印象，这是一次令我终生难忘的旅行。”。\n\n• 감점 방지 팁: 제시된 필수 단어를 반드시 포함하고, 문장부호(마침표 。)를 빠뜨리지 않도록 주의하세요.",
+      "vocabList": [
+        {
+          "word": "印象",
+          "pinyin": "yìn xiàng",
+          "meaning": "인상, 느낌"
+        },
+        {
+          "word": "长城",
+          "pinyin": "cháng chéng",
+          "meaning": "만리장성"
+        },
+        {
+          "word": "出差",
+          "pinyin": "chū chāi",
+          "meaning": "출장 가다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "HSK4_样卷_听力.mp3",
+      "requiredWord": "写短文",
+      "referenceEssay": "去年暑假我和家人一起去了北京旅行。我们参观了故宫、颐和园，还登上了雄伟的万里长城。北京悠久的历史文化和美味的烤鸭给我留下了深刻的印象，这是一次令我终生难忘的旅行。"
+    }
+  ]
+}

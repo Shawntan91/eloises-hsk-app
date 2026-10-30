@@ -46,13 +46,24 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
         setTimeout(() => setJumpFeedback(null), 2500);
       }
     };
+    const handleToggleAudio = () => {
+      if (!audioRef.current) return;
+      if (audioRef.current.paused) {
+        audioRef.current.play().then(() => setIsPlaying(true)).catch(console.error);
+      } else {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    };
     window.addEventListener("seek-audio-time", handleCustomSeek);
+    window.addEventListener("toggle-audio-play", handleToggleAudio);
 
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("ended", handleEnded);
       window.removeEventListener("seek-audio-time", handleCustomSeek);
+      window.removeEventListener("toggle-audio-play", handleToggleAudio);
     };
   }, []);
 

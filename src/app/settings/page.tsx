@@ -3,7 +3,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/common/Header";
-import hskExamsData from "@/data/hskExams.json";
+import { getExamManifest, loadExamById, ExamManifestItem } from "@/services/examService";
 import { Exam } from "@/types/exam";
 import { Question } from "@/types/question";
 import {
@@ -65,7 +65,7 @@ function SettingsForm() {
   const [backupMsg, setBackupMsg] = useState<string | null>(null);
   const backupFileRef = React.useRef<HTMLInputElement>(null);
 
-  const exams = hskExamsData as any[];
+  const exams = getExamManifest();
   const currentExam = exams.find((e) => e.id === selectedExamId) || exams[0];
 
   useEffect(() => {
@@ -103,9 +103,23 @@ function SettingsForm() {
     return allQuestions;
   };
 
-  const poolQuestions = getSectionQuestions(currentExam.questions, selectedSection);
+  const getSectionPoolCount = (section: string) => {
+    if (section === "listening") return currentExam.sections?.["听力"]?.count || 45;
+    if (section === "reading") return currentExam.sections?.["阅读"]?.count || 40;
+    if (section === "writing") return currentExam.sections?.["书写"]?.count || 15;
+    return currentExam.questionCount;
+  };
 
-  const handleStartExam = () => {
+  const poolCount = getSectionPoolCount(selectedSection);
+
+  const handleStartExam = async () => {
+    const fullExamData = await loadExamById(selectedExamId);
+    if (!fullExamData) {
+      alert(isKo ? "시험 데이터를 불러오는데 실패했습니다." : "加载试卷数据失败，请重试。");
+      return;
+    }
+
+    const poolQuestions = getSectionQuestions(fullExamData.questions, selectedSection);
     let finalQuestions: Question[] = [...poolQuestions];
 
     // Shuffle questions if chosen
@@ -301,7 +315,7 @@ function SettingsForm() {
                       {isKo ? ex.titleKo : ex.title}
                     </span>
                     <span className="text-[11px] text-slate-500">
-                      HSK {ex.level}급 · 총 {ex.questions.length}문항
+                      HSK {ex.level}급 · 총 {ex.questionCount}문항
                     </span>
                   </div>
                   {selectedExamId === ex.id && (
@@ -323,23 +337,23 @@ function SettingsForm() {
                 {
                   id: "all",
                   label: isKo
-                    ? `전체 영역 (${currentExam.questions.length}문항)`
-                    : `全卷模考 (${currentExam.questions.length}题)`,
+                    ? `전체 영역 (${currentExam.questionCount}문항)`
+                    : `全卷模考 (${currentExam.questionCount}题)`,
                   icon: Layers,
                 },
                 {
                   id: "listening",
-                  label: getSectionRangeLabel(currentExam.questions, "听力", locale),
+                  label: getSectionRangeLabel(currentExam, "听力", locale),
                   icon: Headphones,
                 },
                 {
                   id: "reading",
-                  label: getSectionRangeLabel(currentExam.questions, "阅读", locale),
+                  label: getSectionRangeLabel(currentExam, "阅读", locale),
                   icon: BookOpen,
                 },
                 {
                   id: "writing",
-                  label: getSectionRangeLabel(currentExam.questions, "书写", locale),
+                  label: getSectionRangeLabel(currentExam, "书写", locale),
                   icon: FileEdit,
                 },
               ].map((item) => {
@@ -369,12 +383,12 @@ function SettingsForm() {
             <label className="text-xs font-bold text-slate-700 block mb-2.5 flex items-center gap-1.5">
               <Sliders className="w-4 h-4 text-purple-600" />
               <span>
-                {isKo ? "3. 풀이할 문항 수" : "3. 抽取题目数量"} (최대 {poolQuestions.length}문항)
+                {isKo ? "3. 풀이할 문항 수" : "3. 抽取题目数量"} (최대 {poolCount}문항)
               </span>
             </label>
             <div className="flex flex-wrap items-center gap-2">
               {[
-                { id: "all", label: isKo ? `전체 (${poolQuestions.length}문항)` : `全部 (${poolQuestions.length}题)` },
+                { id: "all", label: isKo ? `전체 (${poolCount}문항)` : `全部 (${poolCount}题)` },
                 { id: "10", label: isKo ? "10문항 빠른 풀이" : "10题精练" },
                 { id: "20", label: isKo ? "20문항" : "20题" },
                 { id: "30", label: isKo ? "30문항" : "30题" },
@@ -399,7 +413,7 @@ function SettingsForm() {
                 <input
                   type="number"
                   min="1"
-                  max={poolQuestions.length}
+                  max={poolCount}
                   value={customCount}
                   onChange={(e) => setCustomCount(Math.max(1, parseInt(e.target.value) || 1))}
                   className="w-24 px-3 py-1.5 border border-slate-200 rounded-xl text-xs font-mono font-bold"

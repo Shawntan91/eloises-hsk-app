@@ -1,0 +1,902 @@
+[
+  {
+    "id": "hsk4-h41221",
+    "level": 4,
+    "title": "HSK 4级 官方真题 (H41221)",
+    "titleKo": "HSK 4급 기출 모의고사 (H41221)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "4级真题",
+    "tagKo": "4급 기출",
+    "durationMinutes": 105,
+    "duration": "105分钟",
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H41221_听力.mp3",
+    "audioFileName": "H41221_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 40,
+        "start": 46,
+        "end": 85,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 15,
+        "start": 86,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk4-h41327",
+    "level": 4,
+    "title": "HSK 4级 官方真题 (H41327)",
+    "titleKo": "HSK 4급 기출 모의고사 (H41327)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "4级真题",
+    "tagKo": "4급 기출",
+    "durationMinutes": 105,
+    "duration": "105分钟",
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H41327_听力.mp3",
+    "audioFileName": "H41327_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 40,
+        "start": 46,
+        "end": 85,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 15,
+        "start": 86,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk4-h41328",
+    "level": 4,
+    "title": "HSK 4级 官方真题 (H41328)",
+    "titleKo": "HSK 4급 기출 모의고사 (H41328)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "4级真题",
+    "tagKo": "4급 기출",
+    "durationMinutes": 105,
+    "duration": "105分钟",
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H41328_听力.mp3",
+    "audioFileName": "H41328_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 40,
+        "start": 46,
+        "end": 85,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 15,
+        "start": 86,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk4-h41329",
+    "level": 4,
+    "title": "HSK 4级 官方真题 (H41329)",
+    "titleKo": "HSK 4급 기출 모의고사 (H41329)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "4级真题",
+    "tagKo": "4급 기출",
+    "durationMinutes": 105,
+    "duration": "105分钟",
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H41329_听力.mp3",
+    "audioFileName": "H41329_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 40,
+        "start": 46,
+        "end": 85,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 15,
+        "start": 86,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk4-h41330",
+    "level": 4,
+    "title": "HSK 4级 官方真题 (H41330)",
+    "titleKo": "HSK 4급 기출 모의고사 (H41330)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "4级真题",
+    "tagKo": "4급 기출",
+    "durationMinutes": 105,
+    "duration": "105分钟",
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H41330_听力.mp3",
+    "audioFileName": "H41330_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 40,
+        "start": 46,
+        "end": 85,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 15,
+        "start": 86,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk4-h41331",
+    "level": 4,
+    "title": "HSK 4级 官方真题 (H41331)",
+    "titleKo": "HSK 4급 기출 모의고사 (H41331)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "4级真题",
+    "tagKo": "4급 기출",
+    "durationMinutes": 105,
+    "duration": "105分钟",
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H41331_听力.mp3",
+    "audioFileName": "H41331_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 40,
+        "start": 46,
+        "end": 85,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 15,
+        "start": 86,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk4-h41333",
+    "level": 4,
+    "title": "HSK 4级 官方真题 (H41333)",
+    "titleKo": "HSK 4급 기출 모의고사 (H41333)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "4级真题",
+    "tagKo": "4급 기출",
+    "durationMinutes": 105,
+    "duration": "105分钟",
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H41333_听力.mp3",
+    "audioFileName": "H41333_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 40,
+        "start": 46,
+        "end": 85,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 15,
+        "start": 86,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk4-h41553b",
+    "level": 4,
+    "title": "HSK 4级 官方真题 (H41553B)",
+    "titleKo": "HSK 4급 기출 모의고사 (H41553B)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "4级真题",
+    "tagKo": "4급 기출",
+    "durationMinutes": 105,
+    "duration": "105分钟",
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H41553B_听力.mp3",
+    "audioFileName": "H41553B_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 40,
+        "start": 46,
+        "end": 85,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 15,
+        "start": 86,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk4-h41553c",
+    "level": 4,
+    "title": "HSK 4级 官方真题 (H41553C)",
+    "titleKo": "HSK 4급 기출 모의고사 (H41553C)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "4级真题",
+    "tagKo": "4급 기출",
+    "durationMinutes": 105,
+    "duration": "105分钟",
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H41553C_听力.mp3",
+    "audioFileName": "H41553C_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 40,
+        "start": 46,
+        "end": 85,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 15,
+        "start": 86,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk4-h41111",
+    "level": 4,
+    "title": "HSK 4级 官方真题 (H41111)",
+    "titleKo": "HSK 4급 기출 모의고사 (H41111)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "4级真题",
+    "tagKo": "4급 기출",
+    "durationMinutes": 105,
+    "duration": 6300,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H41111_听力.mp3",
+    "audioFileName": "H41111_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 40,
+        "start": 46,
+        "end": 85,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 15,
+        "start": 86,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk4-h41332",
+    "level": 4,
+    "title": "HSK 4级 官方真题 (H41332)",
+    "titleKo": "HSK 4급 기출 모의고사 (H41332)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "4级真题",
+    "tagKo": "4급 기출",
+    "durationMinutes": 105,
+    "duration": 6300,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H41332_听力.mp3",
+    "audioFileName": "H41332_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 40,
+        "start": 46,
+        "end": 85,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 15,
+        "start": 86,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk4-h41553d",
+    "level": 4,
+    "title": "HSK 4级 官方真题 (H41553D)",
+    "titleKo": "HSK 4급 기출 모의고사 (H41553D)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "4级真题",
+    "tagKo": "4급 기출",
+    "durationMinutes": 105,
+    "duration": 6300,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H41553D_听力.mp3",
+    "audioFileName": "H41553D_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 40,
+        "start": 46,
+        "end": 85,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 15,
+        "start": 86,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk4-sample",
+    "level": 4,
+    "title": "HSK 4级 官方大纲样卷",
+    "titleKo": "HSK 4급 공식 가이드라인 모의평가",
+    "subTitle": "全卷70题 · 汉考国际大纲基准样题精练",
+    "subTitleKo": "전체 70문항 · 한카우(CTI) 공식 출제 기준 표준 문제",
+    "tag": "4级样卷",
+    "tagKo": "4급 표준",
+    "durationMinutes": 75,
+    "duration": 4500,
+    "questionCount": 70,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/HSK4_样卷_听力.mp3",
+    "audioFileName": "HSK4_样卷_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 30,
+        "start": 1,
+        "end": 30,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 30,
+        "start": 31,
+        "end": 60,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 61,
+        "end": 70,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk5-h51553",
+    "level": 5,
+    "title": "HSK 5级 官方真题 (H51553)",
+    "titleKo": "HSK 5급 기출 모의고사 (H51553)",
+    "subTitle": "全卷100题 · 进阶高级真题挑战 · 配套听力与深度长文解析",
+    "subTitleKo": "전체 100문항 · 중고급 도약 실전 모의고사 · 음원 및 심층 장문 독해 해설",
+    "tag": "5级进阶",
+    "tagKo": "5급 실전",
+    "durationMinutes": 125,
+    "duration": 7500,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H51553_听力.mp3",
+    "audioFileName": "H51553_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 45,
+        "start": 46,
+        "end": 90,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 91,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk5-h51218",
+    "level": 5,
+    "title": "HSK 5级 官方真题 (H51218)",
+    "titleKo": "HSK 5급 기출 모의고사 (H51218)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "5级真题",
+    "tagKo": "5급 실전",
+    "durationMinutes": 125,
+    "duration": 7500,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H51218_听力.mp3",
+    "audioFileName": "H51218_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 45,
+        "start": 46,
+        "end": 90,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 91,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk5-h51219",
+    "level": 5,
+    "title": "HSK 5级 官方真题 (H51219)",
+    "titleKo": "HSK 5급 기출 모의고사 (H51219)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "5级真题",
+    "tagKo": "5급 실전",
+    "durationMinutes": 125,
+    "duration": 7500,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H51219_听力.mp3",
+    "audioFileName": "H51219_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 45,
+        "start": 46,
+        "end": 90,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 91,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk5-h51220",
+    "level": 5,
+    "title": "HSK 5级 官方真题 (H51220)",
+    "titleKo": "HSK 5급 기출 모의고사 (H51220)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "5级真题",
+    "tagKo": "5급 실전",
+    "durationMinutes": 125,
+    "duration": 7500,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H51220_听力.mp3",
+    "audioFileName": "H51220_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 45,
+        "start": 46,
+        "end": 90,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 91,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk5-h51221",
+    "level": 5,
+    "title": "HSK 5级 官方真题 (H51221)",
+    "titleKo": "HSK 5급 기출 모의고사 (H51221)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "5级真题",
+    "tagKo": "5급 실전",
+    "durationMinutes": 125,
+    "duration": 7500,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H51221_听力.mp3",
+    "audioFileName": "H51221_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 45,
+        "start": 46,
+        "end": 90,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 91,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk5-h51327",
+    "level": 5,
+    "title": "HSK 5级 官方真题 (H51327)",
+    "titleKo": "HSK 5급 기출 모의고사 (H51327)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "5级真题",
+    "tagKo": "5급 실전",
+    "durationMinutes": 125,
+    "duration": 7500,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H51327_听力.mp3",
+    "audioFileName": "H51327_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 45,
+        "start": 46,
+        "end": 90,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 91,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk5-h51328",
+    "level": 5,
+    "title": "HSK 5级 官方真题 (H51328)",
+    "titleKo": "HSK 5급 기출 모의고사 (H51328)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "5级真题",
+    "tagKo": "5급 실전",
+    "durationMinutes": 125,
+    "duration": 7500,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H51328_听力.mp3",
+    "audioFileName": "H51328_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 45,
+        "start": 46,
+        "end": 90,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 91,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk5-h51329",
+    "level": 5,
+    "title": "HSK 5级 官方真题 (H51329)",
+    "titleKo": "HSK 5급 기출 모의고사 (H51329)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "5级真题",
+    "tagKo": "5급 실전",
+    "durationMinutes": 125,
+    "duration": 7500,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H51329_听力.mp3",
+    "audioFileName": "H51329_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 45,
+        "start": 46,
+        "end": 90,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 91,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk5-h51330",
+    "level": 5,
+    "title": "HSK 5级 官方真题 (H51330)",
+    "titleKo": "HSK 5급 기출 모의고사 (H51330)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "5级真题",
+    "tagKo": "5급 실전",
+    "durationMinutes": 125,
+    "duration": 7500,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H51330_听力.mp3",
+    "audioFileName": "H51330_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 45,
+        "start": 46,
+        "end": 90,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 91,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk5-h51553b",
+    "level": 5,
+    "title": "HSK 5级 官方真题 (H51553B)",
+    "titleKo": "HSK 5급 기출 모의고사 (H51553B)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "5级真题",
+    "tagKo": "5급 실전",
+    "durationMinutes": 125,
+    "duration": 7500,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H51553B_听力.mp3",
+    "audioFileName": "H51553B_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 45,
+        "start": 46,
+        "end": 90,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 91,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk5-h51553c",
+    "level": 5,
+    "title": "HSK 5级 官方真题 (H51553C)",
+    "titleKo": "HSK 5급 기출 모의고사 (H51553C)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "5级真题",
+    "tagKo": "5급 실전",
+    "durationMinutes": 125,
+    "duration": 7500,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H51553C_听力.mp3",
+    "audioFileName": "H51553C_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 45,
+        "start": 46,
+        "end": 90,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 91,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  },
+  {
+    "id": "hsk5-h51553d",
+    "level": 5,
+    "title": "HSK 5级 官方真题 (H51553D)",
+    "titleKo": "HSK 5급 기출 모의고사 (H51553D)",
+    "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+    "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+    "tag": "5级真题",
+    "tagKo": "5급 실전",
+    "durationMinutes": 125,
+    "duration": 7500,
+    "questionCount": 100,
+    "hasOfficialAnswers": true,
+    "audioUrl": "/audio/H51553D_听力.mp3",
+    "audioFileName": "H51553D_听力.mp3",
+    "sections": {
+      "听力": {
+        "count": 45,
+        "start": 1,
+        "end": 45,
+        "isContiguous": true
+      },
+      "阅读": {
+        "count": 45,
+        "start": 46,
+        "end": 90,
+        "isContiguous": true
+      },
+      "书写": {
+        "count": 10,
+        "start": 91,
+        "end": 100,
+        "isContiguous": true
+      }
+    }
+  }
+]

@@ -1,7 +1,45 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Simple in-memory rate limiter (sliding window: max 20 requests per minute per IP)
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  if (!record || now > record.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + 60000 });
+    return true;
+  }
+  if (record.count >= 20) {
+    return false;
+  }
+  record.count += 1;
+  return true;
+}
+
+function maskApiKey(key?: string): string {
+  if (!key) return "None";
+  if (key.length <= 8) return "***";
+  return `${key.slice(0, 4)}...${key.slice(-4)}`;
+}
+
 export async function POST(req: NextRequest) {
   try {
+    const clientIp =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("x-real-ip") ||
+      "127.0.0.1";
+
+    if (!checkRateLimit(clientIp)) {
+      return NextResponse.json(
+        {
+          error: "요청이 너무 빠릅니다. 잠시 후 다시 시도해 주세요. (请求过于频繁，请稍后再试)",
+          rateLimited: true,
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
     const {
       type = "question", // "question" | "word"
@@ -100,7 +138,6 @@ export async function POST(req: NextRequest) {
         content: `선생님! 이 HSK 문제의 핵심 출제 의도와 헷갈리는 포인트를 짚어주세요!`,
       });
     } else {
-      // Append conversation history
       for (const m of messages) {
         if (m.role === "user" || m.role === "assistant") {
           apiMessages.push({ role: m.role, content: m.content });
@@ -113,23 +150,53 @@ export async function POST(req: NextRequest) {
       ? normalizedBase
       : `${normalizedBase}/chat/completions`;
 
-    const res = await fetch(fetchUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model,
-        messages: apiMessages,
-        temperature: 0.3,
-      }),
-    });
+    // 25s timeout controller to prevent hanging requests
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 25000);
+
+    let res: Response;
+    try {
+      res = await fetch(fetchUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model,
+          messages: apiMessages,
+          temperature: 0.3,
+        }),
+        signal: controller.signal,
+      });
+    } catch (fetchErr: any) {
+      clearTimeout(timeoutId);
+      if (fetchErr.name === "AbortError") {
+        console.warn(`[AI Tutor] Request timed out after 25s with model ${model}`);
+        if (type === "word") {
+          return NextResponse.json({
+            reply: generateHeuristicWordTutorReply(word, messages[messages.length - 1]?.content || ""),
+            warning: "AI 튜터 응답 시간이 초과되어 오프라인 모드로 자동 전환되었습니다.",
+          });
+        } else {
+          return NextResponse.json({
+            ...generateHeuristicQuestionTutorReply(question, userAnswer, action),
+            warning: "AI 튜터 응답 시간이 초과되어 오프라인 모드로 자동 전환되었습니다.",
+          });
+        }
+      }
+      throw fetchErr;
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     if (!res.ok) {
       const errData = await res.json().catch(() => ({}));
       const errMsg = errData.error?.message || `HTTP ${res.status}`;
-      console.warn("AI API call failed, falling back to heuristic:", errMsg);
+      console.warn(
+        `[AI Tutor] Upstream API call failed (key=${maskApiKey(apiKey)}, status=${res.status}):`,
+        errMsg
+      );
 
       if (type === "word") {
         return NextResponse.json({
@@ -149,7 +216,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ reply });
   } catch (err: any) {
-    console.error("AI tutor route error:", err);
+    console.error("[AI Tutor] Uncaught error:", err.message);
     return NextResponse.json({ error: err.message || "AI Tutor 오류" }, { status: 500 });
   }
 }

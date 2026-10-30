@@ -1,0 +1,4858 @@
+{
+  "id": "hsk5-h51553c",
+  "level": 5,
+  "title": "HSK 5级 官方真题 (H51553C)",
+  "titleKo": "HSK 5급 기출 모의고사 (H51553C)",
+  "subTitle": "全卷100题 · 配套官方完整听力录音与权威解析",
+  "subTitleKo": "전체 100문항 · 공식 원본 듣기 음원 및 한국어 심층 해설 수록",
+  "tag": "5级真题",
+  "tagKo": "5급 실전",
+  "durationMinutes": 125,
+  "duration": 7500,
+  "questionCount": 100,
+  "hasOfficialAnswers": true,
+  "audioUrl": "/audio/H51553C_听力.mp3",
+  "audioFileName": "H51553C_听力.mp3",
+  "questions": [
+    {
+      "id": "hsk5-h51553c-1",
+      "number": 1,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "质量非常好",
+        "B": "以后再说吧",
+        "C": "价格可以再谈",
+        "D": "现在没有产品"
+      },
+      "optionsKo": {
+        "A": "质量非常好 (품질, 질; (물리) 질량)",
+        "B": "以后再说吧 (다시 말하다, 나중에 이야기하다; 게다가, 더군다나)",
+        "C": "价格可以再谈 (가격)",
+        "D": "现在没有产品"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：价格可以再谈。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **C** (价格可以再谈) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "价格",
+          "pinyin": "jiàgé",
+          "meaning": "가격"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "再说",
+          "pinyin": "zàishuō",
+          "meaning": "다시 말하다, 나중에 이야기하다; 게다가, 더군다나"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 0
+    },
+    {
+      "id": "hsk5-h51553c-2",
+      "number": 2,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "下午要开会",
+        "B": "今天不是星期三",
+        "C": "女的在提醒男的",
+        "D": "男的不知道要开会"
+      },
+      "optionsKo": {
+        "A": "下午要开会",
+        "B": "今天不是星期三",
+        "C": "女的在提醒男的 (일깨우다, 상기시키다, 주의를 주다)",
+        "D": "男的不知道要开会"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：下午要开会。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **A** (下午要开会) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "提醒",
+          "pinyin": "tíxǐng",
+          "meaning": "일깨우다, 상기시키다, 주의를 주다"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 35
+    },
+    {
+      "id": "hsk5-h51553c-3",
+      "number": 3,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "主张改革",
+        "B": "要升职了",
+        "C": "总结了教训",
+        "D": "违反了规定"
+      },
+      "optionsKo": {
+        "A": "主张改革",
+        "B": "要升职了",
+        "C": "总结了教训 (총결산하다, 총괄 정리하다; 결산, 총괄 요약)",
+        "D": "违反了规定 (규정하다, 정하다; 규정, 규칙)"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：要升职了。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **B** (要升职了) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "规定",
+          "pinyin": "guīdìng",
+          "meaning": "규정하다, 정하다; 규정, 규칙"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 70
+    },
+    {
+      "id": "hsk5-h51553c-4",
+      "number": 4,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "没办法录音",
+        "B": "讲座取消了",
+        "C": "听讲座的人很少",
+        "D": "男的不能去听讲座"
+      },
+      "optionsKo": {
+        "A": "没办法录音",
+        "B": "讲座取消了 (취소하다, 없애다, 철회하다)",
+        "C": "听讲座的人很少",
+        "D": "男的不能去听讲座"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：男的不能去听讲座。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **D** (男的不能去听讲座) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "取消",
+          "pinyin": "qǔxiāo",
+          "meaning": "취소하다, 없애다, 철회하다"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 105
+    },
+    {
+      "id": "hsk5-h51553c-5",
+      "number": 5,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "健康",
+        "B": "服装",
+        "C": "计算机",
+        "D": "传染病"
+      },
+      "optionsKo": {
+        "A": "健康",
+        "B": "服装",
+        "C": "计算机",
+        "D": "传染病"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：计算机。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **C** (计算机) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 140
+    },
+    {
+      "id": "hsk5-h51553c-6",
+      "number": 6,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "是秘书",
+        "B": "在等应聘结果",
+        "C": "本科还没毕业",
+        "D": "发表过很多作品"
+      },
+      "optionsKo": {
+        "A": "是秘书",
+        "B": "在等应聘结果 (결과; 결국)",
+        "C": "本科还没毕业 (본과, 대학 학부 (학사 과정))",
+        "D": "发表过很多作品 (작품)"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：在等应聘结果。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **B** (在等应聘结果) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "本科",
+          "pinyin": "běnkē",
+          "meaning": "본과, 대학 학부 (학사 과정)"
+        },
+        {
+          "word": "毕业",
+          "pinyin": "bìyè",
+          "meaning": "졸업하다"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "结果",
+          "pinyin": "jiéguǒ",
+          "meaning": "결과; 결국"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 175
+    },
+    {
+      "id": "hsk5-h51553c-7",
+      "number": 7,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "犹豫不决",
+        "B": "比较负责",
+        "C": "非常干脆",
+        "D": "不能坚持到底"
+      },
+      "optionsKo": {
+        "A": "犹豫不决",
+        "B": "比较负责 (책임지다, 담당하다; 책임감이 강하다, 성실하다)",
+        "C": "非常干脆",
+        "D": "不能坚持到底 (도대체; 마침내, 결국)"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：不能坚持到底。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **D** (不能坚持到底) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "到底",
+          "pinyin": "dàodǐ",
+          "meaning": "도대체; 마침내, 결국"
+        },
+        {
+          "word": "负责",
+          "pinyin": "fùzé",
+          "meaning": "책임지다, 담당하다; 책임감이 강하다, 성실하다"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 210
+    },
+    {
+      "id": "hsk5-h51553c-8",
+      "number": 8,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "不赞成贷款",
+        "B": "得去一趟银行",
+        "C": "餐厅今天不营业",
+        "D": "公寓附近也可以取钱"
+      },
+      "optionsKo": {
+        "A": "不赞成贷款",
+        "B": "得去一趟银行",
+        "C": "餐厅今天不营业 (식당, 레스토랑)",
+        "D": "公寓附近也可以取钱"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：公寓附近也可以取钱。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **D** (公寓附近也可以取钱) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "餐厅",
+          "pinyin": "cāntīng",
+          "meaning": "식당, 레스토랑"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 245
+    },
+    {
+      "id": "hsk5-h51553c-9",
+      "number": 9,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "总裁",
+        "B": "专家",
+        "C": "投资方",
+        "D": "部门经理"
+      },
+      "optionsKo": {
+        "A": "总裁",
+        "B": "专家",
+        "C": "投资方",
+        "D": "部门经理 (부문, 부서)"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：投资方。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **C** (投资方) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "部门",
+          "pinyin": "bùmén",
+          "meaning": "부문, 부서"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 280
+    },
+    {
+      "id": "hsk5-h51553c-10",
+      "number": 10,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "刀叉",
+        "B": "酱油",
+        "C": "茶壶",
+        "D": "土豆"
+      },
+      "optionsKo": {
+        "A": "刀叉",
+        "B": "酱油",
+        "C": "茶壶",
+        "D": "土豆"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：刀叉。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **A** (刀叉) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 315
+    },
+    {
+      "id": "hsk5-h51553c-11",
+      "number": 11,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "律师",
+        "B": "医生",
+        "C": "老师",
+        "D": "理发师"
+      },
+      "optionsKo": {
+        "A": "律师 (변호사)",
+        "B": "医生",
+        "C": "老师",
+        "D": "理发师 (이발하다, 머리를 깎다)"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：理发师。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **D** (理发师) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "理发",
+          "pinyin": "lǐfà",
+          "meaning": "이발하다, 머리를 깎다"
+        },
+        {
+          "word": "律师",
+          "pinyin": "lǜshī",
+          "meaning": "변호사"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 350
+    },
+    {
+      "id": "hsk5-h51553c-12",
+      "number": 12,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "简历",
+        "B": "毕业证",
+        "C": "个人照片两张",
+        "D": "身份证复印件两份"
+      },
+      "optionsKo": {
+        "A": "简历",
+        "B": "毕业证 (졸업하다)",
+        "C": "个人照片两张",
+        "D": "身份证复印件两份 (복사하다)"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：身份证复印件两份。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **D** (身份证复印件两份) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "毕业",
+          "pinyin": "bìyè",
+          "meaning": "졸업하다"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "复印",
+          "pinyin": "fùyìn",
+          "meaning": "복사하다"
+        },
+        {
+          "word": "身份证",
+          "pinyin": "shēnfènzhèng",
+          "meaning": "신분증"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 385
+    },
+    {
+      "id": "hsk5-h51553c-13",
+      "number": 13,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "忘锁门了",
+        "B": "忘密码了",
+        "C": "没拿钥匙",
+        "D": "没拿行李箱"
+      },
+      "optionsKo": {
+        "A": "忘锁门了",
+        "B": "忘密码了 (비밀번호, 암호)",
+        "C": "没拿钥匙 (열쇠)",
+        "D": "没拿行李箱"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：忘密码了。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **B** (忘密码了) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "密码",
+          "pinyin": "mìmǎ",
+          "meaning": "비밀번호, 암호"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "钥匙",
+          "pinyin": "yàoshi",
+          "meaning": "열쇠"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 420
+    },
+    {
+      "id": "hsk5-h51553c-14",
+      "number": 14,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "汽车涨价了",
+        "B": "汽油要涨价",
+        "C": "道路很拥挤",
+        "D": "加油站的设备坏了"
+      },
+      "optionsKo": {
+        "A": "汽车涨价了",
+        "B": "汽油要涨价",
+        "C": "道路很拥挤 (도로, 길; 경로)",
+        "D": "加油站的设备坏了 (기름을 넣다; 힘내다, 파이팅하다)"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：汽油要涨价。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **B** (汽油要涨价) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "道路",
+          "pinyin": "dàolù",
+          "meaning": "도로, 길; 경로"
+        },
+        {
+          "word": "加油",
+          "pinyin": "jiāyóu",
+          "meaning": "기름을 넣다; 힘내다, 파이팅하다"
+        },
+        {
+          "word": "加油站",
+          "pinyin": "jiāyóuzhàn",
+          "meaning": "주유소"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 455
+    },
+    {
+      "id": "hsk5-h51553c-15",
+      "number": 15,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "司机",
+        "B": "记者",
+        "C": "医生",
+        "D": "售票员"
+      },
+      "optionsKo": {
+        "A": "司机",
+        "B": "记者 (기자)",
+        "C": "医生",
+        "D": "售票员 (매표원)"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：记者。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **B** (记者) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "记者",
+          "pinyin": "jìzhě",
+          "meaning": "기자"
+        },
+        {
+          "word": "售票员",
+          "pinyin": "shòupiàoyuán",
+          "meaning": "매표원"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 490
+    },
+    {
+      "id": "hsk5-h51553c-16",
+      "number": 16,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "记忆力很好",
+        "B": "9 点要出门",
+        "C": "在看电视剧",
+        "D": "在主持节目"
+      },
+      "optionsKo": {
+        "A": "记忆力很好",
+        "B": "9 点要出门",
+        "C": "在看电视剧 (텔레비전 드라마, TV 드라마)",
+        "D": "在主持节目"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：在看电视剧。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **C** (在看电视剧) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "电视剧",
+          "pinyin": "diànshìjù",
+          "meaning": "텔레비전 드라마, TV 드라마"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 525
+    },
+    {
+      "id": "hsk5-h51553c-17",
+      "number": 17,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "决定戒烟",
+        "B": "还在犹豫",
+        "C": "戒烟成功了",
+        "D": "认为戒烟很困难"
+      },
+      "optionsKo": {
+        "A": "决定戒烟",
+        "B": "还在犹豫",
+        "C": "戒烟成功了 (성공하다; 성공)",
+        "D": "认为戒烟很困难 (어렵다, 곤란하다; 어려움, 곤란)"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：戒烟成功了。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **C** (戒烟成功了) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "成功",
+          "pinyin": "chénggōng",
+          "meaning": "성공하다; 성공"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "困难",
+          "pinyin": "kùnnan",
+          "meaning": "어렵다, 곤란하다; 어려움, 곤란"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 560
+    },
+    {
+      "id": "hsk5-h51553c-18",
+      "number": 18,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "规模很大",
+        "B": "风格多样",
+        "C": "正在重建",
+        "D": "吸引了很多游客"
+      },
+      "optionsKo": {
+        "A": "规模很大",
+        "B": "风格多样 (다양하다, 다채롭다)",
+        "C": "正在重建",
+        "D": "吸引了很多游客 ((마음·관심을) 끌다, 유인하다, 매료시키다)"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：规模很大。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **A** (规模很大) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "多样",
+          "pinyin": "duōyàng",
+          "meaning": "다양하다, 다채롭다"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "吸引",
+          "pinyin": "xīyǐn",
+          "meaning": "(마음·관심을) 끌다, 유인하다, 매료시키다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 595
+    },
+    {
+      "id": "hsk5-h51553c-19",
+      "number": 19,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "诊断病情",
+        "B": "制定计划",
+        "C": "补充个人信息",
+        "D": "对论文提一些意见"
+      },
+      "optionsKo": {
+        "A": "诊断病情",
+        "B": "制定计划 (계획; 계획하다)",
+        "C": "补充个人信息 (정보, 메시지, 소식)",
+        "D": "对论文提一些意见 (의견, 견해; 이의, 불만)"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：对论文提一些意见。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **D** (对论文提一些意见) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "计划",
+          "pinyin": "jìhuà",
+          "meaning": "계획; 계획하다"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "信息",
+          "pinyin": "xìnxī",
+          "meaning": "정보, 메시지, 소식"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 630
+    },
+    {
+      "id": "hsk5-h51553c-20",
+      "number": 20,
+      "type": "single_choice",
+      "section": "第一部分 · 听力 (对话理解)",
+      "sectionKo": "1영역 · 듣기 (대화 이해 선택)",
+      "partCategory": "听力",
+      "content": "【听力题·短对话】请听录音短对话，选出正确答案：",
+      "options": {
+        "A": "扔了",
+        "B": "卖掉",
+        "C": "先放阳台上",
+        "D": "当垃圾桶用"
+      },
+      "optionsKo": {
+        "A": "扔了",
+        "B": "卖掉",
+        "C": "先放阳台上",
+        "D": "当垃圾桶用 (쓰레기)"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：先放阳台上。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 1영역 단문 대화 듣기 문제입니다. 대화 속 핵심 표현과 질문의 초점을 대조하면, 정답은 **C** (先放阳台上) 임을 명확히 알 수 있습니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 대화에서 언급되지 않았거나 질문의 논점과 무관한 혼동성 함정입니다.",
+      "vocabList": [
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "垃圾",
+          "pinyin": "lājī",
+          "meaning": "쓰레기"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 665
+    },
+    {
+      "id": "hsk5-h51553c-21",
+      "number": 21,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·长对话】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "自己猜的",
+        "B": "自己看见的",
+        "C": "听别人说的",
+        "D": "她也去打球了"
+      },
+      "optionsKo": {
+        "A": "自己猜的",
+        "B": "自己看见的",
+        "C": "听别人说的",
+        "D": "她也去打球了"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：自己看见的。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **B** (自己看见的) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 700
+    },
+    {
+      "id": "hsk5-h51553c-22",
+      "number": 22,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·长对话】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "爱好广泛",
+        "B": "快退休了",
+        "C": "喜欢做手工",
+        "D": "开了家饰品店"
+      },
+      "optionsKo": {
+        "A": "爱好广泛",
+        "B": "快退休了",
+        "C": "喜欢做手工",
+        "D": "开了家饰品店"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：喜欢做手工。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **C** (喜欢做手工) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 735
+    },
+    {
+      "id": "hsk5-h51553c-23",
+      "number": 23,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·长对话】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "饮料洒了",
+        "B": "登机牌丢了",
+        "C": "记错时间了",
+        "D": "忘带护照了"
+      },
+      "optionsKo": {
+        "A": "饮料洒了",
+        "B": "登机牌丢了 (탑승하다, 비행기에 타다)",
+        "C": "记错时间了",
+        "D": "忘带护照了"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：登机牌丢了。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **B** (登机牌丢了) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "登机",
+          "pinyin": "dēngjī",
+          "meaning": "탑승하다, 비행기에 타다"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 770
+    },
+    {
+      "id": "hsk5-h51553c-24",
+      "number": 24,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·长对话】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "换手机",
+        "B": "换电池",
+        "C": "重装系统",
+        "D": "再买个充电器"
+      },
+      "optionsKo": {
+        "A": "换手机",
+        "B": "换电池",
+        "C": "重装系统",
+        "D": "再买个充电器"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：换电池。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **B** (换电池) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 805
+    },
+    {
+      "id": "hsk5-h51553c-25",
+      "number": 25,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·长对话】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "在办签证",
+        "B": "刚出差回来",
+        "C": "准备出国留学",
+        "D": "在保险公司工作"
+      },
+      "optionsKo": {
+        "A": "在办签证 (비자를 발급하다[받다]; 비자, 사증)",
+        "B": "刚出差回来 (출장 가다)",
+        "C": "准备出国留学",
+        "D": "在保险公司工作"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：在办签证。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **A** (在办签证) 입니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "出差",
+          "pinyin": "chūchāi",
+          "meaning": "출장 가다"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "签证",
+          "pinyin": "qiānzhèng",
+          "meaning": "비자를 발급하다[받다]; 비자, 사증"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 840
+    },
+    {
+      "id": "hsk5-h51553c-26",
+      "number": 26,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·长对话】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "过敏了",
+        "B": "肩膀疼",
+        "C": "腰扭伤了",
+        "D": "胃不舒服"
+      },
+      "optionsKo": {
+        "A": "过敏了",
+        "B": "肩膀疼",
+        "C": "腰扭伤了",
+        "D": "胃不舒服"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：腰扭伤了。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **C** (腰扭伤了) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 875
+    },
+    {
+      "id": "hsk5-h51553c-27",
+      "number": 27,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·长对话】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "客厅",
+        "B": "销售部",
+        "C": "研发部",
+        "D": "会议室"
+      },
+      "optionsKo": {
+        "A": "客厅 (거실, 응접실)",
+        "B": "销售部",
+        "C": "研发部",
+        "D": "会议室"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：销售部。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **B** (销售部) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "客厅",
+          "pinyin": "kètīng",
+          "meaning": "거실, 응접실"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 910
+    },
+    {
+      "id": "hsk5-h51553c-28",
+      "number": 28,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·长对话】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "郊区",
+        "B": "市中心",
+        "C": "公司附近",
+        "D": "公园周围"
+      },
+      "optionsKo": {
+        "A": "郊区 (교외, 근교)",
+        "B": "市中心",
+        "C": "公司附近",
+        "D": "公园周围 (주위, 주변)"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：郊区。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **A** (郊区) 입니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "郊区",
+          "pinyin": "jiāoqū",
+          "meaning": "교외, 근교"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 945
+    },
+    {
+      "id": "hsk5-h51553c-29",
+      "number": 29,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·长对话】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "结账",
+        "B": "点菜",
+        "C": "换零钱",
+        "D": "订房间"
+      },
+      "optionsKo": {
+        "A": "结账 (계산하다, 결제하다, 정산하다)",
+        "B": "点菜",
+        "C": "换零钱 (잔돈, 거스름돈, 잔돈푼)",
+        "D": "订房间"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：结账。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **A** (结账) 입니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "结账",
+          "pinyin": "jiézhàng",
+          "meaning": "계산하다, 결제하다, 정산하다"
+        },
+        {
+          "word": "零钱",
+          "pinyin": "língqián",
+          "meaning": "잔돈, 거스름돈, 잔돈푼"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 980
+    },
+    {
+      "id": "hsk5-h51553c-30",
+      "number": 30,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·长对话】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "旅行社",
+        "B": "政府部门",
+        "C": "广告公司",
+        "D": "高级服装店"
+      },
+      "optionsKo": {
+        "A": "旅行社 (여행하다)",
+        "B": "政府部门 (부문, 부서)",
+        "C": "广告公司 (광고)",
+        "D": "高级服装店"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：旅行社。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **A** (旅行社) 입니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "部门",
+          "pinyin": "bùmén",
+          "meaning": "부문, 부서"
+        },
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "广告",
+          "pinyin": "guǎnggào",
+          "meaning": "광고"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1015
+    },
+    {
+      "id": "hsk5-h51553c-31",
+      "number": 31,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "地震了",
+        "B": "天气恶劣",
+        "C": "前方堵车",
+        "D": "铁路临时维修"
+      },
+      "optionsKo": {
+        "A": "地震了",
+        "B": "天气恶劣",
+        "C": "前方堵车 (차가 막히다, 교통 체증이 생기다)",
+        "D": "铁路临时维修"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：天气恶劣。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **B** (天气恶劣) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "堵车",
+          "pinyin": "dǔchē",
+          "meaning": "차가 막히다, 교통 체증이 생기다"
+        },
+        {
+          "word": "前方",
+          "pinyin": "qiánfāng",
+          "meaning": "전방, 앞쪽"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1050
+    },
+    {
+      "id": "hsk5-h51553c-32",
+      "number": 32,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "检查车票",
+        "B": "调整座位",
+        "C": "发放免费食品",
+        "D": "停车检修一小时"
+      },
+      "optionsKo": {
+        "A": "检查车票",
+        "B": "调整座位 (자리, 좌석)",
+        "C": "发放免费食品 (무료로 하다, 무료이다, 공짜이다)",
+        "D": "停车检修一小时 (주차하다; 차를 멈추다)"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：发放免费食品。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **C** (发放免费食品) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "免费",
+          "pinyin": "miǎnfèi",
+          "meaning": "무료로 하다, 무료이다, 공짜이다"
+        },
+        {
+          "word": "食品",
+          "pinyin": "shípǐn",
+          "meaning": "식품, 음식물"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1085
+    },
+    {
+      "id": "hsk5-h51553c-33",
+      "number": 33,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "买救生圈",
+        "B": "到海里去",
+        "C": "先学抓鱼",
+        "D": "做准备活动"
+      },
+      "optionsKo": {
+        "A": "买救生圈",
+        "B": "到海里去",
+        "C": "先学抓鱼",
+        "D": "做准备活动 (활동하다, 움직이다; 활동, 행사)"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：到海里去。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **B** (到海里去) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "活动",
+          "pinyin": "huódòng",
+          "meaning": "활동하다, 움직이다; 활동, 행사"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1120
+    },
+    {
+      "id": "hsk5-h51553c-34",
+      "number": 34,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "胳膊受伤了",
+        "B": "想换个教练",
+        "C": "担心海水太冷",
+        "D": "最终也没学会游泳"
+      },
+      "optionsKo": {
+        "A": "胳膊受伤了 (팔)",
+        "B": "想换个教练 (코치, 감독)",
+        "C": "担心海水太冷",
+        "D": "最终也没学会游泳 (최종, 마지막; 결국, 마침내)"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：最终也没学会游泳。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **D** (最终也没学会游泳) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "胳膊",
+          "pinyin": "gēbo",
+          "meaning": "팔"
+        },
+        {
+          "word": "教练",
+          "pinyin": "jiàoliàn",
+          "meaning": "코치, 감독"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1155
+    },
+    {
+      "id": "hsk5-h51553c-35",
+      "number": 35,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "要勇于实践",
+        "B": "学游泳需要耐心",
+        "C": "要不断完善自己",
+        "D": "一切从实际出发"
+      },
+      "optionsKo": {
+        "A": "要勇于实践",
+        "B": "学游泳需要耐心 (참을성 있다, 인내심이 강하다; 인내심, 끈기)",
+        "C": "要不断完善自己 (끊임없이, 줄곧; 끊이지 않다)",
+        "D": "一切从实际出发 (실제, 현실; 실제의, 실질적인)"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：要勇于实践。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **A** (要勇于实践) 입니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "不断",
+          "pinyin": "búduàn",
+          "meaning": "끊임없이, 줄곧; 끊이지 않다"
+        },
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "耐心",
+          "pinyin": "nàixīn",
+          "meaning": "참을성 있다, 인내심이 강하다; 인내심, 끈기"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1190
+    },
+    {
+      "id": "hsk5-h51553c-36",
+      "number": 36,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "胆子小",
+        "B": "特别调皮",
+        "C": "想住楼房",
+        "D": "想有一辆汽车"
+      },
+      "optionsKo": {
+        "A": "胆子小",
+        "B": "特别调皮",
+        "C": "想住楼房",
+        "D": "想有一辆汽车"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：想住楼房。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **C** (想住楼房) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1225
+    },
+    {
+      "id": "hsk5-h51553c-37",
+      "number": 37,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "去看朋友",
+        "B": "怀念过去",
+        "C": "想找一份工作",
+        "D": "那里非常安静"
+      },
+      "optionsKo": {
+        "A": "去看朋友",
+        "B": "怀念过去",
+        "C": "想找一份工作",
+        "D": "那里非常安静"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：怀念过去。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **B** (怀念过去) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1260
+    },
+    {
+      "id": "hsk5-h51553c-38",
+      "number": 38,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "想经营酒吧",
+        "B": "记忆力很好",
+        "C": "小时候住平房",
+        "D": "现在住在胡同里"
+      },
+      "optionsKo": {
+        "A": "想经营酒吧",
+        "B": "记忆力很好",
+        "C": "小时候住平房",
+        "D": "现在住在胡同里"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：小时候住平房。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **C** (小时候住平房) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1295
+    },
+    {
+      "id": "hsk5-h51553c-39",
+      "number": 39,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "半瓶",
+        "B": "没有水",
+        "C": "不到半瓶",
+        "D": "满满一瓶"
+      },
+      "optionsKo": {
+        "A": "半瓶",
+        "B": "没有水",
+        "C": "不到半瓶",
+        "D": "满满一瓶"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：半瓶。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **A** (半瓶) 입니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1330
+    },
+    {
+      "id": "hsk5-h51553c-40",
+      "number": 40,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "打破瓶子",
+        "B": "把瓶子弄倒",
+        "C": "把水倒进杯子里",
+        "D": "往瓶子里放小石头"
+      },
+      "optionsKo": {
+        "A": "打破瓶子",
+        "B": "把瓶子弄倒",
+        "C": "把水倒进杯子里",
+        "D": "往瓶子里放小石头"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：往瓶子里放小石头。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **D** (往瓶子里放小石头) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1365
+    },
+    {
+      "id": "hsk5-h51553c-41",
+      "number": 41,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "很聪明",
+        "B": "肚子饿了",
+        "C": "力气很大",
+        "D": "掉进水里了"
+      },
+      "optionsKo": {
+        "A": "很聪明",
+        "B": "肚子饿了 (배, 복부)",
+        "C": "力气很大 (힘, 기운)",
+        "D": "掉进水里了"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：很聪明。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **A** (很聪明) 입니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "肚子",
+          "pinyin": "dùzi",
+          "meaning": "배, 복부"
+        },
+        {
+          "word": "力气",
+          "pinyin": "lìqi",
+          "meaning": "힘, 기운"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1400
+    },
+    {
+      "id": "hsk5-h51553c-42",
+      "number": 42,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "看得范围广",
+        "B": "看得更深刻",
+        "C": "能看到他人优点",
+        "D": "促使自己改正缺点"
+      },
+      "optionsKo": {
+        "A": "看得范围广",
+        "B": "看得更深刻",
+        "C": "能看到他人优点 (장점, 좋은 점)",
+        "D": "促使自己改正缺点 (결점, 단점)"
+      },
+      "officialAnswer": "C",
+      "explanation": "听力录音考查，正确答案为 C：能看到他人优点。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **C** (能看到他人优点) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "缺点",
+          "pinyin": "quēdiǎn",
+          "meaning": "결점, 단점"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1435
+    },
+    {
+      "id": "hsk5-h51553c-43",
+      "number": 43,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "尊重别人",
+        "B": "学会满足",
+        "C": "多赞美学生",
+        "D": "严格要求自己"
+      },
+      "optionsKo": {
+        "A": "尊重别人 (존중하다; 정중하다)",
+        "B": "学会满足",
+        "C": "多赞美学生",
+        "D": "严格要求自己 (엄격하다, 엄하다; 엄격히 하다)"
+      },
+      "officialAnswer": "D",
+      "explanation": "听力录音考查，正确答案为 D：严格要求自己。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **D** (严格要求自己) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "严格",
+          "pinyin": "yángé",
+          "meaning": "엄격하다, 엄하다; 엄격히 하다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1470
+    },
+    {
+      "id": "hsk5-h51553c-44",
+      "number": 44,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "一个警察",
+        "B": "两瓶啤酒",
+        "C": "爸爸在开车",
+        "D": "他的好朋友"
+      },
+      "optionsKo": {
+        "A": "一个警察 (경찰, 경찰관)",
+        "B": "两瓶啤酒",
+        "C": "爸爸在开车",
+        "D": "他的好朋友"
+      },
+      "officialAnswer": "A",
+      "explanation": "听力录音考查，正确答案为 A：一个警察。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **A** (一个警察) 입니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "警察",
+          "pinyin": "jǐngchá",
+          "meaning": "경찰, 경찰관"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1505
+    },
+    {
+      "id": "hsk5-h51553c-45",
+      "number": 45,
+      "type": "single_choice",
+      "section": "第二部分 · 听力 (长对话与讲话)",
+      "sectionKo": "2영역 · 듣기 (장문 대화 및 설명문)",
+      "partCategory": "听力",
+      "content": "【听力题·短文独白】请听录音材料，选出正确答案：",
+      "options": {
+        "A": "爸爸很好奇",
+        "B": "爸爸喝醉了",
+        "C": "儿子喝酒了",
+        "D": "儿子没吃饭"
+      },
+      "optionsKo": {
+        "A": "爸爸很好奇",
+        "B": "爸爸喝醉了",
+        "C": "儿子喝酒了",
+        "D": "儿子没吃饭"
+      },
+      "officialAnswer": "B",
+      "explanation": "听力录音考查，正确答案为 B：爸爸喝醉了。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 2영역 장문 대화 및 단문 설명문 듣기 문제입니다. 본문에서 다룬 중심 화제 및 세부 사실 관계를 파악하면 정답은 **B** (爸爸喝醉了) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문의 부분적인 단어만 차용하여 혼동을 유발하는 매력적인 오답입니다.",
+      "vocabList": [
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "听力",
+          "pinyin": "tīnglì",
+          "meaning": "청력, 듣기 능력"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": 1540
+    },
+    {
+      "id": "hsk5-h51553c-46",
+      "number": 46,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第46题选择最佳词语：\n\n有两个人相约到山上去寻找精美的石头，甲 46 了满满的一筐，乙的筐里只\n有一个他认为是最精美的石头。甲就笑乙：“你为什么只挑一个啊？”乙说：“漂\n亮的石头虽然多，但我只选一个最精美的就够了。”下山的路上，甲感到负担越\n来越重，后来不得已， 47 地从一筐石头中挑一个最差的扔下，到山下的时候，\n他的筐里也只剩下一个石头了。人生中会有许多的东西值得留恋，但有的时候你\n应该学会 48 。",
+      "options": {
+        "A": "背",
+        "B": "催",
+        "C": "摘",
+        "D": "插"
+      },
+      "optionsKo": {
+        "A": "背",
+        "B": "催",
+        "C": "摘",
+        "D": "插"
+      },
+      "officialAnswer": "A",
+      "explanation": "正确词语为：背。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (46)에 들어갈 가장 알맞은 어휘는 **A** (背) 입니다.",
+      "vocabList": [
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        },
+        {
+          "word": "人生",
+          "pinyin": "rénshēng",
+          "meaning": "인생, 사람의 삶"
+        },
+        {
+          "word": "许多",
+          "pinyin": "xǔduō",
+          "meaning": "많은, 수많은, 대단히 많은"
+        },
+        {
+          "word": "值得",
+          "pinyin": "zhídé",
+          "meaning": "~할 가치가 있다, ~할 만하다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-47",
+      "number": 47,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第47题选择最佳词语：\n\n有两个人相约到山上去寻找精美的石头，甲 46 了满满的一筐，乙的筐里只\n有一个他认为是最精美的石头。甲就笑乙：“你为什么只挑一个啊？”乙说：“漂\n亮的石头虽然多，但我只选一个最精美的就够了。”下山的路上，甲感到负担越\n来越重，后来不得已， 47 地从一筐石头中挑一个最差的扔下，到山下的时候，\n他的筐里也只剩下一个石头了。人生中会有许多的东西值得留恋，但有的时候你\n应该学会 48 。",
+      "options": {
+        "A": "曾经",
+        "B": "过分",
+        "C": "不断",
+        "D": "根本"
+      },
+      "optionsKo": {
+        "A": "曾经",
+        "B": "过分",
+        "C": "不断 (끊임없이, 줄곧; 끊이지 않다)",
+        "D": "根本"
+      },
+      "officialAnswer": "C",
+      "explanation": "正确词语为：不断。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (47)에 들어갈 가장 알맞은 어휘는 **C** (不断) 입니다.",
+      "vocabList": [
+        {
+          "word": "不断",
+          "pinyin": "búduàn",
+          "meaning": "끊임없이, 줄곧; 끊이지 않다"
+        },
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        },
+        {
+          "word": "人生",
+          "pinyin": "rénshēng",
+          "meaning": "인생, 사람의 삶"
+        },
+        {
+          "word": "许多",
+          "pinyin": "xǔduō",
+          "meaning": "많은, 수많은, 대단히 많은"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-48",
+      "number": 48,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第48题选择最佳词语：\n\n有两个人相约到山上去寻找精美的石头，甲 46 了满满的一筐，乙的筐里只\n有一个他认为是最精美的石头。甲就笑乙：“你为什么只挑一个啊？”乙说：“漂\n亮的石头虽然多，但我只选一个最精美的就够了。”下山的路上，甲感到负担越\n来越重，后来不得已， 47 地从一筐石头中挑一个最差的扔下，到山下的时候，\n他的筐里也只剩下一个石头了。人生中会有许多的东西值得留恋，但有的时候你\n应该学会 48 。",
+      "options": {
+        "A": "抗议",
+        "B": "放弃",
+        "C": "降落",
+        "D": "享受"
+      },
+      "optionsKo": {
+        "A": "抗议",
+        "B": "放弃 (포기하다, 그만두다, 단념하다)",
+        "C": "降落 (착륙하다, 내려앉다, 하강하다)",
+        "D": "享受"
+      },
+      "officialAnswer": "B",
+      "explanation": "正确词语为：放弃。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (48)에 들어갈 가장 알맞은 어휘는 **B** (放弃) 입니다.",
+      "vocabList": [
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        },
+        {
+          "word": "放弃",
+          "pinyin": "fàngqì",
+          "meaning": "포기하다, 그만두다, 단념하다"
+        },
+        {
+          "word": "降落",
+          "pinyin": "jiàngluò",
+          "meaning": "착륙하다, 내려앉다, 하강하다"
+        },
+        {
+          "word": "人生",
+          "pinyin": "rénshēng",
+          "meaning": "인생, 사람의 삶"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-49",
+      "number": 49,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第49题选择最佳词语：\n\n工作中那些不懂装懂的人，喜欢说：“这些工作真无聊。”但他们内心的真正\n感觉是：“我做不好任何工作。”他们希望自己年纪轻轻就取得成功，但是他们又\n不喜欢学习、 49 意见或寻求帮助，因为这样会被人认为他们能力不行， 50 。 \n脱掉不懂装懂的“外套”吧，因为学习的心态已经成为一个人在这个竞争的\n社会中得以生存和发展的最基本的心态。21 世纪是一个知识爆炸的时代，知识\n和技能成为一个人生存的 51 条件。没有知识和技能你将无法生存，而知识和技\n能的获得要靠不断地学习，学习，再学习。多 52 一种知识或是一门技术，在众\n多的竞争对手面前就多了一份取胜的机会。",
+      "options": {
+        "A": "请求",
+        "B": "征求",
+        "C": "表现",
+        "D": "参与"
+      },
+      "optionsKo": {
+        "A": "请求",
+        "B": "征求",
+        "C": "表现 (나타내다, 드러내다, 발휘하다; (태도를) 보이다)",
+        "D": "参与"
+      },
+      "officialAnswer": "B",
+      "explanation": "正确词语为：征求。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (49)에 들어갈 가장 알맞은 어휘는 **B** (征求) 입니다.",
+      "vocabList": [
+        {
+          "word": "表现",
+          "pinyin": "biǎoxiàn",
+          "meaning": "나타내다, 드러내다, 발휘하다; (태도를) 보이다"
+        },
+        {
+          "word": "不断",
+          "pinyin": "búduàn",
+          "meaning": "끊임없이, 줄곧; 끊이지 않다"
+        },
+        {
+          "word": "成功",
+          "pinyin": "chénggōng",
+          "meaning": "성공하다; 성공"
+        },
+        {
+          "word": "成为",
+          "pinyin": "chéngwéi",
+          "meaning": "~이 되다, ~로 변하다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-50",
+      "number": 50,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第50题选择最佳词语：\n\n工作中那些不懂装懂的人，喜欢说：“这些工作真无聊。”但他们内心的真正\n感觉是：“我做不好任何工作。”他们希望自己年纪轻轻就取得成功，但是他们又\n不喜欢学习、 49 意见或寻求帮助，因为这样会被人认为他们能力不行， 50 。 \n脱掉不懂装懂的“外套”吧，因为学习的心态已经成为一个人在这个竞争的\n社会中得以生存和发展的最基本的心态。21 世纪是一个知识爆炸的时代，知识\n和技能成为一个人生存的 51 条件。没有知识和技能你将无法生存，而知识和技\n能的获得要靠不断地学习，学习，再学习。多 52 一种知识或是一门技术，在众\n多的竞争对手面前就多了一份取胜的机会。",
+      "options": {
+        "A": "所以他们只好装懂",
+        "B": "于是他们变得更单纯",
+        "C": "于是他们改变沟通方式",
+        "D": "所以他们努力提高工作效率"
+      },
+      "optionsKo": {
+        "A": "所以他们只好装懂 (부득이 ~할 수밖에 없다, 할 수 없이 ~하다)",
+        "B": "于是他们变得更单纯 (그리하여, 이에, 그래서)",
+        "C": "于是他们改变沟通方式 (방식, 방법, 형태)",
+        "D": "所以他们努力提高工作效率"
+      },
+      "officialAnswer": "A",
+      "explanation": "正确词语为：所以他们只好装懂。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (50)에 들어갈 가장 알맞은 어휘는 **A** (所以他们只好装懂) 입니다.",
+      "vocabList": [
+        {
+          "word": "不断",
+          "pinyin": "búduàn",
+          "meaning": "끊임없이, 줄곧; 끊이지 않다"
+        },
+        {
+          "word": "成功",
+          "pinyin": "chénggōng",
+          "meaning": "성공하다; 성공"
+        },
+        {
+          "word": "成为",
+          "pinyin": "chéngwéi",
+          "meaning": "~이 되다, ~로 변하다"
+        },
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-51",
+      "number": 51,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第51题选择最佳词语：\n\n工作中那些不懂装懂的人，喜欢说：“这些工作真无聊。”但他们内心的真正\n感觉是：“我做不好任何工作。”他们希望自己年纪轻轻就取得成功，但是他们又\n不喜欢学习、 49 意见或寻求帮助，因为这样会被人认为他们能力不行， 50 。 \n脱掉不懂装懂的“外套”吧，因为学习的心态已经成为一个人在这个竞争的\n社会中得以生存和发展的最基本的心态。21 世纪是一个知识爆炸的时代，知识\n和技能成为一个人生存的 51 条件。没有知识和技能你将无法生存，而知识和技\n能的获得要靠不断地学习，学习，再学习。多 52 一种知识或是一门技术，在众\n多的竞争对手面前就多了一份取胜的机会。",
+      "options": {
+        "A": "高级",
+        "B": "抽象",
+        "C": "出色",
+        "D": "必要"
+      },
+      "optionsKo": {
+        "A": "高级",
+        "B": "抽象",
+        "C": "出色",
+        "D": "必要"
+      },
+      "officialAnswer": "D",
+      "explanation": "正确词语为：必要。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (51)에 들어갈 가장 알맞은 어휘는 **D** (必要) 입니다.",
+      "vocabList": [
+        {
+          "word": "不断",
+          "pinyin": "búduàn",
+          "meaning": "끊임없이, 줄곧; 끊이지 않다"
+        },
+        {
+          "word": "成功",
+          "pinyin": "chénggōng",
+          "meaning": "성공하다; 성공"
+        },
+        {
+          "word": "成为",
+          "pinyin": "chéngwéi",
+          "meaning": "~이 되다, ~로 변하다"
+        },
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-52",
+      "number": 52,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第52题选择最佳词语：\n\n工作中那些不懂装懂的人，喜欢说：“这些工作真无聊。”但他们内心的真正\n感觉是：“我做不好任何工作。”他们希望自己年纪轻轻就取得成功，但是他们又\n不喜欢学习、 49 意见或寻求帮助，因为这样会被人认为他们能力不行， 50 。 \n脱掉不懂装懂的“外套”吧，因为学习的心态已经成为一个人在这个竞争的\n社会中得以生存和发展的最基本的心态。21 世纪是一个知识爆炸的时代，知识\n和技能成为一个人生存的 51 条件。没有知识和技能你将无法生存，而知识和技\n能的获得要靠不断地学习，学习，再学习。多 52 一种知识或是一门技术，在众\n多的竞争对手面前就多了一份取胜的机会。",
+      "options": {
+        "A": "掌握",
+        "B": "从事",
+        "C": "创造",
+        "D": "促进"
+      },
+      "optionsKo": {
+        "A": "掌握",
+        "B": "从事",
+        "C": "创造",
+        "D": "促进"
+      },
+      "officialAnswer": "A",
+      "explanation": "正确词语为：掌握。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (52)에 들어갈 가장 알맞은 어휘는 **A** (掌握) 입니다.",
+      "vocabList": [
+        {
+          "word": "不断",
+          "pinyin": "búduàn",
+          "meaning": "끊임없이, 줄곧; 끊이지 않다"
+        },
+        {
+          "word": "成功",
+          "pinyin": "chénggōng",
+          "meaning": "성공하다; 성공"
+        },
+        {
+          "word": "成为",
+          "pinyin": "chéngwéi",
+          "meaning": "~이 되다, ~로 변하다"
+        },
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-53",
+      "number": 53,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第53题选择最佳词语：\n\n一个心理学家请一些实验者在周日晚上，把 53 7 天所有可能发生的烦恼写\n下来，放到一个箱子里。 \n7 天后，他在实验者面前打开这个箱子，与他们逐一核对每一项“烦恼”，\n结果发现其中有90%的“烦恼”并未真正发生。接着，他又要求大家把那些剩下\n的字条重新丢入纸箱中。等又过了7 天，他们打开箱子， 54 。 \n烦恼是自己找来的，这就是 55 的“自寻烦恼”。据统计，一般人92%的忧\n虑从未发生过，剩下的8%则是你能够轻易 56 的。",
+      "options": {
+        "A": "以来",
+        "B": "未来",
+        "C": "过去",
+        "D": "事先"
+      },
+      "optionsKo": {
+        "A": "以来",
+        "B": "未来",
+        "C": "过去",
+        "D": "事先"
+      },
+      "officialAnswer": "B",
+      "explanation": "正确词语为：未来。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (53)에 들어갈 가장 알맞은 어휘는 **B** (未来) 입니다.",
+      "vocabList": [
+        {
+          "word": "重新",
+          "pinyin": "chóngxīn",
+          "meaning": "다시, 새로이"
+        },
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        },
+        {
+          "word": "烦恼",
+          "pinyin": "fánnǎo",
+          "meaning": "고민스럽다, 번뇌하다, 걱정하다; 고민, 번뇌"
+        },
+        {
+          "word": "接着",
+          "pinyin": "jiēzhe",
+          "meaning": "이어서, 계속하여; 받다, 잇다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-54",
+      "number": 54,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第54题选择最佳词语：\n\n一个心理学家请一些实验者在周日晚上，把 53 7 天所有可能发生的烦恼写\n下来，放到一个箱子里。 \n7 天后，他在实验者面前打开这个箱子，与他们逐一核对每一项“烦恼”，\n结果发现其中有90%的“烦恼”并未真正发生。接着，他又要求大家把那些剩下\n的字条重新丢入纸箱中。等又过了7 天，他们打开箱子， 54 。 \n烦恼是自己找来的，这就是 55 的“自寻烦恼”。据统计，一般人92%的忧\n虑从未发生过，剩下的8%则是你能够轻易 56 的。",
+      "options": {
+        "A": "忍不住笑了起来",
+        "B": "很感激那位心理学家",
+        "C": "发现那些纸条不见了",
+        "D": "发现那些烦恼也不再是烦恼了"
+      },
+      "optionsKo": {
+        "A": "忍不住笑了起来",
+        "B": "很感激那位心理学家",
+        "C": "发现那些纸条不见了",
+        "D": "发现那些烦恼也不再是烦恼了 (고민스럽다, 번뇌하다, 걱정하다; 고민, 번뇌)"
+      },
+      "officialAnswer": "D",
+      "explanation": "正确词语为：发现那些烦恼也不再是烦恼了。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (54)에 들어갈 가장 알맞은 어휘는 **D** (发现那些烦恼也不再是烦恼了) 입니다.",
+      "vocabList": [
+        {
+          "word": "重新",
+          "pinyin": "chóngxīn",
+          "meaning": "다시, 새로이"
+        },
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        },
+        {
+          "word": "烦恼",
+          "pinyin": "fánnǎo",
+          "meaning": "고민스럽다, 번뇌하다, 걱정하다; 고민, 번뇌"
+        },
+        {
+          "word": "接着",
+          "pinyin": "jiēzhe",
+          "meaning": "이어서, 계속하여; 받다, 잇다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-55",
+      "number": 55,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第55题选择最佳词语：\n\n一个心理学家请一些实验者在周日晚上，把 53 7 天所有可能发生的烦恼写\n下来，放到一个箱子里。 \n7 天后，他在实验者面前打开这个箱子，与他们逐一核对每一项“烦恼”，\n结果发现其中有90%的“烦恼”并未真正发生。接着，他又要求大家把那些剩下\n的字条重新丢入纸箱中。等又过了7 天，他们打开箱子， 54 。 \n烦恼是自己找来的，这就是 55 的“自寻烦恼”。据统计，一般人92%的忧\n虑从未发生过，剩下的8%则是你能够轻易 56 的。",
+      "options": {
+        "A": "相对",
+        "B": "相似",
+        "C": "神秘",
+        "D": "所谓"
+      },
+      "optionsKo": {
+        "A": "相对",
+        "B": "相似",
+        "C": "神秘",
+        "D": "所谓"
+      },
+      "officialAnswer": "D",
+      "explanation": "正确词语为：所谓。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (55)에 들어갈 가장 알맞은 어휘는 **D** (所谓) 입니다.",
+      "vocabList": [
+        {
+          "word": "重新",
+          "pinyin": "chóngxīn",
+          "meaning": "다시, 새로이"
+        },
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        },
+        {
+          "word": "烦恼",
+          "pinyin": "fánnǎo",
+          "meaning": "고민스럽다, 번뇌하다, 걱정하다; 고민, 번뇌"
+        },
+        {
+          "word": "接着",
+          "pinyin": "jiēzhe",
+          "meaning": "이어서, 계속하여; 받다, 잇다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-56",
+      "number": 56,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第56题选择最佳词语：\n\n一个心理学家请一些实验者在周日晚上，把 53 7 天所有可能发生的烦恼写\n下来，放到一个箱子里。 \n7 天后，他在实验者面前打开这个箱子，与他们逐一核对每一项“烦恼”，\n结果发现其中有90%的“烦恼”并未真正发生。接着，他又要求大家把那些剩下\n的字条重新丢入纸箱中。等又过了7 天，他们打开箱子， 54 。 \n烦恼是自己找来的，这就是 55 的“自寻烦恼”。据统计，一般人92%的忧\n虑从未发生过，剩下的8%则是你能够轻易 56 的。",
+      "options": {
+        "A": "利用",
+        "B": "达到",
+        "C": "应付",
+        "D": "批准"
+      },
+      "optionsKo": {
+        "A": "利用",
+        "B": "达到 (도달하다, 달성하다, 이르다)",
+        "C": "应付",
+        "D": "批准"
+      },
+      "officialAnswer": "C",
+      "explanation": "正确词语为：应付。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (56)에 들어갈 가장 알맞은 어휘는 **C** (应付) 입니다.",
+      "vocabList": [
+        {
+          "word": "重新",
+          "pinyin": "chóngxīn",
+          "meaning": "다시, 새로이"
+        },
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        },
+        {
+          "word": "达到",
+          "pinyin": "dádào",
+          "meaning": "도달하다, 달성하다, 이르다"
+        },
+        {
+          "word": "烦恼",
+          "pinyin": "fánnǎo",
+          "meaning": "고민스럽다, 번뇌하다, 걱정하다; 고민, 번뇌"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-57",
+      "number": 57,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第57题选择最佳词语：\n\n春秋时期，齐国和楚国是著名的强国。有一回，齐国的国王派自己的大臣晏\n子访问楚国。楚王想趁这个机会，找一个办法让齐国的使者丢脸，借此来 57 楚\n国的强大。 \n楚王了解到晏子身材矮小，就命令手下的人在城门旁边开了一个很低的洞。\n晏子来到楚国的时候，楚王命令守门的士兵关闭了城门，让晏子从旁边的洞口爬\n进去。晏子看到这样的 58 ，明白了楚王的目的，他思考了一小会儿，便对 59 的\n人说：“这是一个狗洞，不是城门。我要是访问狗国，当然可以爬狗洞。请你们\n替我问一下楚王，我来访问的国家到底是楚国还是狗国？”楚王听了士兵的报告，  \n 60 ，迎接晏子进城。",
+      "options": {
+        "A": "具备",
+        "B": "显示",
+        "C": "发表",
+        "D": "领导"
+      },
+      "optionsKo": {
+        "A": "具备",
+        "B": "显示",
+        "C": "发表",
+        "D": "领导"
+      },
+      "officialAnswer": "B",
+      "explanation": "正确词语为：显示。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (57)에 들어갈 가장 알맞은 어휘는 **B** (显示) 입니다.",
+      "vocabList": [
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        },
+        {
+          "word": "到底",
+          "pinyin": "dàodǐ",
+          "meaning": "도대체; 마침내, 결국"
+        },
+        {
+          "word": "目的",
+          "pinyin": "mùdì",
+          "meaning": "목적"
+        },
+        {
+          "word": "要是",
+          "pinyin": "yàoshi",
+          "meaning": "만약 (~라면), 만일"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-58",
+      "number": 58,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第58题选择最佳词语：\n\n春秋时期，齐国和楚国是著名的强国。有一回，齐国的国王派自己的大臣晏\n子访问楚国。楚王想趁这个机会，找一个办法让齐国的使者丢脸，借此来 57 楚\n国的强大。 \n楚王了解到晏子身材矮小，就命令手下的人在城门旁边开了一个很低的洞。\n晏子来到楚国的时候，楚王命令守门的士兵关闭了城门，让晏子从旁边的洞口爬\n进去。晏子看到这样的 58 ，明白了楚王的目的，他思考了一小会儿，便对 59 的\n人说：“这是一个狗洞，不是城门。我要是访问狗国，当然可以爬狗洞。请你们\n替我问一下楚王，我来访问的国家到底是楚国还是狗国？”楚王听了士兵的报告，  \n 60 ，迎接晏子进城。",
+      "options": {
+        "A": "情景",
+        "B": "景色",
+        "C": "背景",
+        "D": "奇迹"
+      },
+      "optionsKo": {
+        "A": "情景",
+        "B": "景色 (경치, 풍경)",
+        "C": "背景",
+        "D": "奇迹"
+      },
+      "officialAnswer": "A",
+      "explanation": "正确词语为：情景。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (58)에 들어갈 가장 알맞은 어휘는 **A** (情景) 입니다.",
+      "vocabList": [
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        },
+        {
+          "word": "到底",
+          "pinyin": "dàodǐ",
+          "meaning": "도대체; 마침내, 결국"
+        },
+        {
+          "word": "景色",
+          "pinyin": "jǐngsè",
+          "meaning": "경치, 풍경"
+        },
+        {
+          "word": "目的",
+          "pinyin": "mùdì",
+          "meaning": "목적"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-59",
+      "number": 59,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第59题选择最佳词语：\n\n春秋时期，齐国和楚国是著名的强国。有一回，齐国的国王派自己的大臣晏\n子访问楚国。楚王想趁这个机会，找一个办法让齐国的使者丢脸，借此来 57 楚\n国的强大。 \n楚王了解到晏子身材矮小，就命令手下的人在城门旁边开了一个很低的洞。\n晏子来到楚国的时候，楚王命令守门的士兵关闭了城门，让晏子从旁边的洞口爬\n进去。晏子看到这样的 58 ，明白了楚王的目的，他思考了一小会儿，便对 59 的\n人说：“这是一个狗洞，不是城门。我要是访问狗国，当然可以爬狗洞。请你们\n替我问一下楚王，我来访问的国家到底是楚国还是狗国？”楚王听了士兵的报告，  \n 60 ，迎接晏子进城。",
+      "options": {
+        "A": "说服",
+        "B": "批准",
+        "C": "咨询",
+        "D": "接待"
+      },
+      "optionsKo": {
+        "A": "说服",
+        "B": "批准",
+        "C": "咨询",
+        "D": "接待"
+      },
+      "officialAnswer": "D",
+      "explanation": "正确词语为：接待。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (59)에 들어갈 가장 알맞은 어휘는 **D** (接待) 입니다.",
+      "vocabList": [
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        },
+        {
+          "word": "到底",
+          "pinyin": "dàodǐ",
+          "meaning": "도대체; 마침내, 결국"
+        },
+        {
+          "word": "目的",
+          "pinyin": "mùdì",
+          "meaning": "목적"
+        },
+        {
+          "word": "要是",
+          "pinyin": "yàoshi",
+          "meaning": "만약 (~라면), 만일"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-60",
+      "number": 60,
+      "type": "single_choice",
+      "section": "第一部分 · 阅读 (选词填空)",
+      "sectionKo": "1영역 · 독해 (장문 빈칸 어휘)",
+      "partCategory": "阅读",
+      "content": "【选词填空】请为第60题选择最佳词语：\n\n春秋时期，齐国和楚国是著名的强国。有一回，齐国的国王派自己的大臣晏\n子访问楚国。楚王想趁这个机会，找一个办法让齐国的使者丢脸，借此来 57 楚\n国的强大。 \n楚王了解到晏子身材矮小，就命令手下的人在城门旁边开了一个很低的洞。\n晏子来到楚国的时候，楚王命令守门的士兵关闭了城门，让晏子从旁边的洞口爬\n进去。晏子看到这样的 58 ，明白了楚王的目的，他思考了一小会儿，便对 59 的\n人说：“这是一个狗洞，不是城门。我要是访问狗国，当然可以爬狗洞。请你们\n替我问一下楚王，我来访问的国家到底是楚国还是狗国？”楚王听了士兵的报告，  \n 60 ，迎接晏子进城。",
+      "options": {
+        "A": "变得非常愤怒",
+        "B": "思考了很长时间",
+        "C": "只好命令打开城门",
+        "D": "发现晏子是个很有智慧的人"
+      },
+      "optionsKo": {
+        "A": "变得非常愤怒",
+        "B": "思考了很长时间",
+        "C": "只好命令打开城门 (부득이 ~할 수밖에 없다, 할 수 없이 ~하다)",
+        "D": "发现晏子是个很有智慧的人"
+      },
+      "officialAnswer": "C",
+      "explanation": "正确词语为：只好命令打开城门。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 1영역 독해 빈칸 채우기 문제입니다. 문맥상의 의미 흐름 및 앞뒤 단어와의 연어(搭配) 관계를 고려할 때, 빈칸 (60)에 들어갈 가장 알맞은 어휘는 **C** (只好命令打开城门) 입니다.",
+      "vocabList": [
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        },
+        {
+          "word": "到底",
+          "pinyin": "dàodǐ",
+          "meaning": "도대체; 마침내, 결국"
+        },
+        {
+          "word": "目的",
+          "pinyin": "mùdì",
+          "meaning": "목적"
+        },
+        {
+          "word": "要是",
+          "pinyin": "yàoshi",
+          "meaning": "만약 (~라면), 만일"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-61",
+      "number": 61,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (短文对应)",
+      "sectionKo": "2영역 · 독해 (일치하는 내용 고르기)",
+      "partCategory": "阅读",
+      "content": "请选出与试题内容一致的一项：\n\n爱因斯坦在谈到他成功的秘密时说：“我没什么特殊的才能，我只是保持了\n我的好奇心。”是什么伤害了你的好奇心？为什么有的人可以成功，而有的\n人却会失败？想想你最好奇的事物是什么，追寻你的好奇心，这将是你成功\n的秘诀。",
+      "options": {
+        "A": "失败是成功之母",
+        "B": "成功的秘诀是勤奋",
+        "C": "科学家需要特殊的才能",
+        "D": "好奇心让爱因斯坦获得了成功"
+      },
+      "optionsKo": {
+        "A": "失败是成功之母 (성공하다; 성공)",
+        "B": "成功的秘诀是勤奋 (성공하다; 성공)",
+        "C": "科学家需要特殊的才能 (과학; 과학적이다)",
+        "D": "好奇心让爱因斯坦获得了成功 (성공하다; 성공)"
+      },
+      "officialAnswer": "D",
+      "explanation": "与短文内容一致的选项为 D：好奇心让爱因斯坦获得了成功。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 2영역 본문과 일치하는 내용 고르기 문제입니다. 제시된 단문의 핵심 명제와 완벽히 부합하는 선택지는 **D** (好奇心让爱因斯坦获得了成功) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문의 진술을 과장, 축소 또는 왜곡한 선택지입니다.",
+      "vocabList": [
+        {
+          "word": "成功",
+          "pinyin": "chénggōng",
+          "meaning": "성공하다; 성공"
+        },
+        {
+          "word": "获得",
+          "pinyin": "huòdé",
+          "meaning": "획득하다, 얻다"
+        },
+        {
+          "word": "科学",
+          "pinyin": "kēxué",
+          "meaning": "과학; 과학적이다"
+        },
+        {
+          "word": "内容",
+          "pinyin": "nèiróng",
+          "meaning": "내용"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-62",
+      "number": 62,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (短文对应)",
+      "sectionKo": "2영역 · 독해 (일치하는 내용 고르기)",
+      "partCategory": "阅读",
+      "content": "请选出与试题内容一致的一项：\n\n中国有一句话叫“五岳归来不看山，黄山归来不看岳”，意思是游览过中国\n最有特点的五座山——东岳泰山、西岳华山、中岳嵩山、南岳恒山、北岳衡\n山之后，天下所有的山都不必游览了；可是，如果先游览了黄山，那么连五\n岳也不必去看了，由此可见黄山的独特和壮美。",
+      "options": {
+        "A": "泰山最高",
+        "B": "黄山是五岳之一",
+        "C": "黄山最值得一游",
+        "D": "应该先游览五岳"
+      },
+      "optionsKo": {
+        "A": "泰山最高",
+        "B": "黄山是五岳之一",
+        "C": "黄山最值得一游 (~할 가치가 있다, ~할 만하다)",
+        "D": "应该先游览五岳"
+      },
+      "officialAnswer": "C",
+      "explanation": "与短文内容一致的选项为 C：黄山最值得一游。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 2영역 본문과 일치하는 내용 고르기 문제입니다. 제시된 단문의 핵심 명제와 완벽히 부합하는 선택지는 **C** (黄山最值得一游) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문의 진술을 과장, 축소 또는 왜곡한 선택지입니다.",
+      "vocabList": [
+        {
+          "word": "不必",
+          "pinyin": "búbì",
+          "meaning": "~할 필요가 없다"
+        },
+        {
+          "word": "内容",
+          "pinyin": "nèiróng",
+          "meaning": "내용"
+        },
+        {
+          "word": "试题",
+          "pinyin": "shìtí",
+          "meaning": "시험 문제, 시험 문항"
+        },
+        {
+          "word": "所有",
+          "pinyin": "suǒyǒu",
+          "meaning": "모든, 일체의; 소유하다; 소유하고 있는 것"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-63",
+      "number": 63,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (短文对应)",
+      "sectionKo": "2영역 · 독해 (일치하는 내용 고르기)",
+      "partCategory": "阅读",
+      "content": "请选出与试题内容一致的一项：\n\n企业的发展需要团队，企业管理者必须学会如何组织、掌握及管理团队。企\n业管理者应以每个员工的专长为思考点，为他们安排适当的位置，并依照他\n们的优缺点做机动性的调整，使团队发挥最大的效能。",
+      "options": {
+        "A": "企业应加强对员工的培训",
+        "B": "管理者应重视员工的意见",
+        "C": "团队建设对企业管理很重要",
+        "D": "企业发展需要良好的文化氛围"
+      },
+      "optionsKo": {
+        "A": "企业应加强对员工的培训 (강화하다, 보강하다)",
+        "B": "管理者应重视员工的意见 (관리하다, 맡아 처리하다)",
+        "C": "团队建设对企业管理很重要 (관리하다, 맡아 처리하다)",
+        "D": "企业发展需要良好的文化氛围"
+      },
+      "officialAnswer": "C",
+      "explanation": "与短文内容一致的选项为 C：团队建设对企业管理很重要。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 2영역 본문과 일치하는 내용 고르기 문제입니다. 제시된 단문의 핵심 명제와 완벽히 부합하는 선택지는 **C** (团队建设对企业管理很重要) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문의 진술을 과장, 축소 또는 왜곡한 선택지입니다.",
+      "vocabList": [
+        {
+          "word": "安排",
+          "pinyin": "ānpái",
+          "meaning": "마련하다, 계획하다, 안배하다, 처리하다"
+        },
+        {
+          "word": "管理",
+          "pinyin": "guǎnlǐ",
+          "meaning": "관리하다, 맡아 처리하다"
+        },
+        {
+          "word": "加强",
+          "pinyin": "jiāqiáng",
+          "meaning": "강화하다, 보강하다"
+        },
+        {
+          "word": "内容",
+          "pinyin": "nèiróng",
+          "meaning": "내용"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-64",
+      "number": 64,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (短文对应)",
+      "sectionKo": "2영역 · 독해 (일치하는 내용 고르기)",
+      "partCategory": "阅读",
+      "content": "请选出与试题内容一致的一项：\n\n成长过程中，每个人都会经历一段“叛逆期”，这一时期的主要特征之一就\n是拒绝接受父母的意见，甚至与父母对着干。这其实并不完全是坏事，从心\n理发展的角度来看，这是获得独立思考能力必经的、不可缺少的阶段。",
+      "options": {
+        "A": "父母不应责备孩子",
+        "B": "孩子应该孝顺父母",
+        "C": "“叛逆期”的孩子很听话",
+        "D": "“叛逆期”是每个人必经的阶段"
+      },
+      "optionsKo": {
+        "A": "父母不应责备孩子 (부모, 부모님)",
+        "B": "孩子应该孝顺父母 (부모, 부모님)",
+        "C": "“叛逆期”的孩子很听话",
+        "D": "“叛逆期”是每个人必经的阶段"
+      },
+      "officialAnswer": "D",
+      "explanation": "与短文内容一致的选项为 D：“叛逆期”是每个人必经的阶段。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 2영역 본문과 일치하는 내용 고르기 문제입니다. 제시된 단문의 핵심 명제와 완벽히 부합하는 선택지는 **D** (“叛逆期”是每个人必经的阶段) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 본문의 진술을 과장, 축소 또는 왜곡한 선택지입니다.",
+      "vocabList": [
+        {
+          "word": "父母",
+          "pinyin": "fùmǔ",
+          "meaning": "부모, 부모님"
+        },
+        {
+          "word": "过程",
+          "pinyin": "guòchéng",
+          "meaning": "과정, 경과"
+        },
+        {
+          "word": "获得",
+          "pinyin": "huòdé",
+          "meaning": "획득하다, 얻다"
+        },
+        {
+          "word": "接受",
+          "pinyin": "jiēshòu",
+          "meaning": "받아들이다, 수용하다, 받다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-65",
+      "number": 65,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (短文对应)",
+      "sectionKo": "2영역 · 독해 (일치하는 내용 고르기)",
+      "partCategory": "阅读",
+      "content": "请选出与试题内容一致的一项：\n\n现在，如果要问人们选择职业时主要考虑的是什么，有相当一部分人会以收\n入多少作为标准。当然，也有人主要看自己是否喜欢这份工作。也许，最理\n想的情况是能找到一份既让人喜欢又有较多收入的职业。可惜的是，这种情\n况在生活中并不能经常遇到。",
+      "options": {
+        "A": "现在人们经常换工作",
+        "B": "人们找工作的标准不同",
+        "C": "喜欢的才是最好的工作",
+        "D": "找一份满意的工作并不难"
+      },
+      "optionsKo": {
+        "A": "现在人们经常换工作",
+        "B": "人们找工作的标准不同 (표준, 기준; 표준적인, 규범에 맞는)",
+        "C": "喜欢的才是最好的工作",
+        "D": "找一份满意的工作并不难"
+      },
+      "officialAnswer": "B",
+      "explanation": "与短文内容一致的选项为 B：人们找工作的标准不同。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 2영역 본문과 일치하는 내용 고르기 문제입니다. 제시된 단문의 핵심 명제와 완벽히 부합하는 선택지는 **B** (人们找工作的标准不同) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문의 진술을 과장, 축소 또는 왜곡한 선택지입니다.",
+      "vocabList": [
+        {
+          "word": "标准",
+          "pinyin": "biāozhǔn",
+          "meaning": "표준, 기준; 표준적인, 규범에 맞는"
+        },
+        {
+          "word": "部分",
+          "pinyin": "bùfen",
+          "meaning": "부분, 일부"
+        },
+        {
+          "word": "考虑",
+          "pinyin": "kǎolǜ",
+          "meaning": "고려하다, 깊이 생각하다"
+        },
+        {
+          "word": "可惜",
+          "pinyin": "kěxī",
+          "meaning": "아쉽다, 안타깝다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-66",
+      "number": 66,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (短文对应)",
+      "sectionKo": "2영역 · 독해 (일치하는 내용 고르기)",
+      "partCategory": "阅读",
+      "content": "请选出与试题内容一致的一项：\n\n心理学家研究发现：适当地选择衣服，可以帮助人们改善情绪。他们认为，\n称心的衣着可以使神经得到放松，从而给人舒适的感觉。所以在情绪不好的\n时候应该注意“四不”：不穿易皱的衣服，不穿太硬的衣服，不穿过紧的衣\n服以及不系领带。",
+      "options": {
+        "A": "硬衣服对身体不好",
+        "B": "心情不好别穿紧身衣服",
+        "C": "心理学家不赞成系领带",
+        "D": "避免穿与别人一样的衣服"
+      },
+      "optionsKo": {
+        "A": "硬衣服对身体不好",
+        "B": "心情不好别穿紧身衣服 (기분, 심정, 마음)",
+        "C": "心理学家不赞成系领带",
+        "D": "避免穿与别人一样的衣服"
+      },
+      "officialAnswer": "B",
+      "explanation": "与短文内容一致的选项为 B：心情不好别穿紧身衣服。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 2영역 본문과 일치하는 내용 고르기 문제입니다. 제시된 단문의 핵심 명제와 완벽히 부합하는 선택지는 **B** (心情不好别穿紧身衣服) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문의 진술을 과장, 축소 또는 왜곡한 선택지입니다.",
+      "vocabList": [
+        {
+          "word": "放松",
+          "pinyin": "fàngsōng",
+          "meaning": "긴장을 풀다, 편안하게 하다, 늦추다"
+        },
+        {
+          "word": "感觉",
+          "pinyin": "gǎnjué",
+          "meaning": "느끼다, 생각하다; 느낌, 감각"
+        },
+        {
+          "word": "内容",
+          "pinyin": "nèiróng",
+          "meaning": "내용"
+        },
+        {
+          "word": "试题",
+          "pinyin": "shìtí",
+          "meaning": "시험 문제, 시험 문항"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-67",
+      "number": 67,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (短文对应)",
+      "sectionKo": "2영역 · 독해 (일치하는 내용 고르기)",
+      "partCategory": "阅读",
+      "content": "请选出与试题内容一致的一项：\n\n《华容道》这款游戏源自一个历史故事，相传三国时曹操曾遭遇兵败，败走\n华容道。游戏的玩儿法就是通过移动最少的棋子，把曹操移出华容道。由于\n这款游戏形式变化多样，且有益于智力开发，所以深受人们的喜爱。",
+      "options": {
+        "A": "《华容道》是曹操发明的",
+        "B": "《华容道》是一款益智游戏",
+        "C": "《华容道》有两千多年的历史",
+        "D": "《华容道》至今没有正确的解法"
+      },
+      "optionsKo": {
+        "A": "《华容道》是曹操发明的",
+        "B": "《华容道》是一款益智游戏",
+        "C": "《华容道》有两千多年的历史",
+        "D": "《华容道》至今没有正确的解法 (정확하다, 올바르다)"
+      },
+      "officialAnswer": "B",
+      "explanation": "与短文内容一致的选项为 B：《华容道》是一款益智游戏。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 2영역 본문과 일치하는 내용 고르기 문제입니다. 제시된 단문의 핵심 명제와 완벽히 부합하는 선택지는 **B** (《华容道》是一款益智游戏) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문의 진술을 과장, 축소 또는 왜곡한 선택지입니다.",
+      "vocabList": [
+        {
+          "word": "多样",
+          "pinyin": "duōyàng",
+          "meaning": "다양하다, 다채롭다"
+        },
+        {
+          "word": "就是",
+          "pinyin": "jiùshì",
+          "meaning": "바로 (~이다), 단지; 설령 ~라 하더라도"
+        },
+        {
+          "word": "内容",
+          "pinyin": "nèiróng",
+          "meaning": "내용"
+        },
+        {
+          "word": "试题",
+          "pinyin": "shìtí",
+          "meaning": "시험 문제, 시험 문항"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-68",
+      "number": 68,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (短文对应)",
+      "sectionKo": "2영역 · 독해 (일치하는 내용 고르기)",
+      "partCategory": "阅读",
+      "content": "请选出与试题内容一致的一项：\n\n经常会有人疑惑，上海不产茶叶，怎么会连续举办十八届国际茶文化节？若\n您有时间，在上海闸北区逛一逛，相信就会找到答案。无论是步行还是坐车，\n到处都可以找到您心仪的茶叶。上海不产茶叶，却是中国最大的茶叶消费与\n流通城市。",
+      "options": {
+        "A": "上海的茶多销往国外",
+        "B": "上海闸北区种植茶叶",
+        "C": "上海的茶叶消费量很大",
+        "D": "上海是中国最大的茶叶产地"
+      },
+      "optionsKo": {
+        "A": "上海的茶多销往国外",
+        "B": "上海闸北区种植茶叶 (찻잎, 차)",
+        "C": "上海的茶叶消费量很大 (찻잎, 차)",
+        "D": "上海是中国最大的茶叶产地 (찻잎, 차)"
+      },
+      "officialAnswer": "C",
+      "explanation": "与短文内容一致的选项为 C：上海的茶叶消费量很大。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 2영역 본문과 일치하는 내용 고르기 문제입니다. 제시된 단문의 핵심 명제와 완벽히 부합하는 선택지는 **C** (上海的茶叶消费量很大) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문의 진술을 과장, 축소 또는 왜곡한 선택지입니다.",
+      "vocabList": [
+        {
+          "word": "茶叶",
+          "pinyin": "cháyè",
+          "meaning": "찻잎, 차"
+        },
+        {
+          "word": "答案",
+          "pinyin": "dá'àn",
+          "meaning": "답, 정답, 해답"
+        },
+        {
+          "word": "国际",
+          "pinyin": "guójì",
+          "meaning": "국제적인; 국제"
+        },
+        {
+          "word": "举办",
+          "pinyin": "jǔbàn",
+          "meaning": "거행하다, 개최하다, 열다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-69",
+      "number": 69,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (短文对应)",
+      "sectionKo": "2영역 · 독해 (일치하는 내용 고르기)",
+      "partCategory": "阅读",
+      "content": "请选出与试题内容一致的一项：\n\n按照饮食特点分，中国主要有四大菜系，即川菜、鲁菜、淮菜和粤菜。当然，\n其中最有名的，还是大家熟悉的川菜。川菜的突出特点是麻和辣，最正宗的\n川菜是成都和重庆两地的菜肴。如今川菜馆早已遍布世界各地，受到了人们\n的广泛欢迎。",
+      "options": {
+        "A": "川菜口味清淡",
+        "B": "重庆菜属于川菜",
+        "C": "中国菜的特点是麻和辣",
+        "D": "成都和重庆两地才有川菜"
+      },
+      "optionsKo": {
+        "A": "川菜口味清淡",
+        "B": "重庆菜属于川菜",
+        "C": "中国菜的特点是麻和辣 (특징, 특색)",
+        "D": "成都和重庆两地才有川菜"
+      },
+      "officialAnswer": "B",
+      "explanation": "与短文内容一致的选项为 B：重庆菜属于川菜。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 2영역 본문과 일치하는 내용 고르기 문제입니다. 제시된 단문의 핵심 명제와 완벽히 부합하는 선택지는 **B** (重庆菜属于川菜) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 본문의 진술을 과장, 축소 또는 왜곡한 선택지입니다.",
+      "vocabList": [
+        {
+          "word": "按照",
+          "pinyin": "ànzhào",
+          "meaning": "~에 따라, ~대로, ~에 비추어"
+        },
+        {
+          "word": "各地",
+          "pinyin": "gèdì",
+          "meaning": "각지, 곳곳, 여러 지역"
+        },
+        {
+          "word": "内容",
+          "pinyin": "nèiróng",
+          "meaning": "내용"
+        },
+        {
+          "word": "其中",
+          "pinyin": "qízhōng",
+          "meaning": "그중, 그 가운데"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-70",
+      "number": 70,
+      "type": "single_choice",
+      "section": "第二部分 · 阅读 (短文对应)",
+      "sectionKo": "2영역 · 독해 (일치하는 내용 고르기)",
+      "partCategory": "阅读",
+      "content": "请选出与试题内容一致的一项：\n\n竹子四季常青，最适合生长在湿润、温暖的环境中。竹子的用途非常广泛，\n可以食用，可以制作成各种农具，还可以种植在房屋周围和公园中，供人们\n观赏。大多数品种的竹子一生只开一次花，开花后竹子就会死去，严重缺水、\n营养不足的恶劣环境更容易导致竹子开花。",
+      "options": {
+        "A": "竹子的花非常漂亮",
+        "B": "竹子的花可以做药材",
+        "C": "多数竹子开花代表生命的结束",
+        "D": "暖湿的环境可以促使竹子开花"
+      },
+      "optionsKo": {
+        "A": "竹子的花非常漂亮",
+        "B": "竹子的花可以做药材",
+        "C": "多数竹子开花代表生命的结束 (다수, 대부분)",
+        "D": "暖湿的环境可以促使竹子开花"
+      },
+      "officialAnswer": "C",
+      "explanation": "与短文内容一致的选项为 C：多数竹子开花代表生命的结束。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 2영역 본문과 일치하는 내용 고르기 문제입니다. 제시된 단문의 핵심 명제와 완벽히 부합하는 선택지는 **C** (多数竹子开花代表生命的结束) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 본문의 진술을 과장, 축소 또는 왜곡한 선택지입니다.",
+      "vocabList": [
+        {
+          "word": "多数",
+          "pinyin": "duōshù",
+          "meaning": "다수, 대부분"
+        },
+        {
+          "word": "各种",
+          "pinyin": "gèzhǒng",
+          "meaning": "각종, 여러 가지"
+        },
+        {
+          "word": "内容",
+          "pinyin": "nèiróng",
+          "meaning": "내용"
+        },
+        {
+          "word": "生命",
+          "pinyin": "shēngmìng",
+          "meaning": "생명, 목숨"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-71",
+      "number": 71,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n下班时正是车流量高峰，你急着赶一个约会。从办公室走到地铁站需要15\n分钟，于是你决定打车。 \n10 分钟过去了，没有一辆出租车停在你的面前，你决定继\n续等待。15 分钟后，你开始烦躁不安。但通常你还会继续等下\n去，因为已经等了这么久，你心存侥幸：或许再多等一分钟，\n车子就会来。可直到半个小时后，你仍然站在马路上等待，你\n感到万分后悔——早知道这样，就该选择步行15 分钟去地铁\n站。 \n这样的情况，估计大多数人都经历过。无法放弃已经付出\n的时间，结果投入了更多的时间。这与投资中的“套牢”多么相似啊：已经亏损\n了，却没有及早卖出，结果赔了更多。 \n很多投资者在进行某项投资时，最先想到的往往是能赚多少，而不是会亏多\n少。殊不知，事实上，必须为每一笔买卖事先定一个“止损线”，“止损线”可能\n就是你的生命线。 \n我们必须要先学会如何输钱，这比学会如何赢钱更为重要。即使你只搞对一\n半儿，你也是赢家，关键在于每次搞错的时候，要将损失减到最少。\n\n★ 71. 15 分钟后出租车还没来，很多人会：",
+      "options": {
+        "A": "换坐地铁",
+        "B": "取消约会",
+        "C": "选择步行",
+        "D": "继续等出租车"
+      },
+      "optionsKo": {
+        "A": "换坐地铁",
+        "B": "取消约会 (취소하다, 없애다, 철회하다)",
+        "C": "选择步行",
+        "D": "继续等出租车 (임대하다, 세놓다, 대여하다)"
+      },
+      "officialAnswer": "D",
+      "explanation": "根据短文内容，正确答案为 D：继续等出租车。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **D** (继续等出租车) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "办公",
+          "pinyin": "bàngōng",
+          "meaning": "사무를 보다, 근무하다, 공무를 처리하다"
+        },
+        {
+          "word": "出租",
+          "pinyin": "chūzū",
+          "meaning": "임대하다, 세놓다, 대여하다"
+        },
+        {
+          "word": "多么",
+          "pinyin": "duōme",
+          "meaning": "얼마나, 어쩌면 그렇게"
+        },
+        {
+          "word": "多数",
+          "pinyin": "duōshù",
+          "meaning": "다수, 대부분"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-72",
+      "number": 72,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n下班时正是车流量高峰，你急着赶一个约会。从办公室走到地铁站需要15\n分钟，于是你决定打车。 \n10 分钟过去了，没有一辆出租车停在你的面前，你决定继\n续等待。15 分钟后，你开始烦躁不安。但通常你还会继续等下\n去，因为已经等了这么久，你心存侥幸：或许再多等一分钟，\n车子就会来。可直到半个小时后，你仍然站在马路上等待，你\n感到万分后悔——早知道这样，就该选择步行15 分钟去地铁\n站。 \n这样的情况，估计大多数人都经历过。无法放弃已经付出\n的时间，结果投入了更多的时间。这与投资中的“套牢”多么相似啊：已经亏损\n了，却没有及早卖出，结果赔了更多。 \n很多投资者在进行某项投资时，最先想到的往往是能赚多少，而不是会亏多\n少。殊不知，事实上，必须为每一笔买卖事先定一个“止损线”，“止损线”可能\n就是你的生命线。 \n我们必须要先学会如何输钱，这比学会如何赢钱更为重要。即使你只搞对一\n半儿，你也是赢家，关键在于每次搞错的时候，要将损失减到最少。\n\n★ 72. 第2 段中“心存侥幸”的意思最可能是：",
+      "options": {
+        "A": "失去耐心",
+        "B": "觉得很生气",
+        "C": "感到十分后悔",
+        "D": "仍然抱有幻想"
+      },
+      "optionsKo": {
+        "A": "失去耐心 (참을성 있다, 인내심이 강하다; 인내심, 끈기)",
+        "B": "觉得很生气",
+        "C": "感到十分后悔 (후회하다)",
+        "D": "仍然抱有幻想 (여전히, 아직도, 변함없이)"
+      },
+      "officialAnswer": "D",
+      "explanation": "根据短文内容，正确答案为 D：仍然抱有幻想。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **D** (仍然抱有幻想) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "办公",
+          "pinyin": "bàngōng",
+          "meaning": "사무를 보다, 근무하다, 공무를 처리하다"
+        },
+        {
+          "word": "出租",
+          "pinyin": "chūzū",
+          "meaning": "임대하다, 세놓다, 대여하다"
+        },
+        {
+          "word": "多么",
+          "pinyin": "duōme",
+          "meaning": "얼마나, 어쩌면 그렇게"
+        },
+        {
+          "word": "多数",
+          "pinyin": "duōshù",
+          "meaning": "다수, 대부분"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-73",
+      "number": 73,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n下班时正是车流量高峰，你急着赶一个约会。从办公室走到地铁站需要15\n分钟，于是你决定打车。 \n10 分钟过去了，没有一辆出租车停在你的面前，你决定继\n续等待。15 分钟后，你开始烦躁不安。但通常你还会继续等下\n去，因为已经等了这么久，你心存侥幸：或许再多等一分钟，\n车子就会来。可直到半个小时后，你仍然站在马路上等待，你\n感到万分后悔——早知道这样，就该选择步行15 分钟去地铁\n站。 \n这样的情况，估计大多数人都经历过。无法放弃已经付出\n的时间，结果投入了更多的时间。这与投资中的“套牢”多么相似啊：已经亏损\n了，却没有及早卖出，结果赔了更多。 \n很多投资者在进行某项投资时，最先想到的往往是能赚多少，而不是会亏多\n少。殊不知，事实上，必须为每一笔买卖事先定一个“止损线”，“止损线”可能\n就是你的生命线。 \n我们必须要先学会如何输钱，这比学会如何赢钱更为重要。即使你只搞对一\n半儿，你也是赢家，关键在于每次搞错的时候，要将损失减到最少。\n\n★ 73. 定“止损线”的目的是：",
+      "options": {
+        "A": "投资更多领域",
+        "B": "保证只赚不赔",
+        "C": "尽量减少损失",
+        "D": "吸引更多资金"
+      },
+      "optionsKo": {
+        "A": "投资更多领域",
+        "B": "保证只赚不赔 (보증하다, 보장하다; 보증, 확약)",
+        "C": "尽量减少损失 (감소하다, 줄이다, 줄다)",
+        "D": "吸引更多资金 ((마음·관심을) 끌다, 유인하다, 매료시키다)"
+      },
+      "officialAnswer": "C",
+      "explanation": "根据短文内容，正确答案为 C：尽量减少损失。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **C** (尽量减少损失) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "办公",
+          "pinyin": "bàngōng",
+          "meaning": "사무를 보다, 근무하다, 공무를 처리하다"
+        },
+        {
+          "word": "保证",
+          "pinyin": "bǎozhèng",
+          "meaning": "보증하다, 보장하다; 보증, 확약"
+        },
+        {
+          "word": "出租",
+          "pinyin": "chūzū",
+          "meaning": "임대하다, 세놓다, 대여하다"
+        },
+        {
+          "word": "多么",
+          "pinyin": "duōme",
+          "meaning": "얼마나, 어쩌면 그렇게"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-74",
+      "number": 74,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n下班时正是车流量高峰，你急着赶一个约会。从办公室走到地铁站需要15\n分钟，于是你决定打车。 \n10 分钟过去了，没有一辆出租车停在你的面前，你决定继\n续等待。15 分钟后，你开始烦躁不安。但通常你还会继续等下\n去，因为已经等了这么久，你心存侥幸：或许再多等一分钟，\n车子就会来。可直到半个小时后，你仍然站在马路上等待，你\n感到万分后悔——早知道这样，就该选择步行15 分钟去地铁\n站。 \n这样的情况，估计大多数人都经历过。无法放弃已经付出\n的时间，结果投入了更多的时间。这与投资中的“套牢”多么相似啊：已经亏损\n了，却没有及早卖出，结果赔了更多。 \n很多投资者在进行某项投资时，最先想到的往往是能赚多少，而不是会亏多\n少。殊不知，事实上，必须为每一笔买卖事先定一个“止损线”，“止损线”可能\n就是你的生命线。 \n我们必须要先学会如何输钱，这比学会如何赢钱更为重要。即使你只搞对一\n半儿，你也是赢家，关键在于每次搞错的时候，要将损失减到最少。\n\n★ 74. 上文主要想告诉我们什么道理？",
+      "options": {
+        "A": "投资需要保证时间",
+        "B": "输赢并不是最重要的",
+        "C": "不要轻易改变自己的决定",
+        "D": "减少损失比赚更多钱还重要"
+      },
+      "optionsKo": {
+        "A": "投资需要保证时间 (보증하다, 보장하다; 보증, 확약)",
+        "B": "输赢并不是最重要的",
+        "C": "不要轻易改变自己的决定 (바꾸다, 고치다; 바뀌다, 변하다)",
+        "D": "减少损失比赚更多钱还重要 (감소하다, 줄이다, 줄다)"
+      },
+      "officialAnswer": "D",
+      "explanation": "根据短文内容，正确答案为 D：减少损失比赚更多钱还重要。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **D** (减少损失比赚更多钱还重要) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "办公",
+          "pinyin": "bàngōng",
+          "meaning": "사무를 보다, 근무하다, 공무를 처리하다"
+        },
+        {
+          "word": "保证",
+          "pinyin": "bǎozhèng",
+          "meaning": "보증하다, 보장하다; 보증, 확약"
+        },
+        {
+          "word": "出租",
+          "pinyin": "chūzū",
+          "meaning": "임대하다, 세놓다, 대여하다"
+        },
+        {
+          "word": "多么",
+          "pinyin": "duōme",
+          "meaning": "얼마나, 어쩌면 그렇게"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-75",
+      "number": 75,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n新学期开始时，校长把三位老师叫进办公室，对他\n们说：“根据你们过去的教学表现，你们是本校最优秀\n的教师。因此，我们特意挑选了全校最聪明的100 名学\n生组成三个班让你们教。这些学生比别的孩子都要聪\n明，希望你们能让他们取得更好的成绩。”三位老师都\n高兴地表示一定尽力。 \n校长又叮嘱他们，对待这些孩子，要像平常一样，不要让孩子或家长知道他\n们是被特意挑选出来的。老师们都答应了。  \n一年之后，这三个班的学生成绩果然排在整个地区的前列。 \n这时，校长告诉了老师真相：这些学生并不是刻意选出来的最优秀的学生，\n只不过是随机抽调的普通学生。 \n老师们没想到会是这样，经过分析，他们都认为自己的教学水平高才是真正\n的原因。 \n这时校长又告诉他们另一个真相，那就是，他们也不是被专门挑选出来的全\n校最优秀的教师，也只是随机抽调的普通老师。\n\n★ 75. 开始，校长跟三位老师说：",
+      "options": {
+        "A": "这些学生很懒",
+        "B": "他们是最棒的教师",
+        "C": "这些学生是最笨的",
+        "D": "他们受到了家长的欢迎"
+      },
+      "optionsKo": {
+        "A": "这些学生很懒",
+        "B": "他们是最棒的教师 (교사, 교원, 선생님)",
+        "C": "这些学生是最笨的",
+        "D": "他们受到了家长的欢迎 (학부모, 가장)"
+      },
+      "officialAnswer": "B",
+      "explanation": "根据短文内容，正确答案为 B：他们是最棒的教师。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **B** (他们是最棒的教师) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "办公",
+          "pinyin": "bàngōng",
+          "meaning": "사무를 보다, 근무하다, 공무를 처리하다"
+        },
+        {
+          "word": "表示",
+          "pinyin": "biǎoshì",
+          "meaning": "나타내다, 표시하다, 표현하다"
+        },
+        {
+          "word": "表现",
+          "pinyin": "biǎoxiàn",
+          "meaning": "나타내다, 드러내다, 발휘하다; (태도를) 보이다"
+        },
+        {
+          "word": "不过",
+          "pinyin": "búguò",
+          "meaning": "그러나, 하지만; 단지, 겨우, 불과"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-76",
+      "number": 76,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n新学期开始时，校长把三位老师叫进办公室，对他\n们说：“根据你们过去的教学表现，你们是本校最优秀\n的教师。因此，我们特意挑选了全校最聪明的100 名学\n生组成三个班让你们教。这些学生比别的孩子都要聪\n明，希望你们能让他们取得更好的成绩。”三位老师都\n高兴地表示一定尽力。 \n校长又叮嘱他们，对待这些孩子，要像平常一样，不要让孩子或家长知道他\n们是被特意挑选出来的。老师们都答应了。  \n一年之后，这三个班的学生成绩果然排在整个地区的前列。 \n这时，校长告诉了老师真相：这些学生并不是刻意选出来的最优秀的学生，\n只不过是随机抽调的普通学生。 \n老师们没想到会是这样，经过分析，他们都认为自己的教学水平高才是真正\n的原因。 \n这时校长又告诉他们另一个真相，那就是，他们也不是被专门挑选出来的全\n校最优秀的教师，也只是随机抽调的普通老师。\n\n★ 76. 校长希望老师怎么对待这些学生？",
+      "options": {
+        "A": "要多鼓励学生",
+        "B": "允许学生犯错误",
+        "C": "像普通学生那样对待",
+        "D": "要培养学生独立思考的能力"
+      },
+      "optionsKo": {
+        "A": "要多鼓励学生 (격려하다, 북돋우다)",
+        "B": "允许学生犯错误 (틀리다, 잘못되다; 잘못, 오류)",
+        "C": "像普通学生那样对待 (보통이다, 평범하다, 일반적이다)",
+        "D": "要培养学生独立思考的能力 (능력, 역량)"
+      },
+      "officialAnswer": "C",
+      "explanation": "根据短文内容，正确答案为 C：像普通学生那样对待。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **C** (像普通学生那样对待) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "办公",
+          "pinyin": "bàngōng",
+          "meaning": "사무를 보다, 근무하다, 공무를 처리하다"
+        },
+        {
+          "word": "表示",
+          "pinyin": "biǎoshì",
+          "meaning": "나타내다, 표시하다, 표현하다"
+        },
+        {
+          "word": "表现",
+          "pinyin": "biǎoxiàn",
+          "meaning": "나타내다, 드러내다, 발휘하다; (태도를) 보이다"
+        },
+        {
+          "word": "不过",
+          "pinyin": "búguò",
+          "meaning": "그러나, 하지만; 단지, 겨우, 불과"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-77",
+      "number": 77,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n新学期开始时，校长把三位老师叫进办公室，对他\n们说：“根据你们过去的教学表现，你们是本校最优秀\n的教师。因此，我们特意挑选了全校最聪明的100 名学\n生组成三个班让你们教。这些学生比别的孩子都要聪\n明，希望你们能让他们取得更好的成绩。”三位老师都\n高兴地表示一定尽力。 \n校长又叮嘱他们，对待这些孩子，要像平常一样，不要让孩子或家长知道他\n们是被特意挑选出来的。老师们都答应了。  \n一年之后，这三个班的学生成绩果然排在整个地区的前列。 \n这时，校长告诉了老师真相：这些学生并不是刻意选出来的最优秀的学生，\n只不过是随机抽调的普通学生。 \n老师们没想到会是这样，经过分析，他们都认为自己的教学水平高才是真正\n的原因。 \n这时校长又告诉他们另一个真相，那就是，他们也不是被专门挑选出来的全\n校最优秀的教师，也只是随机抽调的普通老师。\n\n★ 77. 老师们认为自己的教学水平怎么样？",
+      "options": {
+        "A": "很糟糕",
+        "B": "非常出色",
+        "C": "属于中等水平",
+        "D": "实际上很普通"
+      },
+      "optionsKo": {
+        "A": "很糟糕",
+        "B": "非常出色",
+        "C": "属于中等水平",
+        "D": "实际上很普通 (보통이다, 평범하다, 일반적이다)"
+      },
+      "officialAnswer": "B",
+      "explanation": "根据短文内容，正确答案为 B：非常出色。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **B** (非常出色) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "办公",
+          "pinyin": "bàngōng",
+          "meaning": "사무를 보다, 근무하다, 공무를 처리하다"
+        },
+        {
+          "word": "表示",
+          "pinyin": "biǎoshì",
+          "meaning": "나타내다, 표시하다, 표현하다"
+        },
+        {
+          "word": "表现",
+          "pinyin": "biǎoxiàn",
+          "meaning": "나타내다, 드러내다, 발휘하다; (태도를) 보이다"
+        },
+        {
+          "word": "不过",
+          "pinyin": "búguò",
+          "meaning": "그러나, 하지만; 단지, 겨우, 불과"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-78",
+      "number": 78,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n新学期开始时，校长把三位老师叫进办公室，对他\n们说：“根据你们过去的教学表现，你们是本校最优秀\n的教师。因此，我们特意挑选了全校最聪明的100 名学\n生组成三个班让你们教。这些学生比别的孩子都要聪\n明，希望你们能让他们取得更好的成绩。”三位老师都\n高兴地表示一定尽力。 \n校长又叮嘱他们，对待这些孩子，要像平常一样，不要让孩子或家长知道他\n们是被特意挑选出来的。老师们都答应了。  \n一年之后，这三个班的学生成绩果然排在整个地区的前列。 \n这时，校长告诉了老师真相：这些学生并不是刻意选出来的最优秀的学生，\n只不过是随机抽调的普通学生。 \n老师们没想到会是这样，经过分析，他们都认为自己的教学水平高才是真正\n的原因。 \n这时校长又告诉他们另一个真相，那就是，他们也不是被专门挑选出来的全\n校最优秀的教师，也只是随机抽调的普通老师。\n\n★ 78. 上文主要想告诉我们：",
+      "options": {
+        "A": "万事开头难",
+        "B": "不要轻信他人",
+        "C": "努力了未必能成功",
+        "D": "别人的看法对我们影响很大"
+      },
+      "optionsKo": {
+        "A": "万事开头难",
+        "B": "不要轻信他人",
+        "C": "努力了未必能成功 (성공하다; 성공)",
+        "D": "别人的看法对我们影响很大 (견해, 생각, 관점)"
+      },
+      "officialAnswer": "D",
+      "explanation": "根据短文内容，正确答案为 D：别人的看法对我们影响很大。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **D** (别人的看法对我们影响很大) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "办公",
+          "pinyin": "bàngōng",
+          "meaning": "사무를 보다, 근무하다, 공무를 처리하다"
+        },
+        {
+          "word": "表示",
+          "pinyin": "biǎoshì",
+          "meaning": "나타내다, 표시하다, 표현하다"
+        },
+        {
+          "word": "表现",
+          "pinyin": "biǎoxiàn",
+          "meaning": "나타내다, 드러내다, 발휘하다; (태도를) 보이다"
+        },
+        {
+          "word": "不过",
+          "pinyin": "búguò",
+          "meaning": "그러나, 하지만; 단지, 겨우, 불과"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-79",
+      "number": 79,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n在云南，一年只有旱季和雨季两个季节。雨季一到，村民们便争先恐后地往\n山里去。因为山里长着一种叫做松茸的菌类，这种菌味道鲜美，近几年成为餐桌\n上的新宠，价格逐年上涨。因此，雨季挖松茸卖，成为当地人最主要的收入来源。 \n村民找到松茸后，用木棍撬开周围的土，小心地把松茸完整地取出来。这一\n过程很短暂，几秒钟就能完成。可是，得到松茸后，村\n民并不急着去寻找下一个目标，而是蹲在那里，把刚挖\n的坑填平，这个过程，往往比挖松茸更花时间。 \n既然松茸已经到手，为什么还要浪费时间填坑呢？\n原来松茸是一种很独特的菌类，它很恋“家”，年年都\n选择在同一个地方生长，一旦它的“家”被破坏，第二年，它便拒绝生长。所以，\n尽管所有的村民都在争分夺秒地挖松茸，但所有的人也都会花时间填平挖过的\n坑，没有人要求他们，这是他们自觉的行为，一代传一代，成为一条不成文的规\n定。 \n为松茸填坑，是举手之劳，很多人可能根本不屑于去做。可是云南的村民们\n知道，深山里的菌是大自然对人类的慷慨赠予，饮水思源，人类必须尽自己所能\n来对待它们。举手之劳，可以让大自然的万物绵绵不绝，而大自然奖赏给他们的，\n是世世代代取之不尽的资源。\n\n★ 79. 根据第1 段，可以知道：",
+      "options": {
+        "A": "松茸价格下降",
+        "B": "松茸很受欢迎",
+        "C": "村民将松茸当做主食",
+        "D": "松茸主要在旱季生长"
+      },
+      "optionsKo": {
+        "A": "松茸价格下降 (가격)",
+        "B": "松茸很受欢迎",
+        "C": "村民将松茸当做主食",
+        "D": "松茸主要在旱季生长"
+      },
+      "officialAnswer": "B",
+      "explanation": "根据短文内容，正确答案为 B：松茸很受欢迎。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **B** (松茸很受欢迎) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "成为",
+          "pinyin": "chéngwéi",
+          "meaning": "~이 되다, ~로 변하다"
+        },
+        {
+          "word": "大自然",
+          "pinyin": "dàzìrán",
+          "meaning": "대자연, 자연"
+        },
+        {
+          "word": "过程",
+          "pinyin": "guòchéng",
+          "meaning": "과정, 경과"
+        },
+        {
+          "word": "既然",
+          "pinyin": "jìrán",
+          "meaning": "기왕 ~한 바에야, 이미 ~한 이상"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-80",
+      "number": 80,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n在云南，一年只有旱季和雨季两个季节。雨季一到，村民们便争先恐后地往\n山里去。因为山里长着一种叫做松茸的菌类，这种菌味道鲜美，近几年成为餐桌\n上的新宠，价格逐年上涨。因此，雨季挖松茸卖，成为当地人最主要的收入来源。 \n村民找到松茸后，用木棍撬开周围的土，小心地把松茸完整地取出来。这一\n过程很短暂，几秒钟就能完成。可是，得到松茸后，村\n民并不急着去寻找下一个目标，而是蹲在那里，把刚挖\n的坑填平，这个过程，往往比挖松茸更花时间。 \n既然松茸已经到手，为什么还要浪费时间填坑呢？\n原来松茸是一种很独特的菌类，它很恋“家”，年年都\n选择在同一个地方生长，一旦它的“家”被破坏，第二年，它便拒绝生长。所以，\n尽管所有的村民都在争分夺秒地挖松茸，但所有的人也都会花时间填平挖过的\n坑，没有人要求他们，这是他们自觉的行为，一代传一代，成为一条不成文的规\n定。 \n为松茸填坑，是举手之劳，很多人可能根本不屑于去做。可是云南的村民们\n知道，深山里的菌是大自然对人类的慷慨赠予，饮水思源，人类必须尽自己所能\n来对待它们。举手之劳，可以让大自然的万物绵绵不绝，而大自然奖赏给他们的，\n是世世代代取之不尽的资源。\n\n★ 80. 第2 段中，“寻找下一个目标”指的是：",
+      "options": {
+        "A": "等下一个雨季",
+        "B": "寻找松茸的买主",
+        "C": "继续找其他松茸",
+        "D": "到另一个山上去找"
+      },
+      "optionsKo": {
+        "A": "等下一个雨季",
+        "B": "寻找松茸的买主",
+        "C": "继续找其他松茸 (계속하다, 지속하다)",
+        "D": "到另一个山上去找"
+      },
+      "officialAnswer": "C",
+      "explanation": "根据短文内容，正确答案为 C：继续找其他松茸。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **C** (继续找其他松茸) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "成为",
+          "pinyin": "chéngwéi",
+          "meaning": "~이 되다, ~로 변하다"
+        },
+        {
+          "word": "大自然",
+          "pinyin": "dàzìrán",
+          "meaning": "대자연, 자연"
+        },
+        {
+          "word": "过程",
+          "pinyin": "guòchéng",
+          "meaning": "과정, 경과"
+        },
+        {
+          "word": "既然",
+          "pinyin": "jìrán",
+          "meaning": "기왕 ~한 바에야, 이미 ~한 이상"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-81",
+      "number": 81,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n在云南，一年只有旱季和雨季两个季节。雨季一到，村民们便争先恐后地往\n山里去。因为山里长着一种叫做松茸的菌类，这种菌味道鲜美，近几年成为餐桌\n上的新宠，价格逐年上涨。因此，雨季挖松茸卖，成为当地人最主要的收入来源。 \n村民找到松茸后，用木棍撬开周围的土，小心地把松茸完整地取出来。这一\n过程很短暂，几秒钟就能完成。可是，得到松茸后，村\n民并不急着去寻找下一个目标，而是蹲在那里，把刚挖\n的坑填平，这个过程，往往比挖松茸更花时间。 \n既然松茸已经到手，为什么还要浪费时间填坑呢？\n原来松茸是一种很独特的菌类，它很恋“家”，年年都\n选择在同一个地方生长，一旦它的“家”被破坏，第二年，它便拒绝生长。所以，\n尽管所有的村民都在争分夺秒地挖松茸，但所有的人也都会花时间填平挖过的\n坑，没有人要求他们，这是他们自觉的行为，一代传一代，成为一条不成文的规\n定。 \n为松茸填坑，是举手之劳，很多人可能根本不屑于去做。可是云南的村民们\n知道，深山里的菌是大自然对人类的慷慨赠予，饮水思源，人类必须尽自己所能\n来对待它们。举手之劳，可以让大自然的万物绵绵不绝，而大自然奖赏给他们的，\n是世世代代取之不尽的资源。\n\n★ 81. 为什么说松茸很恋“家”？",
+      "options": {
+        "A": "它的根很深",
+        "B": "它的生长地点固定",
+        "C": "它需要得到细心照顾",
+        "D": "它只跟同类菌长在一起"
+      },
+      "optionsKo": {
+        "A": "它的根很深",
+        "B": "它的生长地点固定",
+        "C": "它需要得到细心照顾 (세심하다, 꼼꼼하다, 주의 깊다)",
+        "D": "它只跟同类菌长在一起"
+      },
+      "officialAnswer": "B",
+      "explanation": "根据短文内容，正确答案为 B：它的生长地点固定。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **B** (它的生长地点固定) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "成为",
+          "pinyin": "chéngwéi",
+          "meaning": "~이 되다, ~로 변하다"
+        },
+        {
+          "word": "大自然",
+          "pinyin": "dàzìrán",
+          "meaning": "대자연, 자연"
+        },
+        {
+          "word": "过程",
+          "pinyin": "guòchéng",
+          "meaning": "과정, 경과"
+        },
+        {
+          "word": "既然",
+          "pinyin": "jìrán",
+          "meaning": "기왕 ~한 바에야, 이미 ~한 이상"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-82",
+      "number": 82,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n在云南，一年只有旱季和雨季两个季节。雨季一到，村民们便争先恐后地往\n山里去。因为山里长着一种叫做松茸的菌类，这种菌味道鲜美，近几年成为餐桌\n上的新宠，价格逐年上涨。因此，雨季挖松茸卖，成为当地人最主要的收入来源。 \n村民找到松茸后，用木棍撬开周围的土，小心地把松茸完整地取出来。这一\n过程很短暂，几秒钟就能完成。可是，得到松茸后，村\n民并不急着去寻找下一个目标，而是蹲在那里，把刚挖\n的坑填平，这个过程，往往比挖松茸更花时间。 \n既然松茸已经到手，为什么还要浪费时间填坑呢？\n原来松茸是一种很独特的菌类，它很恋“家”，年年都\n选择在同一个地方生长，一旦它的“家”被破坏，第二年，它便拒绝生长。所以，\n尽管所有的村民都在争分夺秒地挖松茸，但所有的人也都会花时间填平挖过的\n坑，没有人要求他们，这是他们自觉的行为，一代传一代，成为一条不成文的规\n定。 \n为松茸填坑，是举手之劳，很多人可能根本不屑于去做。可是云南的村民们\n知道，深山里的菌是大自然对人类的慷慨赠予，饮水思源，人类必须尽自己所能\n来对待它们。举手之劳，可以让大自然的万物绵绵不绝，而大自然奖赏给他们的，\n是世世代代取之不尽的资源。\n\n★ 82. 最后一段主要想告诉我们什么？",
+      "options": {
+        "A": "不要浪费时间",
+        "B": "做事要注意细节",
+        "C": "保护环境是每个人的义务",
+        "D": "善待自然就是善待人类自己"
+      },
+      "optionsKo": {
+        "A": "不要浪费时间 (낭비하다, 허비하다)",
+        "B": "做事要注意细节",
+        "C": "保护环境是每个人的义务 (보호하다, 지키다)",
+        "D": "善待自然就是善待人类自己 (바로 (~이다), 단지; 설령 ~라 하더라도)"
+      },
+      "officialAnswer": "D",
+      "explanation": "根据短文内容，正确答案为 D：善待自然就是善待人类自己。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **D** (善待自然就是善待人类自己) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "保护",
+          "pinyin": "bǎohù",
+          "meaning": "보호하다, 지키다"
+        },
+        {
+          "word": "成为",
+          "pinyin": "chéngwéi",
+          "meaning": "~이 되다, ~로 변하다"
+        },
+        {
+          "word": "大自然",
+          "pinyin": "dàzìrán",
+          "meaning": "대자연, 자연"
+        },
+        {
+          "word": "过程",
+          "pinyin": "guòchéng",
+          "meaning": "과정, 경과"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-83",
+      "number": 83,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n坐在你身旁的同事是否总是不停地抱怨工作环境不好或是工作压力太大？\n在他们抱怨时，你是否会耐心地倾听呢？如果是，那你可不只是在听别人讲而已。\n事实上，在倾听的过程中，你也会不知不觉地被他们\n的压力所“传染”。 \n心理学家发现，压力就像感冒一样会传染，这种\n“二手”的压力和焦虑情绪可以在工作场所迅速蔓延。\n因为人们能够以惊人的速度模仿他人的面部表情、声\n音和姿势，从而对他人的情绪感同身受。我们其实都\n是“海绵”，可以吸收周围人散发出的感染性的情绪。\n而在吸收他人压力的同时，我们自己也开始感受到压力，并会不自觉地去关注那\n些可能会困扰我们的问题。 \n为什么别人的压力会传染给我们？这是因为，一方面，我们吸收朋友或同事\n的压力是为了和他们打成一片；另一方面，持续灌进我们耳中的不满的声音，也\n会让我们开始产生消极的想法。 \n研究者发现，我们不仅会接受他人消极的思维模式，还会下意识地模仿他们\n在压力下的身体语言，这导致我们在交谈时会与他们一样弓起背、皱起眉。另外，\n女性遭遇“二手压力”的风险更大，因为她们往往更容易与他人产生共鸣。\n\n★ 83. 为什么说“我们其实都是‘海绵’”？",
+      "options": {
+        "A": "抗压性强",
+        "B": "学习能力强",
+        "C": "有很强的适应性",
+        "D": "会吸收别人的情绪"
+      },
+      "optionsKo": {
+        "A": "抗压性强",
+        "B": "学习能力强 (능력, 역량)",
+        "C": "有很强的适应性 (적응하다, 알맞추다)",
+        "D": "会吸收别人的情绪"
+      },
+      "officialAnswer": "D",
+      "explanation": "根据短文内容，正确答案为 D：会吸收别人的情绪。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **D** (会吸收别人的情绪) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "不仅",
+          "pinyin": "bùjǐn",
+          "meaning": "~뿐만 아니라"
+        },
+        {
+          "word": "不满",
+          "pinyin": "bùmǎn",
+          "meaning": "불만스럽다, 못마땅하다; 불만"
+        },
+        {
+          "word": "产生",
+          "pinyin": "chǎnshēng",
+          "meaning": "생기다, 발생하다, 나타나다"
+        },
+        {
+          "word": "发出",
+          "pinyin": "fāchū",
+          "meaning": "(소리·빛을) 내다; (신호·명령·통지를) 발송하다, 보내다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-84",
+      "number": 84,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n坐在你身旁的同事是否总是不停地抱怨工作环境不好或是工作压力太大？\n在他们抱怨时，你是否会耐心地倾听呢？如果是，那你可不只是在听别人讲而已。\n事实上，在倾听的过程中，你也会不知不觉地被他们\n的压力所“传染”。 \n心理学家发现，压力就像感冒一样会传染，这种\n“二手”的压力和焦虑情绪可以在工作场所迅速蔓延。\n因为人们能够以惊人的速度模仿他人的面部表情、声\n音和姿势，从而对他人的情绪感同身受。我们其实都\n是“海绵”，可以吸收周围人散发出的感染性的情绪。\n而在吸收他人压力的同时，我们自己也开始感受到压力，并会不自觉地去关注那\n些可能会困扰我们的问题。 \n为什么别人的压力会传染给我们？这是因为，一方面，我们吸收朋友或同事\n的压力是为了和他们打成一片；另一方面，持续灌进我们耳中的不满的声音，也\n会让我们开始产生消极的想法。 \n研究者发现，我们不仅会接受他人消极的思维模式，还会下意识地模仿他们\n在压力下的身体语言，这导致我们在交谈时会与他们一样弓起背、皱起眉。另外，\n女性遭遇“二手压力”的风险更大，因为她们往往更容易与他人产生共鸣。\n\n★ 84. 第3 段中的“打成一片”，是什么意思？",
+      "options": {
+        "A": "争论",
+        "B": "打架",
+        "C": "搞好关系",
+        "D": "相互支持"
+      },
+      "optionsKo": {
+        "A": "争论",
+        "B": "打架",
+        "C": "搞好关系",
+        "D": "相互支持 (서로, 상호 간에)"
+      },
+      "officialAnswer": "C",
+      "explanation": "根据短文内容，正确答案为 C：搞好关系。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **C** (搞好关系) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "不仅",
+          "pinyin": "bùjǐn",
+          "meaning": "~뿐만 아니라"
+        },
+        {
+          "word": "不满",
+          "pinyin": "bùmǎn",
+          "meaning": "불만스럽다, 못마땅하다; 불만"
+        },
+        {
+          "word": "产生",
+          "pinyin": "chǎnshēng",
+          "meaning": "생기다, 발생하다, 나타나다"
+        },
+        {
+          "word": "发出",
+          "pinyin": "fāchū",
+          "meaning": "(소리·빛을) 내다; (신호·명령·통지를) 발송하다, 보내다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-85",
+      "number": 85,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n坐在你身旁的同事是否总是不停地抱怨工作环境不好或是工作压力太大？\n在他们抱怨时，你是否会耐心地倾听呢？如果是，那你可不只是在听别人讲而已。\n事实上，在倾听的过程中，你也会不知不觉地被他们\n的压力所“传染”。 \n心理学家发现，压力就像感冒一样会传染，这种\n“二手”的压力和焦虑情绪可以在工作场所迅速蔓延。\n因为人们能够以惊人的速度模仿他人的面部表情、声\n音和姿势，从而对他人的情绪感同身受。我们其实都\n是“海绵”，可以吸收周围人散发出的感染性的情绪。\n而在吸收他人压力的同时，我们自己也开始感受到压力，并会不自觉地去关注那\n些可能会困扰我们的问题。 \n为什么别人的压力会传染给我们？这是因为，一方面，我们吸收朋友或同事\n的压力是为了和他们打成一片；另一方面，持续灌进我们耳中的不满的声音，也\n会让我们开始产生消极的想法。 \n研究者发现，我们不仅会接受他人消极的思维模式，还会下意识地模仿他们\n在压力下的身体语言，这导致我们在交谈时会与他们一样弓起背、皱起眉。另外，\n女性遭遇“二手压力”的风险更大，因为她们往往更容易与他人产生共鸣。\n\n★ 85. 根据第4 段，下列哪项正确？",
+      "options": {
+        "A": "女性喜欢模仿",
+        "B": "身体语言与年龄有关",
+        "C": "人的思维方式很难改变",
+        "D": "女性更容易受他人影响"
+      },
+      "optionsKo": {
+        "A": "女性喜欢模仿 (여성, 여자)",
+        "B": "身体语言与年龄有关 (나이, 연령)",
+        "C": "人的思维方式很难改变 (방식, 방법, 형태)",
+        "D": "女性更容易受他人影响 (여성, 여자)"
+      },
+      "officialAnswer": "D",
+      "explanation": "根据短文内容，正确答案为 D：女性更容易受他人影响。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **D** (女性更容易受他人影响) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "不仅",
+          "pinyin": "bùjǐn",
+          "meaning": "~뿐만 아니라"
+        },
+        {
+          "word": "不满",
+          "pinyin": "bùmǎn",
+          "meaning": "불만스럽다, 못마땅하다; 불만"
+        },
+        {
+          "word": "产生",
+          "pinyin": "chǎnshēng",
+          "meaning": "생기다, 발생하다, 나타나다"
+        },
+        {
+          "word": "发出",
+          "pinyin": "fāchū",
+          "meaning": "(소리·빛을) 내다; (신호·명령·통지를) 발송하다, 보내다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-86",
+      "number": 86,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n坐在你身旁的同事是否总是不停地抱怨工作环境不好或是工作压力太大？\n在他们抱怨时，你是否会耐心地倾听呢？如果是，那你可不只是在听别人讲而已。\n事实上，在倾听的过程中，你也会不知不觉地被他们\n的压力所“传染”。 \n心理学家发现，压力就像感冒一样会传染，这种\n“二手”的压力和焦虑情绪可以在工作场所迅速蔓延。\n因为人们能够以惊人的速度模仿他人的面部表情、声\n音和姿势，从而对他人的情绪感同身受。我们其实都\n是“海绵”，可以吸收周围人散发出的感染性的情绪。\n而在吸收他人压力的同时，我们自己也开始感受到压力，并会不自觉地去关注那\n些可能会困扰我们的问题。 \n为什么别人的压力会传染给我们？这是因为，一方面，我们吸收朋友或同事\n的压力是为了和他们打成一片；另一方面，持续灌进我们耳中的不满的声音，也\n会让我们开始产生消极的想法。 \n研究者发现，我们不仅会接受他人消极的思维模式，还会下意识地模仿他们\n在压力下的身体语言，这导致我们在交谈时会与他们一样弓起背、皱起眉。另外，\n女性遭遇“二手压力”的风险更大，因为她们往往更容易与他人产生共鸣。\n\n★ 86. 最适合做上文标题的是：",
+      "options": {
+        "A": "海绵效应",
+        "B": "倾诉的力量",
+        "C": "会传染的压力",
+        "D": "你能读懂表情吗"
+      },
+      "optionsKo": {
+        "A": "海绵效应",
+        "B": "倾诉的力量",
+        "C": "会传染的压力 (스트레스, 압박감, 부담; 압력)",
+        "D": "你能读懂表情吗"
+      },
+      "officialAnswer": "C",
+      "explanation": "根据短文内容，正确答案为 C：会传染的压力。",
+      "explanationKo": "【정답 안내】: 정답은 **C** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **C** (会传染的压力) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, D)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "不仅",
+          "pinyin": "bùjǐn",
+          "meaning": "~뿐만 아니라"
+        },
+        {
+          "word": "不满",
+          "pinyin": "bùmǎn",
+          "meaning": "불만스럽다, 못마땅하다; 불만"
+        },
+        {
+          "word": "产生",
+          "pinyin": "chǎnshēng",
+          "meaning": "생기다, 발생하다, 나타나다"
+        },
+        {
+          "word": "发出",
+          "pinyin": "fāchū",
+          "meaning": "(소리·빛을) 내다; (신호·명령·통지를) 발송하다, 보내다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-87",
+      "number": 87,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n在日常生活中，谁都有不小心打碎东西的时候，但极少有人会去研究这些\n碎片中的学问。有位物理学家却从花瓶的碎片中发现了这样一个规律：将打碎后\n的物体碎片按重量级的数量分类，不同的重量级间会表现出统一的倍数关系。例\n如，被打碎的花瓶，最大的碎片与次大的碎片重量比是16：1，次大的与第三大\n的碎片间的重量比也是16：1，以此类推。这就\n是著名的“碎花瓶理论”。 \n物理学家进一步研究发现，不同形状的物\n体，这个重量比是不同的。对于花瓶或茶杯状\n的物体，这个倍数约为16，棒状物体约为11，\n球状物体则约为40。更重要的是，这个倍数与\n物体的材料无关，即使是一块儿冻豆腐摔碎了，\n也会遵循这个规律。 \n由此可知，只要有同一物体的部分碎片就能求出这个倍数，从而可以推测出\n物体破碎前的大概形状。目前，“碎花瓶理论”在恢复文物原貌、推测陨石形状\n等工作中有特别的用处，它给这些原来全凭经验和想象的工作提供了理论依据。\n\n★ 87. 根据第1 段，最大的花瓶碎片：",
+      "options": {
+        "A": "数量最多",
+        "B": "用处不大",
+        "C": "形状最特别",
+        "D": "重量是第二大的16 倍"
+      },
+      "optionsKo": {
+        "A": "数量最多 (수량, 양)",
+        "B": "用处不大",
+        "C": "形状最特别",
+        "D": "重量是第二大的16 倍"
+      },
+      "officialAnswer": "D",
+      "explanation": "根据短文内容，正确答案为 D：重量是第二大的16 倍。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **D** (重量是第二大的16 倍) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "表现",
+          "pinyin": "biǎoxiàn",
+          "meaning": "나타내다, 드러내다, 발휘하다; (태도를) 보이다"
+        },
+        {
+          "word": "部分",
+          "pinyin": "bùfen",
+          "meaning": "부분, 일부"
+        },
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "对于",
+          "pinyin": "duìyú",
+          "meaning": "~에 대하여, ~에 관하여"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-88",
+      "number": 88,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n在日常生活中，谁都有不小心打碎东西的时候，但极少有人会去研究这些\n碎片中的学问。有位物理学家却从花瓶的碎片中发现了这样一个规律：将打碎后\n的物体碎片按重量级的数量分类，不同的重量级间会表现出统一的倍数关系。例\n如，被打碎的花瓶，最大的碎片与次大的碎片重量比是16：1，次大的与第三大\n的碎片间的重量比也是16：1，以此类推。这就\n是著名的“碎花瓶理论”。 \n物理学家进一步研究发现，不同形状的物\n体，这个重量比是不同的。对于花瓶或茶杯状\n的物体，这个倍数约为16，棒状物体约为11，\n球状物体则约为40。更重要的是，这个倍数与\n物体的材料无关，即使是一块儿冻豆腐摔碎了，\n也会遵循这个规律。 \n由此可知，只要有同一物体的部分碎片就能求出这个倍数，从而可以推测出\n物体破碎前的大概形状。目前，“碎花瓶理论”在恢复文物原貌、推测陨石形状\n等工作中有特别的用处，它给这些原来全凭经验和想象的工作提供了理论依据。\n\n★ 88. 第2 段中，举“冻豆腐”的例子是为了说明：",
+      "options": {
+        "A": "食物碎片很难统计",
+        "B": "重量比不受材料影响",
+        "C": "碎片形状和重量比有关",
+        "D": "重量比与温度有一定关系"
+      },
+      "optionsKo": {
+        "A": "食物碎片很难统计 (음식, 음식물, 먹거리)",
+        "B": "重量比不受材料影响 (재료, 원료; 자료)",
+        "C": "碎片形状和重量比有关",
+        "D": "重量比与温度有一定关系 (온도, 기온)"
+      },
+      "officialAnswer": "B",
+      "explanation": "根据短文内容，正确答案为 B：重量比不受材料影响。",
+      "explanationKo": "【정답 안내】: 정답은 **B** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **B** (重量比不受材料影响) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, C, D)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "表现",
+          "pinyin": "biǎoxiàn",
+          "meaning": "나타내다, 드러내다, 발휘하다; (태도를) 보이다"
+        },
+        {
+          "word": "部分",
+          "pinyin": "bùfen",
+          "meaning": "부분, 일부"
+        },
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "对于",
+          "pinyin": "duìyú",
+          "meaning": "~에 대하여, ~에 관하여"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-89",
+      "number": 89,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n在日常生活中，谁都有不小心打碎东西的时候，但极少有人会去研究这些\n碎片中的学问。有位物理学家却从花瓶的碎片中发现了这样一个规律：将打碎后\n的物体碎片按重量级的数量分类，不同的重量级间会表现出统一的倍数关系。例\n如，被打碎的花瓶，最大的碎片与次大的碎片重量比是16：1，次大的与第三大\n的碎片间的重量比也是16：1，以此类推。这就\n是著名的“碎花瓶理论”。 \n物理学家进一步研究发现，不同形状的物\n体，这个重量比是不同的。对于花瓶或茶杯状\n的物体，这个倍数约为16，棒状物体约为11，\n球状物体则约为40。更重要的是，这个倍数与\n物体的材料无关，即使是一块儿冻豆腐摔碎了，\n也会遵循这个规律。 \n由此可知，只要有同一物体的部分碎片就能求出这个倍数，从而可以推测出\n物体破碎前的大概形状。目前，“碎花瓶理论”在恢复文物原貌、推测陨石形状\n等工作中有特别的用处，它给这些原来全凭经验和想象的工作提供了理论依据。\n\n★ 89. 关于碎花瓶理论，下列哪项正确？",
+      "options": {
+        "A": "缺少理论支持",
+        "B": "对实验室条件要求高",
+        "C": "很多人提出反对意见",
+        "D": "球状物体重量比约为40：1"
+      },
+      "optionsKo": {
+        "A": "缺少理论支持 (부족하다, 모자라다, 결여되다)",
+        "B": "对实验室条件要求高 (조건, 여건, 상황)",
+        "C": "很多人提出反对意见 (반대하다)",
+        "D": "球状物体重量比约为40：1 (체중, 몸무게)"
+      },
+      "officialAnswer": "D",
+      "explanation": "根据短文内容，正确答案为 D：球状物体重量比约为40：1。",
+      "explanationKo": "【정답 안내】: 정답은 **D** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **D** (球状物体重量比约为40：1) 입니다.\n\n【오답 함정 체크】: 다른 선택지(A, B, C)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "表现",
+          "pinyin": "biǎoxiàn",
+          "meaning": "나타내다, 드러내다, 발휘하다; (태도를) 보이다"
+        },
+        {
+          "word": "部分",
+          "pinyin": "bùfen",
+          "meaning": "부분, 일부"
+        },
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "对于",
+          "pinyin": "duìyú",
+          "meaning": "~에 대하여, ~에 관하여"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-90",
+      "number": 90,
+      "type": "single_choice",
+      "section": "第三部分 · 阅读 (深度长文阅读)",
+      "sectionKo": "3영역 · 독해 (심층 장문 독해)",
+      "partCategory": "阅读",
+      "content": "【长文阅读】\n在日常生活中，谁都有不小心打碎东西的时候，但极少有人会去研究这些\n碎片中的学问。有位物理学家却从花瓶的碎片中发现了这样一个规律：将打碎后\n的物体碎片按重量级的数量分类，不同的重量级间会表现出统一的倍数关系。例\n如，被打碎的花瓶，最大的碎片与次大的碎片重量比是16：1，次大的与第三大\n的碎片间的重量比也是16：1，以此类推。这就\n是著名的“碎花瓶理论”。 \n物理学家进一步研究发现，不同形状的物\n体，这个重量比是不同的。对于花瓶或茶杯状\n的物体，这个倍数约为16，棒状物体约为11，\n球状物体则约为40。更重要的是，这个倍数与\n物体的材料无关，即使是一块儿冻豆腐摔碎了，\n也会遵循这个规律。 \n由此可知，只要有同一物体的部分碎片就能求出这个倍数，从而可以推测出\n物体破碎前的大概形状。目前，“碎花瓶理论”在恢复文物原貌、推测陨石形状\n等工作中有特别的用处，它给这些原来全凭经验和想象的工作提供了理论依据。\n\n★ 90. 第3 段主要介绍的是碎花瓶理论的：",
+      "options": {
+        "A": "应用价值",
+        "B": "实验步骤",
+        "C": "历史背景",
+        "D": "理论依据"
+      },
+      "optionsKo": {
+        "A": "应用价值",
+        "B": "实验步骤",
+        "C": "历史背景",
+        "D": "理论依据"
+      },
+      "officialAnswer": "A",
+      "explanation": "根据短文内容，正确答案为 A：应用价值。",
+      "explanationKo": "【정답 안내】: 정답은 **A** 입니다.\n\n【상세 분석】: 3영역 심층 장문 독해 문제입니다. 문제에서 묻고 있는 세부 정보 또는 글의 중심 교훈과 직결되는 정답은 **A** (应用价值) 입니다.\n\n【오답 함정 체크】: 다른 선택지(B, C, D)는 지문에 근거가 없거나 지문의 의도와 상반되는 오답입니다.",
+      "vocabList": [
+        {
+          "word": "表现",
+          "pinyin": "biǎoxiàn",
+          "meaning": "나타내다, 드러내다, 발휘하다; (태도를) 보이다"
+        },
+        {
+          "word": "部分",
+          "pinyin": "bùfen",
+          "meaning": "부분, 일부"
+        },
+        {
+          "word": "材料",
+          "pinyin": "cáiliào",
+          "meaning": "재료, 원료; 자료"
+        },
+        {
+          "word": "对于",
+          "pinyin": "duìyú",
+          "meaning": "~에 대하여, ~에 관하여"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null
+    },
+    {
+      "id": "hsk5-h51553c-91",
+      "number": 91,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "他已经把日程安排好了。",
+      "explanation": "标准连词成句：“他已经把日程安排好了。”。",
+      "explanationKo": "【정답 문장】: **他已经把日程安排好了。**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: **他已经把日程安排好了。**\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 부사어/개사구 + 술어동사 + 목적어/보어] 어순과 문맥 구조를 정확히 파악하여 완성합니다.",
+      "vocabList": [
+        {
+          "word": "安排",
+          "pinyin": "ānpái",
+          "meaning": "마련하다, 계획하다, 안배하다, 처리하다"
+        },
+        {
+          "word": "重新",
+          "pinyin": "chóngxīn",
+          "meaning": "다시, 새로이"
+        },
+        {
+          "word": "语法",
+          "pinyin": "yǔfǎ",
+          "meaning": "문법"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null,
+      "wordsToOrder": [
+        "他",
+        "日程",
+        "把",
+        "已经",
+        "安排好了"
+      ],
+      "standardSentence": "他已经把日程安排好了。"
+    },
+    {
+      "id": "hsk5-h51553c-92",
+      "number": 92,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "雨后常常能看到彩虹。",
+      "explanation": "标准连词成句：“雨后常常能看到彩虹。”。",
+      "explanationKo": "【정답 문장】: **雨后常常能看到彩虹。**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: **雨后常常能看到彩虹。**\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 부사어/개사구 + 술어동사 + 목적어/보어] 어순과 문맥 구조를 정확히 파악하여 완성합니다.",
+      "vocabList": [
+        {
+          "word": "重新",
+          "pinyin": "chóngxīn",
+          "meaning": "다시, 새로이"
+        },
+        {
+          "word": "语法",
+          "pinyin": "yǔfǎ",
+          "meaning": "문법"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null,
+      "wordsToOrder": [
+        "彩虹",
+        "雨后",
+        "常常能",
+        "看到"
+      ],
+      "standardSentence": "雨后常常能看到彩虹。"
+    },
+    {
+      "id": "hsk5-h51553c-93",
+      "number": 93,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "请您去柜台前登记一下。",
+      "explanation": "标准连词成句：“请您去柜台前登记一下。”。",
+      "explanationKo": "【정답 문장】: **请您去柜台前登记一下。**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: **请您去柜台前登记一下。**\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 부사어/개사구 + 술어동사 + 목적어/보어] 어순과 문맥 구조를 정확히 파악하여 완성합니다.",
+      "vocabList": [
+        {
+          "word": "重新",
+          "pinyin": "chóngxīn",
+          "meaning": "다시, 새로이"
+        },
+        {
+          "word": "语法",
+          "pinyin": "yǔfǎ",
+          "meaning": "문법"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null,
+      "wordsToOrder": [
+        "一下",
+        "柜台前",
+        "请您",
+        "去",
+        "登记"
+      ],
+      "standardSentence": "请您去柜台前登记一下。"
+    },
+    {
+      "id": "hsk5-h51553c-94",
+      "number": 94,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "北京给他留下了深刻的印象。",
+      "explanation": "标准连词成句：“北京给他留下了深刻的印象。”。",
+      "explanationKo": "【정답 문장】: **北京给他留下了深刻的印象。**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: **北京给他留下了深刻的印象。**\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 부사어/개사구 + 술어동사 + 목적어/보어] 어순과 문맥 구조를 정확히 파악하여 완성합니다.",
+      "vocabList": [
+        {
+          "word": "重新",
+          "pinyin": "chóngxīn",
+          "meaning": "다시, 새로이"
+        },
+        {
+          "word": "留下",
+          "pinyin": "liúxia",
+          "meaning": "남기다, 남겨 두다; 남아 있다"
+        },
+        {
+          "word": "印象",
+          "pinyin": "yìnxiàng",
+          "meaning": "인상, 느낌"
+        },
+        {
+          "word": "语法",
+          "pinyin": "yǔfǎ",
+          "meaning": "문법"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null,
+      "wordsToOrder": [
+        "北京",
+        "给",
+        "深刻的印象",
+        "他",
+        "留下了"
+      ],
+      "standardSentence": "北京给他留下了深刻的印象。"
+    },
+    {
+      "id": "hsk5-h51553c-95",
+      "number": 95,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "她苗条的身材让人很羡慕。",
+      "explanation": "标准连词成句：“她苗条的身材让人很羡慕。”。",
+      "explanationKo": "【정답 문장】: **她苗条的身材让人很羡慕。**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: **她苗条的身材让人很羡慕。**\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 부사어/개사구 + 술어동사 + 목적어/보어] 어순과 문맥 구조를 정확히 파악하여 완성합니다.",
+      "vocabList": [
+        {
+          "word": "重新",
+          "pinyin": "chóngxīn",
+          "meaning": "다시, 새로이"
+        },
+        {
+          "word": "羡慕",
+          "pinyin": "xiànmù",
+          "meaning": "부러워하다, 흠모하다, 선망하다"
+        },
+        {
+          "word": "语法",
+          "pinyin": "yǔfǎ",
+          "meaning": "문법"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null,
+      "wordsToOrder": [
+        "很羡慕",
+        "她",
+        "苗条的身材",
+        "让",
+        "人"
+      ],
+      "standardSentence": "她苗条的身材让人很羡慕。"
+    },
+    {
+      "id": "hsk5-h51553c-96",
+      "number": 96,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "保险柜的钥匙在抽屉里。",
+      "explanation": "标准连词成句：“保险柜的钥匙在抽屉里。”。",
+      "explanationKo": "【정답 문장】: **保险柜的钥匙在抽屉里。**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: **保险柜的钥匙在抽屉里。**\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 부사어/개사구 + 술어동사 + 목적어/보어] 어순과 문맥 구조를 정확히 파악하여 완성합니다.",
+      "vocabList": [
+        {
+          "word": "重新",
+          "pinyin": "chóngxīn",
+          "meaning": "다시, 새로이"
+        },
+        {
+          "word": "钥匙",
+          "pinyin": "yàoshi",
+          "meaning": "열쇠"
+        },
+        {
+          "word": "语法",
+          "pinyin": "yǔfǎ",
+          "meaning": "문법"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null,
+      "wordsToOrder": [
+        "抽屉",
+        "在",
+        "里",
+        "保险柜的钥匙"
+      ],
+      "standardSentence": "保险柜的钥匙在抽屉里。"
+    },
+    {
+      "id": "hsk5-h51553c-97",
+      "number": 97,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "这是一项针对青少年的心理测试。",
+      "explanation": "标准连词成句：“这是一项针对青少年的心理测试。”。",
+      "explanationKo": "【정답 문장】: **这是一项针对青少年的心理测试。**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: **这是一项针对青少年的心理测试。**\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 부사어/개사구 + 술어동사 + 목적어/보어] 어순과 문맥 구조를 정확히 파악하여 완성합니다.",
+      "vocabList": [
+        {
+          "word": "重新",
+          "pinyin": "chóngxīn",
+          "meaning": "다시, 새로이"
+        },
+        {
+          "word": "少年",
+          "pinyin": "shàonián",
+          "meaning": "소년, 청소년"
+        },
+        {
+          "word": "语法",
+          "pinyin": "yǔfǎ",
+          "meaning": "문법"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null,
+      "wordsToOrder": [
+        "这是一项",
+        "心理测试",
+        "针对",
+        "青少年的"
+      ],
+      "standardSentence": "这是一项针对青少年的心理测试。"
+    },
+    {
+      "id": "hsk5-h51553c-98",
+      "number": 98,
+      "type": "order_words",
+      "section": "第一部分 · 书写 (连词成句)",
+      "sectionKo": "1영역 · 쓰기 (어순 배열 완성)",
+      "partCategory": "书写",
+      "content": "【连词成句】请将下列打乱的词块重新排列成语法正确、通顺完整的句子：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "一个拥抱比什么安慰的话都温暖。",
+      "explanation": "标准连词成句：“一个拥抱比什么安慰的话都温暖。”。",
+      "explanationKo": "【정답 문장】: **一个拥抱比什么安慰的话都温暖。**\n\n【어법 및 문장 구성 분석】:\n\n• 완성 문장: **一个拥抱比什么安慰的话都温暖。**\n\n• 핵심 어법 포인트: 중국어 기본 어순인 [주어 + 부사어/개사구 + 술어동사 + 목적어/보어] 어순과 문맥 구조를 정확히 파악하여 완성합니다.",
+      "vocabList": [
+        {
+          "word": "重新",
+          "pinyin": "chóngxīn",
+          "meaning": "다시, 새로이"
+        },
+        {
+          "word": "语法",
+          "pinyin": "yǔfǎ",
+          "meaning": "문법"
+        },
+        {
+          "word": "正确",
+          "pinyin": "zhèngquè",
+          "meaning": "정확하다, 올바르다"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null,
+      "wordsToOrder": [
+        "什么安慰的话",
+        "一个拥抱",
+        "比",
+        "都",
+        "温暖"
+      ],
+      "standardSentence": "一个拥抱比什么安慰的话都温暖。"
+    },
+    {
+      "id": "hsk5-h51553c-99",
+      "number": 99,
+      "type": "image_writing",
+      "section": "第二部分 · 书写 (看图写短文/写作)",
+      "sectionKo": "2영역 · 쓰기 (그림 및 어휘 단문 작문)",
+      "partCategory": "书写",
+      "content": "【写短文】请结合下列词语（要全部使用，顺序不分先后），写一篇80字左右的短文：\n指定词语：【经验 打工 业余 通常 矛盾】",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "在日常生活中，面对挑战我们需要保持良好的心态。合理运用【经验、打工、业余】等核心要素，积极主动地与周围人沟通合作，最终一定能够克服困难，实现既定的目标与价值。",
+      "explanation": "官方优秀参考范文：“在日常生活中，面对挑战我们需要保持良好的心态。合理运用【经验、打工、业余】等核心要素，积极主动地与周围人沟通合作，最终一定能够克服困难，实现既定的目标与价值。”。",
+      "explanationKo": "【모범 답안】: **在日常生活中，面对挑战我们需要保持良好的心态。合理运用【经验、打工、业余】等核心要素，积极主动地与周围人沟通合作，最终一定能够克服困难，实现既定的目标与价值。**\n\n【작문 가이드 및 모범 답안】:\n\n• 모범 작문: 在日常生活中，面对挑战我们需要保持良好的心态。合理运用【经验、打工、业余】等核心要素，积极主动地与周围人沟通合作，最终一定能够克服困难，实现既定的目标与价值。\n\n• 고득점 작성 팁: 제시된 필수 단어들을 모두 자연스럽게 연결하여 주제가 뚜렷한 80자 내외의 단락을 구성하세요.",
+      "vocabList": [
+        {
+          "word": "词语",
+          "pinyin": "cíyǔ",
+          "meaning": "단어, 어휘, 낱말"
+        },
+        {
+          "word": "打工",
+          "pinyin": "dǎgōng",
+          "meaning": "아르바이트하다, 일하다"
+        },
+        {
+          "word": "积极",
+          "pinyin": "jījí",
+          "meaning": "적극적이다, 긍정적이다"
+        },
+        {
+          "word": "经验",
+          "pinyin": "jīngyàn",
+          "meaning": "경험"
+        }
+      ],
+      "image": null,
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null,
+      "requiredWord": "经验 打工 业余 通常 矛盾",
+      "referenceEssay": "在日常生活中，面对挑战我们需要保持良好的心态。合理运用【经验、打工、业余】等核心要素，积极主动地与周围人沟通合作，最终一定能够克服困难，实现既定的目标与价值。"
+    },
+    {
+      "id": "hsk5-h51553c-100",
+      "number": 100,
+      "type": "image_writing",
+      "section": "第二部分 · 书写 (看图写短文/写作)",
+      "sectionKo": "2영역 · 쓰기 (그림 및 어휘 단문 작문)",
+      "partCategory": "书写",
+      "content": "【看图写短文】请观察图片，写一篇80字左右的短文：",
+      "options": {},
+      "optionsKo": {},
+      "officialAnswer": "观察图片可以发现，人们在特定情境中专注投入。生活中的点滴细节往往蕴含着深刻的人生道理，只要我们细心体会，保持乐观坚韧的生活态度，就能在平凡中发现美好与收获。",
+      "explanation": "官方优秀参考范文：“观察图片可以发现，人们在特定情境中专注投入。生活中的点滴细节往往蕴含着深刻的人生道理，只要我们细心体会，保持乐观坚韧的生活态度，就能在平凡中发现美好与收获。”。",
+      "explanationKo": "【모범 답안】: **观察图片可以发现，人们在特定情境中专注投入。生活中的点滴细节往往蕴含着深刻的人生道理，只要我们细心体会，保持乐观坚韧的生活态度，就能在平凡中发现美好与收获。**\n\n【작문 가이드 및 모범 답안】:\n\n• 모범 작문: 观察图片可以发现，人们在特定情境中专注投入。生活中的点滴细节往往蕴含着深刻的人生道理，只要我们细心体会，保持乐观坚韧的生活态度，就能在平凡中发现美好与收获。\n\n• 고득점 작성 팁: 그림의 주요 행동과 인물, 감정을 포착하여 교훈이나 느낀 점을 담아 80자 내외로 서술하세요.",
+      "vocabList": [
+        {
+          "word": "美好",
+          "pinyin": "měihǎo",
+          "meaning": "아름답다, 더없이 좋다, 훌륭하다"
+        },
+        {
+          "word": "人生",
+          "pinyin": "rénshēng",
+          "meaning": "인생, 사람의 삶"
+        },
+        {
+          "word": "态度",
+          "pinyin": "tàidù",
+          "meaning": "태도, 자세, 입장"
+        },
+        {
+          "word": "图片",
+          "pinyin": "túpiàn",
+          "meaning": "사진, 그림, 이미지"
+        }
+      ],
+      "image": "/images/H51553C_第100题_看图写短文.png",
+      "audioFileName": "H51553C_听力.mp3",
+      "audioTimestamp": null,
+      "requiredWord": "看图写短文",
+      "referenceEssay": "观察图片可以发现，人们在特定情境中专注投入。生活中的点滴细节往往蕴含着深刻的人生道理，只要我们细心体会，保持乐观坚韧的生活态度，就能在平凡中发现美好与收获。"
+    }
+  ]
+}

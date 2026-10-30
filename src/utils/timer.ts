@@ -37,7 +37,14 @@ export function getRemainingSeconds(startTime: number, durationSeconds: number):
 }
 
 export function getSectionRangeLabel(
-  questions: Array<{ number: number; partCategory?: string }>,
+  questionsOrItem:
+    | Array<{ number: number; partCategory?: string }>
+    | {
+        sections?: Record<
+          string,
+          { count: number; start: number; end: number; isContiguous: boolean }
+        >;
+      },
   cat: "听力" | "阅读" | "书写",
   locale: "ko" | "zh" | "bilingual" = "ko"
 ): string {
@@ -50,7 +57,23 @@ export function getSectionRangeLabel(
       ? "독해"
       : "쓰기";
 
-  const catQs = (questions || []).filter((q) => q.partCategory === cat);
+  // If passed an exam manifest item with precomputed sections
+  if (
+    questionsOrItem &&
+    typeof questionsOrItem === "object" &&
+    !Array.isArray(questionsOrItem) &&
+    "sections" in questionsOrItem &&
+    questionsOrItem.sections
+  ) {
+    const sec = questionsOrItem.sections[cat];
+    if (!sec || sec.count === 0) return catName;
+    if (sec.count === 1) return `${catName} (${sec.start})`;
+    if (sec.isContiguous) return `${catName} (${sec.start}~${sec.end})`;
+    return `${catName} (${sec.count}${locale === "zh" ? "题" : "문항"})`;
+  }
+
+  const questions = Array.isArray(questionsOrItem) ? questionsOrItem : [];
+  const catQs = questions.filter((q) => q.partCategory === cat);
   if (catQs.length === 0) return catName;
 
   const nums = catQs.map((q) => q.number).sort((a, b) => a - b);

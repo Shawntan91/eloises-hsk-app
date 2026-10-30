@@ -153,6 +153,73 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
     ? currentQ.requiredWord.split(/\s+/).filter(Boolean)
     : [];
 
+  // Keyboard Shortcuts (A/B/C/D to answer, Left/Right arrows to navigate, Space for audio, M for mark)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      if (showAiModal || showMobilePalette) return;
+
+      const key = e.key;
+      const upperKey = key.toUpperCase();
+
+      // Options A-F
+      if (["A", "B", "C", "D", "E", "F"].includes(upperKey)) {
+        if (currentQ?.options && (currentQ.options as any)[upperKey] !== undefined) {
+          e.preventDefault();
+          onSelectAnswer(upperKey);
+          return;
+        }
+      }
+
+      // Navigation: Left / Right
+      if (key === "ArrowLeft" || key === "PageUp") {
+        e.preventDefault();
+        onPrev();
+        return;
+      }
+      if (key === "ArrowRight" || key === "PageDown") {
+        e.preventDefault();
+        onNext();
+        return;
+      }
+
+      // Mark toggle
+      if (key === "m" || key === "M") {
+        e.preventDefault();
+        onToggleMark();
+        return;
+      }
+
+      // Space to toggle audio
+      if (key === " " && exam.audioUrl) {
+        e.preventDefault();
+        window.dispatchEvent(new CustomEvent("toggle-audio-play"));
+        return;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [
+    currentQ,
+    onSelectAnswer,
+    onPrev,
+    onNext,
+    onToggleMark,
+    showAiModal,
+    showMobilePalette,
+    exam.audioUrl,
+  ]);
+
   return (
     <div className="flex-1 flex flex-col bg-slate-100 min-h-screen text-slate-900 select-none font-sans pb-16 sm:pb-0">
       {/* 1. Official HSK CBT Top Header */}
@@ -198,6 +265,23 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
 
           {/* Right: Timer, Layout Switcher & Submit */}
           <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+            {/* Keyboard Shortcuts Hint */}
+            <div
+              className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 bg-slate-800/80 rounded-xl border border-slate-700/60 text-slate-400 text-[11px] font-mono"
+              title={
+                locale === "zh"
+                  ? "支持键盘快捷键：[A-D] 作答，[←/→] 翻题，[Space] 听力播放/暂停，[M] 标记"
+                  : "단축키 지원: [A-D] 선택, [←/→] 문항 이동, [Space] 음성 재생/일시정지, [M] 마킹"
+              }
+            >
+              <span>⌨️</span>
+              <span className="text-slate-300">A-D</span>
+              <span>·</span>
+              <span className="text-slate-300">←/→</span>
+              <span>·</span>
+              <span className="text-slate-300">Space</span>
+            </div>
+
             {/* Countdown Timer */}
             <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 bg-slate-800 rounded-xl border border-slate-700 text-amber-400 font-mono font-bold text-xs sm:text-sm">
               <Clock

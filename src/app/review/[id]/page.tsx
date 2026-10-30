@@ -6,7 +6,7 @@ import Link from "next/link";
 import Header from "@/components/common/Header";
 import AudioPlayerBar from "@/components/exam/AudioPlayerBar";
 import AiTutorModal from "@/components/tutor/AiTutorModal";
-import hskExamsData from "@/data/hskExams.json";
+import { loadExamById, getExamManifest } from "@/services/examService";
 import { Question, OptionKey } from "@/types/question";
 import { getLocale, Locale } from "@/utils/i18n";
 import { formatSeconds } from "@/utils/timer";
@@ -38,8 +38,21 @@ export default function ReviewPage() {
 
   useEffect(() => {
     setLocale(getLocale());
-    const found = (hskExamsData as any[]).find((e) => e.id === examId) || hskExamsData[0];
-    setExam(found);
+    const load = async () => {
+      let targetId = examId;
+      if (!targetId) {
+        const manifest = getExamManifest();
+        targetId = manifest[0]?.id || "hsk4-01";
+      }
+      const found = await loadExamById(targetId);
+      if (found) {
+        setExam(found);
+      } else {
+        const fallback = await loadExamById("hsk4-01");
+        setExam(fallback);
+      }
+    };
+    load();
   }, [examId]);
 
   useEffect(() => {

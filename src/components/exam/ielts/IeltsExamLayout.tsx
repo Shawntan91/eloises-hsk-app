@@ -272,6 +272,72 @@ export const IeltsExamLayout: React.FC<IeltsExamLayoutProps> = ({
 
   const requiredWords = currentQ?.requiredWord ? currentQ.requiredWord.split(/\s+/).filter(Boolean) : [];
 
+  // Keyboard Shortcuts (A/B/C/D to answer, Left/Right arrows to flip, Space for audio, M for mark)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      if (activeNoteModal) return;
+
+      const key = e.key;
+      const upperKey = key.toUpperCase();
+
+      // Options A-F
+      if (["A", "B", "C", "D", "E", "F"].includes(upperKey)) {
+        if (currentQ?.options && (currentQ.options as any)[upperKey] !== undefined) {
+          e.preventDefault();
+          onSelectAnswer(upperKey);
+          return;
+        }
+      }
+
+      // Navigation: Left / Right
+      if (key === "ArrowLeft" || key === "PageUp") {
+        e.preventDefault();
+        onPrev();
+        return;
+      }
+      if (key === "ArrowRight" || key === "PageDown") {
+        e.preventDefault();
+        onNext();
+        return;
+      }
+
+      // Mark toggle
+      if (key === "m" || key === "M") {
+        e.preventDefault();
+        onToggleMark();
+        return;
+      }
+
+      // Space to toggle audio
+      if (key === " " && exam.audioUrl) {
+        e.preventDefault();
+        window.dispatchEvent(new CustomEvent("toggle-audio-play"));
+        return;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [
+    currentQ,
+    onSelectAnswer,
+    onPrev,
+    onNext,
+    onToggleMark,
+    activeNoteModal,
+    exam.audioUrl,
+  ]);
+
   return (
     <div className="fixed inset-0 z-30 flex flex-col bg-slate-900 text-slate-100 select-none font-sans">
       {/* 1. Top Header */}
@@ -286,6 +352,23 @@ export const IeltsExamLayout: React.FC<IeltsExamLayoutProps> = ({
         </div>
 
         <div className="flex items-center gap-3">
+          {/* Keyboard Shortcuts Hint */}
+          <div
+            className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 bg-slate-800 rounded-lg text-slate-400 text-xs font-mono"
+            title={
+              locale === "zh"
+                ? "快捷键：[A-D] 作答，[←/→] 翻题，[Space] 听力播放/暂停"
+                : "단축키: [A-D] 선택, [←/→] 문항 이동, [Space] 음성 재생/일시정지"
+            }
+          >
+            <span>⌨️</span>
+            <span className="text-slate-300">A-D</span>
+            <span>·</span>
+            <span className="text-slate-300">←/→</span>
+            <span>·</span>
+            <span className="text-slate-300">Space</span>
+          </div>
+
           <div className="flex items-center gap-1.5 px-3 py-1 bg-slate-800 rounded-lg text-amber-400 font-mono text-xs">
             <Clock className="w-3.5 h-3.5" />
             <span>{formatSeconds(remaining, locale)}</span>

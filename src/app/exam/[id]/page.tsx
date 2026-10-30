@@ -8,7 +8,7 @@ import { calculateExamResult } from "@/services/scoringService";
 import { getLocale, Locale } from "@/utils/i18n";
 import HskCbtExamLayout from "@/components/exam/HskCbtExamLayout";
 import IeltsExamLayout from "@/components/exam/ielts/IeltsExamLayout";
-import hskExamsData from "@/data/hskExams.json";
+import { loadExamById } from "@/services/examService";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 
 export default function ExamRoomPage() {
@@ -31,49 +31,53 @@ export default function ExamRoomPage() {
 
     if (!examId) return;
 
-    // 1. Try to load active exam from storage
-    let active = loadExam(examId);
+    const initExam = async () => {
+      // 1. Try to load active exam from storage
+      let active = loadExam(examId);
 
-    // 2. If not found in storage, load from built-in data
-    if (!active) {
-      const found = (hskExamsData as any[]).find((e) => e.id === examId);
-      if (found) {
-        active = {
-          id: found.id,
-          level: found.level,
-          title: found.title,
-          titleKo: found.titleKo,
-          subTitle: found.subTitle,
-          subTitleKo: found.subTitleKo,
-          tag: found.tag,
-          tagKo: found.tagKo,
-          questions: found.questions,
-          duration: found.duration || found.durationMinutes * 60,
-          startTime: Date.now(),
-          answers: {},
-          markedQuestions: [],
-          currentQuestion: 0,
-          status: "in_progress",
-          answerMode: "official",
-          audioUrl: found.audioUrl,
-          audioFileName: found.audioFileName,
-        };
-        saveActiveExam(active);
+      // 2. If not found in storage, load from built-in data
+      if (!active) {
+        const found = await loadExamById(examId);
+        if (found) {
+          active = {
+            id: found.id,
+            level: found.level,
+            title: found.title,
+            titleKo: found.titleKo,
+            subTitle: found.subTitle,
+            subTitleKo: found.subTitleKo,
+            tag: found.tag,
+            tagKo: found.tagKo,
+            questions: found.questions,
+            duration: found.duration || (found as any).durationMinutes * 60,
+            startTime: Date.now(),
+            answers: {},
+            markedQuestions: [],
+            currentQuestion: 0,
+            status: "in_progress",
+            answerMode: "official",
+            audioUrl: found.audioUrl,
+            audioFileName: found.audioFileName,
+          };
+          saveActiveExam(active);
+        }
       }
-    }
 
-    if (!active) {
-      router.replace("/");
-      return;
-    }
+      if (!active) {
+        router.replace("/");
+        return;
+      }
 
-    if (active.status === "submitted") {
-      router.replace(`/result/${examId}`);
-      return;
-    }
+      if (active.status === "submitted") {
+        router.replace(`/result/${examId}`);
+        return;
+      }
 
-    setExam(active);
-    setCurrentIndex(active.currentQuestion || 0);
+      setExam(active);
+      setCurrentIndex(active.currentQuestion || 0);
+    };
+
+    initExam();
   }, [examId, router]);
 
   // Handle select answer

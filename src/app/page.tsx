@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Header from "@/components/common/Header";
-import hskExamsData from "@/data/hskExams.json";
+import { getExamManifest, ExamManifestItem } from "@/services/examService";
 import { getRecentExams, RecentExamItem, deleteRecentExam } from "@/utils/storage";
 import { getMasteredWordNos } from "@/utils/wordStorage";
 import { getLocale, Locale } from "@/utils/i18n";
@@ -98,8 +98,9 @@ export default function HomePage() {
     setRecents(getRecentExams());
   };
 
-  const hsk4Exams = (hskExamsData as any[]).filter((e) => e.level === 4);
-  const hsk5Exams = (hskExamsData as any[]).filter((e) => e.level === 5);
+  const allExams = getExamManifest();
+  const hsk4Exams = allExams.filter((e) => e.level === 4);
+  const hsk5Exams = allExams.filter((e) => e.level === 5);
   const isKo = locale === "ko";
 
   return (
@@ -118,7 +119,7 @@ export default function HomePage() {
             Eloise&apos;s HSK APP 🎓
           </h2>
           <p className="text-xs sm:text-base text-slate-600 leading-relaxed mb-4 sm:mb-6">
-            공식 기출 {hskExamsData.length}세트 (4급 {hsk4Exams.length}세트 + 5급 {hsk5Exams.length}세트 · {(hskExamsData as any[]).reduce((sum, e) => sum + (e.questions?.length || 0), 0)}문항) + <strong>필수 1000단어장</strong>
+            공식 기출 {allExams.length}세트 (4급 {hsk4Exams.length}세트 + 5급 {hsk5Exams.length}세트 · {allExams.reduce((sum, e) => sum + e.questionCount, 0)}문항) + <strong>필수 1000단어장</strong>
             <br className="hidden sm:inline" />
             <strong>한국인을 위한 문항별 심층 한국어 해설</strong> · HSK 공식 CBT 및 좌우 분할 독해 지원
           </p>
@@ -396,8 +397,8 @@ export default function HomePage() {
                       <Play className="w-3.5 h-3.5 fill-current" />
                       <span>
                         {locale === "zh"
-                          ? `整卷模考 (${exam.questions?.length || exam.questionCount}题)`
-                          : `정규 실전 (${exam.questions?.length || exam.questionCount}문항)`}
+                          ? `整卷模考 (${exam.questionCount}题)`
+                          : `정규 실전 (${exam.questionCount}문항)`}
                       </span>
                     </Link>
                     <Link
@@ -416,21 +417,21 @@ export default function HomePage() {
                       className="py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-red-50 hover:text-red-700 text-slate-600 text-[11px] font-bold text-center border border-slate-200/80 transition flex items-center justify-center gap-1"
                     >
                       <Headphones className="w-3 h-3 text-red-500" />
-                      <span>{getSectionRangeLabel(exam.questions, "听力", locale)}</span>
+                      <span>{getSectionRangeLabel(exam, "听力", locale)}</span>
                     </Link>
                     <Link
                       href={`/settings?examId=${exam.id}&part=reading`}
                       className="py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-blue-50 hover:text-blue-700 text-slate-600 text-[11px] font-bold text-center border border-slate-200/80 transition flex items-center justify-center gap-1"
                     >
                       <BookOpen className="w-3 h-3 text-blue-500" />
-                      <span>{getSectionRangeLabel(exam.questions, "阅读", locale)}</span>
+                      <span>{getSectionRangeLabel(exam, "阅读", locale)}</span>
                     </Link>
                     <Link
                       href={`/settings?examId=${exam.id}&part=writing`}
                       className="py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-purple-50 hover:text-purple-700 text-slate-600 text-[11px] font-bold text-center border border-slate-200/80 transition flex items-center justify-center gap-1"
                     >
                       <FileEdit className="w-3 h-3 text-purple-500" />
-                      <span>{getSectionRangeLabel(exam.questions, "书写", locale)}</span>
+                      <span>{getSectionRangeLabel(exam, "书写", locale)}</span>
                     </Link>
                   </div>
                 </div>
@@ -502,8 +503,8 @@ export default function HomePage() {
                       <Play className="w-3.5 h-3.5 fill-current" />
                       <span>
                         {locale === "zh"
-                          ? `整卷模考 (${exam.questions?.length || exam.questionCount}题)`
-                          : `정규 실전 (${exam.questions?.length || exam.questionCount}문항)`}
+                          ? `整卷模考 (${exam.questionCount}题)`
+                          : `정규 실전 (${exam.questionCount}문항)`}
                       </span>
                     </Link>
                     <Link
@@ -521,21 +522,21 @@ export default function HomePage() {
                       className="py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-blue-50 hover:text-blue-700 text-slate-600 text-[11px] font-bold text-center border border-slate-200/80 transition flex items-center justify-center gap-1"
                     >
                       <Headphones className="w-3 h-3 text-blue-500" />
-                      <span>{getSectionRangeLabel(exam.questions, "听力", locale)}</span>
+                      <span>{getSectionRangeLabel(exam, "听力", locale)}</span>
                     </Link>
                     <Link
                       href={`/settings?examId=${exam.id}&part=reading`}
                       className="py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-blue-50 hover:text-blue-700 text-slate-600 text-[11px] font-bold text-center border border-slate-200/80 transition flex items-center justify-center gap-1"
                     >
                       <BookOpen className="w-3 h-3 text-blue-500" />
-                      <span>{getSectionRangeLabel(exam.questions, "阅读", locale)}</span>
+                      <span>{getSectionRangeLabel(exam, "阅读", locale)}</span>
                     </Link>
                     <Link
                       href={`/settings?examId=${exam.id}&part=writing`}
                       className="py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-purple-50 hover:text-purple-700 text-slate-600 text-[11px] font-bold text-center border border-slate-200/80 transition flex items-center justify-center gap-1"
                     >
                       <FileEdit className="w-3 h-3 text-purple-500" />
-                      <span>{getSectionRangeLabel(exam.questions, "书写", locale)}</span>
+                      <span>{getSectionRangeLabel(exam, "书写", locale)}</span>
                     </Link>
                   </div>
                 </div>
