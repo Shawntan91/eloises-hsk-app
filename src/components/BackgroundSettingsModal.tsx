@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import {
   X,
   Palette,
@@ -36,12 +37,17 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
   isOpen,
   onClose,
 }) => {
+  const [mounted, setMounted] = useState<boolean>(false);
   const [config, setConfig] = useState<BackgroundConfig>(DEFAULT_BG_CONFIG);
   const [urlInput, setUrlInput] = useState<string>("");
   const [previewDbUrl, setPreviewDbUrl] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [locale, setLocale] = useState<string>("ko");
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     setLocale(getLocale());
@@ -57,7 +63,7 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
   const isKo = locale === "ko";
 
@@ -133,20 +139,26 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
     saveBackgroundConfig(DEFAULT_BG_CONFIG);
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in">
-      <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]">
-        {/* Modal Header */}
-        <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[100] overflow-y-auto flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-lg my-auto flex flex-col max-h-[85vh] sm:max-h-[88vh] overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Modal Header (Pinned / Non-collapsing) */}
+        <div className="shrink-0 px-5 py-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-rose-500 to-amber-500 flex items-center justify-center text-white shadow-xs">
               <Palette className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-bold text-slate-800 text-sm sm:text-base">
+              <h3 className="font-bold text-slate-800 text-sm sm:text-base leading-tight">
                 {isKo ? "웹 배경 및 테마 설정" : "全局网页背景与外观"}
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-[11px] text-slate-500 mt-0.5">
                 {isKo ? "원하는 배경색 또는 사진으로 학습 환경을 꾸며보세요" : "自定义专属学习壁纸、遮罩透明度与护眼色彩"}
               </p>
             </div>
@@ -154,14 +166,14 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-200/50 transition cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Modal Body */}
-        <div className="p-5 space-y-6 overflow-y-auto">
+        {/* Modal Body (Scrollable with min-h-0) */}
+        <div className="flex-1 min-h-0 overflow-y-auto p-5 space-y-6">
           {/* Section 1: Preset Themes */}
           <div>
             <label className="text-xs font-bold text-slate-700 block mb-2.5 flex items-center gap-1.5">
@@ -176,7 +188,7 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
                     key={theme.id}
                     type="button"
                     onClick={() => handleSelectPreset(theme.id)}
-                    className={`p-3 rounded-xl border text-left flex flex-col justify-between h-20 transition relative overflow-hidden group ${
+                    className={`p-3 rounded-xl border text-left flex flex-col justify-between h-20 transition relative overflow-hidden group cursor-pointer ${
                       isSelected
                         ? "border-red-500 ring-2 ring-red-500/20 bg-red-50/30"
                         : "border-slate-200 hover:border-slate-300 bg-white"
@@ -225,7 +237,7 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
                   disabled={isUploading}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-xl border text-xs font-bold transition shadow-xs ${
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-xl border text-xs font-bold transition shadow-xs cursor-pointer ${
                     config.type === "image"
                       ? "border-red-500 bg-red-50 text-red-700"
                       : "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
@@ -242,7 +254,7 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
                       setPreviewDbUrl(null);
                       handleSelectPreset("default");
                     }}
-                    className="p-2 text-rose-600 hover:bg-rose-50 rounded-xl border border-rose-200"
+                    className="p-2 text-rose-600 hover:bg-rose-50 rounded-xl border border-rose-200 cursor-pointer"
                     title={isKo ? "업로드 사진 삭제" : "删除壁纸"}
                   >
                     <Trash2 className="w-4 h-4" />
@@ -268,7 +280,7 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
                   type="button"
                   onClick={handleApplyUrl}
                   disabled={!urlInput.trim()}
-                  className="px-3 py-1.5 bg-slate-800 hover:bg-slate-900 disabled:opacity-40 text-white text-xs font-bold rounded-xl transition shrink-0"
+                  className="px-3 py-1.5 bg-slate-800 hover:bg-slate-900 disabled:opacity-40 text-white text-xs font-bold rounded-xl transition shrink-0 cursor-pointer"
                 >
                   {isKo ? "적용" : "应用"}
                 </button>
@@ -329,7 +341,7 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
               <button
                 type="button"
                 onClick={() => handleToggleExam(!config.enableInExam)}
-                className={`w-11 h-6 flex items-center rounded-full p-1 transition duration-300 ${
+                className={`w-11 h-6 flex items-center rounded-full p-1 transition duration-300 cursor-pointer ${
                   config.enableInExam ? "bg-red-600 justify-end" : "bg-slate-300 justify-start"
                 }`}
               >
@@ -339,12 +351,12 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
           </div>
         </div>
 
-        {/* Modal Footer */}
-        <div className="px-5 py-3 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between">
+        {/* Modal Footer (Pinned / Non-collapsing) */}
+        <div className="shrink-0 px-5 py-3 border-t border-slate-100 bg-slate-50/80 flex items-center justify-between">
           <button
             type="button"
             onClick={handleReset}
-            className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-800 font-semibold px-2 py-1 rounded-lg hover:bg-slate-200/50 transition"
+            className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-800 font-semibold px-2 py-1 rounded-lg hover:bg-slate-200/50 transition cursor-pointer"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             <span>{isKo ? "기본값 복원" : "恢复默认"}</span>
@@ -352,13 +364,14 @@ export const BackgroundSettingsModal: React.FC<BackgroundSettingsModalProps> = (
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-xs transition"
+            className="px-5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-xs transition cursor-pointer"
           >
             {isKo ? "완료" : "确定"}
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
