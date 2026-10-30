@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Header from "@/components/common/Header";
 import ExportMistakesButton from "@/components/common/ExportMistakesButton";
-import MarkdownText from "@/components/common/MarkdownText";
+import MarkdownText, { sanitizeExplanationText } from "@/components/common/MarkdownText";
+import { formatRecentExamTitle } from "@/utils/timer";
 import {
   getMistakeBank,
   MistakeItem,
@@ -346,7 +347,7 @@ export default function MistakesPage() {
                           : `HSK ${item.level}급 · ${q.sectionKo || q.section}`}
                       </span>
                       <span className="text-xs text-slate-400 hidden sm:inline">
-                        《{isZh ? item.examTitle || item.examTitleKo : item.examTitleKo || item.examTitle}》
+                        《{formatRecentExamTitle({ title: item.examTitle, titleKo: item.examTitleKo }, locale)}》
                       </span>
                       {item.sourceType === "word" && (
                         <span className="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">
@@ -445,7 +446,13 @@ export default function MistakesPage() {
                   <div className="flex items-center gap-4 text-xs font-mono py-2 text-slate-600 bg-slate-50/80 px-3 rounded-xl mb-3 flex-wrap">
                     <span>
                       {isZh ? "我的答案：" : "내 제출 답: "}
-                      <strong className="text-rose-600 font-bold">{item.userAnswer}</strong>
+                      <strong className="text-rose-600 font-bold">
+                        {!item.userAnswer || item.userAnswer === "未答 (미답안)" || item.userAnswer === "미답안"
+                          ? isZh
+                            ? "未作答"
+                            : "미답안"
+                          : item.userAnswer}
+                      </strong>
                     </span>
                     <span>·</span>
                     <span>
@@ -462,7 +469,17 @@ export default function MistakesPage() {
                         <span>{isZh ? "💡 详细题目解析：" : "💡 한국어 심층 해설:"}</span>
                       </div>
                       <MarkdownText
-                        content={isZh ? q.explanation || q.explanationKo || "" : q.explanationKo || q.explanation || ""}
+                        content={sanitizeExplanationText(
+                          isZh ? q.explanation || q.explanationKo || "" : q.explanationKo || q.explanation || "",
+                          {
+                            type: q.type,
+                            number: q.number,
+                            standardSentence: q.standardSentence,
+                            referenceEssay: q.referenceEssay,
+                            officialAnswer: q.officialAnswer || item.correctAnswer,
+                            options: q.options as any,
+                          }
+                        )}
                       />
                     </div>
                   )}

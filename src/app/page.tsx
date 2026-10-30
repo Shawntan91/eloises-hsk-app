@@ -101,7 +101,8 @@ export default function HomePage() {
   const allExams = getExamManifest();
   const hsk4Exams = allExams.filter((e) => e.level === 4);
   const hsk5Exams = allExams.filter((e) => e.level === 5);
-  const isKo = locale === "ko";
+  const isZh = locale === "zh";
+  const totalQuestionCount = allExams.reduce((sum, e) => sum + e.questionCount, 0);
 
   return (
     <div className="flex-1 flex flex-col bg-slate-50/50 min-h-screen">
@@ -112,34 +113,50 @@ export default function HomePage() {
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-red-50/90 border border-red-200 text-red-700 text-xs font-bold mb-3 sm:mb-4 shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-red-600" />
-            <span>Eloise 맞춤형 HSK 4급 & 5급 올인원 실전 모의고사 & 단어장</span>
+            <span>
+              {isZh
+                ? "Eloise 专属 HSK 4级 & 5级 一站式全真模考与智能词库"
+                : "Eloise 맞춤형 HSK 4급 & 5급 올인원 실전 모의고사 & 단어장"}
+            </span>
           </div>
 
           <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-2 sm:mb-3">
             Eloise&apos;s HSK APP 🎓
           </h2>
           <p className="text-xs sm:text-base text-slate-600 leading-relaxed mb-4 sm:mb-6">
-            공식 기출 {allExams.length}세트 (4급 {hsk4Exams.length}세트 + 5급 {hsk5Exams.length}세트 · {allExams.reduce((sum, e) => sum + e.questionCount, 0)}문항) + <strong>필수 1000단어장</strong>
-            <br className="hidden sm:inline" />
-            <strong>한국인을 위한 문항별 심층 한국어 해설</strong> · HSK 공식 CBT 및 좌우 분할 독해 지원
+            {isZh ? (
+              <>
+                官方真题 {allExams.length} 套（4级 {hsk4Exams.length} 套 + 5级 {hsk5Exams.length} 套 · 共 {totalQuestionCount} 题）+{" "}
+                <strong>核心 1000 词汇闪卡</strong>
+                <br className="hidden sm:inline" />
+                <strong>逐题深度双语解析</strong> · 支持 HSK 官方机考 CBT 与左右分屏阅读模式
+              </>
+            ) : (
+              <>
+                공식 기출 {allExams.length}세트 (4급 {hsk4Exams.length}세트 + 5급 {hsk5Exams.length}세트 · {totalQuestionCount}문항) +{" "}
+                <strong>필수 1000단어장</strong>
+                <br className="hidden sm:inline" />
+                <strong>한국인을 위한 문항별 심층 한국어 해설</strong> · HSK 공식 CBT 및 좌우 분할 독해 지원
+              </>
+            )}
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs text-slate-500 font-medium">
             <span className="flex items-center gap-1 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-full border border-slate-200 shadow-2xs">
               <Headphones className="w-3.5 h-3.5 text-red-600" />
-              <span>듣기 MP3 내장</span>
+              <span>{isZh ? "内置完整听力原声" : "듣기 MP3 내장"}</span>
             </span>
             <span className="flex items-center gap-1 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-full border border-slate-200 shadow-2xs">
               <Languages className="w-3.5 h-3.5 text-blue-600" />
-              <span>한국어 상세 풀이</span>
+              <span>{isZh ? "逐题精讲解析" : "한국어 상세 풀이"}</span>
             </span>
             <span className="flex items-center gap-1 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-full border border-slate-200 shadow-2xs">
               <Bot className="w-3.5 h-3.5 text-purple-600" />
-              <span>AI 1:1 과외 튜터</span>
+              <span>{isZh ? "AI 1对1 私教答疑" : "AI 1:1 과외 튜터"}</span>
             </span>
             <span className="flex items-center gap-1 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-full border border-slate-200 shadow-2xs">
               <Award className="w-3.5 h-3.5 text-amber-600" />
-              <span>180점 합격선 분석</span>
+              <span>{isZh ? "180分合格线诊断" : "180점 합격선 분석"}</span>
             </span>
           </div>
         </div>
@@ -151,14 +168,14 @@ export default function HomePage() {
             <div className="flex items-center justify-between mb-4">
               <span className="px-2.5 py-1 rounded-full text-xs font-black bg-red-500/20 text-red-400 border border-red-500/30 flex items-center gap-1.5">
                 <Target className="w-3.5 h-3.5 text-red-400" />
-                <span>HSK 목표 시험일</span>
+                <span>{isZh ? "HSK 目标考试日" : "HSK 목표 시험일"}</span>
               </span>
               <Link
                 href="/settings"
                 className="text-xs text-slate-400 hover:text-white transition flex items-center gap-1"
-                title="목표일 설정 변경"
+                title={isZh ? "修改目标考试日期" : "목표일 설정 변경"}
               >
-                <span>설정 변경</span>
+                <span>{isZh ? "修改日期" : "설정 변경"}</span>
                 <ChevronRight className="w-3 h-3" />
               </Link>
             </div>
@@ -169,18 +186,28 @@ export default function HomePage() {
                   {dDayInfo.dDayText}
                 </span>
                 <span className="text-xs font-bold text-red-400">
-                  {dDayInfo.isPast ? "시험 종료" : dDayInfo.daysLeft === 0 ? "오늘 시험!" : "남음"}
+                  {dDayInfo.isPast
+                    ? isZh
+                      ? "考试已结束"
+                      : "시험 종료"
+                    : dDayInfo.daysLeft === 0
+                    ? isZh
+                      ? "今日考试！"
+                      : "오늘 시험!"
+                    : isZh
+                    ? "倒计时"
+                    : "남음"}
                 </span>
               </div>
               <p className="text-xs text-slate-300 mt-1.5 flex items-center gap-1.5 font-mono">
                 <Calendar className="w-3.5 h-3.5 text-slate-400" />
-                <span>{goals.targetExamDate || "목표 날짜 미설정"}</span>
+                <span>{goals.targetExamDate || (isZh ? "未设定目标日期" : "목표 날짜 미설정")}</span>
               </p>
             </div>
 
             <div className="pt-3 border-t border-slate-700/50 flex items-center justify-between text-xs">
-              <span className="text-slate-400">합격 목표</span>
-              <span className="font-bold text-amber-400">HSK 5급 210점+ 도전</span>
+              <span className="text-slate-400">{isZh ? "通关目标" : "합격 목표"}</span>
+              <span className="font-bold text-amber-400">{isZh ? "冲刺 HSK 5级 210分+" : "HSK 5급 210점+ 도전"}</span>
             </div>
           </div>
 
@@ -190,11 +217,11 @@ export default function HomePage() {
               <div className="flex items-center gap-1.5">
                 <Flame className="w-4 h-4 text-orange-500" />
                 <span className="text-xs sm:text-sm font-black text-slate-900">
-                  오늘의 학습 목표
+                  {isZh ? "今日学习目标" : "오늘의 학습 목표"}
                 </span>
               </div>
               <span className="px-2 py-0.5 rounded-full text-[11px] font-black bg-orange-50 text-orange-600 border border-orange-200">
-                🔥 연속 {streakDays}일 달성 중!
+                {isZh ? `🔥 已连续打卡 ${streakDays} 天！` : `🔥 연속 ${streakDays}일 달성 중!`}
               </span>
             </div>
 
@@ -202,7 +229,11 @@ export default function HomePage() {
               {/* Words Target Bar */}
               <div>
                 <div className="flex items-center justify-between text-xs font-bold mb-1">
-                  <span className="text-slate-600">📖 단어 학습 ({todayWords} / {goals.dailyWordTarget}개)</span>
+                  <span className="text-slate-600">
+                    {isZh
+                      ? `📖 单词记忆 (${todayWords} / ${goals.dailyWordTarget}词)`
+                      : `📖 단어 학습 (${todayWords} / ${goals.dailyWordTarget}개)`}
+                  </span>
                   <span className="font-mono text-slate-900">
                     {Math.min(100, Math.round((todayWords / goals.dailyWordTarget) * 100))}%
                   </span>
@@ -218,7 +249,11 @@ export default function HomePage() {
               {/* Study Time Target Bar */}
               <div>
                 <div className="flex items-center justify-between text-xs font-bold mb-1">
-                  <span className="text-slate-600">⏱️ 학습 시간 ({todayMinutes} / {goals.dailyMinuteTarget}분)</span>
+                  <span className="text-slate-600">
+                    {isZh
+                      ? `⏱️ 学习时长 (${todayMinutes} / ${goals.dailyMinuteTarget}分钟)`
+                      : `⏱️ 학습 시간 (${todayMinutes} / ${goals.dailyMinuteTarget}분)`}
+                  </span>
                   <span className="font-mono text-slate-900">
                     {Math.min(100, Math.round((todayMinutes / goals.dailyMinuteTarget) * 100))}%
                   </span>
@@ -236,10 +271,12 @@ export default function HomePage() {
               {todayWords >= goals.dailyWordTarget && todayMinutes >= goals.dailyMinuteTarget ? (
                 <span className="text-emerald-600 font-bold flex items-center gap-1">
                   <CheckCircle2 className="w-4 h-4" />
-                  <span>오늘의 학습 목표 완료! 🎉</span>
+                  <span>{isZh ? "今日学习目标已达成！🎉" : "오늘의 학습 목표 완료! 🎉"}</span>
                 </span>
               ) : (
-                <span className="text-slate-400">목표 달성까지 조금만 더 힘내세요! 💪</span>
+                <span className="text-slate-400">
+                  {isZh ? "距离完成今日目标只差一点啦，继续加油！💪" : "목표 달성까지 조금만 더 힘내세요! 💪"}
+                </span>
               )}
             </div>
           </div>
@@ -248,10 +285,10 @@ export default function HomePage() {
           <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-5 sm:p-6 shadow-xs border border-slate-200 flex flex-col justify-between">
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs sm:text-sm font-black text-slate-900">
-                최근 5주 학습 잔디 (Heatmap)
+                {isZh ? "近 5 周学习热力图 (Heatmap)" : "최근 5주 학습 잔디 (Heatmap)"}
               </span>
               <span className="text-[11px] text-slate-400 font-medium">
-                35일 잔디
+                {isZh ? "35天记录" : "35일 잔디"}
               </span>
             </div>
 
@@ -268,7 +305,7 @@ export default function HomePage() {
                     <div
                       key={idx}
                       className={`h-5 w-full rounded-md border transition-transform hover:scale-125 cursor-pointer ${colorClass}`}
-                      title={`${day.date}: ${day.count}회 활동`}
+                      title={isZh ? `${day.date}: ${day.count} 次学习活动` : `${day.date}: ${day.count}회 활동`}
                     />
                   );
                 })}
@@ -295,21 +332,23 @@ export default function HomePage() {
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-black bg-white/20 text-white border border-white/30 backdrop-blur-xs">
-                  NEW 어휘 특강
+                  {isZh ? "NEW 核心词库" : "NEW 어휘 특강"}
                 </span>
                 <span className="text-xs font-bold text-amber-200">
-                  HSK 4급 & 5급 필수 1,000단어
+                  {isZh ? "HSK 4级 & 5级 必考 1,000 词" : "HSK 4급 & 5급 필수 1,000단어"}
                 </span>
               </div>
               <h3 className="text-xl sm:text-2xl font-black tracking-tight">
-                Eloise를 위한 스마트 단어장 & 실전 퀴즈
+                {isZh ? "Eloise 专属智能单词闪卡与随堂测验" : "Eloise를 위한 스마트 단어장 & 실전 퀴즈"}
               </h3>
               <p className="text-xs sm:text-sm text-white/90 max-w-xl leading-relaxed">
-                플래시카드 암기 · 3가지 퀴즈 모드(듣기/한국어/중국어) · 틀린 단어 오답 자동 별표 저장
+                {isZh
+                  ? "支持艾宾浩斯间隔复习 · 3种测验模式（听音辨义/韩译中/中译韩）· 答错词汇自动收入错题本"
+                  : "플래시카드 암기 · 3가지 퀴즈 모드(듣기/한국어/중국어) · 틀린 단어 오답 자동 별표 저장"}
               </p>
               <div className="pt-2 flex items-center gap-4 text-xs font-bold">
                 <span className="bg-black/20 px-3 py-1 rounded-xl">
-                  암기 완료: {masteredWordCount} / 1000 단어
+                  {isZh ? `已掌握: ${masteredWordCount} / 1000 词` : `암기 완료: ${masteredWordCount} / 1000 단어`}
                 </span>
               </div>
             </div>
@@ -320,14 +359,14 @@ export default function HomePage() {
                 className="px-6 py-3.5 bg-white text-slate-900 hover:bg-amber-50 font-black rounded-2xl text-xs sm:text-sm transition shadow-md flex items-center justify-center gap-2"
               >
                 <BookOpen className="w-4 h-4 text-red-600" />
-                <span>단어장 열기</span>
+                <span>{isZh ? "进入单词闪卡" : "단어장 열기"}</span>
               </Link>
               <Link
                 href="/settings"
                 className="px-4 py-3.5 bg-black/20 hover:bg-black/30 text-white font-bold rounded-2xl text-xs sm:text-sm transition border border-white/30 flex items-center justify-center gap-1.5"
               >
                 <Sliders className="w-4 h-4" />
-                <span>맞춤 시험 설정</span>
+                <span>{isZh ? "自定义组卷设置" : "맞춤 시험 설정"}</span>
               </Link>
             </div>
           </div>
@@ -342,11 +381,13 @@ export default function HomePage() {
                   LEVEL 4
                 </span>
                 <h3 className="text-lg sm:text-xl font-black text-slate-900">
-                  {locale === "zh" ? "HSK 4级 官方真题模考" : "HSK 4급 실전 기출 모의고사"}
+                  {isZh ? "HSK 4级 官方真题模考" : "HSK 4급 실전 기출 모의고사"}
                 </h3>
               </div>
               <p className="text-xs text-slate-500 mt-1">
-                실제 출제된 정규 기출문제 (듣기 45문항 + 독해 40문항 + 쓰기 15문항)
+                {isZh
+                  ? "历年官方真题全收录（听力 45 题 + 阅读 40 题 + 书写 15 题）"
+                  : "실제 출제된 정규 기출문제 (듣기 45문항 + 독해 40문항 + 쓰기 15문항)"}
               </p>
             </div>
           </div>
@@ -453,7 +494,9 @@ export default function HomePage() {
                 </h3>
               </div>
               <p className="text-xs text-slate-500 mt-1">
-                중고급 도약 실전 모의고사 (100문항) · 장문 독해 및 작문 한국어 해설 지원
+                {isZh
+                  ? "中高级进阶真题模考（100题）· 支持长文阅读与看图写作精讲"
+                  : "중고급 도약 실전 모의고사 (100문항) · 장문 독해 및 작문 한국어 해설 지원"}
               </p>
             </div>
           </div>

@@ -63,6 +63,12 @@ const examLoaders: Record<string, () => Promise<any>> = {
   "hsk5-h51553b": () => import("@/data/exams/hsk5-h51553b.json"),
   "hsk5-h51553c": () => import("@/data/exams/hsk5-h51553c.json"),
   "hsk5-h51553d": () => import("@/data/exams/hsk5-h51553d.json"),
+  // Legacy ID aliases for backward compatibility
+  "hsk4-01": () => import("@/data/exams/hsk4-h41111.json"),
+  "hsk4-02": () => import("@/data/exams/hsk4-h41332.json"),
+  "hsk4-03": () => import("@/data/exams/hsk4-h41553d.json"),
+  "hsk4-04": () => import("@/data/exams/hsk4-sample.json"),
+  "hsk5-01": () => import("@/data/exams/hsk5-h51553.json"),
 };
 
 export async function loadExamById(id: string): Promise<Exam | null> {

@@ -3,18 +3,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getRecentExams, RecentExamItem } from "@/utils/storage";
 import { ExamResult } from "@/types/exam";
+import { formatRecentExamTitle } from "@/utils/timer";
 import { TrendingUp, Download, Image, Sparkles, CheckCircle2, X } from "lucide-react";
 
 interface ScoreTrendChartProps {
   currentResult?: ExamResult;
+  locale?: "ko" | "zh" | "bilingual";
 }
 
-export default function ScoreTrendChart({ currentResult }: ScoreTrendChartProps) {
+export default function ScoreTrendChart({ currentResult, locale = "ko" }: ScoreTrendChartProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [historyItems, setHistoryItems] = useState<RecentExamItem[]>([]);
   const [isGeneratingCard, setIsGeneratingCard] = useState(false);
   const [downloadDone, setDownloadDone] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const [previewDataUrl, setPreviewDataUrl] = useState<string | null>(null);
+  const isZh = locale === "zh";
 
   useEffect(() => {
     const all = getRecentExams().filter((e) => e.status === "submitted" && typeof e.score === "number");
@@ -165,9 +169,18 @@ export default function ScoreTrendChart({ currentResult }: ScoreTrendChartProps)
     ctx.arc(880, 900, 450, 0, Math.PI * 2);
     ctx.fill();
 
+    const drawRoundRect = (x: number, y: number, w: number, h: number, r: number) => {
+      ctx.beginPath();
+      if (typeof ctx.roundRect === "function") {
+        ctx.roundRect(x, y, w, h, r);
+      } else {
+        ctx.rect(x, y, w, h);
+      }
+    };
+
     // 2. White Card Container
     ctx.fillStyle = "rgba(255, 255, 255, 0.96)";
-    ctx.roundRect(80, 100, 920, 1150, 36);
+    drawRoundRect(80, 100, 920, 1150, 36);
     ctx.fill();
 
     // 3. Card Header
@@ -178,17 +191,17 @@ export default function ScoreTrendChart({ currentResult }: ScoreTrendChartProps)
     ctx.fillStyle = "#64748b";
     ctx.font = "bold 20px sans-serif";
     const dateText = new Date().toLocaleDateString();
-    ctx.fillText(dateText + " 응시", 720, 190);
+    ctx.fillText(dateText + (isZh ? " 考试" : " 응시"), 720, 190);
 
     ctx.fillStyle = "#0f172a";
-    ctx.font = "900 44px sans-serif";
-    ctx.fillText(targetResult.titleKo || targetResult.title, 140, 260);
+    ctx.font = "900 40px sans-serif";
+    ctx.fillText(formatRecentExamTitle(targetResult, locale).slice(0, 26), 140, 260);
 
     // 4. Pass / Fail Badge & Big Score
     const isPass = targetResult.isPassed;
     const badgeColor = isPass ? "#059669" : "#d97706";
     ctx.fillStyle = badgeColor;
-    ctx.roundRect(140, 300, isPass ? 260 : 300, 56, 16);
+    drawRoundRect(140, 300, isPass ? 260 : 300, 56, 16);
     ctx.fill();
 
     ctx.fillStyle = "#ffffff";
@@ -197,7 +210,7 @@ export default function ScoreTrendChart({ currentResult }: ScoreTrendChartProps)
 
     // Score Circle Box
     ctx.fillStyle = "#f8fafc";
-    ctx.roundRect(140, 390, 800, 220, 28);
+    drawRoundRect(140, 390, 800, 220, 28);
     ctx.fill();
     ctx.strokeStyle = "#e2e8f0";
     ctx.lineWidth = 2;
@@ -227,7 +240,7 @@ export default function ScoreTrendChart({ currentResult }: ScoreTrendChartProps)
     targetResult.sectionScores.forEach((sec, idx) => {
       const secX = 140 + idx * 275;
       ctx.fillStyle = "#ffffff";
-      ctx.roundRect(secX, secY, 250, 180, 20);
+      drawRoundRect(secX, secY, 250, 180, 20);
       ctx.fill();
       ctx.strokeStyle = "#e2e8f0";
       ctx.lineWidth = 1.5;
@@ -248,7 +261,7 @@ export default function ScoreTrendChart({ currentResult }: ScoreTrendChartProps)
 
     // 6. Korean Encouragement Quote
     ctx.fillStyle = "#f1f5f9";
-    ctx.roundRect(140, 870, 800, 150, 24);
+    drawRoundRect(140, 870, 800, 150, 24);
     ctx.fill();
 
     ctx.fillStyle = "#1e293b";
@@ -268,26 +281,54 @@ export default function ScoreTrendChart({ currentResult }: ScoreTrendChartProps)
     ctx.font = "bold 20px sans-serif";
     ctx.fillText("Eloise's HSK APP · 온라인 모의고사 & 에빙하우스 단어장", 140, 1180);
 
-    // Export image download
+    // Export image download via Blob URL (reliable across Chrome/Edge/Safari) + Data URL preview
     const dataUrl = card.toDataURL("image/png");
     setPreviewDataUrl(dataUrl);
-    const a = document.createElement("a");
-    a.href = dataUrl;
-    a.download = `HSK_${targetResult.level}급_성적표_Eloise_${Date.now()}.png`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setIsGeneratingCard(false);
-    setDownloadDone(true);
+    const fileName = `HSK_${targetResult.level}_${isZh ? "成绩单" : "성적표"}_Eloise_${Date.now()}.png`;
+
+    card.toBlob((blob) => {
+      if (blob) {
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+      } else {
+        const a = document.createElement("a");
+        a.href = dataUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+      setIsGeneratingCard(false);
+      setDownloadDone(true);
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 4500);
+    }, "image/png");
   };
 
   return (
-    <div className="bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200 p-5 sm:p-6 shadow-xs mb-6">
+    <div className="bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200 p-5 sm:p-6 shadow-xs mb-6 relative">
+      {showToast && (
+        <div className="fixed top-20 right-4 z-50 bg-emerald-600 text-white px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs sm:text-sm font-black animate-in fade-in slide-in-from-top-3 duration-200">
+          <CheckCircle2 className="w-5 h-5 shrink-0" />
+          <span>
+            {isZh
+              ? "✅ 1080×1350 成绩单长图已生成并开始下载！"
+              : "✅ 1080×1350 성적표 카드 이미지가 다운로드되었습니다!"}
+          </span>
+        </div>
+      )}
+
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-red-600" />
           <h4 className="font-black text-slate-900 text-sm sm:text-base">
-            모의고사 성적 추이 & 합격선 달성 그래프 (Trend)
+            {isZh ? "模考成绩趋势与合格线达成曲线 (Trend)" : "모의고사 성적 추이 & 합격선 달성 그래프 (Trend)"}
           </h4>
         </div>
 
@@ -306,12 +347,20 @@ export default function ScoreTrendChart({ currentResult }: ScoreTrendChartProps)
               {downloadDone ? (
                 <>
                   <CheckCircle2 className="w-4 h-4" />
-                  <span>✅ 성적표 이미지 저장 완료 (다시 저장)</span>
+                  <span>{isZh ? "✅ 成绩单已生成 (重新下载)" : "✅ 성적표 이미지 저장 완료 (다시 저장)"}</span>
                 </>
               ) : (
                 <>
                   <Download className="w-4 h-4" />
-                  <span>{isGeneratingCard ? "카드 생성 중..." : "📸 1080×1350 성적표 카드 다운로드"}</span>
+                  <span>
+                    {isGeneratingCard
+                      ? isZh
+                        ? "正在生成成绩单长图..."
+                        : "카드 생성 중..."
+                      : isZh
+                      ? "📸 下载 1080×1350 成绩单分享卡"
+                      : "📸 1080×1350 성적표 카드 다운로드"}
+                  </span>
                 </>
               )}
             </button>
@@ -330,26 +379,32 @@ export default function ScoreTrendChart({ currentResult }: ScoreTrendChartProps)
             <div className="text-xs space-y-1">
               <p className="font-black text-emerald-900 flex items-center gap-1">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>1080×1350 고화질 성적표 카드가 생성되어 다운로드되었습니다!</span>
+                <span>
+                  {isZh
+                    ? "1080×1350 高清成绩单分享卡已生成并触发下载！"
+                    : "1080×1350 고화질 성적표 카드가 생성되어 다운로드되었습니다!"}
+                </span>
               </p>
               <p className="text-emerald-700">
-                브라우저 다운로드 폴더를 확인하거나, 오른쪽 미리보기 이미지를 길게 눌러(우클릭) 저장할 수도 있습니다.
+                {isZh
+                  ? "请查看浏览器下载栏，或点击右侧「直接保存」/ 右键缩略图另存为图片。"
+                  : "브라우저 다운로드 폴더를 확인하거나, 오른쪽 미리보기 이미지를 길게 눌러(우클릭) 저장할 수도 있습니다."}
               </p>
             </div>
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <a
               href={previewDataUrl}
-              download={`HSK_${currentResult?.level || 4}급_성적표_Eloise.png`}
+              download={`HSK_${currentResult?.level || 4}_${isZh ? "成绩单" : "성적표"}_Eloise.png`}
               className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-2xs"
             >
-              직접 저장
+              {isZh ? "直接保存" : "직접 저장"}
             </a>
             <button
               type="button"
               onClick={() => setDownloadDone(false)}
               className="p-1.5 rounded-lg text-emerald-700 hover:bg-emerald-100 transition cursor-pointer"
-              title="닫기"
+              title={isZh ? "关闭" : "닫기"}
             >
               <X className="w-4 h-4" />
             </button>

@@ -12,6 +12,7 @@ import { ExamResult } from "@/types/exam";
 import { loadExamResult } from "@/utils/storage";
 import { convertQuestionDetailsToMistakes } from "@/utils/mistakeBank";
 import { getLocale, Locale } from "@/utils/i18n";
+import { formatRecentExamTitle } from "@/utils/timer";
 import { ArrowLeft, BookOpen, BookmarkCheck, Loader2 } from "lucide-react";
 
 export default function ResultPage() {
@@ -25,14 +26,19 @@ export default function ResultPage() {
 
   useEffect(() => {
     setLocale(getLocale());
-    if (!examId) return;
+    const handleLocaleChange = () => setLocale(getLocale());
+    window.addEventListener("hsk-locale-changed", handleLocaleChange);
 
-    const loaded = loadExamResult(examId);
-    if (!loaded) {
-      router.replace("/");
-      return;
+    if (examId) {
+      const loaded = loadExamResult(examId);
+      if (!loaded) {
+        router.replace("/");
+      } else {
+        setResult(loaded);
+      }
     }
-    setResult(loaded);
+
+    return () => window.removeEventListener("hsk-locale-changed", handleLocaleChange);
   }, [examId, router]);
 
   if (!result) {
@@ -48,10 +54,11 @@ export default function ResultPage() {
 
   const wrongDetails = result.questionDetails.filter((d) => !d.isCorrect);
   const displayedQuestions = filterWrongOnly ? wrongDetails : result.questionDetails;
+  const localizedTitle = formatRecentExamTitle(result, locale);
 
   const mistakesForExport = convertQuestionDetailsToMistakes(
     result.examId,
-    result.titleKo || result.title,
+    localizedTitle,
     result.level || 4,
     wrongDetails
   );
@@ -59,8 +66,8 @@ export default function ResultPage() {
   return (
     <div className="flex-1 flex flex-col bg-slate-50 min-h-screen">
       <Header
-        title="HSK 성적표 & 상세 해설"
-        subtitle="300점 만점 영역별 성적표 및 한국어 심층 해설"
+        title={locale === "zh" ? "HSK 成绩单与深度解析" : "HSK 성적표 & 상세 해설"}
+        subtitle={locale === "zh" ? "300 分满分制分项成绩单与逐题精讲" : "300점 만점 영역별 성적표 및 한국어 심층 해설"}
         rightElement={
           <Link
             href="/"
@@ -77,7 +84,7 @@ export default function ResultPage() {
         <ScoreOverview result={result} locale={locale} />
 
         {/* Score Trend & Share Card (F8) */}
-        <ScoreTrendChart currentResult={result} />
+        <ScoreTrendChart currentResult={result} locale={locale} />
 
         {/* Question Review Section Header */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
@@ -87,7 +94,7 @@ export default function ResultPage() {
               {locale === "zh" ? "题目作答明细与权威解析" : "문항별 답안 분석 & 한국어 해설"}
             </h3>
             <span className="text-xs text-slate-400 font-mono">
-              ({displayedQuestions.length} / {result.totalQuestions} 题)
+              ({displayedQuestions.length} / {result.totalQuestions} {locale === "zh" ? "题" : "문항"})
             </span>
           </div>
 
@@ -96,14 +103,18 @@ export default function ResultPage() {
             <button
               type="button"
               onClick={() => setFilterWrongOnly(!filterWrongOnly)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition cursor-pointer ${
                 filterWrongOnly
                   ? "bg-rose-50 text-rose-700 border-rose-300"
                   : "bg-white text-slate-600 border-slate-200 hover:bg-slate-100"
               }`}
             >
               {filterWrongOnly
-                ? `보기: 오답만 보기 (${result.wrongCount + result.unansweredCount}개)`
+                ? locale === "zh"
+                  ? `当前：仅看错题 (${result.wrongCount + result.unansweredCount}题)`
+                  : `보기: 오답만 보기 (${result.wrongCount + result.unansweredCount}개)`
+                : locale === "zh"
+                ? "查看全部题目"
                 : "전체 문항 보기"}
             </button>
 
@@ -111,7 +122,7 @@ export default function ResultPage() {
             {mistakesForExport.length > 0 && (
               <ExportMistakesButton
                 items={mistakesForExport}
-                title={`${result.titleKo || result.title}_오답`}
+                title={`${localizedTitle}_${locale === "zh" ? "错题" : "오답"}`}
                 locale={locale}
                 variant="secondary"
               />

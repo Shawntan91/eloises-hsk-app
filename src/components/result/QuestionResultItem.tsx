@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { QuestionDetailResult } from "@/types/exam";
 import { OptionKey } from "@/types/question";
 import AiTutorModal from "@/components/tutor/AiTutorModal";
-import MarkdownText from "@/components/common/MarkdownText";
+import MarkdownText, { sanitizeExplanationText } from "@/components/common/MarkdownText";
 import ListeningShadowing from "@/components/exam/ListeningShadowing";
 import { formatSeconds } from "@/utils/timer";
 import {
@@ -71,10 +71,10 @@ export const QuestionResultItem: React.FC<QuestionResultItemProps> = ({ detail, 
               type="button"
               onClick={() => handleJumpAudio(question.audioTimestamp)}
               className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-600 transition cursor-pointer"
-              title="오디오 해당 구간으로 이동"
+              title={locale === "zh" ? "跳转到对应音频位置" : "오디오 해당 구간으로 이동"}
             >
               <Volume2 className="w-3.5 h-3.5 text-red-600" />
-              <span>{formatSeconds(question.audioTimestamp)} 재생</span>
+              <span>{formatSeconds(question.audioTimestamp)} {locale === "zh" ? "播放" : "재생"}</span>
             </button>
           )}
         </div>
@@ -85,10 +85,10 @@ export const QuestionResultItem: React.FC<QuestionResultItemProps> = ({ detail, 
             type="button"
             onClick={() => setShowAiModal(true)}
             className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200 transition cursor-pointer"
-            title="이 문제에 대해 AI 과외 질문하기"
+            title={locale === "zh" ? "向 AI 导师提问此题" : "이 문제에 대해 AI 과외 질문하기"}
           >
             <Bot className="w-3.5 h-3.5 text-purple-600" />
-            <span>AI 과외</span>
+            <span>{locale === "zh" ? "AI 导师" : "AI 과외"}</span>
           </button>
 
           {isCorrect ? (
@@ -125,7 +125,11 @@ export const QuestionResultItem: React.FC<QuestionResultItemProps> = ({ detail, 
           >
             <span className="flex items-center gap-1.5">
               <FileText className="w-3.5 h-3.5 text-red-600" />
-              <span>{showTranscript ? "듣기 대본 원문 닫기" : "듣기 녹음 원문(대화) 확인하기"}</span>
+              <span>
+                {showTranscript
+                  ? locale === "zh" ? "收起听力录音原文" : "듣기 대본 원문 닫기"
+                  : locale === "zh" ? "查看听力录音原文(对话)" : "듣기 녹음 원문(대화) 확인하기"}
+              </span>
             </span>
             {showTranscript ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
@@ -155,13 +159,13 @@ export const QuestionResultItem: React.FC<QuestionResultItemProps> = ({ detail, 
       {question.type === "order_words" && (
         <div className="mb-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2.5 text-xs sm:text-sm">
           <div>
-            <span className="text-slate-400 font-medium">내가 조립한 문장: </span>
+            <span className="text-slate-400 font-medium">{locale === "zh" ? "我的造句: " : "내가 조립한 문장: "}</span>
             <span className={`font-bold ${isCorrect ? "text-emerald-700" : "text-rose-600"}`}>
-              {userAnswer || "（미작성）"}
+              {userAnswer || (locale === "zh" ? "（未作答）" : "（미작성）")}
             </span>
           </div>
           <div>
-            <span className="text-slate-400 font-medium">표준 정답 문장: </span>
+            <span className="text-slate-400 font-medium">{locale === "zh" ? "标准答案句: " : "표준 정답 문장: "}</span>
             <span className="font-bold text-emerald-700">
               {question.standardSentence || effectiveAnswer}
             </span>
@@ -173,15 +177,15 @@ export const QuestionResultItem: React.FC<QuestionResultItemProps> = ({ detail, 
       {question.type === "image_writing" && (
         <div className="mb-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 text-xs sm:text-sm">
           <div>
-            <span className="text-slate-400 font-medium">내가 작성한 답안: </span>
+            <span className="text-slate-400 font-medium">{locale === "zh" ? "我的作答: " : "내가 작성한 답안: "}</span>
             <div className={`p-3 rounded-xl mt-1 font-medium bg-white border ${
               isCorrect ? "border-emerald-200 text-slate-800" : "border-rose-200 text-rose-900"
             }`}>
-              {userAnswer || "（미작성）"}
+              {userAnswer || (locale === "zh" ? "（未作答）" : "（미작성）")}
             </div>
           </div>
           <div>
-            <span className="text-slate-400 font-medium">모범 예시 답안 (참고 문장): </span>
+            <span className="text-slate-400 font-medium">{locale === "zh" ? "参考范文: " : "모범 예시 답안 (참고 문장): "}</span>
             <div className="p-3 rounded-xl mt-1 font-bold text-emerald-800 bg-emerald-50 border border-emerald-200">
               {question.referenceEssay || effectiveAnswer}
             </div>
@@ -233,12 +237,12 @@ export const QuestionResultItem: React.FC<QuestionResultItemProps> = ({ detail, 
                 </div>
                 {isTarget && (
                   <span className="text-[11px] font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded shrink-0">
-                    정답
+                    {locale === "zh" ? "正解" : "정답"}
                   </span>
                 )}
                 {isUserChoice && !isTarget && (
                   <span className="text-[11px] font-bold text-rose-700 bg-rose-100 px-1.5 py-0.5 rounded shrink-0">
-                    내 답
+                    {locale === "zh" ? "我的作答" : "내 답"}
                   </span>
                 )}
               </div>
@@ -254,16 +258,29 @@ export const QuestionResultItem: React.FC<QuestionResultItemProps> = ({ detail, 
             <div className="bg-blue-50/70 border border-blue-200/80 rounded-xl p-3.5 sm:p-4 text-blue-950">
               <div className="font-bold flex items-center gap-1.5 text-blue-900 mb-2">
                 <Sparkles className="w-4 h-4 text-blue-600" />
-                <span>💡 Eloise를 위한 한국어 심층 해설 & 출제 의도:</span>
+                <span>
+                  {locale === "zh"
+                    ? "💡 Eloise 专属深度解析与考点精讲:"
+                    : "💡 Eloise를 위한 한국어 심층 해설 & 출제 의도:"}
+                </span>
               </div>
               <div className="leading-relaxed text-slate-700 font-sans">
-                <MarkdownText content={question.explanationKo} />
+                <MarkdownText
+                  content={sanitizeExplanationText(question.explanationKo, {
+                    type: question.type,
+                    number: question.number,
+                    standardSentence: question.standardSentence,
+                    referenceEssay: question.referenceEssay,
+                    officialAnswer: question.officialAnswer || effectiveAnswer,
+                    options: question.options as any,
+                  })}
+                />
               </div>
             </div>
           ) : question.explanation ? (
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-slate-800">
               <div className="font-bold text-slate-900 mb-1">【解析】</div>
-              <div>{question.explanation}</div>
+              <MarkdownText content={question.explanation} />
             </div>
           ) : null}
 
@@ -271,7 +288,7 @@ export const QuestionResultItem: React.FC<QuestionResultItemProps> = ({ detail, 
           {question.vocabList && question.vocabList.length > 0 && (
             <div className="bg-amber-50/60 border border-amber-200/70 rounded-xl p-3 sm:p-3.5">
               <div className="font-bold text-amber-900 text-xs mb-2 flex items-center gap-1">
-                <span>📚 필수 어휘 및 병음:</span>
+                <span>{locale === "zh" ? "📚 核心词汇与拼音:" : "📚 필수 어휘 및 병음:"}</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs">
                 {question.vocabList.map((v, i) => (

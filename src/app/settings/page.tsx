@@ -45,10 +45,15 @@ import Link from "next/link";
 function SettingsForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const examIdParam = searchParams.get("examId") || "hsk4-01";
+  const exams = getExamManifest();
+  const examIdParam = searchParams.get("examId");
+  const defaultExamId =
+    examIdParam && exams.some((e) => e.id === examIdParam)
+      ? examIdParam
+      : exams[0]?.id || "hsk4-h41221";
   const partParam = searchParams.get("part") || "all"; // all, listening, reading, writing
 
-  const [selectedExamId, setSelectedExamId] = useState<string>(examIdParam);
+  const [selectedExamId, setSelectedExamId] = useState<string>(defaultExamId);
   const [selectedSection, setSelectedSection] = useState<"all" | "listening" | "reading" | "writing">(
     (partParam as any) || "all"
   );
@@ -63,9 +68,9 @@ function SettingsForm() {
   const [locale, setLocale] = useState<Locale>("ko");
   const [targetExamDate, setTargetExamDate] = useState<string>("");
   const [backupMsg, setBackupMsg] = useState<string | null>(null);
+  const [isStarting, setIsStarting] = useState<boolean>(false);
   const backupFileRef = React.useRef<HTMLInputElement>(null);
 
-  const exams = getExamManifest();
   const currentExam = exams.find((e) => e.id === selectedExamId) || exams[0];
 
   useEffect(() => {
@@ -113,8 +118,12 @@ function SettingsForm() {
   const poolCount = getSectionPoolCount(selectedSection);
 
   const handleStartExam = async () => {
-    const fullExamData = await loadExamById(selectedExamId);
+    if (isStarting) return;
+    setIsStarting(true);
+    const targetId = currentExam?.id || selectedExamId;
+    const fullExamData = await loadExamById(targetId);
     if (!fullExamData) {
+      setIsStarting(false);
       alert(isKo ? "시험 데이터를 불러오는데 실패했습니다." : "加载试卷数据失败，请重试。");
       return;
     }
@@ -304,8 +313,8 @@ function SettingsForm() {
                   key={ex.id}
                   type="button"
                   onClick={() => setSelectedExamId(ex.id)}
-                  className={`p-3.5 rounded-2xl border text-left transition flex items-center justify-between ${
-                    selectedExamId === ex.id
+                  className={`p-3.5 rounded-2xl border text-left transition flex items-center justify-between cursor-pointer ${
+                    currentExam.id === ex.id
                       ? "border-red-500 bg-red-50/40 ring-2 ring-red-500/20"
                       : "border-slate-200 bg-slate-50/70 hover:bg-white hover:border-slate-300"
                   }`}
@@ -315,10 +324,12 @@ function SettingsForm() {
                       {isKo ? ex.titleKo : ex.title}
                     </span>
                     <span className="text-[11px] text-slate-500">
-                      HSK {ex.level}급 · 총 {ex.questionCount}문항
+                      {isKo
+                        ? `HSK ${ex.level}급 · 총 ${ex.questionCount}문항`
+                        : `HSK ${ex.level}级 · 共 ${ex.questionCount}题`}
                     </span>
                   </div>
-                  {selectedExamId === ex.id && (
+                  {currentExam.id === ex.id && (
                     <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0" />
                   )}
                 </button>
@@ -683,10 +694,19 @@ function SettingsForm() {
             <button
               type="button"
               onClick={handleStartExam}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-black text-sm shadow-lg shadow-red-500/25 flex items-center justify-center gap-2 transition transform active:scale-95"
+              disabled={isStarting}
+              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 disabled:opacity-70 text-white font-black text-sm shadow-lg shadow-red-500/25 flex items-center justify-center gap-2 transition transform active:scale-95 cursor-pointer"
             >
               <Play className="w-4 h-4 fill-white" />
-              <span>{isKo ? "설정 적용 후 시험 시작하기" : "应用配置并开始考试"}</span>
+              <span>
+                {isStarting
+                  ? isKo
+                    ? "시험지 준비 중..."
+                    : "正在生成试卷..."
+                  : isKo
+                  ? "설정 적용 후 시험 시작하기"
+                  : "应用配置并开始考试"}
+              </span>
             </button>
           </div>
         </div>

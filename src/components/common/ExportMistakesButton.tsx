@@ -68,16 +68,19 @@ export const ExportMistakesButton: React.FC<ExportMistakesButtonProps> = ({
       ? "bg-slate-100 hover:bg-slate-200 text-slate-700"
       : "bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs";
 
+  const isZh = locale === "zh";
+
   return (
     <div className={`relative inline-block ${className}`} ref={dropdownRef}>
       <button
         type="button"
         onClick={() => setOpen(!open)}
         className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${btnClasses}`}
-        title={`오답노트 ${items.length}문항 일괄 내보내기`}
+        title={isZh ? `批量导出错题本 ${items.length} 道错题` : `오답노트 ${items.length}문항 일괄 내보내기`}
+        aria-label={isZh ? `导出错题 (${items.length})` : `오답 내보내기 (${items.length})`}
       >
         <Download className="w-3.5 h-3.5" />
-        <span>{locale === "zh" ? `导出错题 (${items.length})` : `오답 내보내기 (${items.length})`}</span>
+        <span>{isZh ? `导出错题 (${items.length})` : `오답 내보내기 (${items.length})`}</span>
         <ChevronDown className={`w-3.5 h-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
 
@@ -85,7 +88,7 @@ export const ExportMistakesButton: React.FC<ExportMistakesButtonProps> = ({
         <div className="absolute right-0 mt-1.5 w-60 bg-white rounded-2xl shadow-xl border border-slate-200 p-1.5 z-50 animate-in fade-in zoom-in-95 duration-150">
           <div className="px-3 py-2 border-b border-slate-100 mb-1">
             <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-              {locale === "zh" ? "选择导出格式" : "내보내기 형식 선택"}
+              {isZh ? "选择导出格式" : "내보내기 형식 선택"}
             </div>
             <div className="text-xs font-semibold text-slate-700 truncate">{title}</div>
           </div>
@@ -103,8 +106,10 @@ export const ExportMistakesButton: React.FC<ExportMistakesButtonProps> = ({
               <FileText className="w-3.5 h-3.5" />
             </div>
             <div>
-              <div className="font-bold">Word 문서 (.doc) 다운로드</div>
-              <div className="text-[10px] text-slate-400">맞춤 서식 포함, A4 출력용</div>
+              <div className="font-bold">{isZh ? "下载 Word 文档 (.doc)" : "Word 문서 (.doc) 다운로드"}</div>
+              <div className="text-[10px] text-slate-400">
+                {isZh ? "含专属排版，适合 A4 打印复习" : "맞춤 서식 포함, A4 출력용"}
+              </div>
             </div>
           </button>
 
@@ -121,8 +126,10 @@ export const ExportMistakesButton: React.FC<ExportMistakesButtonProps> = ({
               <Sparkles className="w-3.5 h-3.5" />
             </div>
             <div>
-              <div className="font-bold">Markdown (.md) 다운로드</div>
-              <div className="text-[10px] text-slate-400">Notion / Obsidian 노트 연동</div>
+              <div className="font-bold">{isZh ? "下载 Markdown (.md)" : "Markdown (.md) 다운로드"}</div>
+              <div className="text-[10px] text-slate-400">
+                {isZh ? "适合导入 Notion / Obsidian 笔记" : "Notion / Obsidian 노트 연동"}
+              </div>
             </div>
           </button>
 
@@ -139,8 +146,10 @@ export const ExportMistakesButton: React.FC<ExportMistakesButtonProps> = ({
               <Printer className="w-3.5 h-3.5" />
             </div>
             <div>
-              <div className="font-bold">바로 인쇄 / PDF 저장</div>
-              <div className="text-[10px] text-slate-400">A4용지 출력 및 PDF 파일 생성</div>
+              <div className="font-bold">{isZh ? "直接打印 / 另存为 PDF" : "바로 인쇄 / PDF 저장"}</div>
+              <div className="text-[10px] text-slate-400">
+                {isZh ? "A4 纸质打印或导出 PDF 文件" : "A4용지 출력 및 PDF 파일 생성"}
+              </div>
             </div>
           </button>
 
@@ -154,8 +163,18 @@ export const ExportMistakesButton: React.FC<ExportMistakesButtonProps> = ({
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
             </div>
             <div>
-              <div className="font-bold">{copied ? "복사 완료! (클립보드 저장됨)" : "마크다운 전체 복사"}</div>
-              <div className="text-[10px] text-slate-400">클립보드에 복사하여 붙여넣기</div>
+              <div className="font-bold">
+                {copied
+                  ? isZh
+                    ? "已复制到剪贴板！"
+                    : "복사 완료! (클립보드 저장됨)"
+                  : isZh
+                  ? "复制全部 Markdown 内容"
+                  : "마크다운 전체 복사"}
+              </div>
+              <div className="text-[10px] text-slate-400">
+                {isZh ? "一键复制，随时粘贴至任意文档" : "클립보드에 복사하여 붙여넣기"}
+              </div>
             </div>
           </button>
         </div>

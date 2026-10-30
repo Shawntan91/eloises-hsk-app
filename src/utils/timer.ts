@@ -99,30 +99,41 @@ export function formatRecentExamTitle(
   if (locale === "zh") {
     let raw = item.title || item.titleKo || "";
     raw = raw
-      .replace(/전체 모의고사/g, "全卷模考")
-      .replace(/듣기 집중 연습/g, "听力专项")
-      .replace(/독해 집중 연습/g, "阅读专项")
-      .replace(/쓰기 집중 연습/g, "书写专项")
+      .replace(/오답노트 맞춤 재시험\s*\(错题重练卷\)/g, "错题本专项重练卷")
+      .replace(/오답노트 맞춤 재시험/g, "错题本专项重练卷")
       .replace(/오답노트 맞춤 복습 시험/g, "错题本专项重练卷")
+      .replace(/전체 모의고사/g, "全卷模考")
+      .replace(/전체 영역/g, "全卷模考")
+      .replace(/듣기 집중 연습/g, "听力专项")
+      .replace(/듣기 영역/g, "听力专项")
+      .replace(/독해 집중 연습/g, "阅读专项")
+      .replace(/독해 영역/g, "阅读专项")
+      .replace(/쓰기 집중 연습/g, "书写专项")
+      .replace(/쓰기 영역/g, "书写专项")
       .replace(/HSK (\d)급 공식 기출 모의고사/g, "HSK $1级 官方真题模考")
       .replace(/HSK (\d)급 기출 모의고사/g, "HSK $1级 官方真题")
       .replace(/HSK (\d)급 신출제강요 공식 샘플 시험/g, "HSK $1级 官方新大纲样卷")
+      .replace(/HSK (\d)급/g, "HSK $1级")
       .replace(/\(축소판 (\d+)문항\)/g, "（精简版 $1 题）")
-      .replace(/(\d+)문항/g, "$1题");
+      .replace(/\(총\s*(\d+)문항\)/g, "（共 $1 题）")
+      .replace(/(\d+)\s*문항/g, "$1题");
     return raw;
   }
 
   let raw = item.titleKo || item.title || "";
   raw = raw
+    .replace(/오답노트 맞춤 재시험\s*\(错题重练卷\)/g, "오답노트 맞춤 복습 시험")
     .replace(/HSK (\d)级 官方真题模考/g, "HSK $1급 공식 기출 모의고사")
     .replace(/HSK (\d)级 官方真题/g, "HSK $1급 기출 모의고사")
     .replace(/HSK (\d)级 官方新大纲样卷/g, "HSK $1급 신출제강요 공식 샘플 시험")
+    .replace(/HSK (\d)级/g, "HSK $1급")
     .replace(/（精简版\s*(\d+)\s*题）/g, "(축소판 $1문항)")
     .replace(/全卷模考/g, "전체 모의고사")
     .replace(/听力专项/g, "듣기 집중 연습")
     .replace(/阅读专项/g, "독해 집중 연습")
     .replace(/书写专项/g, "쓰기 집중 연습")
     .replace(/错题本专项重练卷/g, "오답노트 맞춤 복습 시험")
+    .replace(/错题重练卷/g, "오답노트 맞춤 복습 시험")
     .replace(/（共\s*(\d+)\s*题）/g, "(총 $1문항)")
     .replace(/(\d+)\s*题/g, "$1문항");
   return raw;

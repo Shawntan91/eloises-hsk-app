@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ExamResult } from "@/types/exam";
-import { formatSeconds } from "@/utils/timer";
+import { formatSeconds, formatRecentExamTitle } from "@/utils/timer";
 import { Trophy, CheckCircle2, XCircle, Clock, Target, AlertTriangle, Sparkles, BookOpen } from "lucide-react";
 
 interface ScoreOverviewProps {
@@ -46,11 +46,15 @@ export const ScoreOverview: React.FC<ScoreOverviewProps> = ({ result, locale }) 
             </div>
             <h2 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
               {isPass
-                ? "🎉 축하합니다! Eloise님께서 HSK 시험에 당당히 합격하셨습니다!"
+                ? locale === "zh"
+                  ? "🎉 恭喜！Eloise 同学顺利通过本次 HSK 模考合格线！"
+                  : "🎉 축하합니다! Eloise님께서 HSK 시험에 당당히 합격하셨습니다!"
+                : locale === "zh"
+                ? "💪 距离 180 分合格线还差一点，快去错题本针对性复习吧！"
                 : "💪 아쉽게 기준 점수에 미치지 못했습니다. 오답노트로 복습해 보세요!"}
             </h2>
             <p className="text-xs text-slate-600 mt-1">
-              {result.titleKo || result.title} · 수험생: Eloise (엘로이즈)
+              {formatRecentExamTitle(result, locale)} · {locale === "zh" ? "考生: Eloise" : "수험생: Eloise (엘로이즈)"}
             </p>
           </div>
         </div>
@@ -71,7 +75,9 @@ export const ScoreOverview: React.FC<ScoreOverviewProps> = ({ result, locale }) 
             <span className="text-xs text-slate-400 font-bold">/ 300</span>
           </div>
           <span className="text-[10px] text-slate-500 font-medium">
-            {isPass ? "기준치(180점) 통과" : "180점 기준 미달"}
+            {isPass
+              ? locale === "zh" ? "已达标 (180分+)" : "기준치(180점) 통과"
+              : locale === "zh" ? "未达 180 分合格线" : "180점 기준 미달"}
           </span>
         </div>
       </div>
@@ -89,14 +95,14 @@ export const ScoreOverview: React.FC<ScoreOverviewProps> = ({ result, locale }) 
                 <span>{locale === "zh" ? sec.partCategory : sec.partCategoryKo}</span>
               </span>
               <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white border border-slate-200 text-slate-600">
-                满分 100
+                {locale === "zh" ? "满分 100" : "만점 100"}
               </span>
             </div>
 
             <div className="flex items-baseline justify-between mt-1 mb-2">
-              <span className="text-2xl font-black text-slate-900">{sec.score} 分</span>
+              <span className="text-2xl font-black text-slate-900">{sec.score} {locale === "zh" ? "分" : "점"}</span>
               <span className="text-xs text-slate-500">
-                正答: <strong>{sec.correct}</strong> / {sec.total} 题
+                {locale === "zh" ? "答对" : "정답"}: <strong>{sec.correct}</strong> / {sec.total} {locale === "zh" ? "题" : "문항"}
               </span>
             </div>
 
@@ -116,25 +122,25 @@ export const ScoreOverview: React.FC<ScoreOverviewProps> = ({ result, locale }) 
       {/* Stats Summary Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
         <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
-          <div className="text-[11px] text-slate-400 font-bold">전체 정답률 (正确率)</div>
+          <div className="text-[11px] text-slate-400 font-bold">{locale === "zh" ? "全卷正确率" : "전체 정답률 (正确率)"}</div>
           <div className="text-lg font-black text-blue-600 mt-0.5">{result.accuracyRate}%</div>
         </div>
         <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
-          <div className="text-[11px] text-slate-400 font-bold">오답 및 미답안 (错题)</div>
+          <div className="text-[11px] text-slate-400 font-bold">{locale === "zh" ? "错题与未答" : "오답 및 미답안 (错题)"}</div>
           <div className="text-lg font-black text-rose-600 mt-0.5">
-            {result.wrongCount + result.unansweredCount} 道
+            {result.wrongCount + result.unansweredCount} {locale === "zh" ? "道" : "문항"}
           </div>
         </div>
         <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
-          <div className="text-[11px] text-slate-400 font-bold">총 소요 시간 (答题用时)</div>
+          <div className="text-[11px] text-slate-400 font-bold">{locale === "zh" ? "总答题用时" : "총 소요 시간 (答题用时)"}</div>
           <div className="text-lg font-black text-slate-700 mt-0.5 font-mono">
-            {formatSeconds(result.timeSpentSeconds)}
+            {formatSeconds(result.timeSpentSeconds, locale)}
           </div>
         </div>
         <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
-          <div className="text-[11px] text-slate-400 font-bold">문항당 평균 (题均用时)</div>
+          <div className="text-[11px] text-slate-400 font-bold">{locale === "zh" ? "题均耗时" : "문항당 평균 (题均用时)"}</div>
           <div className="text-lg font-black text-slate-700 mt-0.5 font-mono">
-            {result.avgSecondsPerQuestion} 秒
+            {result.avgSecondsPerQuestion} {locale === "zh" ? "秒" : "초"}
           </div>
         </div>
       </div>

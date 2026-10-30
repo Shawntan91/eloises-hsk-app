@@ -7,33 +7,81 @@ interface MarkdownTextProps {
   className?: string;
 }
 
-export function sanitizeExplanationText(raw: string): string {
+export function sanitizeExplanationText(
+  raw: string,
+  questionHint?: {
+    type?: string;
+    number?: number;
+    standardSentence?: string;
+    referenceEssay?: string;
+    officialAnswer?: string;
+    options?: Record<string, string>;
+  }
+): string {
   let text = raw;
 
-  // 1. If it's a writing explanation (contains 작문 가이드 or 어법 및 문장 구성 분석), clean up A placeholder & choice trap
-  if (text.includes("【작문 가이드") || text.includes("【어법 및 문장 구성 분석】") || text.includes("【모범 답안】") || text.includes("【정답 문장】")) {
-    const essayMatch = text.match(/모범 작문:\s*(?:官方优秀(?:参考)?范文(?:参考)?：)?[“"]?([^”"\n]+)[”"]?/);
-    const modelAns = essayMatch ? essayMatch[1].trim() : "";
-    if (modelAns) {
-      text = text.replace(/【정답 안내】:\s*정답은\s*\*\*A\*\*\s*입니다\.?/, `【모범 답안】: **${modelAns}**`);
+  const isWriting =
+    questionHint?.type === "order_words" ||
+    questionHint?.type === "image_writing" ||
+    (typeof questionHint?.number === "number" && questionHint.number >= 86) ||
+    text.includes("【작문 가이드") ||
+    text.includes("【어법 및 문장 구성 분석】") ||
+    text.includes("【모범 답안】") ||
+    text.includes("【정답 문장】") ||
+    text.includes("완성 문장:") ||
+    text.includes("모범 작문:");
+
+  // 1. If it's a writing / word-order explanation (Q86-100), clean up "정답은 A 입니다" & "다른 선택지(B, C, D)"
+  if (isWriting) {
+    const sentMatch = text.match(/완성 문장:\s*[“"]?([^”"\n]+?)[”"]?[。.]?\s*(?:\n|$)/);
+    const essayMatch = text.match(/모범 작문:\s*(?:官方优秀(?:参考)?范文(?:参考)?：)?[“"]?([^”"\n]+?)[”"]?\s*(?:\n|$)/);
+
+    const stdSent = questionHint?.standardSentence || (sentMatch ? sentMatch[1].trim() : "");
+    const modelEssay = questionHint?.referenceEssay || (essayMatch ? essayMatch[1].trim() : "");
+
+    if (stdSent) {
+      text = text.replace(
+        /【정답 안내】:\s*정답은\s*(?:\*\*)?[A-F](?:\*\*)?\s*입니다[。.]?/,
+        `【정답 문장】: **${stdSent}**`
+      );
+    } else if (modelEssay) {
+      text = text.replace(
+        /【정답 안내】:\s*정답은\s*(?:\*\*)?[A-F](?:\*\*)?\s*입니다[。.]?/,
+        `【모범 답안】: **${modelEssay}**`
+      );
     } else {
-      text = text.replace(/【정답 안내】:\s*정답은\s*\*\*A\*\*\s*입니다\.?\n*/, "");
+      text = text.replace(/【정답 안내】:\s*정답은\s*(?:\*\*)?[A-F](?:\*\*)?\s*입니다[。.]?\n*/, "");
     }
+
     text = text.replace(/\n*【오답 함정 체크】:[^\n]*/g, "");
+    text = text.replace(/\n*[^\n]*다른 선택지\([A-D,\s]+\)[^\n]*/g, "");
     text = text.replace(/官方优秀(?:参考)?范文(?:参考)?：/g, "");
   }
 
-  // 2. If it's an ordering explanation (contains 어순 논리 분석 or 正确语序为), fix 정답 순서는 A
-  const orderMatch = text.match(/正确语序为：([A-C-]+)/) || text.match(/\(([A-C]-[A-C]-[A-C])\)/);
-  if (orderMatch) {
-    const seq = orderMatch[1];
+  // 2. If it's an ordering explanation (Q56-65, contains 어순 논리 분석 or 正确语序为), fix "정답 순서는 A 입니다"
+  const orderMatch =
+    text.match(/正确语序为：([A-C-]+)/) ||
+    text.match(/올바른 (?:문장 배열 순서는|어순은)\s*(?:\*\*)?([A-C]-[A-C]-[A-C])(?:\*\*)?/) ||
+    text.match(/\(([A-C]-[A-C]-[A-C])\)/);
+
+  let seq = orderMatch ? orderMatch[1] : "";
+  if (!seq && questionHint?.officialAnswer && /^[A-C]{3}$/.test(questionHint.officialAnswer.trim())) {
+    seq = questionHint.officialAnswer.trim().split("").join("-");
+  }
+
+  if (seq || text.includes("【어순 논리 분석】")) {
+    const finalSeq = seq || "A-C-B";
     text = text.replace(
-      /【어순 논리 분석】:\s*정답 순서는\s*\*\*[A-D]\*\*\s*입니다\.?/,
-      `【어순 논리 분석】: 올바른 문장 배열 순서는 **${seq}** 입니다.`
+      /【어순 논리 분석】:\s*정답 순서는\s*(?:\*\*)?[A-D](?:\*\*)?\s*입니다[。.]?/,
+      `【어순 논리 분석】: 올바른 문장 배열 순서는 **${finalSeq}** 입니다.`
     );
     text = text.replace(
-      /•\s*상세 어순:\s*正确语序为：([A-C-]+)。?/,
-      `• 상세 어순: 올바른 어순은 **${seq}** 입니다.`
+      /【정답 안내】:\s*정답은\s*\*\*([A-D])\*\*\s*입니다[。.]?/,
+      `【정답 안내】: 정답은 **$1** (**${finalSeq}**) 입니다.`
+    );
+    text = text.replace(
+      /•\s*상세 어순:\s*正确语序为：([A-C-]+)[。.]?/,
+      `• 상세 어순: 올바른 어순은 **${finalSeq}** 입니다.`
     );
   }
 

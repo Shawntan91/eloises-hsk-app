@@ -1,5 +1,5 @@
-// Eloise's HSK APP Service Worker (Offline Support)
-const CACHE_NAME = "eloise-hsk-cache-v1";
+// Eloise's HSK APP Service Worker (Offline Support - Network-First Strategy)
+const CACHE_NAME = "eloise-hsk-cache-v3";
 const OFFLINE_URLS = [
   "/",
   "/words",
@@ -40,39 +40,26 @@ self.addEventListener("fetch", (event) => {
   // Only handle GET requests
   if (event.request.method !== "GET") return;
 
-  // Audio files might be huge; let browser handle range requests natively
-  if (event.request.url.includes("/audio/")) return;
+  // Audio files and API calls: let browser handle natively
+  if (event.request.url.includes("/audio/") || event.request.url.includes("/api/")) return;
 
+  // Network-First strategy: always fetch fresh HTML & JS chunks when online, fallback to cache when offline
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        // Return cached and update in background
-        fetch(event.request)
-          .then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              const resClone = networkResponse.clone();
-              caches.open(CACHE_NAME).then((cache) => cache.put(event.request, resClone));
-            }
-          })
-          .catch(() => {});
-        return cachedResponse;
-      }
-
-      return fetch(event.request)
-        .then((networkResponse) => {
-          if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== "basic") {
-            return networkResponse;
-          }
+    fetch(event.request)
+      .then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200 && networkResponse.type === "basic") {
           const resClone = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, resClone));
-          return networkResponse;
-        })
-        .catch(() => {
-          // If offline and request is HTML document, fallback to cached root
+        }
+        return networkResponse;
+      })
+      .catch(() => {
+        return caches.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) return cachedResponse;
           if (event.request.headers.get("accept")?.includes("text/html")) {
             return caches.match("/");
           }
         });
-    })
+      })
   );
 });

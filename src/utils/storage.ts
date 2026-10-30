@@ -3,8 +3,10 @@
 import { Exam, ExamResult } from "@/types/exam";
 import { Question } from "@/types/question";
 import { IeltsHighlight } from "@/types/ielts";
+import { formatRecentExamTitle } from "@/utils/timer";
+import { sanitizeExplanationText } from "@/components/common/MarkdownText";
 
-export const DB_VERSION = 2;
+export const DB_VERSION = 4;
 
 export const KEYS = {
   DB_VERSION: "hskapp:db_version",
@@ -115,6 +117,78 @@ export function migrateLegacyStorage(): void {
           localStorage.setItem(`${KEYS.RESULT_PREFIX}${id}`, val);
         }
       }
+    }
+
+    // DB_VERSION 3 Migration: normalize mixed Chinese/Korean titles & sanitize saved explanations in-place
+    try {
+      const recentsRaw = localStorage.getItem(KEYS.RECENTS);
+      if (recentsRaw) {
+        const recents: RecentExamItem[] = JSON.parse(recentsRaw);
+        const normalizedRecents = recents.map((item) => ({
+          ...item,
+          title: formatRecentExamTitle(item, "zh"),
+          titleKo: formatRecentExamTitle(item, "ko"),
+        }));
+        localStorage.setItem(KEYS.RECENTS, JSON.stringify(normalizedRecents));
+      }
+
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (!k || !k.startsWith(KEYS.RESULT_PREFIX)) continue;
+        const val = localStorage.getItem(k);
+        if (!val) continue;
+        try {
+          const res: ExamResult = JSON.parse(val);
+          res.title = formatRecentExamTitle(res, "zh");
+          res.titleKo = formatRecentExamTitle(res, "ko");
+          if (Array.isArray(res.questionDetails)) {
+            res.questionDetails = res.questionDetails.map((d) => {
+              if (d.question?.explanationKo) {
+                d.question.explanationKo = sanitizeExplanationText(d.question.explanationKo, {
+                  type: d.question.type,
+                  number: d.question.number,
+                  standardSentence: d.question.standardSentence,
+                  referenceEssay: d.question.referenceEssay,
+                  officialAnswer: d.question.officialAnswer || d.effectiveAnswer,
+                  options: d.question.options as any,
+                });
+              }
+              return d;
+            });
+          }
+          localStorage.setItem(k, JSON.stringify(res));
+        } catch {}
+      }
+
+      // Also clean mistakes bank explanations and "未答 (미답안)"
+      for (const mKey of ["eloise_hsk_mistakes", "hskapp:mistakes"]) {
+        const mistakesRaw = localStorage.getItem(mKey);
+        if (mistakesRaw) {
+          const mistakes = JSON.parse(mistakesRaw);
+          if (Array.isArray(mistakes)) {
+            const cleanedMistakes = mistakes.map((m: any) => {
+              if (m.question?.explanationKo) {
+                m.question.explanationKo = sanitizeExplanationText(m.question.explanationKo, {
+                  type: m.question.type,
+                  number: m.question.number,
+                  standardSentence: m.question.standardSentence,
+                  referenceEssay: m.question.referenceEssay,
+                  officialAnswer: m.question.officialAnswer || m.correctAnswer,
+                  options: m.question.options,
+                });
+              }
+              return {
+                ...m,
+                examTitle: formatRecentExamTitle({ title: m.examTitle, titleKo: m.examTitleKo }, "zh"),
+                examTitleKo: formatRecentExamTitle({ title: m.examTitle, titleKo: m.examTitleKo }, "ko"),
+              };
+            });
+            localStorage.setItem(mKey, JSON.stringify(cleanedMistakes));
+          }
+        }
+      }
+    } catch (migErr) {
+      console.warn("DB v3 normalization warning", migErr);
     }
 
     localStorage.setItem(KEYS.DB_VERSION, String(DB_VERSION));
@@ -337,7 +411,24 @@ export function loadExamResult(id: string): ExamResult | null {
       sessionStorage.getItem(`${KEYS.RESULT_PREFIX}${id}`);
 
     if (raw) {
-      const res = JSON.parse(raw);
+      const res: ExamResult = JSON.parse(raw);
+      res.title = formatRecentExamTitle(res, "zh");
+      res.titleKo = formatRecentExamTitle(res, "ko");
+      if (Array.isArray(res.questionDetails)) {
+        res.questionDetails = res.questionDetails.map((d) => {
+          if (d.question?.explanationKo) {
+            d.question.explanationKo = sanitizeExplanationText(d.question.explanationKo, {
+              type: d.question.type,
+              number: d.question.number,
+              standardSentence: d.question.standardSentence,
+              referenceEssay: d.question.referenceEssay,
+              officialAnswer: d.question.officialAnswer || d.effectiveAnswer,
+              options: d.question.options as any,
+            });
+          }
+          return d;
+        });
+      }
       memoryResultStore.set(id, res);
       return res;
     }
