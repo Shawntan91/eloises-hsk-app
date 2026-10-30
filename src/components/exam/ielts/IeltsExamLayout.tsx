@@ -5,7 +5,7 @@ import { Exam } from "@/types/exam";
 import { Question, OptionKey } from "@/types/question";
 import { IeltsHighlight } from "@/types/ielts";
 import AudioPlayerBar from "../AudioPlayerBar";
-import { formatSeconds, getRemainingSeconds } from "@/utils/timer";
+import { formatSeconds, getRemainingSeconds, isUnlimitedDuration } from "@/utils/timer";
 import { loadPassageHighlights, savePassageHighlights } from "@/utils/storage";
 import {
   ChevronLeft,
@@ -131,7 +131,13 @@ export const IeltsExamLayout: React.FC<IeltsExamLayoutProps> = ({
     (k) => currentQ?.options && (currentQ.options as any)[k] !== undefined
   ) as OptionKey[];
 
-  const remaining = getRemainingSeconds(exam.startTime || Date.now(), exam.duration);
+  const [nowTick, setNowTick] = useState(Date.now());
+  useEffect(() => {
+    if (isUnlimitedDuration(exam.duration)) return;
+    const t = setInterval(() => setNowTick(Date.now()), 1000);
+    return () => clearInterval(t);
+  }, [exam.duration]);
+  const remaining = getRemainingSeconds(exam.startTime || nowTick, exam.duration);
 
   // Splitter dragging
   useEffect(() => {
@@ -272,7 +278,7 @@ export const IeltsExamLayout: React.FC<IeltsExamLayoutProps> = ({
       <header className="h-14 bg-slate-950 border-b border-slate-800 px-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <span className="px-2.5 py-1 rounded bg-blue-600 text-white font-bold text-xs flex items-center gap-1.5">
-            <span>HSK 左右分屏阅读模式</span>
+            <span>{locale === "zh" ? "HSK 左右分屏阅读模式" : "HSK 좌우 분할 독해 모드"}</span>
           </span>
           <span className="text-sm font-bold truncate max-w-sm hidden sm:inline">
             {locale === "zh" ? exam.title : exam.titleKo || exam.title}
@@ -282,7 +288,7 @@ export const IeltsExamLayout: React.FC<IeltsExamLayoutProps> = ({
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5 px-3 py-1 bg-slate-800 rounded-lg text-amber-400 font-mono text-xs">
             <Clock className="w-3.5 h-3.5" />
-            <span>{formatSeconds(remaining)}</span>
+            <span>{formatSeconds(remaining, locale)}</span>
           </div>
 
           <button

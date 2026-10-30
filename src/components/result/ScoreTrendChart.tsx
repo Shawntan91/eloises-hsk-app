@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getRecentExams, RecentExamItem } from "@/utils/storage";
 import { ExamResult } from "@/types/exam";
-import { TrendingUp, Download, Image, Sparkles, CheckCircle2 } from "lucide-react";
+import { TrendingUp, Download, Image, Sparkles, CheckCircle2, X } from "lucide-react";
 
 interface ScoreTrendChartProps {
   currentResult?: ExamResult;
@@ -13,6 +13,8 @@ export default function ScoreTrendChart({ currentResult }: ScoreTrendChartProps)
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [historyItems, setHistoryItems] = useState<RecentExamItem[]>([]);
   const [isGeneratingCard, setIsGeneratingCard] = useState(false);
+  const [downloadDone, setDownloadDone] = useState(false);
+  const [previewDataUrl, setPreviewDataUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const all = getRecentExams().filter((e) => e.status === "submitted" && typeof e.score === "number");
@@ -268,11 +270,15 @@ export default function ScoreTrendChart({ currentResult }: ScoreTrendChartProps)
 
     // Export image download
     const dataUrl = card.toDataURL("image/png");
+    setPreviewDataUrl(dataUrl);
     const a = document.createElement("a");
     a.href = dataUrl;
     a.download = `HSK_${targetResult.level}급_성적표_Eloise_${Date.now()}.png`;
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
     setIsGeneratingCard(false);
+    setDownloadDone(true);
   };
 
   return (
@@ -286,17 +292,70 @@ export default function ScoreTrendChart({ currentResult }: ScoreTrendChartProps)
         </div>
 
         {currentResult && (
-          <button
-            type="button"
-            onClick={generateShareCard}
-            disabled={isGeneratingCard}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white text-xs font-black shadow-xs transition cursor-pointer self-start sm:self-auto"
-          >
-            <Download className="w-4 h-4" />
-            <span>{isGeneratingCard ? "카드 생성 중..." : "📸 1080×1350 성적표 카드 다운로드"}</span>
-          </button>
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              type="button"
+              onClick={generateShareCard}
+              disabled={isGeneratingCard}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-white text-xs font-black shadow-xs transition cursor-pointer self-start sm:self-auto active:scale-95 ${
+                downloadDone
+                  ? "bg-emerald-600 hover:bg-emerald-700"
+                  : "bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700"
+              }`}
+            >
+              {downloadDone ? (
+                <>
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>✅ 성적표 이미지 저장 완료 (다시 저장)</span>
+                </>
+              ) : (
+                <>
+                  <Download className="w-4 h-4" />
+                  <span>{isGeneratingCard ? "카드 생성 중..." : "📸 1080×1350 성적표 카드 다운로드"}</span>
+                </>
+              )}
+            </button>
+          </div>
         )}
       </div>
+
+      {downloadDone && previewDataUrl && (
+        <div className="mb-4 p-4 rounded-2xl bg-emerald-50/90 border border-emerald-200 flex flex-col sm:flex-row items-center justify-between gap-4 animate-in fade-in duration-200">
+          <div className="flex items-center gap-3">
+            <img
+              src={previewDataUrl}
+              alt="HSK 성적표 카드 미리보기"
+              className="w-16 h-20 object-cover rounded-lg border border-emerald-300 shadow-xs shrink-0"
+            />
+            <div className="text-xs space-y-1">
+              <p className="font-black text-emerald-900 flex items-center gap-1">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>1080×1350 고화질 성적표 카드가 생성되어 다운로드되었습니다!</span>
+              </p>
+              <p className="text-emerald-700">
+                브라우저 다운로드 폴더를 확인하거나, 오른쪽 미리보기 이미지를 길게 눌러(우클릭) 저장할 수도 있습니다.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <a
+              href={previewDataUrl}
+              download={`HSK_${currentResult?.level || 4}급_성적표_Eloise.png`}
+              className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-2xs"
+            >
+              직접 저장
+            </a>
+            <button
+              type="button"
+              onClick={() => setDownloadDone(false)}
+              className="p-1.5 rounded-lg text-emerald-700 hover:bg-emerald-100 transition cursor-pointer"
+              title="닫기"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="w-full bg-slate-50/70 rounded-2xl p-2 border border-slate-100 flex items-center justify-center overflow-x-auto">
         <canvas

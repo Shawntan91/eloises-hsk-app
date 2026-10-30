@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Exam } from "@/types/exam";
 import { Question, OptionKey } from "@/types/question";
-import { formatSeconds, getRemainingSeconds } from "@/utils/timer";
+import { formatSeconds, getRemainingSeconds, getSectionRangeLabel, isUnlimitedDuration } from "@/utils/timer";
 import AudioPlayerBar from "./AudioPlayerBar";
 import AiTutorModal from "@/components/tutor/AiTutorModal";
 import MarkdownText from "@/components/common/MarkdownText";
@@ -64,6 +64,16 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
   const [showMobilePalette, setShowMobilePalette] = useState(false);
   // 2. 听力原文默认折叠 (false)
   const [showTranscript, setShowTranscript] = useState(false);
+  const [, setTick] = useState(0);
+
+  // Live 1s countdown ticker when timer is not unlimited
+  useEffect(() => {
+    if (isUnlimitedDuration(exam.duration)) return;
+    const timer = setInterval(() => {
+      setTick((t) => t + 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [exam.duration]);
 
   // Reset transcript collapse when question changes
   useEffect(() => {
@@ -158,8 +168,20 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                 <h2 className="text-xs sm:text-base font-bold truncate text-slate-100">
                   {locale === "zh" ? exam.title : exam.titleKo || exam.title}
                 </h2>
-                <span className="hidden md:inline-block px-2 py-0.2 rounded-full text-[10px] bg-red-950 text-red-300 border border-red-800/60 font-medium">
-                  {locale === "zh" ? "官方机考网考界面" : "공식 CBT 모의고사"}
+                <span
+                  className={`hidden md:inline-block px-2 py-0.2 rounded-full text-[10px] border font-medium ${
+                    exam.answerMode === "practice"
+                      ? "bg-emerald-950 text-emerald-300 border-emerald-800/60"
+                      : "bg-red-950 text-red-300 border-red-800/60"
+                  }`}
+                >
+                  {exam.answerMode === "practice"
+                    ? locale === "zh"
+                      ? "即时反馈练习模式"
+                      : "실시간 해설 연습 모드"
+                    : locale === "zh"
+                    ? "官方机考网考界面"
+                    : "공식 CBT 모의고사"}
                 </span>
               </div>
               <div className="text-[10px] sm:text-[11px] text-slate-400 flex items-center gap-1.5 sm:gap-2">
@@ -178,8 +200,12 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
           <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             {/* Countdown Timer */}
             <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 bg-slate-800 rounded-xl border border-slate-700 text-amber-400 font-mono font-bold text-xs sm:text-sm">
-              <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 animate-pulse text-amber-400" />
-              <span>{formatSeconds(remaining)}</span>
+              <Clock
+                className={`w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400 ${
+                  isUnlimitedDuration(exam.duration) ? "" : "animate-pulse"
+                }`}
+              />
+              <span>{formatSeconds(remaining, locale)}</span>
             </div>
 
             {/* Toggle Split screen layout (4. 规范文案) */}
@@ -674,19 +700,14 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                 const catQuestions = exam.questions.filter((q) => q.partCategory === cat);
                 if (catQuestions.length === 0) return null;
 
-                const catKo =
-                  cat === "听力"
-                    ? "듣기 (1~45)"
-                    : cat === "阅读"
-                    ? "독해 (46~85)"
-                    : "쓰기 (86~100)";
+                const sectionLabel = getSectionRangeLabel(exam.questions, cat, locale);
 
                 return (
                   <div key={cat} className="space-y-2">
                     <div className="text-xs font-bold text-slate-700 flex items-center justify-between">
                       <span className="flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
-                        <span>{locale === "zh" ? cat : catKo}</span>
+                        <span>{sectionLabel}</span>
                       </span>
                       <span className="text-[11px] text-slate-400 font-normal">
                         {catQuestions.filter((q) => exam.answers[q.id]).length} /{" "}
@@ -742,7 +763,9 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
           className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 text-slate-800 rounded-xl text-xs font-bold"
         >
           <LayoutGrid className="w-4 h-4 text-red-600" />
-          <span>답안표 ({answeredCount}/{exam.questions.length})</span>
+          <span>
+            {locale === "zh" ? "答题卡" : "답안표"} ({answeredCount}/{exam.questions.length})
+          </span>
         </button>
 
         <div className="flex items-center gap-2">
@@ -773,7 +796,7 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
           <div className="bg-white rounded-t-3xl max-h-[80vh] flex flex-col p-5 overflow-hidden animate-in slide-in-from-bottom-5">
             <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
               <h3 className="font-extrabold text-slate-900 text-sm">
-                전체 문항 바로가기 ({answeredCount}/{exam.questions.length})
+                {locale === "zh" ? "全卷题号导航" : "전체 문항 바로가기"} ({answeredCount}/{exam.questions.length})
               </h3>
               <button
                 type="button"
@@ -791,7 +814,9 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
 
                 return (
                   <div key={cat}>
-                    <div className="text-xs font-bold text-slate-700 mb-2">{cat}</div>
+                    <div className="text-xs font-bold text-slate-700 mb-2">
+                      {getSectionRangeLabel(exam.questions, cat, locale)}
+                    </div>
                     <div className="grid grid-cols-6 gap-1.5">
                       {catQuestions.map((q) => {
                         const qIdx = exam.questions.findIndex((item) => item.id === q.id);

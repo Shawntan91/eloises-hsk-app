@@ -8,6 +8,7 @@ import hskExamsData from "@/data/hskExams.json";
 import { getRecentExams, RecentExamItem, deleteRecentExam } from "@/utils/storage";
 import { getMasteredWordNos } from "@/utils/wordStorage";
 import { getLocale, Locale } from "@/utils/i18n";
+import { getSectionRangeLabel, formatRecentExamTitle } from "@/utils/timer";
 import {
   getConsecutiveStreakDays,
   getRecentHeatmapData,
@@ -358,19 +359,19 @@ export default function HomePage() {
                 <div>
                   <div className="flex items-center justify-between mb-2.5">
                     <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-red-50 text-red-700 border border-red-200">
-                      {exam.tagKo || exam.tag}
+                      {locale === "zh" ? exam.tag : exam.tagKo || exam.tag}
                     </span>
                     <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
                       <span className="flex items-center gap-1">
                         <Clock className="w-3.5 h-3.5" />
-                        <span>{exam.durationMinutes}분</span>
+                        <span>{locale === "zh" ? `${exam.durationMinutes}分钟` : `${exam.durationMinutes}분`}</span>
                       </span>
                       <span>·</span>
-                      <span>{exam.questionCount}문항</span>
+                      <span>{locale === "zh" ? `${exam.questionCount}题` : `${exam.questionCount}문항`}</span>
                       <Link
                         href={`/settings?examId=${exam.id}`}
                         className="ml-1 p-1 hover:text-red-600 hover:bg-red-50 rounded-md transition"
-                        title="맞춤형 시험 설정"
+                        title={locale === "zh" ? "自定义考试设置" : "맞춤형 시험 설정"}
                       >
                         <Sliders className="w-3.5 h-3.5" />
                       </Link>
@@ -393,14 +394,18 @@ export default function HomePage() {
                       className="flex items-center justify-center gap-1.5 py-2 sm:py-2.5 px-3 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-bold shadow-xs transition"
                     >
                       <Play className="w-3.5 h-3.5 fill-current" />
-                      <span>{isKo ? "정규 실전 모의고사" : "整卷模考 (100题)"}</span>
+                      <span>
+                        {locale === "zh"
+                          ? `整卷模考 (${exam.questions?.length || exam.questionCount}题)`
+                          : `정규 실전 (${exam.questions?.length || exam.questionCount}문항)`}
+                      </span>
                     </Link>
                     <Link
                       href={`/review/${exam.id}`}
                       className="flex items-center justify-center gap-1.5 py-2 sm:py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition"
                     >
                       <BookOpen className="w-3.5 h-3.5" />
-                      <span>문제 & 해설 보기</span>
+                      <span>{locale === "zh" ? "题目与解析" : "문제 & 해설 보기"}</span>
                     </Link>
                   </div>
 
@@ -411,21 +416,21 @@ export default function HomePage() {
                       className="py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-red-50 hover:text-red-700 text-slate-600 text-[11px] font-bold text-center border border-slate-200/80 transition flex items-center justify-center gap-1"
                     >
                       <Headphones className="w-3 h-3 text-red-500" />
-                      <span>듣기 (1~45)</span>
+                      <span>{getSectionRangeLabel(exam.questions, "听力", locale)}</span>
                     </Link>
                     <Link
                       href={`/settings?examId=${exam.id}&part=reading`}
                       className="py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-blue-50 hover:text-blue-700 text-slate-600 text-[11px] font-bold text-center border border-slate-200/80 transition flex items-center justify-center gap-1"
                     >
                       <BookOpen className="w-3 h-3 text-blue-500" />
-                      <span>독해 (46~85)</span>
+                      <span>{getSectionRangeLabel(exam.questions, "阅读", locale)}</span>
                     </Link>
                     <Link
                       href={`/settings?examId=${exam.id}&part=writing`}
                       className="py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-purple-50 hover:text-purple-700 text-slate-600 text-[11px] font-bold text-center border border-slate-200/80 transition flex items-center justify-center gap-1"
                     >
                       <FileEdit className="w-3 h-3 text-purple-500" />
-                      <span>쓰기 (86~100)</span>
+                      <span>{getSectionRangeLabel(exam.questions, "书写", locale)}</span>
                     </Link>
                   </div>
                 </div>
@@ -461,19 +466,19 @@ export default function HomePage() {
                 <div>
                   <div className="flex items-center justify-between mb-2.5">
                     <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
-                      {exam.tagKo || exam.tag}
+                      {locale === "zh" ? exam.tag : exam.tagKo || exam.tag}
                     </span>
                     <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
                       <span className="flex items-center gap-1">
                         <Clock className="w-3.5 h-3.5" />
-                        <span>{exam.durationMinutes}분</span>
+                        <span>{locale === "zh" ? `${exam.durationMinutes}分钟` : `${exam.durationMinutes}분`}</span>
                       </span>
                       <span>·</span>
-                      <span>{exam.questionCount}문항</span>
+                      <span>{locale === "zh" ? `${exam.questionCount}题` : `${exam.questionCount}문항`}</span>
                       <Link
                         href={`/settings?examId=${exam.id}`}
                         className="ml-1 p-1 hover:text-blue-600 hover:bg-blue-50 rounded-md transition"
-                        title="맞춤형 시험 설정"
+                        title={locale === "zh" ? "自定义考试设置" : "맞춤형 시험 설정"}
                       >
                         <Sliders className="w-3.5 h-3.5" />
                       </Link>
@@ -495,14 +500,18 @@ export default function HomePage() {
                       className="flex items-center justify-center gap-1.5 py-2 sm:py-2.5 px-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-xs transition"
                     >
                       <Play className="w-3.5 h-3.5 fill-current" />
-                      <span>{isKo ? "정규 실전 모의고사" : "整卷模考 (100题)"}</span>
+                      <span>
+                        {locale === "zh"
+                          ? `整卷模考 (${exam.questions?.length || exam.questionCount}题)`
+                          : `정규 실전 (${exam.questions?.length || exam.questionCount}문항)`}
+                      </span>
                     </Link>
                     <Link
                       href={`/review/${exam.id}`}
                       className="flex items-center justify-center gap-1.5 py-2 sm:py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition"
                     >
                       <BookOpen className="w-3.5 h-3.5" />
-                      <span>문제 & 해설 보기</span>
+                      <span>{locale === "zh" ? "题目与解析" : "문제 & 해설 보기"}</span>
                     </Link>
                   </div>
 
@@ -512,21 +521,21 @@ export default function HomePage() {
                       className="py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-blue-50 hover:text-blue-700 text-slate-600 text-[11px] font-bold text-center border border-slate-200/80 transition flex items-center justify-center gap-1"
                     >
                       <Headphones className="w-3 h-3 text-blue-500" />
-                      <span>듣기 (1~45)</span>
+                      <span>{getSectionRangeLabel(exam.questions, "听力", locale)}</span>
                     </Link>
                     <Link
                       href={`/settings?examId=${exam.id}&part=reading`}
                       className="py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-blue-50 hover:text-blue-700 text-slate-600 text-[11px] font-bold text-center border border-slate-200/80 transition flex items-center justify-center gap-1"
                     >
                       <BookOpen className="w-3 h-3 text-blue-500" />
-                      <span>독해 (46~85)</span>
+                      <span>{getSectionRangeLabel(exam.questions, "阅读", locale)}</span>
                     </Link>
                     <Link
                       href={`/settings?examId=${exam.id}&part=writing`}
                       className="py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-purple-50 hover:text-purple-700 text-slate-600 text-[11px] font-bold text-center border border-slate-200/80 transition flex items-center justify-center gap-1"
                     >
                       <FileEdit className="w-3 h-3 text-purple-500" />
-                      <span>쓰기 (86~100)</span>
+                      <span>{getSectionRangeLabel(exam.questions, "书写", locale)}</span>
                     </Link>
                   </div>
                 </div>
@@ -540,7 +549,11 @@ export default function HomePage() {
           <section className="mb-10">
             <h3 className="text-xs sm:text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
               <RotateCcw className="w-4 h-4 text-slate-500" />
-              <span>최근 응시 및 학습 기록 ({recents.length}개)</span>
+              <span>
+                {locale === "zh"
+                  ? `最近模考与练习记录 (${recents.length}条)`
+                  : `최근 응시 및 학습 기록 (${recents.length}개)`}
+              </span>
             </h3>
 
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-slate-200 divide-y divide-slate-100 overflow-hidden shadow-xs">
@@ -566,11 +579,15 @@ export default function HomePage() {
 
                     <div className="min-w-0">
                       <p className="text-xs sm:text-sm font-bold text-slate-800 truncate">
-                        {item.title}
+                        {formatRecentExamTitle(item, locale)}
                       </p>
                       <p className="text-[11px] text-slate-400 mt-0.5">
                         {item.status === "submitted"
-                          ? `제출 완료 (최종 점수: ${item.score !== undefined ? `${item.score}점` : "채점 완료"})`
+                          ? locale === "zh"
+                            ? `已交卷 (最终得分: ${item.score !== undefined ? `${item.score}分` : "已批改"})`
+                            : `제출 완료 (최종 점수: ${item.score !== undefined ? `${item.score}점` : "채점 완료"})`
+                          : locale === "zh"
+                          ? "作答进行中 · 可继续做题"
                           : "응시 진행 중 · 이어서 풀기 가능"}
                         {" · "}
                         {new Date(item.updatedAt).toLocaleDateString()}
@@ -587,7 +604,15 @@ export default function HomePage() {
                           : "bg-red-600 hover:bg-red-700 text-white"
                       }`}
                     >
-                      <span>{item.status === "submitted" ? "성적표" : "이어풀기"}</span>
+                      <span>
+                        {item.status === "submitted"
+                          ? locale === "zh"
+                            ? "成绩单"
+                            : "성적표"
+                          : locale === "zh"
+                          ? "继续做题"
+                          : "이어풀기"}
+                      </span>
                       <ChevronRight className="w-3.5 h-3.5" />
                     </Link>
 
@@ -595,7 +620,7 @@ export default function HomePage() {
                       type="button"
                       onClick={() => handleDeleteRecent(item.id)}
                       className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition"
-                      title="기록 삭제"
+                      title={locale === "zh" ? "删除记录" : "기록 삭제"}
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>

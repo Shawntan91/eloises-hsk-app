@@ -18,7 +18,8 @@ import {
   restoreBackupSnapshot,
 } from "@/utils/storage";
 import { getStudyGoals, saveStudyGoals } from "@/utils/studyStats";
-import { getLocale } from "@/utils/i18n";
+import { getLocale, Locale } from "@/utils/i18n";
+import { getSectionRangeLabel } from "@/utils/timer";
 import {
   Sliders,
   Clock,
@@ -59,7 +60,7 @@ function SettingsForm() {
   const [shuffleQuestions, setShuffleQuestions] = useState<boolean>(false);
   const [shuffleOptions, setShuffleOptions] = useState<boolean>(false);
   const [rememberSettings, setRememberSettings] = useState<boolean>(true);
-  const [locale, setLocale] = useState<string>("ko");
+  const [locale, setLocale] = useState<Locale>("ko");
   const [targetExamDate, setTargetExamDate] = useState<string>("");
   const [backupMsg, setBackupMsg] = useState<string | null>(null);
   const backupFileRef = React.useRef<HTMLInputElement>(null);
@@ -80,20 +81,24 @@ function SettingsForm() {
       if (typeof saved.shuffleQuestions === "boolean") setShuffleQuestions(saved.shuffleQuestions);
       if (typeof saved.shuffleOptions === "boolean") setShuffleOptions(saved.shuffleOptions);
     }
+
+    const handleLocaleChange = () => setLocale(getLocale());
+    window.addEventListener("hsk-locale-changed", handleLocaleChange);
+    return () => window.removeEventListener("hsk-locale-changed", handleLocaleChange);
   }, []);
 
-  const isKo = locale === "ko";
+  const isKo = locale !== "zh";
 
   // Calculate question count for current section filter
   const getSectionQuestions = (allQuestions: Question[], section: string) => {
     if (section === "listening") {
-      return allQuestions.filter((q) => q.partCategory === "听力" || q.number <= 45);
+      return allQuestions.filter((q) => q.partCategory === "听力");
     }
     if (section === "reading") {
-      return allQuestions.filter((q) => q.partCategory === "阅读" || (q.number >= 46 && q.number <= 85));
+      return allQuestions.filter((q) => q.partCategory === "阅读");
     }
     if (section === "writing") {
-      return allQuestions.filter((q) => q.partCategory === "书写" || q.number >= 86);
+      return allQuestions.filter((q) => q.partCategory === "书写");
     }
     return allQuestions;
   };
@@ -118,6 +123,23 @@ function SettingsForm() {
         count = Math.min(customCount, finalQuestions.length);
       }
       finalQuestions = finalQuestions.slice(0, count);
+    }
+
+    // Group by section category (听力 -> 阅读 -> 书写) so sections in palette are always contiguous
+    const catRank: Record<string, number> = { 听力: 1, 阅读: 2, 书写: 3 };
+    finalQuestions.sort((a, b) => {
+      const rA = catRank[a.partCategory || "阅读"] || 2;
+      const rB = catRank[b.partCategory || "阅读"] || 2;
+      if (rA !== rB) return rA - rB;
+      return shuffleQuestions ? 0 : a.number - b.number;
+    });
+
+    // If question count is subsetted or shuffled, renumber 1..N so palette ranges match actual questions
+    if (shuffleQuestions || selectedCountOption !== "all") {
+      finalQuestions = finalQuestions.map((q, idx) => ({
+        ...q,
+        number: idx + 1,
+      }));
     }
 
     // Shuffle options if chosen
@@ -155,31 +177,38 @@ function SettingsForm() {
       durationSeconds = durationOption * 60;
     }
 
+    const sectionZh =
+      selectedSection === "all"
+        ? "全卷模考"
+        : selectedSection === "listening"
+        ? "听力专项"
+        : selectedSection === "reading"
+        ? "阅读专项"
+        : "书写专项";
+
+    const sectionKo =
+      selectedSection === "all"
+        ? "전체 모의고사"
+        : selectedSection === "listening"
+        ? "듣기 집중 연습"
+        : selectedSection === "reading"
+        ? "독해 집중 연습"
+        : "쓰기 집중 연습";
+
+    const durationLabelZh =
+      durationOption === 0 ? "不限时" : `${Math.round(durationSeconds / 60)}分钟`;
+    const durationLabelKo =
+      durationOption === 0 ? "시간 무제한" : `${Math.round(durationSeconds / 60)}분`;
+
     // Create unique customized active exam ID
     const activeExamId = `${currentExam.id}-custom-${Date.now()}`;
     const customExam: Exam = {
       id: activeExamId,
       level: currentExam.level,
-      title: `${currentExam.title} (${
-        selectedSection === "all"
-          ? isKo ? "전체 모의고사" : "全卷"
-          : selectedSection === "listening"
-          ? isKo ? "듣기 영역" : "听力"
-          : selectedSection === "reading"
-          ? isKo ? "독해 영역" : "阅读"
-          : isKo ? "쓰기 영역" : "书写"
-      })`,
-      titleKo: `${currentExam.titleKo} (${
-        selectedSection === "all"
-          ? "전체 모의고사"
-          : selectedSection === "listening"
-          ? "듣기 영역"
-          : selectedSection === "reading"
-          ? "독해 영역"
-          : "쓰기 영역"
-      })`,
-      subTitle: `${count}题 · ${Math.round(durationSeconds / 60)}分钟`,
-      subTitleKo: `${count}문항 · ${Math.round(durationSeconds / 60)}분`,
+      title: `${currentExam.title} (${sectionZh})`,
+      titleKo: `${currentExam.titleKo || currentExam.title} (${sectionKo})`,
+      subTitle: `${count}题 · ${durationLabelZh}`,
+      subTitleKo: `${count}문항 · ${durationLabelKo}`,
       tag: currentExam.tag,
       tagKo: currentExam.tagKo,
       questions: finalQuestions,
@@ -287,14 +316,32 @@ function SettingsForm() {
           <div>
             <label className="text-xs font-bold text-slate-700 block mb-2.5 flex items-center gap-1.5">
               <Layers className="w-4 h-4 text-blue-600" />
-              <span>{isKo ? "2. 응시 영역 / 专项题型" : "2. 考试范围与专项题型"}</span>
+              <span>{isKo ? "2. 응시 영역 선택" : "2. 考试范围与专项题型"}</span>
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
               {[
-                { id: "all", labelZh: "全卷模考", labelKo: "전체 영역 (100문항)", icon: Layers },
-                { id: "listening", labelZh: "仅做听力", labelKo: "듣기 영역 (1~45)", icon: Headphones },
-                { id: "reading", labelZh: "仅做阅读", labelKo: "독해 영역 (46~85)", icon: BookOpen },
-                { id: "writing", labelZh: "仅做书写", labelKo: "쓰기 영역 (86~100)", icon: FileEdit },
+                {
+                  id: "all",
+                  label: isKo
+                    ? `전체 영역 (${currentExam.questions.length}문항)`
+                    : `全卷模考 (${currentExam.questions.length}题)`,
+                  icon: Layers,
+                },
+                {
+                  id: "listening",
+                  label: getSectionRangeLabel(currentExam.questions, "听力", locale),
+                  icon: Headphones,
+                },
+                {
+                  id: "reading",
+                  label: getSectionRangeLabel(currentExam.questions, "阅读", locale),
+                  icon: BookOpen,
+                },
+                {
+                  id: "writing",
+                  label: getSectionRangeLabel(currentExam.questions, "书写", locale),
+                  icon: FileEdit,
+                },
               ].map((item) => {
                 const Icon = item.icon;
                 const isSelected = selectedSection === item.id;
@@ -310,7 +357,7 @@ function SettingsForm() {
                     }`}
                   >
                     <Icon className="w-4 h-4" />
-                    <span className="text-xs font-bold">{isKo ? item.labelKo : item.labelZh}</span>
+                    <span className="text-xs font-bold">{item.label}</span>
                   </button>
                 );
               })}
@@ -636,7 +683,31 @@ function SettingsForm() {
 
 export default function SettingsPage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-xs text-slate-400">Loading settings...</div>}>
+    <Suspense
+      fallback={
+        <div className="flex-1 flex flex-col bg-slate-50/50 min-h-screen">
+          <Header />
+          <main className="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-10">
+            <div className="bg-white/95 rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6 animate-pulse">
+              <div className="h-7 bg-slate-200 rounded-xl w-56" />
+              <div className="h-4 bg-slate-100 rounded-lg w-80" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                <div className="h-16 bg-slate-100 rounded-2xl" />
+                <div className="h-16 bg-slate-100 rounded-2xl" />
+                <div className="h-16 bg-slate-100 rounded-2xl" />
+                <div className="h-16 bg-slate-100 rounded-2xl" />
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
+                <div className="h-14 bg-slate-100 rounded-2xl" />
+                <div className="h-14 bg-slate-100 rounded-2xl" />
+                <div className="h-14 bg-slate-100 rounded-2xl" />
+                <div className="h-14 bg-slate-100 rounded-2xl" />
+              </div>
+            </div>
+          </main>
+        </div>
+      }
+    >
       <SettingsForm />
     </Suspense>
   );
