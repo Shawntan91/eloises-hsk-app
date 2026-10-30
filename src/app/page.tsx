@@ -9,6 +9,15 @@ import { getRecentExams, RecentExamItem, deleteRecentExam } from "@/utils/storag
 import { getMasteredWordNos } from "@/utils/wordStorage";
 import { getLocale, Locale } from "@/utils/i18n";
 import {
+  getConsecutiveStreakDays,
+  getRecentHeatmapData,
+  getStudyGoals,
+  calculateDDay,
+  getStudyActivityMap,
+  getTodayKey,
+  StudyGoalSettings,
+} from "@/utils/studyStats";
+import {
   Sparkles,
   Headphones,
   BookOpen,
@@ -28,6 +37,8 @@ import {
   Sliders,
   FileEdit,
   Upload,
+  Calendar,
+  Target,
 } from "lucide-react";
 
 export default function HomePage() {
@@ -36,20 +47,50 @@ export default function HomePage() {
   const [locale, setLocale] = useState<Locale>("ko");
   const [masteredWordCount, setMasteredWordCount] = useState(0);
 
+  // F5 & F6 State
+  const [goals, setGoals] = useState<StudyGoalSettings>({
+    dailyWordTarget: 20,
+    dailyMinuteTarget: 30,
+    targetExamDate: "",
+  });
+  const [streakDays, setStreakDays] = useState(0);
+  const [heatmapData, setHeatmapData] = useState<Array<{ date: string; count: number; level: number }>>([]);
+  const [todayWords, setTodayWords] = useState(0);
+  const [todayMinutes, setTodayMinutes] = useState(0);
+
   useEffect(() => {
     setLocale(getLocale());
     setRecents(getRecentExams());
     setMasteredWordCount(getMasteredWordNos().length);
 
+    const loadStats = () => {
+      const g = getStudyGoals();
+      setGoals(g);
+      setStreakDays(getConsecutiveStreakDays());
+      setHeatmapData(getRecentHeatmapData(35));
+      const map = getStudyActivityMap();
+      const today = map[getTodayKey()];
+      setTodayWords(today?.wordsCount || 0);
+      setTodayMinutes(today?.studyMinutes || 0);
+    };
+
+    loadStats();
+
     const handleLocaleChange = () => setLocale(getLocale());
     const handleWordChange = () => setMasteredWordCount(getMasteredWordNos().length);
     window.addEventListener("hsk-locale-changed", handleLocaleChange);
     window.addEventListener("word-progress-changed", handleWordChange);
+    window.addEventListener("study-activity-changed", loadStats);
+    window.addEventListener("study-goals-changed", loadStats);
     return () => {
       window.removeEventListener("hsk-locale-changed", handleLocaleChange);
       window.removeEventListener("word-progress-changed", handleWordChange);
+      window.removeEventListener("study-activity-changed", loadStats);
+      window.removeEventListener("study-goals-changed", loadStats);
     };
   }, []);
+
+  const dDayInfo = calculateDDay(goals.targetExamDate);
 
   const handleDeleteRecent = (id: string) => {
     deleteRecentExam(id);
@@ -98,6 +139,150 @@ export default function HomePage() {
               <Award className="w-3.5 h-3.5 text-amber-600" />
               <span>180점 합격선 분석</span>
             </span>
+          </div>
+        </div>
+
+        {/* D-Day & Daily Goals Dashboard (F5, F6) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          {/* 1. D-Day Big Card */}
+          <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-5 sm:p-6 shadow-md border border-slate-700/50 flex flex-col justify-between relative overflow-hidden">
+            <div className="flex items-center justify-between mb-4">
+              <span className="px-2.5 py-1 rounded-full text-xs font-black bg-red-500/20 text-red-400 border border-red-500/30 flex items-center gap-1.5">
+                <Target className="w-3.5 h-3.5 text-red-400" />
+                <span>HSK 목표 시험일</span>
+              </span>
+              <Link
+                href="/settings"
+                className="text-xs text-slate-400 hover:text-white transition flex items-center gap-1"
+                title="목표일 설정 변경"
+              >
+                <span>설정 변경</span>
+                <ChevronRight className="w-3 h-3" />
+              </Link>
+            </div>
+
+            <div className="my-2">
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl sm:text-5xl font-black tracking-tight text-white font-mono">
+                  {dDayInfo.dDayText}
+                </span>
+                <span className="text-xs font-bold text-red-400">
+                  {dDayInfo.isPast ? "시험 종료" : dDayInfo.daysLeft === 0 ? "오늘 시험!" : "남음"}
+                </span>
+              </div>
+              <p className="text-xs text-slate-300 mt-1.5 flex items-center gap-1.5 font-mono">
+                <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                <span>{goals.targetExamDate || "목표 날짜 미설정"}</span>
+              </p>
+            </div>
+
+            <div className="pt-3 border-t border-slate-700/50 flex items-center justify-between text-xs">
+              <span className="text-slate-400">합격 목표</span>
+              <span className="font-bold text-amber-400">HSK 5급 210점+ 도전</span>
+            </div>
+          </div>
+
+          {/* 2. Daily Goal Progress */}
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-5 sm:p-6 shadow-xs border border-slate-200 flex flex-col justify-between">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-1.5">
+                <Flame className="w-4 h-4 text-orange-500" />
+                <span className="text-xs sm:text-sm font-black text-slate-900">
+                  오늘의 학습 목표
+                </span>
+              </div>
+              <span className="px-2 py-0.5 rounded-full text-[11px] font-black bg-orange-50 text-orange-600 border border-orange-200">
+                🔥 연속 {streakDays}일 달성 중!
+              </span>
+            </div>
+
+            <div className="space-y-3.5 my-1">
+              {/* Words Target Bar */}
+              <div>
+                <div className="flex items-center justify-between text-xs font-bold mb-1">
+                  <span className="text-slate-600">📖 단어 학습 ({todayWords} / {goals.dailyWordTarget}개)</span>
+                  <span className="font-mono text-slate-900">
+                    {Math.min(100, Math.round((todayWords / goals.dailyWordTarget) * 100))}%
+                  </span>
+                </div>
+                <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div
+                    className="bg-gradient-to-r from-red-500 to-rose-500 h-full rounded-full transition-all duration-300"
+                    style={{ width: `${Math.min(100, (todayWords / goals.dailyWordTarget) * 100)}%` }}
+                  />
+                </div>
+              </div>
+
+              {/* Study Time Target Bar */}
+              <div>
+                <div className="flex items-center justify-between text-xs font-bold mb-1">
+                  <span className="text-slate-600">⏱️ 학습 시간 ({todayMinutes} / {goals.dailyMinuteTarget}분)</span>
+                  <span className="font-mono text-slate-900">
+                    {Math.min(100, Math.round((todayMinutes / goals.dailyMinuteTarget) * 100))}%
+                  </span>
+                </div>
+                <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div
+                    className="bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-full transition-all duration-300"
+                    style={{ width: `${Math.min(100, (todayMinutes / goals.dailyMinuteTarget) * 100)}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              {todayWords >= goals.dailyWordTarget && todayMinutes >= goals.dailyMinuteTarget ? (
+                <span className="text-emerald-600 font-bold flex items-center gap-1">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>오늘의 학습 목표 완료! 🎉</span>
+                </span>
+              ) : (
+                <span className="text-slate-400">목표 달성까지 조금만 더 힘내세요! 💪</span>
+              )}
+            </div>
+          </div>
+
+          {/* 3. 35-Day Heatmap (GitHub Style) */}
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-5 sm:p-6 shadow-xs border border-slate-200 flex flex-col justify-between">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-xs sm:text-sm font-black text-slate-900">
+                최근 5주 학습 잔디 (Heatmap)
+              </span>
+              <span className="text-[11px] text-slate-400 font-medium">
+                35일 잔디
+              </span>
+            </div>
+
+            <div className="my-auto py-2">
+              <div className="grid grid-cols-7 gap-1.5 justify-center">
+                {heatmapData.map((day, idx) => {
+                  let colorClass = "bg-slate-100 border-slate-200";
+                  if (day.level === 1) colorClass = "bg-emerald-200 border-emerald-300";
+                  else if (day.level === 2) colorClass = "bg-emerald-400 border-emerald-500";
+                  else if (day.level === 3) colorClass = "bg-emerald-600 border-emerald-700";
+                  else if (day.level === 4) colorClass = "bg-emerald-800 border-emerald-900";
+
+                  return (
+                    <div
+                      key={idx}
+                      className={`h-5 w-full rounded-md border transition-transform hover:scale-125 cursor-pointer ${colorClass}`}
+                      title={`${day.date}: ${day.count}회 활동`}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+              <span>Less</span>
+              <div className="flex items-center gap-1">
+                <span className="w-2.5 h-2.5 rounded-xs bg-slate-100 border border-slate-200" />
+                <span className="w-2.5 h-2.5 rounded-xs bg-emerald-200 border border-emerald-300" />
+                <span className="w-2.5 h-2.5 rounded-xs bg-emerald-400 border border-emerald-500" />
+                <span className="w-2.5 h-2.5 rounded-xs bg-emerald-600 border border-emerald-700" />
+              </div>
+              <span>More</span>
+            </div>
           </div>
         </div>
 

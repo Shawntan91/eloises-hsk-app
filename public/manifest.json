@@ -1,0 +1,23 @@
+{
+  "name": "Eloise's HSK APP - 실전 모의고사 & 에빙하우스 단어장",
+  "short_name": "Eloise HSK",
+  "description": "Eloise 맞춤형 HSK 4급 & 5급 실전 모의고사, 에빙하우스 단어장, 오답노트 시스템",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#dc2626",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}

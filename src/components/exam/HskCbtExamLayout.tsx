@@ -6,6 +6,8 @@ import { Question, OptionKey } from "@/types/question";
 import { formatSeconds, getRemainingSeconds } from "@/utils/timer";
 import AudioPlayerBar from "./AudioPlayerBar";
 import AiTutorModal from "@/components/tutor/AiTutorModal";
+import MarkdownText from "@/components/common/MarkdownText";
+import ListeningShadowing from "./ListeningShadowing";
 import {
   ChevronLeft,
   ChevronRight,
@@ -360,8 +362,11 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                     </button>
 
                     {showTranscript && (
-                      <div className="px-4 py-3 bg-white border-t border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line font-sans animate-in fade-in duration-150">
-                        {currentQ.transcript}
+                      <div className="px-4 py-3 bg-white border-t border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed font-sans animate-in fade-in duration-150">
+                        <div className="whitespace-pre-line mb-3">
+                          {currentQ.transcript}
+                        </div>
+                        <ListeningShadowing transcript={currentQ.transcript} />
                       </div>
                     )}
                   </div>
@@ -520,20 +525,40 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                       const optTextKo = (currentQ.optionsKo as any)?.[key];
                       const isSelected = selectedAnswer === key;
 
+                      // Practice mode visual feedback
+                      const isPractice = exam.answerMode === "practice" && Boolean(selectedAnswer);
+                      const isCorrectAnswer = key === currentQ.officialAnswer;
+
+                      let buttonStyle = isSelected
+                        ? "border-red-600 bg-red-50/70 text-red-950 shadow-xs"
+                        : "border-slate-200 hover:border-red-300 hover:bg-slate-50/80 text-slate-800";
+
+                      if (isPractice) {
+                        if (isCorrectAnswer) {
+                          buttonStyle = "border-emerald-500 bg-emerald-50/90 text-emerald-950 font-bold shadow-xs";
+                        } else if (isSelected && !isCorrectAnswer) {
+                          buttonStyle = "border-rose-500 bg-rose-50/90 text-rose-950 font-bold shadow-xs";
+                        } else {
+                          buttonStyle = "border-slate-200 opacity-50 text-slate-400";
+                        }
+                      }
+
                       return (
                         <button
                           key={key}
                           type="button"
                           onClick={() => onSelectAnswer(key)}
-                          className={`w-full text-left p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border flex items-start gap-3 sm:gap-4 transition group cursor-pointer ${
-                            isSelected
-                              ? "border-red-600 bg-red-50/70 text-red-950 shadow-xs"
-                              : "border-slate-200 hover:border-red-300 hover:bg-slate-50/80 text-slate-800"
-                          }`}
+                          className={`w-full text-left p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border flex items-start gap-3 sm:gap-4 transition group cursor-pointer ${buttonStyle}`}
                         >
                           <div
                             className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 transition ${
-                              isSelected
+                              isPractice
+                                ? isCorrectAnswer
+                                  ? "bg-emerald-600 text-white"
+                                  : isSelected
+                                  ? "bg-rose-600 text-white"
+                                  : "bg-slate-100 text-slate-400"
+                                : isSelected
                                 ? "bg-red-600 text-white shadow-xs"
                                 : "bg-white border border-slate-300 text-slate-600 group-hover:border-red-400 group-hover:text-red-600"
                             }`}
@@ -551,6 +576,41 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                         </button>
                       );
                     })}
+                  </div>
+                )}
+
+                {/* 5. 练习模式即时反馈与解析 (Practice Mode Instant Feedback) */}
+                {exam.answerMode === "practice" && selectedAnswer && (
+                  <div className="mt-5 p-4 sm:p-5 rounded-2xl bg-amber-50/80 border border-amber-300 text-slate-800 space-y-3 animate-in fade-in">
+                    <div className="flex items-center justify-between pb-2 border-b border-amber-200">
+                      <span className="font-bold text-xs sm:text-sm text-amber-900 flex items-center gap-1.5">
+                        <Sparkles className="w-4 h-4 text-amber-600" />
+                        <span>학습 연습 모드 즉시 해설 / 即时解析反馈</span>
+                      </span>
+                      <span className="text-xs font-mono font-bold">
+                        {currentQ.type === "order_words" ? (
+                          selectedAnswer.replace(/[。？！,.!?\s]/g, "") ===
+                          (currentQ.standardSentence || "").replace(/[。？！,.!?\s]/g, "") ? (
+                            <span className="text-emerald-700 font-bold bg-emerald-100 px-2.5 py-0.5 rounded-md">
+                              ✅ 순서 일치 (Correct)
+                            </span>
+                          ) : (
+                            <span className="text-rose-700 font-bold bg-rose-100 px-2.5 py-0.5 rounded-md">
+                              ❌ 순서 확인 필요
+                            </span>
+                          )
+                        ) : selectedAnswer === currentQ.officialAnswer ? (
+                          <span className="text-emerald-700 font-bold bg-emerald-100 px-2.5 py-0.5 rounded-md">
+                            ✅ 정답입니다! (Correct)
+                          </span>
+                        ) : (
+                          <span className="text-rose-700 font-bold bg-rose-100 px-2.5 py-0.5 rounded-md">
+                            ❌ 오답 (정답: {currentQ.officialAnswer})
+                          </span>
+                        )}
+                      </span>
+                    </div>
+                    <MarkdownText content={currentQ.explanationKo || currentQ.explanation} />
                   </div>
                 )}
               </div>

@@ -564,14 +564,22 @@ export const IeltsExamLayout: React.FC<IeltsExamLayoutProps> = ({
               }`}
             >
               <ChevronLeft className="w-4 h-4" />
-              <span>上一题</span>
+              <span>{locale === "zh" ? "上一题" : "이전 (上一题)"}</span>
             </button>
             <button
               type="button"
               onClick={onNext}
               className="flex items-center gap-1 px-5 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white transition cursor-pointer"
             >
-              <span>{currentIndex === exam.questions.length - 1 ? "完成交卷" : "下一题"}</span>
+              <span>
+                {currentIndex === exam.questions.length - 1
+                  ? locale === "zh"
+                    ? "完成交卷"
+                    : "최종 제출 (交卷)"
+                  : locale === "zh"
+                  ? "下一题"
+                  : "다음 (下一题)"}
+              </span>
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>

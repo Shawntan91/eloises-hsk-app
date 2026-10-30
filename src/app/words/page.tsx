@@ -12,6 +12,10 @@ import {
   getSavedStudyIndex,
   saveStudyIndex,
 } from "@/utils/wordStorage";
+import { stripPinyinTones } from "@/utils/pinyin";
+import { loadSM2Records, recordSM2Review, getDueWordNos, SM2Record } from "@/utils/sm2";
+import { recordWordStudied } from "@/utils/studyStats";
+import { saveWordMistake } from "@/utils/mistakeBank";
 import AiTutorModal from "@/components/tutor/AiTutorModal";
 import {
   BookOpen,
@@ -37,7 +41,7 @@ const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const PAGE_SIZE = 40;
 
 export default function WordsPage() {
-  const [activeTab, setActiveTab] = useState<"card" | "list" | "quiz">("card");
+  const [activeTab, setActiveTab] = useState<"card" | "list" | "quiz" | "sm2">("card");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [masteredNos, setMasteredNos] = useState<number[]>([]);
@@ -60,11 +64,26 @@ export default function WordsPage() {
   const [quizHistory, setQuizHistory] = useState<boolean[]>([]);
   const [lastAutoStarred, setLastAutoStarred] = useState<number | null>(null);
 
+  // SM-2 Spaced Repetition (F4) state
+  const [sm2DueNos, setSm2DueNos] = useState<number[]>([]);
+  const [sm2Index, setSm2Index] = useState(0);
+  const [sm2Flipped, setSm2Flipped] = useState(false);
+  const [sm2CompletedCount, setSm2CompletedCount] = useState(0);
+
   const words = hskWordsData as any[];
+
+  const refreshSm2List = () => {
+    const allNos = words.map((w) => w.no);
+    const due = getDueWordNos(allNos);
+    setSm2DueNos(due);
+    setSm2Index(0);
+    setSm2Flipped(false);
+  };
 
   useEffect(() => {
     setMasteredNos(getMasteredWordNos());
     setStarredNos(getStarredWordNos());
+    refreshSm2List();
     const savedIdx = getSavedStudyIndex();
     if (savedIdx >= 0 && savedIdx < words.length) {
       setCurrentIndex(savedIdx);
@@ -74,11 +93,48 @@ export default function WordsPage() {
       setMasteredNos(getMasteredWordNos());
       setStarredNos(getStarredWordNos());
     };
+    const handleSm2Change = () => refreshSm2List();
+
     window.addEventListener("word-progress-changed", handleProgressChange);
-    return () => window.removeEventListener("word-progress-changed", handleProgressChange);
+    window.addEventListener("sm2-records-changed", handleSm2Change);
+    return () => {
+      window.removeEventListener("word-progress-changed", handleProgressChange);
+      window.removeEventListener("sm2-records-changed", handleSm2Change);
+    };
   }, [words.length]);
 
   const currentWord = words[currentIndex] || words[0];
+
+  // SM-2 Current Word
+  const currentSm2Word = useMemo(() => {
+    if (sm2DueNos.length === 0 || sm2Index >= sm2DueNos.length) return null;
+    const targetNo = sm2DueNos[sm2Index];
+    return words.find((w) => w.no === targetNo) || null;
+  }, [sm2DueNos, sm2Index, words]);
+
+  const handleStartNewSm2Batch = (count = 15) => {
+    const records = loadSM2Records();
+    // Prioritize unmastered and starred words not yet in SM-2
+    const candidates = words.filter((w) => !records[w.no]);
+    const chosen = candidates.slice(0, count);
+    chosen.forEach((w) => {
+      recordSM2Review(w.no, 0); // initialize due immediately
+    });
+    refreshSm2List();
+  };
+
+  const handleRateSM2 = (grade: 5 | 3 | 0) => {
+    if (!currentSm2Word) return;
+    recordSM2Review(currentSm2Word.no, grade);
+    recordWordStudied(1);
+    setSm2CompletedCount((c) => c + 1);
+    setSm2Flipped(false);
+    if (sm2Index + 1 < sm2DueNos.length) {
+      setSm2Index((i) => i + 1);
+    } else {
+      refreshSm2List();
+    }
+  };
 
   const handleNextCard = () => {
     setIsFlipped(false);
@@ -97,6 +153,7 @@ export default function WordsPage() {
   const handleToggleMastered = (no: number) => {
     toggleWordMastered(no);
     setMasteredNos(getMasteredWordNos());
+    recordWordStudied(1);
   };
 
   const handleToggleStarred = (no: number) => {
@@ -137,12 +194,15 @@ export default function WordsPage() {
       if (statusFilter === "unmastered" && masteredNos.includes(w.no)) return false;
       if (statusFilter === "starred" && !starredNos.includes(w.no)) return false;
 
-      // Search
+      // Search with toneless pinyin support
       if (searchQuery.trim()) {
-        const q = searchQuery.trim().toLowerCase();
-        const matchWord = w.word.toLowerCase().includes(q);
-        const matchPy = w.pinyin.toLowerCase().includes(q);
-        const matchKo = w.korean.toLowerCase().includes(q);
+        const rawQ = searchQuery.trim().toLowerCase();
+        const cleanQ = stripPinyinTones(rawQ);
+        const matchWord = w.word.toLowerCase().includes(rawQ);
+        const matchKo = w.korean.toLowerCase().includes(rawQ);
+        const cleanPy = stripPinyinTones(w.pinyin || "");
+        const matchPy =
+          cleanPy.includes(cleanQ) || (w.pinyin || "").toLowerCase().includes(rawQ);
         if (!matchWord && !matchPy && !matchKo) return false;
       }
 
@@ -213,7 +273,10 @@ export default function WordsPage() {
         setStarredNos(getStarredWordNos());
         setLastAutoStarred(quizWord.no);
       }
+      // F2: Save to unified Mistake Bank
+      saveWordMistake(quizWord, opt, quizWord.korean);
     }
+    recordWordStudied(1);
     setQuizHistory((h) => [...h, isCorrect]);
   };
 
@@ -311,6 +374,23 @@ export default function WordsPage() {
               <Award className="w-4 h-4" />
               <span>실전 단어 퀴즈 (Quiz)</span>
             </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab("sm2")}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition whitespace-nowrap cursor-pointer ${
+                activeTab === "sm2"
+                  ? "bg-red-600 text-white shadow-xs"
+                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+              }`}
+            >
+              <RotateCcw className="w-4 h-4" />
+              <span>오늘 복습 (SM-2 에빙하우스)</span>
+              {sm2DueNos.length > 0 && (
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-red-100 text-red-700 ml-1">
+                  {sm2DueNos.length}
+                </span>
+              )}
+            </button>
           </div>
         </div>
 
@@ -320,7 +400,7 @@ export default function WordsPage() {
             {/* Card Counter & Star */}
             <div className="w-full max-w-xl flex items-center justify-between text-xs font-bold text-slate-500 mb-3 px-2">
               <span className="font-mono">
-                No. {currentWord.no} / {words.length}
+                {currentIndex + 1} / {words.length} <span className="text-[11px] text-slate-400 font-normal">(No. {currentWord.no})</span>
               </span>
               <div className="flex items-center gap-2">
                 <button
@@ -959,6 +1039,145 @@ export default function WordsPage() {
                 </div>
               )}
             </div>
+          </div>
+        )}
+
+        {/* 4. SM-2 Spaced Repetition Mode */}
+        {activeTab === "sm2" && (
+          <div className="flex flex-col items-center">
+            {sm2DueNos.length === 0 || !currentSm2Word ? (
+              <div className="w-full max-w-xl bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200 p-8 sm:p-10 text-center shadow-sm">
+                <div className="w-16 h-16 rounded-3xl bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center mx-auto mb-4">
+                  <Sparkles className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-2">
+                  오늘 복습할 단어를 모두 완료했습니다! 🎉
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 max-w-md mx-auto mb-6 leading-relaxed">
+                  에빙하우스 망각 곡선 알고리즘(SM-2)에 따라 최적의 기억 보존 시점에 내일 복습 일정이 자동 생성됩니다.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => handleStartNewSm2Batch(15)}
+                    className="w-full sm:w-auto px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-2xl text-xs sm:text-sm font-bold shadow-xs transition flex items-center justify-center gap-2"
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                    <span>새 단어 15개 추천 추가 (SM-2 등록)</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("card")}
+                    className="w-full sm:w-auto px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center justify-center gap-2"
+                  >
+                    <span>플래시카드로 가기</span>
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="w-full max-w-xl">
+                {/* Header Info */}
+                <div className="flex items-center justify-between text-xs font-bold text-slate-500 mb-3 px-2">
+                  <span className="font-mono text-red-600">
+                    오늘 복습 대기: {sm2Index + 1} / {sm2DueNos.length}
+                  </span>
+                  <span className="text-slate-400">
+                    오늘 완료: {sm2CompletedCount}개
+                  </span>
+                </div>
+
+                {/* SM-2 Card */}
+                <div
+                  onClick={() => setSm2Flipped(!sm2Flipped)}
+                  className="bg-white/95 backdrop-blur-sm rounded-3xl border-2 border-slate-200 hover:border-red-300 p-8 shadow-md flex flex-col justify-between cursor-pointer transition select-none group min-h-[360px]"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-700">
+                      {currentSm2Word.pos_clean || "어휘"} · {currentSm2Word.no > 1200 ? "HSK 5급" : "HSK 4급"}
+                    </span>
+                    <span className="text-xs text-slate-400 font-medium">
+                      {sm2Flipped ? "앞면 보기" : "뜻 확인하기 (클릭)"}
+                    </span>
+                  </div>
+
+                  <div className="text-center py-6">
+                    <h3 className="text-5xl sm:text-6xl font-black text-slate-900 tracking-tight mb-3">
+                      {currentSm2Word.word}
+                    </h3>
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                      <span className="text-xl font-bold font-mono text-red-600">
+                        [{currentSm2Word.pinyin}]
+                      </span>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          playSpeech(currentSm2Word.word);
+                        }}
+                        className="p-1.5 rounded-full text-slate-400 hover:text-red-600 hover:bg-red-50 transition"
+                        title="발음 듣기"
+                      >
+                        <Volume2 className="w-5 h-5" />
+                      </button>
+                    </div>
+
+                    {sm2Flipped ? (
+                      <div className="mt-6 pt-6 border-t border-slate-100 animate-in fade-in zoom-in-95">
+                        <p className="text-2xl font-bold text-slate-800 mb-2">
+                          {currentSm2Word.korean}
+                        </p>
+                        {currentSm2Word.examples && currentSm2Word.examples.length > 0 && (
+                          <div className="mt-4 p-3 rounded-xl bg-slate-50 text-left text-xs space-y-1">
+                            <p className="font-bold text-slate-700">예문:</p>
+                            <p className="text-slate-600">{currentSm2Word.examples[0].zh}</p>
+                            <p className="text-slate-500">{currentSm2Word.examples[0].ko}</p>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <p className="text-xs text-slate-400 mt-6 flex items-center justify-center gap-1 group-hover:text-red-500 transition">
+                        <span>👆 카드를 클릭하여 한국어 뜻 확인 및 자가 평가</span>
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="text-center text-[11px] text-slate-400 pt-3 border-t border-slate-100">
+                    <span>에빙하우스 SM-2 주기 배정 (0점: 1일후 / 3점: 2~3일후 / 5점: 2.5배 확대)</span>
+                  </div>
+                </div>
+
+                {/* Rating 3-tier buttons */}
+                <div className="mt-5 grid grid-cols-3 gap-3">
+                  <button
+                    type="button"
+                    onClick={() => handleRateSM2(0)}
+                    className="p-3.5 rounded-2xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-800 font-bold transition flex flex-col items-center text-center cursor-pointer shadow-xs"
+                  >
+                    <span className="text-sm sm:text-base">몰라요 (0)</span>
+                    <span className="text-[10px] text-rose-600 font-normal mt-0.5">망각 · 1일 후 재복습</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleRateSM2(3)}
+                    className="p-3.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 font-bold transition flex flex-col items-center text-center cursor-pointer shadow-xs"
+                  >
+                    <span className="text-sm sm:text-base">애매해요 (3)</span>
+                    <span className="text-[10px] text-amber-600 font-normal mt-0.5">알 듯 말 듯 · 3일 후</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleRateSM2(5)}
+                    className="p-3.5 rounded-2xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold transition flex flex-col items-center text-center cursor-pointer shadow-xs"
+                  >
+                    <span className="text-sm sm:text-base">알아요 (5)</span>
+                    <span className="text-[10px] text-emerald-600 font-normal mt-0.5">완전 기억 · 주기 2.5배</span>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </main>

@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/common/Header";
 import ScoreOverview from "@/components/result/ScoreOverview";
+import ScoreTrendChart from "@/components/result/ScoreTrendChart";
 import QuestionResultItem from "@/components/result/QuestionResultItem";
 import ExportMistakesButton from "@/components/common/ExportMistakesButton";
 import { ExamResult } from "@/types/exam";
@@ -74,6 +75,9 @@ export default function ResultPage() {
       <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-8">
         {/* Score Overview */}
         <ScoreOverview result={result} locale={locale} />
+
+        {/* Score Trend & Share Card (F8) */}
+        <ScoreTrendChart currentResult={result} />
 
         {/* Question Review Section Header */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4">

@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { QuestionDetailResult } from "@/types/exam";
 import { OptionKey } from "@/types/question";
 import AiTutorModal from "@/components/tutor/AiTutorModal";
+import MarkdownText from "@/components/common/MarkdownText";
+import ListeningShadowing from "@/components/exam/ListeningShadowing";
 import { formatSeconds } from "@/utils/timer";
 import {
   CheckCircle2,
@@ -128,8 +130,11 @@ export const QuestionResultItem: React.FC<QuestionResultItemProps> = ({ detail, 
             {showTranscript ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
           {showTranscript && (
-            <div className="px-3.5 py-3 bg-white border-t border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">
-              {question.transcript}
+            <div className="px-3.5 py-3 bg-white border-t border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+              <div className="whitespace-pre-line mb-3">
+                {question.transcript}
+              </div>
+              <ListeningShadowing transcript={question.transcript} />
             </div>
           )}
         </div>
@@ -251,8 +256,8 @@ export const QuestionResultItem: React.FC<QuestionResultItemProps> = ({ detail, 
                 <Sparkles className="w-4 h-4 text-blue-600" />
                 <span>💡 Eloise를 위한 한국어 심층 해설 & 출제 의도:</span>
               </div>
-              <div className="leading-relaxed whitespace-pre-line text-slate-700 font-sans">
-                {question.explanationKo}
+              <div className="leading-relaxed text-slate-700 font-sans">
+                <MarkdownText content={question.explanationKo} />
               </div>
             </div>
           ) : question.explanation ? (

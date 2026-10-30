@@ -5,6 +5,7 @@ import { Question } from "../types/question";
 
 export interface MistakeItem {
   id: string; // `${examId}_${questionId}`
+  sourceType?: "exam" | "word"; // F2: 'exam' (모의고사) or 'word' (단어 퀴즈)
   examId: string;
   examTitle: string;
   examTitleKo?: string;
@@ -15,6 +16,7 @@ export interface MistakeItem {
   recordedAt: number;
   mastered: boolean;
   notes?: string;
+  streak?: number; // F3: consecutive correct attempts
 }
 
 const STORAGE_KEY = "eloise_hsk_mistakes";
@@ -58,6 +60,7 @@ export function saveMistakesFromExamResult(result: ExamResult): void {
 
       const newItem: MistakeItem = {
         id,
+        sourceType: "exam",
         examId: result.examId,
         examTitle: result.title,
         examTitleKo: result.titleKo,
@@ -68,6 +71,7 @@ export function saveMistakesFromExamResult(result: ExamResult): void {
         recordedAt: existing ? existing.recordedAt : Date.now(),
         mastered: false,
         notes: existing?.notes || "",
+        streak: existing?.streak || 0,
       };
 
       bankMap.set(id, newItem);
@@ -75,6 +79,67 @@ export function saveMistakesFromExamResult(result: ExamResult): void {
   }
 
   saveMistakeBank(Array.from(bankMap.values()));
+}
+
+export function saveWordMistake(word: any, userAnswer?: string, correctAnswer?: string): void {
+  if (!word) return;
+  const currentBank = getMistakeBank();
+  const id = `word_quiz_${word.no}`;
+  const existing = currentBank.find((m) => m.id === id);
+
+  const mockQuestion: Question = {
+    id: `word_q_${word.no}`,
+    number: word.no,
+    type: "single_choice",
+    section: "단어 퀴즈 오답",
+    sectionKo: "어휘 실전 퀴즈",
+    partCategory: "阅读",
+    content: `【어휘 문제】 '${word.word}' [${word.pinyin}] 의 올바른 한국어 뜻은?`,
+    options: {
+      A: word.korean,
+      B: "오답 선택지 1",
+      C: "오답 선택지 2",
+      D: "오답 선택지 3",
+    },
+    officialAnswer: "A",
+    explanationKo: `【단어】: **${word.word}** [${word.pinyin}]\n【한국어 뜻】: **${word.korean}**\n【품사】: ${word.pos_clean || "어휘"}`,
+  };
+
+  const newItem: MistakeItem = {
+    id,
+    sourceType: "word",
+    examId: "word_quiz",
+    examTitle: "HSK 4/5급 단어 퀴즈",
+    examTitleKo: "HSK 단어 퀴즈",
+    level: word.no > 1200 ? 5 : 4,
+    question: mockQuestion,
+    userAnswer: userAnswer || "틀린 선택지",
+    correctAnswer: correctAnswer || word.korean,
+    recordedAt: existing ? existing.recordedAt : Date.now(),
+    mastered: false,
+    notes: existing?.notes || "",
+    streak: existing?.streak || 0,
+  };
+
+  const updatedBank = [newItem, ...currentBank.filter((m) => m.id !== id)];
+  saveMistakeBank(updatedBank);
+}
+
+export function recordMistakePracticeResult(id: string, isCorrect: boolean): void {
+  const bank = getMistakeBank();
+  const item = bank.find((m) => m.id === id);
+  if (!item) return;
+
+  if (isCorrect) {
+    item.streak = (item.streak || 0) + 1;
+    if (item.streak >= 2) {
+      item.mastered = true;
+    }
+  } else {
+    item.streak = 0;
+    item.mastered = false;
+  }
+  saveMistakeBank(bank);
 }
 
 export function toggleMistakeMastered(id: string): boolean {

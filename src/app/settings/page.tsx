@@ -13,7 +13,11 @@ import {
   loadUserExamOptions,
   DEFAULT_USER_EXAM_OPTIONS,
   UserExamOptions,
+  exportAllUserData,
+  importUserData,
+  restoreBackupSnapshot,
 } from "@/utils/storage";
+import { getStudyGoals, saveStudyGoals } from "@/utils/studyStats";
 import { getLocale } from "@/utils/i18n";
 import {
   Sliders,
@@ -29,6 +33,11 @@ import {
   Layers,
   ChevronLeft,
   CheckCircle2,
+  Download,
+  Upload,
+  Database,
+  Calendar,
+  AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -51,12 +60,18 @@ function SettingsForm() {
   const [shuffleOptions, setShuffleOptions] = useState<boolean>(false);
   const [rememberSettings, setRememberSettings] = useState<boolean>(true);
   const [locale, setLocale] = useState<string>("ko");
+  const [targetExamDate, setTargetExamDate] = useState<string>("");
+  const [backupMsg, setBackupMsg] = useState<string | null>(null);
+  const backupFileRef = React.useRef<HTMLInputElement>(null);
 
   const exams = hskExamsData as any[];
   const currentExam = exams.find((e) => e.id === selectedExamId) || exams[0];
 
   useEffect(() => {
     setLocale(getLocale());
+    const goals = getStudyGoals();
+    setTargetExamDate(goals.targetExamDate);
+
     const saved = loadUserExamOptions();
     if (saved) {
       if (saved.selectedCountOption) setSelectedCountOption(saved.selectedCountOption);
@@ -466,6 +481,129 @@ function SettingsForm() {
                   </div>
                 </label>
               </div>
+            </div>
+          </div>
+
+          {/* 6. F1: Data Management & D-Day Settings */}
+          <div className="pt-6 border-t border-slate-100 space-y-4">
+            <div>
+              <label className="text-xs font-bold text-slate-700 block mb-1 flex items-center gap-1.5">
+                <Database className="w-4 h-4 text-emerald-600" />
+                <span>{isKo ? "6. 학습 데이터 백업 및 복원 (데이터 관리)" : "6. 全站学习数据备份与安全管理"}</span>
+              </label>
+              <p className="text-[11px] text-slate-500 mb-3">
+                {isKo
+                  ? "단어 암기 진도, 오답노트, 모의고사 응시 이력, 복습 스케줄을 JSON 파일로 백업하거나 다른 기기로 복원합니다."
+                  : "支持将模考历史、单词进度、错题本与艾宾浩斯复习数据导出为 .json 文件，换设备时一键无缝恢复。"}
+              </p>
+            </div>
+
+            {backupMsg && (
+              <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs font-bold text-emerald-800 flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <span>{backupMsg}</span>
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {/* Export Button */}
+              <button
+                type="button"
+                onClick={() => {
+                  const jsonStr = exportAllUserData();
+                  const blob = new Blob([jsonStr], { type: "application/json" });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = `Eloise_HSK_Backup_${new Date().toISOString().slice(0, 10)}.json`;
+                  a.click();
+                  URL.revokeObjectURL(url);
+                  setBackupMsg(isKo ? "백업 파일 다운로드가 완료되었습니다." : "全站备份数据导出成功！");
+                  setTimeout(() => setBackupMsg(null), 3000);
+                }}
+                className="p-3 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 rounded-2xl text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+              >
+                <Download className="w-4 h-4 text-emerald-600" />
+                <span>{isKo ? "전체 데이터 백업 다운로드" : "导出完整备份 (.json)"}</span>
+              </button>
+
+              {/* Import Button */}
+              <div>
+                <input
+                  ref={backupFileRef}
+                  type="file"
+                  accept=".json"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = (evt) => {
+                      const content = evt.target?.result as string;
+                      const res = importUserData(content);
+                      alert(res.message);
+                      if (res.success) {
+                        window.location.reload();
+                      }
+                    };
+                    reader.readAsText(file);
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => backupFileRef.current?.click()}
+                  className="w-full p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-800 rounded-2xl text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                >
+                  <Upload className="w-4 h-4 text-blue-600" />
+                  <span>{isKo ? "백업 파일로 복원 (업로드)" : "上传备份文件恢复"}</span>
+                </button>
+              </div>
+
+              {/* Restore Snapshot */}
+              <button
+                type="button"
+                onClick={() => {
+                  if (confirm(isKo ? "직전 백업 스냅샷으로 복원하시겠습니까?" : "确定恢复到导入前的快照备份吗？")) {
+                    const ok = restoreBackupSnapshot();
+                    if (ok) {
+                      alert(isKo ? "스냅샷 복원이 완료되었습니다." : "已恢复快照！");
+                      window.location.reload();
+                    } else {
+                      alert(isKo ? "저장된 스냅샷이 없습니다." : "未找到可用快照");
+                    }
+                  }
+                }}
+                className="p-3 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 rounded-2xl text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+              >
+                <RotateCcw className="w-4 h-4 text-slate-500" />
+                <span>{isKo ? "직전 스냅샷 복구" : "撤销导入恢复快照"}</span>
+              </button>
+            </div>
+
+            {/* Target Exam Date for D-Day */}
+            <div className="pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-rose-600" />
+                <div>
+                  <span className="text-xs font-bold text-slate-800 block">
+                    {isKo ? "목표 HSK 시험일 설정 (D-Day 카운트다운)" : "设定目标 HSK 考试日期 (D-Day 倒计时)"}
+                  </span>
+                  <span className="text-[10px] text-slate-400">
+                    {isKo ? "홈 화면 상단에 D-Day 디데이 카드가 자동 노출됩니다" : "设定后将在首页显示备考倒计时大字看板"}
+                  </span>
+                </div>
+              </div>
+              <input
+                type="date"
+                value={targetExamDate}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setTargetExamDate(val);
+                  const goals = getStudyGoals();
+                  saveStudyGoals({ ...goals, targetExamDate: val });
+                }}
+                className="px-3.5 py-1.5 border border-slate-200 rounded-xl text-xs font-bold font-mono text-slate-800 bg-white"
+              />
             </div>
           </div>
 

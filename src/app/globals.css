@@ -53,21 +53,40 @@ body.has-custom-bg .sticky.top-0 {
 
 /* 4. 深色夜间模式 (#0f172a) 下的自适应高对比适配 */
 body.dark-theme {
-  color: #f1f5f9 !important;
+  color: #f8fafc !important;
+  background-color: #0b1120 !important;
 }
 
-body.dark-theme .bg-white {
-  background-color: rgba(30, 41, 59, 0.88) !important;
-  border-color: rgba(255, 255, 255, 0.12) !important;
+body.dark-theme .bg-white,
+body.dark-theme .bg-white\/90,
+body.dark-theme .bg-white\/95 {
+  background-color: rgba(15, 23, 42, 0.92) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
   color: #f8fafc !important;
+}
+
+body.dark-theme header.sticky,
+body.dark-theme .sticky.top-0 {
+  background-color: rgba(11, 17, 32, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+body.dark-theme .bg-slate-50,
+body.dark-theme .bg-slate-50\/70,
+body.dark-theme .bg-slate-50\/80 {
+  background-color: rgba(30, 41, 59, 0.6) !important;
+}
+
+body.dark-theme .bg-slate-100 {
+  background-color: rgba(51, 65, 85, 0.8) !important;
 }
 
 body.dark-theme .text-slate-900 {
-  color: #f8fafc !important;
+  color: #ffffff !important;
 }
 
 body.dark-theme .text-slate-800 {
-  color: #f1f5f9 !important;
+  color: #f8fafc !important;
 }
 
 body.dark-theme .text-slate-700 {
@@ -83,6 +102,7 @@ body.dark-theme .text-slate-500 {
 }
 
 body.dark-theme .border-slate-200,
-body.dark-theme .border-slate-100 {
-  border-color: rgba(255, 255, 255, 0.12) !important;
+body.dark-theme .border-slate-100,
+body.dark-theme .border-slate-300 {
+  border-color: rgba(255, 255, 255, 0.16) !important;
 }
