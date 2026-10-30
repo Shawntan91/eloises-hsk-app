@@ -15,6 +15,7 @@ export interface VocabItem {
 export interface Question {
   id: string;
   number: number;
+  examId?: string;
   type: QuestionType;
   section: string;        // e.g. "第一部分 · 听力 (判断题)"
   sectionKo: string;      // e.g. "1영역 · 듣기 (OX 판단)"

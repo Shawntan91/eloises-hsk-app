@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { BookOpen, Globe2, Award, BookmarkCheck, Sparkles, Layers, Menu, X, Palette, Sliders, UploadCloud } from "lucide-react";
+import { BookOpen, Globe2, Award, BookmarkCheck, Sparkles, Layers, Menu, X, Palette, Sliders, UploadCloud, TrendingUp } from "lucide-react";
 import { getLocale, setLocale, Locale, I18N } from "@/utils/i18n";
 import { getMistakeStats } from "@/utils/mistakeBank";
+import { isCurrentWeekReportViewed } from "@/utils/weeklyReport";
 import BackgroundSettingsModal from "@/components/BackgroundSettingsModal";
 
 interface HeaderProps {
@@ -16,26 +17,34 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ title, subtitle, rightElement }) => {
   const [locale, setLocaleState] = useState<Locale>("ko");
   const [unmasteredCount, setUnmasteredCount] = useState<number>(0);
+  const [hasViewedReport, setHasViewedReport] = useState<boolean>(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [bgModalOpen, setBgModalOpen] = useState(false);
 
   useEffect(() => {
     setLocaleState(getLocale());
+    setHasViewedReport(isCurrentWeekReportViewed());
 
     const updateStats = () => {
       setUnmasteredCount(getMistakeStats().unmastered);
+      setHasViewedReport(isCurrentWeekReportViewed());
     };
     updateStats();
 
     const handleLocaleChange = (e: any) => {
       setLocaleState(e.detail || getLocale());
     };
+    const handleReportChange = () => {
+      setHasViewedReport(isCurrentWeekReportViewed());
+    };
 
     window.addEventListener("hsk-locale-changed" as any, handleLocaleChange);
     window.addEventListener("mistake-bank-changed", updateStats);
+    window.addEventListener("eloise-report-viewed-changed", handleReportChange);
     return () => {
       window.removeEventListener("hsk-locale-changed" as any, handleLocaleChange);
       window.removeEventListener("mistake-bank-changed", updateStats);
+      window.removeEventListener("eloise-report-viewed-changed", handleReportChange);
     };
   }, []);
 
@@ -69,13 +78,34 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, rightElement })
 
         {/* Right Tools - Desktop */}
         <div className="hidden md:flex items-center gap-3">
+          {/* Weekly Report Link */}
+          <Link
+            href="/report"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-700 text-xs font-bold transition shadow-xs relative"
+          >
+            <TrendingUp className="w-3.5 h-3.5 text-indigo-600" />
+            <span>{locale === "zh" ? "学习周报" : "주간 리포트"}</span>
+            {!hasViewedReport && (
+              <span className="w-2 h-2 rounded-full bg-red-600 absolute -top-1 -right-1 ring-2 ring-white animate-pulse" />
+            )}
+          </Link>
+
+          {/* Pitfalls Specialty Link */}
+          <Link
+            href="/pitfalls"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-700 text-xs font-bold transition shadow-xs"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-purple-600" />
+            <span>{locale === "zh" ? "易错专项" : "취약점 훈련"}</span>
+          </Link>
+
           {/* Words Memorization Link */}
           <Link
             href="/words"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-800 text-xs font-bold transition shadow-xs"
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-            <span>{locale === "zh" ? "词汇背诵 (1000词)" : "단어장 (1000단어)"}</span>
+            <BookOpen className="w-3.5 h-3.5 text-amber-600" />
+            <span>{locale === "zh" ? "词汇背诵" : "단어장 (1000단어)"}</span>
           </Link>
 
           {/* Language Switcher */}
@@ -232,18 +262,35 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, rightElement })
               📖 단어장 (1000단어)
             </Link>
             <Link
-              href="/settings"
+              href="/report"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2.5 rounded-xl bg-indigo-50 text-indigo-800 text-center border border-indigo-200 relative flex items-center justify-center gap-1.5"
+            >
+              <span>📊 {locale === "zh" ? "学习周报" : "주간 리포트"}</span>
+              {!hasViewedReport && (
+                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+              )}
+            </Link>
+            <Link
+              href="/pitfalls"
               onClick={() => setMobileMenuOpen(false)}
               className="p-2.5 rounded-xl bg-purple-50 text-purple-800 text-center border border-purple-200"
             >
-              ⚙️ 맞춤 시험 설정
+              <span>⚡ {locale === "zh" ? "易错专项" : "취약점 훈련"}</span>
+            </Link>
+            <Link
+              href="/settings"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2.5 rounded-xl bg-slate-50 text-slate-700 text-center border border-slate-200"
+            >
+              ⚙️ {locale === "zh" ? "定制模考设置" : "맞춤 시험 설정"}
             </Link>
             <Link
               href="/upload"
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2.5 rounded-xl bg-indigo-50 text-indigo-800 text-center border border-indigo-200"
+              className="p-2.5 rounded-xl bg-slate-50 text-slate-700 text-center border border-slate-200"
             >
-              📤 시험지 업로드
+              📤 {locale === "zh" ? "试卷导入管理" : "시험지 업로드"}
             </Link>
             <Link
               href="/mistakes"

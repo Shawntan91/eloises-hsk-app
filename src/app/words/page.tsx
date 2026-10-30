@@ -16,6 +16,7 @@ import { stripPinyinTones } from "@/utils/pinyin";
 import { loadSM2Records, recordSM2Review, getDueWordNos, SM2Record } from "@/utils/sm2";
 import { recordWordStudied } from "@/utils/studyStats";
 import { saveWordMistake } from "@/utils/mistakeBank";
+import { getCustomWords, getAllWordSources, WordSource } from "@/utils/customWords";
 import AiTutorModal from "@/components/tutor/AiTutorModal";
 import {
   BookOpen,
@@ -69,8 +70,10 @@ export default function WordsPage() {
   const [sm2Index, setSm2Index] = useState(0);
   const [sm2Flipped, setSm2Flipped] = useState(false);
   const [sm2CompletedCount, setSm2CompletedCount] = useState(0);
+  const [customWords, setCustomWords] = useState(getCustomWords());
+  const [wordSources, setWordSources] = useState<Record<number, WordSource>>(getAllWordSources());
 
-  const words = hskWordsData as any[];
+  const words = useMemo(() => [...(hskWordsData as any[]), ...customWords], [customWords]);
 
   const refreshSm2List = () => {
     const allNos = words.map((w) => w.no);
@@ -83,6 +86,8 @@ export default function WordsPage() {
   useEffect(() => {
     setMasteredNos(getMasteredWordNos());
     setStarredNos(getStarredWordNos());
+    setCustomWords(getCustomWords());
+    setWordSources(getAllWordSources());
     refreshSm2List();
     const savedIdx = getSavedStudyIndex();
     if (savedIdx >= 0 && savedIdx < words.length) {
@@ -94,12 +99,19 @@ export default function WordsPage() {
       setStarredNos(getStarredWordNos());
     };
     const handleSm2Change = () => refreshSm2List();
+    const handleCustomChange = () => {
+      setCustomWords(getCustomWords());
+      setWordSources(getAllWordSources());
+      refreshSm2List();
+    };
 
     window.addEventListener("word-progress-changed", handleProgressChange);
     window.addEventListener("sm2-records-changed", handleSm2Change);
+    window.addEventListener("eloise-custom-words-changed", handleCustomChange);
     return () => {
       window.removeEventListener("word-progress-changed", handleProgressChange);
       window.removeEventListener("sm2-records-changed", handleSm2Change);
+      window.removeEventListener("eloise-custom-words-changed", handleCustomChange);
     };
   }, [words.length]);
 
@@ -477,6 +489,19 @@ export default function WordsPage() {
                         <p className="font-bold text-slate-700">예문:</p>
                         <p className="text-slate-600">{currentWord.examples[0].zh}</p>
                         <p className="text-slate-500">{currentWord.examples[0].ko}</p>
+                      </div>
+                    )}
+
+                    {wordSources[currentWord.no] && (
+                      <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-blue-50 text-blue-700 text-xs font-bold border border-blue-200">
+                        <span>🔗 来源题目：</span>
+                        <Link
+                          href={`/review/${wordSources[currentWord.no].examId}`}
+                          className="underline hover:text-blue-900"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          回看原题 {wordSources[currentWord.no].questionId ? `(第 ${wordSources[currentWord.no].questionId} 题)` : ""}
+                        </Link>
                       </div>
                     )}
                   </div>
@@ -1132,6 +1157,19 @@ export default function WordsPage() {
                             <p className="font-bold text-slate-700">예문:</p>
                             <p className="text-slate-600">{currentSm2Word.examples[0].zh}</p>
                             <p className="text-slate-500">{currentSm2Word.examples[0].ko}</p>
+                          </div>
+                        )}
+
+                        {wordSources[currentSm2Word.no] && (
+                          <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-blue-50 text-blue-700 text-xs font-bold border border-blue-200">
+                            <span>🔗 来源题目：</span>
+                            <Link
+                              href={`/review/${wordSources[currentSm2Word.no].examId}`}
+                              className="underline hover:text-blue-900"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              回看原题 {wordSources[currentSm2Word.no].questionId ? `(第 ${wordSources[currentSm2Word.no].questionId} 题)` : ""}
+                            </Link>
                           </div>
                         )}
                       </div>

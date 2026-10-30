@@ -33,7 +33,8 @@ export async function POST(req: NextRequest) {
     if (!checkRateLimit(clientIp)) {
       return NextResponse.json(
         {
-          error: "요청이 너무 빠릅니다. 잠시 후 다시 시도해 주세요. (请求过于频繁，请稍后再试)",
+          error:
+            "요청이 너무 빠릅니다. 본 AI 기능은 전용 API를 사용하므로 사이트 링크를 외부에 무단 공유하지 마시고, 필요 시 관리자에게 문의해 주세요. (请求过于频繁，请稍后再试)",
           rateLimited: true,
         },
         { status: 429 }

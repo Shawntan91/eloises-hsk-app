@@ -212,6 +212,15 @@ export const AiTutorModal: React.FC<AiTutorModalProps> = ({
           </div>
         </div>
 
+        {/* API Usage & Confidentiality Notice Banner */}
+        <div className="px-4 py-2.5 bg-amber-50 border-b border-amber-200/80 text-amber-900 flex items-start gap-2.5 text-xs shrink-0 shadow-inner">
+          <span className="text-amber-600 text-sm leading-none mt-0.5 shrink-0">⚠️</span>
+          <div className="flex-1 leading-snug">
+            <span className="font-bold text-amber-950">[이용 안내] </span>
+            본 AI 튜터 서비스는 전용 API를 사용하고 있으므로 사이트 링크를 외부에 무단 공유하지 말아주시기 바랍니다. 외부 공유가 필요하신 경우 반드시 관리자에게 문의해 주세요.
+          </div>
+        </div>
+
         {/* Inline Config Panel */}
         {showConfig && (
           <div className="bg-slate-50 border-b border-slate-200 p-4 shrink-0 text-xs animate-in slide-in-from-top-2">

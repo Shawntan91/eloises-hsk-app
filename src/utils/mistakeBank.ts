@@ -17,6 +17,7 @@ export interface MistakeItem {
   mastered: boolean;
   notes?: string;
   streak?: number; // F3: consecutive correct attempts
+  tag?: string; // e.g. "korean-pitfall"
 }
 
 const STORAGE_KEY = "eloise_hsk_mistakes";
@@ -119,6 +120,68 @@ export function saveWordMistake(word: any, userAnswer?: string, correctAnswer?: 
     mastered: false,
     notes: existing?.notes || "",
     streak: existing?.streak || 0,
+  };
+
+  const updatedBank = [newItem, ...currentBank.filter((m) => m.id !== id)];
+  saveMistakeBank(updatedBank);
+}
+
+export function savePitfallMistake(
+  pitfall: {
+    id: string;
+    category: string;
+    categoryNameZh: string;
+    categoryNameKo: string;
+    question: string;
+    options: string[];
+    answer: string;
+    explanation_zh: string;
+    explanation_ko: string;
+    tip: string;
+  },
+  userAnswer?: string
+): void {
+  if (!pitfall) return;
+  const currentBank = getMistakeBank();
+  const id = `pitfall_${pitfall.id}`;
+  const existing = currentBank.find((m) => m.id === id);
+
+  const optionsObj: Record<string, string> = {};
+  pitfall.options.forEach((opt) => {
+    const key = opt.trim().slice(0, 1).toUpperCase();
+    const val = opt.replace(/^[A-D]\.\s*/, "").trim();
+    optionsObj[key] = val;
+  });
+
+  const mockQuestion: Question = {
+    id,
+    number: 1,
+    type: "single_choice",
+    section: `易错专项 · ${pitfall.categoryNameZh}`,
+    sectionKo: `한국인 취약점 · ${pitfall.categoryNameKo}`,
+    partCategory: "阅读",
+    content: pitfall.question,
+    options: optionsObj,
+    officialAnswer: pitfall.answer,
+    explanation: `${pitfall.explanation_zh}\n\n${pitfall.tip}`,
+    explanationKo: `${pitfall.explanation_ko}\n\n${pitfall.tip}`,
+  };
+
+  const newItem: MistakeItem = {
+    id,
+    sourceType: "exam",
+    examId: "pitfall_practice",
+    examTitle: `韩国人易错专项 (${pitfall.categoryNameZh})`,
+    examTitleKo: `한국인 취약점 집중 훈련 (${pitfall.categoryNameKo})`,
+    level: 4,
+    question: mockQuestion,
+    userAnswer: userAnswer || "미답안",
+    correctAnswer: pitfall.answer,
+    recordedAt: existing ? existing.recordedAt : Date.now(),
+    mastered: false,
+    notes: existing?.notes || "",
+    streak: existing?.streak || 0,
+    tag: "korean-pitfall",
   };
 
   const updatedBank = [newItem, ...currentBank.filter((m) => m.id !== id)];

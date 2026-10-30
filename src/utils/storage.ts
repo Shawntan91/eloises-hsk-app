@@ -394,6 +394,25 @@ export function saveExamResult(result: ExamResult): void {
     } catch (err) {
       console.error("Failed to sync mistakes", err);
     }
+
+    // Log activity
+    try {
+      const { logActivity } = require("./activityLogger");
+      logActivity({
+        type: "exam",
+        durationSec: result.timeSpentSeconds || 60,
+        correct: result.totalQuestions - result.wrongCount - result.unansweredCount,
+        total: result.totalQuestions,
+        score: result.score,
+        meta: {
+          examId: result.examId,
+          title: result.title,
+          accuracyRate: result.accuracyRate,
+        },
+      });
+    } catch (err) {
+      console.warn("Failed to log exam activity", err);
+    }
   } catch (e) {
     console.error("Failed to save exam result", e);
   }

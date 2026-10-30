@@ -9,6 +9,7 @@ import { getRecentExams, RecentExamItem, deleteRecentExam } from "@/utils/storag
 import { getMasteredWordNos } from "@/utils/wordStorage";
 import { getLocale, Locale } from "@/utils/i18n";
 import { getSectionRangeLabel, formatRecentExamTitle } from "@/utils/timer";
+import { isCurrentWeekReportViewed } from "@/utils/weeklyReport";
 import {
   getConsecutiveStreakDays,
   getRecentHeatmapData,
@@ -40,6 +41,7 @@ import {
   Upload,
   Calendar,
   Target,
+  TrendingUp,
 } from "lucide-react";
 
 export default function HomePage() {
@@ -58,11 +60,13 @@ export default function HomePage() {
   const [heatmapData, setHeatmapData] = useState<Array<{ date: string; count: number; level: number }>>([]);
   const [todayWords, setTodayWords] = useState(0);
   const [todayMinutes, setTodayMinutes] = useState(0);
+  const [hasViewedReport, setHasViewedReport] = useState(true);
 
   useEffect(() => {
     setLocale(getLocale());
     setRecents(getRecentExams());
     setMasteredWordCount(getMasteredWordNos().length);
+    setHasViewedReport(isCurrentWeekReportViewed());
 
     const loadStats = () => {
       const g = getStudyGoals();
@@ -73,21 +77,25 @@ export default function HomePage() {
       const today = map[getTodayKey()];
       setTodayWords(today?.wordsCount || 0);
       setTodayMinutes(today?.studyMinutes || 0);
+      setHasViewedReport(isCurrentWeekReportViewed());
     };
 
     loadStats();
 
     const handleLocaleChange = () => setLocale(getLocale());
     const handleWordChange = () => setMasteredWordCount(getMasteredWordNos().length);
+    const handleReportChange = () => setHasViewedReport(isCurrentWeekReportViewed());
     window.addEventListener("hsk-locale-changed", handleLocaleChange);
     window.addEventListener("word-progress-changed", handleWordChange);
     window.addEventListener("study-activity-changed", loadStats);
     window.addEventListener("study-goals-changed", loadStats);
+    window.addEventListener("eloise-report-viewed-changed", handleReportChange);
     return () => {
       window.removeEventListener("hsk-locale-changed", handleLocaleChange);
       window.removeEventListener("word-progress-changed", handleWordChange);
       window.removeEventListener("study-activity-changed", loadStats);
       window.removeEventListener("study-goals-changed", loadStats);
+      window.removeEventListener("eloise-report-viewed-changed", handleReportChange);
     };
   }, []);
 
@@ -370,6 +378,70 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
+        </div>
+
+        {/* NEW Features Duo Banner: 学习周报看板 & 韩国人易错专项 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 sm:mb-12">
+          {/* Card 1: 学习周报 */}
+          <Link
+            href="/report"
+            className="p-5 sm:p-6 bg-white/95 backdrop-blur-sm rounded-3xl border border-indigo-200/90 shadow-xs hover:border-indigo-400 hover:shadow-md transition-all flex items-center justify-between group relative"
+          >
+            {!hasViewedReport && (
+              <span className="w-2.5 h-2.5 rounded-full bg-red-600 absolute top-4 right-4 ring-4 ring-red-100 animate-pulse" />
+            )}
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-indigo-50 text-indigo-700 border border-indigo-200">
+                  {isZh ? "学习周报" : "주간 학습 리포트"}
+                </span>
+                {!hasViewedReport && (
+                  <span className="text-[10px] text-red-600 font-bold bg-red-50 px-2 py-0.2 rounded-full border border-red-200">
+                    {isZh ? "本周待查看" : "신규"}
+                  </span>
+                )}
+              </div>
+              <h4 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-indigo-600 transition">
+                {isZh ? "每周学习复盘与正确率折线图" : "주간 학습 시간 & 정답률 변화 추이"}
+              </h4>
+              <p className="text-xs text-slate-500">
+                {isZh
+                  ? "自动统计周一至周日学习时长、做题数、发音跟读与易错题型"
+                  : "월~일 누적 학습 시간, 모의고사 정답률 곡선 및 요약 공유"}
+              </p>
+            </div>
+            <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 ml-3 group-hover:scale-110 transition-transform">
+              <TrendingUp className="w-5 h-5" />
+            </div>
+          </Link>
+
+          {/* Card 2: 韩国人易错专项 */}
+          <Link
+            href="/pitfalls"
+            className="p-5 sm:p-6 bg-white/95 backdrop-blur-sm rounded-3xl border border-purple-200/90 shadow-xs hover:border-purple-400 hover:shadow-md transition-all flex items-center justify-between group"
+          >
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-purple-50 text-purple-700 border border-purple-200">
+                  {isZh ? "专项特训" : "취약점 훈련"}
+                </span>
+                <span className="text-[10px] text-purple-700 font-bold bg-purple-50 px-2 py-0.2 rounded-full border border-purple-200">
+                  5大类
+                </span>
+              </div>
+              <h4 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-purple-600 transition">
+                {isZh ? "韩国人学中文最容易错的 5 大专项" : "한국인이 가장 많이 틀리는 5대 문법·어法"}
+              </h4>
+              <p className="text-xs text-slate-500">
+                {isZh
+                  ? "声调变调 · 专用量词 · 把字句 · 被字句 · 了与过汉韩对比精讲"
+                  : "성조 변조, 전용 양사, 把/被자문, 了/过 오류 완벽 격파"}
+              </p>
+            </div>
+            <div className="w-10 h-10 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 ml-3 group-hover:scale-110 transition-transform">
+              <Sparkles className="w-5 h-5" />
+            </div>
+          </Link>
         </div>
 
         {/* HSK 4 Section */}

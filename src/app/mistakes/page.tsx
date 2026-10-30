@@ -35,7 +35,7 @@ import {
 export default function MistakesPage() {
   const router = useRouter();
   const [mistakes, setMistakes] = useState<MistakeItem[]>([]);
-  const [filterSource, setFilterSource] = useState<"all" | "exam" | "word">("all");
+  const [filterSource, setFilterSource] = useState<"all" | "exam" | "word" | "pitfall">("all");
   const [filterLevel, setFilterLevel] = useState<number | "all">("all");
   const [filterStatus, setFilterStatus] = useState<"all" | "unmastered" | "mastered">("unmastered");
   const [locale, setLocale] = useState<Locale>("ko");
@@ -79,7 +79,8 @@ export default function MistakesPage() {
 
   // Filter list
   const filteredList = mistakes.filter((item) => {
-    if (filterSource === "exam" && item.sourceType === "word") return false;
+    if (filterSource === "pitfall" && item.tag !== "korean-pitfall") return false;
+    if (filterSource === "exam" && (item.sourceType === "word" || item.tag === "korean-pitfall")) return false;
     if (filterSource === "word" && item.sourceType !== "word") return false;
     if (filterLevel !== "all" && item.level !== filterLevel) return false;
     if (filterStatus === "unmastered" && item.mastered) return false;
@@ -220,6 +221,15 @@ export default function MistakesPage() {
               >
                 {isZh ? "单词测验" : "단어 퀴즈"}
               </button>
+              <button
+                type="button"
+                onClick={() => setFilterSource("pitfall")}
+                className={`px-2.5 py-1 rounded-lg transition ${
+                  filterSource === "pitfall" ? "bg-white text-purple-600 shadow-xs" : "text-slate-500"
+                }`}
+              >
+                {isZh ? "易错专项" : "취약점 훈련"}
+              </button>
             </div>
 
             {/* Level Filter */}
@@ -352,6 +362,11 @@ export default function MistakesPage() {
                       {item.sourceType === "word" && (
                         <span className="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">
                           {isZh ? "单词测验错题" : "단어 퀴즈 오답"}
+                        </span>
+                      )}
+                      {item.tag === "korean-pitfall" && (
+                        <span className="text-[10px] bg-purple-100 text-purple-800 font-bold px-2 py-0.5 rounded-full">
+                          {isZh ? "⚡ 韩国人易错专项" : "⚡ 한국인 취약점 특강"}
                         </span>
                       )}
                       {typeof item.streak === "number" && item.streak > 0 && !item.mastered && (

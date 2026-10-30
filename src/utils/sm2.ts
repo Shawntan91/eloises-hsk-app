@@ -88,6 +88,16 @@ export function recordSM2Review(wordNo: number, grade: 5 | 3 | 0): SM2Record {
 
   records[wordNo] = updated;
   saveSM2Records(records);
+
+  try {
+    const { logActivity } = require("./activityLogger");
+    logActivity({
+      type: grade === 0 ? "word_study" : "word_review",
+      durationSec: 10,
+      meta: { wordNo, grade },
+    });
+  } catch {}
+
   return updated;
 }
 

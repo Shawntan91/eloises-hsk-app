@@ -6,6 +6,7 @@ import { OptionKey } from "@/types/question";
 import AiTutorModal from "@/components/tutor/AiTutorModal";
 import MarkdownText, { sanitizeExplanationText } from "@/components/common/MarkdownText";
 import ListeningShadowing from "@/components/exam/ListeningShadowing";
+import SelectableText from "@/components/common/SelectableText";
 import { formatSeconds } from "@/utils/timer";
 import {
   CheckCircle2,
@@ -112,7 +113,11 @@ export const QuestionResultItem: React.FC<QuestionResultItemProps> = ({ detail, 
 
       {/* Stem Content */}
       <div className="text-base sm:text-lg text-slate-900 leading-relaxed font-normal whitespace-pre-line mb-4 font-sans">
-        {question.content}
+        <SelectableText
+          content={question.content}
+          source={{ examId: question.examId || "hsk_exam", questionId: question.number }}
+          locale={locale}
+        />
       </div>
 
       {/* Listening Transcript */}
