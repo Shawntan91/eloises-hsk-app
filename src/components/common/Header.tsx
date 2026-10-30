@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { BookOpen, Globe2, Award, BookmarkCheck, Sparkles, Layers, Menu, X } from "lucide-react";
+import { BookOpen, Globe2, Award, BookmarkCheck, Sparkles, Layers, Menu, X, Palette, Sliders, UploadCloud } from "lucide-react";
 import { getLocale, setLocale, Locale, I18N } from "@/utils/i18n";
 import { getMistakeStats } from "@/utils/mistakeBank";
+import BackgroundSettingsModal from "@/components/BackgroundSettingsModal";
 
 interface HeaderProps {
   title?: string;
@@ -16,6 +17,7 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, rightElement })
   const [locale, setLocaleState] = useState<Locale>("ko");
   const [unmasteredCount, setUnmasteredCount] = useState<number>(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [bgModalOpen, setBgModalOpen] = useState(false);
 
   useEffect(() => {
     setLocaleState(getLocale());
@@ -127,11 +129,31 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, rightElement })
             )}
           </Link>
 
+          {/* Background / Appearance Modal Button */}
+          <button
+            type="button"
+            onClick={() => setBgModalOpen(true)}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 text-xs font-bold transition shadow-xs"
+            title={locale === "zh" ? "设置网页背景与外观" : "배경 및 테마 설정"}
+          >
+            <Palette className="w-3.5 h-3.5 text-slate-600" />
+            <span>{locale === "zh" ? "外观" : "배경/테마"}</span>
+          </button>
+
           {rightElement}
         </div>
 
         {/* Mobile Action Buttons */}
         <div className="flex md:hidden items-center gap-1.5">
+          <button
+            type="button"
+            onClick={() => setBgModalOpen(true)}
+            className="p-2 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 text-xs font-bold"
+            title="테마 설정"
+          >
+            <Palette className="w-4 h-4 text-slate-600" />
+          </button>
+
           <Link
             href="/words"
             className="p-2 rounded-xl bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold flex items-center gap-1"
@@ -210,15 +232,35 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, rightElement })
               📖 단어장 (1000단어)
             </Link>
             <Link
+              href="/settings"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2.5 rounded-xl bg-purple-50 text-purple-800 text-center border border-purple-200"
+            >
+              ⚙️ 맞춤 시험 설정
+            </Link>
+            <Link
+              href="/upload"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2.5 rounded-xl bg-indigo-50 text-indigo-800 text-center border border-indigo-200"
+            >
+              📤 시험지 업로드
+            </Link>
+            <Link
               href="/mistakes"
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2.5 rounded-xl bg-rose-50 text-rose-700 text-center border border-rose-200"
+              className="p-2.5 rounded-xl bg-rose-50 text-rose-700 text-center border border-rose-200 col-span-2"
             >
               📕 오답노트 ({unmasteredCount})
             </Link>
           </div>
         </div>
       )}
+
+      {/* Background / Appearance Modal */}
+      <BackgroundSettingsModal
+        isOpen={bgModalOpen}
+        onClose={() => setBgModalOpen(false)}
+      />
     </header>
   );
 };

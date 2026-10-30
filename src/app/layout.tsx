@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { GlobalBackgroundRenderer } from "@/components/common/GlobalBackgroundRenderer";
 
 export const metadata: Metadata = {
   title: "Eloise's HSK APP | HSK 4급 & 5급 공식 실전 모의고사",
@@ -20,7 +21,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="flex flex-col min-h-screen bg-slate-50 text-slate-900">
+      <body className="flex flex-col min-h-screen bg-transparent text-slate-900 relative">
+        <GlobalBackgroundRenderer />
         {children}
       </body>
     </html>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Exam } from "@/types/exam";
 import { Question, OptionKey } from "@/types/question";
 import { formatSeconds, getRemainingSeconds } from "@/utils/timer";
@@ -22,6 +22,11 @@ import {
   Bot,
   LayoutGrid,
   X,
+  RotateCcw,
+  Volume2,
+  FileText,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 
 interface HskCbtExamLayoutProps {
@@ -50,13 +55,22 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
   locale,
 }) => {
   const currentQ = exam.questions[currentIndex];
-  const [showKoreanHelp, setShowKoreanHelp] = useState(true);
+
+  // 3. 辅助提示初始状态改为默认关闭 (false)
+  const [showKoreanHelp, setShowKoreanHelp] = useState(false);
   const [showAiModal, setShowAiModal] = useState(false);
   const [showMobilePalette, setShowMobilePalette] = useState(false);
+  // 2. 听力原文默认折叠 (false)
+  const [showTranscript, setShowTranscript] = useState(false);
+
+  // Reset transcript collapse when question changes
+  useEffect(() => {
+    setShowTranscript(false);
+  }, [currentIndex]);
 
   const answeredCount = Object.keys(exam.answers).length;
   const isMarked = currentQ ? exam.markedQuestions.includes(currentQ.id) : false;
-  const selectedAnswer = currentQ ? exam.answers[currentQ.id] : "";
+  const selectedAnswer = currentQ ? exam.answers[currentQ.id] || "" : "";
 
   const optionKeys: OptionKey[] = ["A", "B", "C", "D", "E", "F"].filter(
     (k) => currentQ?.options && (currentQ.options as any)[k] !== undefined
@@ -64,6 +78,68 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
 
   const remaining = getRemainingSeconds(exam.startTime || Date.now(), exam.duration);
   const categories = ["听力", "阅读", "书写"] as const;
+
+  // Jump audio handler
+  const handleJumpAudio = (sec?: number) => {
+    if (typeof sec === "number" && typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("seek-audio-time", { detail: { time: sec } }));
+    }
+  };
+
+  // 1. 连词成句交互状态
+  const wordsPool = currentQ?.wordsToOrder || [];
+  // Parse currently selected word blocks from user's answer or initialize
+  const punctuation = currentQ?.standardSentence?.slice(-1) || "。";
+  const rawAnswerTokens = selectedAnswer
+    ? selectedAnswer
+        .replace(/[。？！,.!?]/g, "")
+        .split(" ")
+        .filter(Boolean)
+    : [];
+
+  const handleToggleWord = (word: string, isFromAssembled: boolean) => {
+    let nextAssembled: string[];
+    if (isFromAssembled) {
+      // Remove first occurrence of word from assembled
+      const idx = rawAnswerTokens.indexOf(word);
+      if (idx >= 0) {
+        nextAssembled = [...rawAnswerTokens.slice(0, idx), ...rawAnswerTokens.slice(idx + 1)];
+      } else {
+        nextAssembled = rawAnswerTokens;
+      }
+    } else {
+      // Add word to assembled
+      nextAssembled = [...rawAnswerTokens, word];
+    }
+    const finalSentence = nextAssembled.length > 0 ? nextAssembled.join("") + punctuation : "";
+    onSelectAnswer(finalSentence);
+  };
+
+  const handleResetWordOrder = () => {
+    onSelectAnswer("");
+  };
+
+  // Word pool count calculation
+  const getRemainingPool = () => {
+    const usedCounts: Record<string, number> = {};
+    for (const w of rawAnswerTokens) {
+      usedCounts[w] = (usedCounts[w] || 0) + 1;
+    }
+    const poolWithStatus: Array<{ word: string; isUsed: boolean; key: string }> = [];
+    wordsPool.forEach((w, idx) => {
+      const isUsed = (usedCounts[w] || 0) > 0;
+      if (isUsed) {
+        usedCounts[w]--;
+      }
+      poolWithStatus.push({ word: w, isUsed, key: `${w}_${idx}` });
+    });
+    return poolWithStatus;
+  };
+
+  // Required words detection for image writing
+  const requiredWords = currentQ?.requiredWord
+    ? currentQ.requiredWord.split(/\s+/).filter(Boolean)
+    : [];
 
   return (
     <div className="flex-1 flex flex-col bg-slate-100 min-h-screen text-slate-900 select-none font-sans pb-16 sm:pb-0">
@@ -104,22 +180,22 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
               <span>{formatSeconds(remaining)}</span>
             </div>
 
-            {/* Toggle IELTS split screen layout */}
+            {/* Toggle Split screen layout (4. 规范文案) */}
             <button
               type="button"
               onClick={onToggleIeltsLayout}
-              className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold rounded-xl transition"
-              title="切换为雅思双栏分屏界面"
+              className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold rounded-xl transition cursor-pointer"
+              title="切换为左右分屏阅读模式 (좌우 분할 독해 모드)"
             >
               <Columns className="w-3.5 h-3.5 text-blue-400" />
-              <span>{locale === "zh" ? "雅思分屏" : "아이엘츠 분할"}</span>
+              <span>{locale === "zh" ? "左右分屏阅读" : "좌우 분할 독해"}</span>
             </button>
 
             {/* Submit Button */}
             <button
               type="button"
               onClick={onSubmitClick}
-              className="flex items-center gap-1 sm:gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl text-xs sm:text-sm font-bold shadow-md shadow-red-600/30 transition transform active:scale-95"
+              className="flex items-center gap-1 sm:gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl text-xs sm:text-sm font-bold shadow-md shadow-red-600/30 transition transform active:scale-95 cursor-pointer"
             >
               <Send className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               <span>{locale === "zh" ? "交卷" : "답안 제출"}</span>
@@ -160,6 +236,19 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                         {locale === "zh" ? currentQ.section : currentQ.sectionKo || currentQ.section}
                       </span>
                     </span>
+
+                    {/* Audio Jump Button for listening questions */}
+                    {typeof currentQ.audioTimestamp === "number" && (
+                      <button
+                        type="button"
+                        onClick={() => handleJumpAudio(currentQ.audioTimestamp)}
+                        className="flex items-center gap-1 px-2.5 py-0.5 sm:py-1 rounded-lg text-[11px] sm:text-xs font-bold bg-red-600 hover:bg-red-700 text-white transition shadow-xs cursor-pointer"
+                        title="点击直接跳至本题听力音频处播放"
+                      >
+                        <Volume2 className="w-3.5 h-3.5" />
+                        <span>{formatSeconds(currentQ.audioTimestamp)} 재생</span>
+                      </button>
+                    )}
                   </div>
 
                   <div className="flex items-center gap-1.5 sm:gap-2">
@@ -167,21 +256,21 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                     <button
                       type="button"
                       onClick={() => setShowAiModal(true)}
-                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200 transition"
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200 transition cursor-pointer"
                       title="AI에게 이 문제에 대해 물어보기"
                     >
                       <Bot className="w-3.5 h-3.5 text-purple-600" />
                       <span>AI 튜터</span>
                     </button>
 
-                    {/* Korean Help Toggle */}
+                    {/* Korean Help Toggle (Default off) */}
                     <button
                       type="button"
                       onClick={() => setShowKoreanHelp(!showKoreanHelp)}
-                      className={`flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-lg text-xs font-bold transition border ${
+                      className={`flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-lg text-xs font-bold transition border cursor-pointer ${
                         showKoreanHelp
-                          ? "bg-amber-50 text-amber-800 border-amber-300"
-                          : "bg-slate-50 text-slate-600 border-slate-200"
+                          ? "bg-amber-50 text-amber-800 border-amber-300 ring-1 ring-amber-300"
+                          : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100"
                       }`}
                     >
                       <Languages className="w-3.5 h-3.5 text-amber-600" />
@@ -195,7 +284,7 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                     <button
                       type="button"
                       onClick={onToggleMark}
-                      className={`flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-lg text-xs font-bold transition border ${
+                      className={`flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-lg text-xs font-bold transition border cursor-pointer ${
                         isMarked
                           ? "bg-amber-100 text-amber-800 border-amber-300"
                           : "bg-slate-50 text-slate-600 border-slate-200"
@@ -209,10 +298,74 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                   </div>
                 </div>
 
-                {/* Question Stem Content */}
+                {/* Question Stem Content with Interactive Cloze Blank */}
                 <div className="text-base sm:text-xl text-slate-900 leading-relaxed font-normal whitespace-pre-line mb-4 font-sans">
-                  {currentQ.content}
+                  {(() => {
+                    const content = currentQ.content || "";
+                    const blankRegex = /(（\s*）|\(\s*\)|（\s*\d+\s*）|\(\s*\d+\s*\)|\[\s*\d+\s*\]|【\s*\d+\s*】)/g;
+                    const parts = content.split(blankRegex);
+                    if (parts.length <= 1) {
+                      return content;
+                    }
+                    const selectedWord = currentQ?.options && selectedAnswer
+                      ? (currentQ.options as any)[selectedAnswer]
+                      : null;
+
+                    return (
+                      <span>
+                        {parts.map((part, idx) => {
+                          if (part.match(blankRegex)) {
+                            return (
+                              <span
+                                key={idx}
+                                className={`inline-flex items-center mx-1 px-3 py-0.5 rounded-lg text-sm sm:text-base font-bold border transition duration-200 cursor-pointer ${
+                                  selectedWord
+                                    ? "bg-blue-50 text-blue-700 border-blue-300 ring-2 ring-blue-500/20 shadow-xs"
+                                    : "bg-amber-50 text-amber-800 border-dashed border-amber-300"
+                                }`}
+                                title="클릭하여 아래 보기에서 알맞은 어휘를 선택하세요"
+                              >
+                                {selectedWord ? `（ ${selectedWord} ）` : `（ ${currentQ.number}번 빈칸 ）`}
+                              </span>
+                            );
+                          }
+                          return <span key={idx}>{part}</span>;
+                        })}
+                      </span>
+                    );
+                  })()}
                 </div>
+
+                {/* 2. 听力题原文折叠开关 (默认隐藏) */}
+                {currentQ.transcript && (
+                  <div className="my-3 sm:my-4 border border-slate-200 rounded-2xl overflow-hidden bg-slate-50/70">
+                    <button
+                      type="button"
+                      onClick={() => setShowTranscript(!showTranscript)}
+                      className="w-full flex items-center justify-between px-4 py-2.5 text-left text-xs font-bold text-slate-700 hover:bg-slate-100 transition cursor-pointer"
+                    >
+                      <span className="flex items-center gap-2">
+                        <FileText className="w-3.5 h-3.5 text-red-600" />
+                        <span>
+                          {showTranscript
+                            ? "📄 듣기 대본(녹음 원문) 접기"
+                            : "📄 듣기 대본(녹음 원문) 펼쳐보기 (기본 접힘)"}
+                        </span>
+                      </span>
+                      {showTranscript ? (
+                        <ChevronUp className="w-4 h-4 text-slate-400" />
+                      ) : (
+                        <ChevronDown className="w-4 h-4 text-slate-400" />
+                      )}
+                    </button>
+
+                    {showTranscript && (
+                      <div className="px-4 py-3 bg-white border-t border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line font-sans animate-in fade-in duration-150">
+                        {currentQ.transcript}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* Korean Help & Vocabulary Box */}
                 {showKoreanHelp && currentQ.vocabList && currentQ.vocabList.length > 0 && (
@@ -248,45 +401,158 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                   </div>
                 )}
 
-                {/* Option Buttons */}
-                <div className="space-y-2.5 sm:space-y-3 pt-2 sm:pt-3">
-                  {optionKeys.map((key) => {
-                    const optText = (currentQ.options as any)[key];
-                    const optTextKo = (currentQ.optionsKo as any)?.[key];
-                    const isSelected = selectedAnswer === key;
+                {/* 1. 连词成句交互输入 (order_words) */}
+                {currentQ.type === "order_words" && (
+                  <div className="mt-4 sm:mt-5 space-y-4">
+                    {/* Assembled Sentence Box */}
+                    <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border-2 border-dashed border-red-300 min-h-[90px] flex flex-col justify-between">
+                      <div className="text-xs font-bold text-slate-400 mb-2 flex items-center justify-between">
+                        <span>✨ 조립된 완성 문장 (클릭 시 단어 회수):</span>
+                        {rawAnswerTokens.length > 0 && (
+                          <button
+                            type="button"
+                            onClick={handleResetWordOrder}
+                            className="text-red-600 hover:text-red-700 text-xs flex items-center gap-1 cursor-pointer"
+                          >
+                            <RotateCcw className="w-3 h-3" />
+                            <span>전체 비우기</span>
+                          </button>
+                        )}
+                      </div>
 
-                    return (
-                      <button
-                        key={key}
-                        type="button"
-                        onClick={() => onSelectAnswer(key)}
-                        className={`w-full text-left p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border flex items-start gap-3 sm:gap-4 transition group cursor-pointer ${
-                          isSelected
-                            ? "border-red-600 bg-red-50/70 text-red-950 shadow-xs"
-                            : "border-slate-200 hover:border-red-300 hover:bg-slate-50/80 text-slate-800"
-                        }`}
-                      >
-                        <div
-                          className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 transition ${
+                      <div className="flex flex-wrap items-center gap-2">
+                        {rawAnswerTokens.length === 0 ? (
+                          <span className="text-xs text-slate-400 italic">
+                            아래의 단어 조각을 올바른 어순대로 클릭하여 문장을 만들어주세요.
+                          </span>
+                        ) : (
+                          <>
+                            {rawAnswerTokens.map((w, idx) => (
+                              <button
+                                key={`${w}_${idx}`}
+                                type="button"
+                                onClick={() => handleToggleWord(w, true)}
+                                className="px-3 py-1.5 bg-red-600 text-white rounded-xl text-sm sm:text-base font-bold shadow-xs hover:bg-red-700 transition cursor-pointer"
+                                title="클릭하여 단어 회수"
+                              >
+                                {w}
+                              </button>
+                            ))}
+                            <span className="text-lg font-bold text-slate-700">{punctuation}</span>
+                          </>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Word Blocks Pool */}
+                    <div>
+                      <div className="text-xs font-bold text-slate-600 mb-2">
+                        👇 배치할 단어 조각 (클릭하여 문장에 추가):
+                      </div>
+                      <div className="flex flex-wrap gap-2.5">
+                        {getRemainingPool().map((item) => (
+                          <button
+                            key={item.key}
+                            type="button"
+                            disabled={item.isUsed}
+                            onClick={() => handleToggleWord(item.word, false)}
+                            className={`px-3.5 py-2 rounded-xl text-sm sm:text-base font-bold border transition ${
+                              item.isUsed
+                                ? "bg-slate-100 text-slate-300 border-slate-200 cursor-not-allowed opacity-40"
+                                : "bg-white text-slate-800 border-slate-300 hover:border-red-400 hover:bg-red-50/50 shadow-xs cursor-pointer active:scale-95"
+                            }`}
+                          >
+                            {item.word}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* 1. 看图造句 / 短文写作 (image_writing) */}
+                {currentQ.type === "image_writing" && (
+                  <div className="mt-4 sm:mt-5 space-y-3">
+                    {/* Required Word Badges */}
+                    {requiredWords.length > 0 && (
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-xs font-bold text-slate-500">필수 포함 어휘:</span>
+                        {requiredWords.map((word) => {
+                          const isIncluded = selectedAnswer.includes(word);
+                          return (
+                            <span
+                              key={word}
+                              className={`px-2.5 py-1 rounded-lg text-xs font-bold border flex items-center gap-1 transition ${
+                                isIncluded
+                                  ? "bg-emerald-50 text-emerald-700 border-emerald-300"
+                                  : "bg-amber-50 text-amber-800 border-amber-300"
+                              }`}
+                            >
+                              <span>【{word}】</span>
+                              <span>{isIncluded ? "✅ 포함됨" : "⏳ 미포함"}</span>
+                            </span>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Textarea */}
+                    <textarea
+                      rows={5}
+                      value={selectedAnswer}
+                      onChange={(e) => onSelectAnswer(e.target.value)}
+                      placeholder="여기에 중국어 문장을 직접 작성해 주세요. (지정된 어휘를 반드시 포함하여 문법에 맞게 작문합니다)"
+                      className="w-full p-4 rounded-2xl border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-sm sm:text-base font-sans text-slate-900 leading-relaxed outline-none transition"
+                    />
+
+                    <div className="flex items-center justify-between text-xs text-slate-400">
+                      <span>작성 글자 수: {selectedAnswer.length}자</span>
+                      <span>HSK 4급은 한 문장, 5급은 80자 내외 작문 권장</span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Choice Option Buttons */}
+                {currentQ.type !== "order_words" && currentQ.type !== "image_writing" && (
+                  <div className="space-y-2.5 sm:space-y-3 pt-2 sm:pt-3">
+                    {optionKeys.map((key) => {
+                      const optText = (currentQ.options as any)[key];
+                      const optTextKo = (currentQ.optionsKo as any)?.[key];
+                      const isSelected = selectedAnswer === key;
+
+                      return (
+                        <button
+                          key={key}
+                          type="button"
+                          onClick={() => onSelectAnswer(key)}
+                          className={`w-full text-left p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border flex items-start gap-3 sm:gap-4 transition group cursor-pointer ${
                             isSelected
-                              ? "bg-red-600 text-white shadow-xs"
-                              : "bg-white border border-slate-300 text-slate-600 group-hover:border-red-400 group-hover:text-red-600"
+                              ? "border-red-600 bg-red-50/70 text-red-950 shadow-xs"
+                              : "border-slate-200 hover:border-red-300 hover:bg-slate-50/80 text-slate-800"
                           }`}
                         >
-                          {key}
-                        </div>
-                        <div className="flex-1 pt-0.5 text-sm sm:text-base leading-relaxed min-w-0">
-                          <div>{optText}</div>
-                          {showKoreanHelp && optTextKo && optTextKo !== optText && (
-                            <div className="text-xs text-slate-500 mt-0.5 font-sans">
-                              {optTextKo}
-                            </div>
-                          )}
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                          <div
+                            className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 transition ${
+                              isSelected
+                                ? "bg-red-600 text-white shadow-xs"
+                                : "bg-white border border-slate-300 text-slate-600 group-hover:border-red-400 group-hover:text-red-600"
+                            }`}
+                          >
+                            {key}
+                          </div>
+                          <div className="flex-1 pt-0.5 text-sm sm:text-base leading-relaxed min-w-0">
+                            <div>{optText}</div>
+                            {showKoreanHelp && optTextKo && optTextKo !== optText && (
+                              <div className="text-xs text-slate-500 mt-0.5 font-sans">
+                                {optTextKo}
+                              </div>
+                            )}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
 
               {/* Prev / Next navigation */}
@@ -295,7 +561,7 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                   type="button"
                   onClick={onPrev}
                   disabled={currentIndex === 0}
-                  className={`flex items-center gap-1 sm:gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition ${
+                  className={`flex items-center gap-1 sm:gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer ${
                     currentIndex === 0
                       ? "text-slate-300 cursor-not-allowed"
                       : "text-slate-700 hover:bg-slate-100"
@@ -308,7 +574,7 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                 <button
                   type="button"
                   onClick={onNext}
-                  className="flex items-center gap-1 sm:gap-1.5 px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-red-600 text-white hover:bg-red-700 shadow-md shadow-red-600/20 transition transform active:scale-95"
+                  className="flex items-center gap-1 sm:gap-1.5 px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-red-600 text-white hover:bg-red-700 shadow-md shadow-red-600/20 transition transform active:scale-95 cursor-pointer"
                 >
                   <span>
                     {currentIndex === exam.questions.length - 1
@@ -389,7 +655,7 @@ export const HskCbtExamLayout: React.FC<HskCbtExamLayoutProps> = ({
                             key={q.id}
                             type="button"
                             onClick={() => onSelectQuestionIndex(qIdx)}
-                            className={`h-8 rounded-lg border text-xs flex items-center justify-center relative transition ${btnClass}`}
+                            className={`h-8 rounded-lg border text-xs flex items-center justify-center relative transition cursor-pointer ${btnClass}`}
                             title={`第 ${q.number} 题 (${q.section})`}
                           >
                             <span>{q.number}</span>

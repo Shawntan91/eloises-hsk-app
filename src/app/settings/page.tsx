@@ -1,0 +1,505 @@
+"use client";
+
+import React, { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import Header from "@/components/common/Header";
+import hskExamsData from "@/data/hskExams.json";
+import { Exam } from "@/types/exam";
+import { Question } from "@/types/question";
+import {
+  saveActiveExam,
+  loadExam,
+  saveUserExamOptions,
+  loadUserExamOptions,
+  DEFAULT_USER_EXAM_OPTIONS,
+  UserExamOptions,
+} from "@/utils/storage";
+import { getLocale } from "@/utils/i18n";
+import {
+  Sliders,
+  Clock,
+  Play,
+  Shuffle,
+  Flag,
+  RotateCcw,
+  BookOpen,
+  Headphones,
+  FileEdit,
+  Sparkles,
+  Layers,
+  ChevronLeft,
+  CheckCircle2,
+} from "lucide-react";
+import Link from "next/link";
+
+function SettingsForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const examIdParam = searchParams.get("examId") || "hsk4-01";
+  const partParam = searchParams.get("part") || "all"; // all, listening, reading, writing
+
+  const [selectedExamId, setSelectedExamId] = useState<string>(examIdParam);
+  const [selectedSection, setSelectedSection] = useState<"all" | "listening" | "reading" | "writing">(
+    (partParam as any) || "all"
+  );
+  const [selectedCountOption, setSelectedCountOption] = useState<string>("all");
+  const [customCount, setCustomCount] = useState<number>(10);
+  const [durationOption, setDurationOption] = useState<number>(105); // minutes
+  const [customDuration, setCustomDuration] = useState<number>(45);
+  const [answerMode, setAnswerMode] = useState<"official" | "practice">("official");
+  const [shuffleQuestions, setShuffleQuestions] = useState<boolean>(false);
+  const [shuffleOptions, setShuffleOptions] = useState<boolean>(false);
+  const [rememberSettings, setRememberSettings] = useState<boolean>(true);
+  const [locale, setLocale] = useState<string>("ko");
+
+  const exams = hskExamsData as any[];
+  const currentExam = exams.find((e) => e.id === selectedExamId) || exams[0];
+
+  useEffect(() => {
+    setLocale(getLocale());
+    const saved = loadUserExamOptions();
+    if (saved) {
+      if (saved.selectedCountOption) setSelectedCountOption(saved.selectedCountOption);
+      if (typeof saved.customCount === "number") setCustomCount(saved.customCount);
+      if (typeof saved.selectedDurationOption === "number") setDurationOption(saved.selectedDurationOption);
+      if (typeof saved.shuffleQuestions === "boolean") setShuffleQuestions(saved.shuffleQuestions);
+      if (typeof saved.shuffleOptions === "boolean") setShuffleOptions(saved.shuffleOptions);
+    }
+  }, []);
+
+  const isKo = locale === "ko";
+
+  // Calculate question count for current section filter
+  const getSectionQuestions = (allQuestions: Question[], section: string) => {
+    if (section === "listening") {
+      return allQuestions.filter((q) => q.partCategory === "听力" || q.number <= 45);
+    }
+    if (section === "reading") {
+      return allQuestions.filter((q) => q.partCategory === "阅读" || (q.number >= 46 && q.number <= 85));
+    }
+    if (section === "writing") {
+      return allQuestions.filter((q) => q.partCategory === "书写" || q.number >= 86);
+    }
+    return allQuestions;
+  };
+
+  const poolQuestions = getSectionQuestions(currentExam.questions, selectedSection);
+
+  const handleStartExam = () => {
+    let finalQuestions: Question[] = [...poolQuestions];
+
+    // Shuffle questions if chosen
+    if (shuffleQuestions) {
+      finalQuestions.sort(() => 0.5 - Math.random());
+    }
+
+    // Limit count
+    let count = finalQuestions.length;
+    if (selectedCountOption !== "all") {
+      const parsed = parseInt(selectedCountOption, 10);
+      if (!isNaN(parsed) && parsed > 0) {
+        count = Math.min(parsed, finalQuestions.length);
+      } else if (selectedCountOption === "custom") {
+        count = Math.min(customCount, finalQuestions.length);
+      }
+      finalQuestions = finalQuestions.slice(0, count);
+    }
+
+    // Shuffle options if chosen
+    if (shuffleOptions) {
+      finalQuestions = finalQuestions.map((q) => {
+        if (!q.options || Object.keys(q.options).length <= 1) return q;
+        const entries = Object.entries(q.options);
+        const correctText = q.officialAnswer ? q.options[q.officialAnswer] : undefined;
+        const shuffledValues = entries.map(([, v]) => v).sort(() => 0.5 - Math.random());
+        const letters = ["A", "B", "C", "D", "E", "F"];
+        const newOptions: Record<string, string | undefined> = {};
+        let newAnswer = q.officialAnswer;
+        shuffledValues.forEach((val, idx) => {
+          const l = letters[idx] || String.fromCharCode(65 + idx);
+          newOptions[l] = val;
+          if (val && correctText && val === correctText) {
+            newAnswer = l;
+          }
+        });
+        return {
+          ...q,
+          options: newOptions,
+          officialAnswer: newAnswer,
+        };
+      });
+    }
+
+    // Determine duration in seconds
+    let durationSeconds = 105 * 60;
+    if (durationOption === 0) {
+      durationSeconds = 999999; // Unlimited / practice
+    } else if (durationOption === -1) {
+      durationSeconds = customDuration * 60;
+    } else {
+      durationSeconds = durationOption * 60;
+    }
+
+    // Create unique customized active exam ID
+    const activeExamId = `${currentExam.id}-custom-${Date.now()}`;
+    const customExam: Exam = {
+      id: activeExamId,
+      level: currentExam.level,
+      title: `${currentExam.title} (${
+        selectedSection === "all"
+          ? isKo ? "전체 모의고사" : "全卷"
+          : selectedSection === "listening"
+          ? isKo ? "듣기 영역" : "听力"
+          : selectedSection === "reading"
+          ? isKo ? "독해 영역" : "阅读"
+          : isKo ? "쓰기 영역" : "书写"
+      })`,
+      titleKo: `${currentExam.titleKo} (${
+        selectedSection === "all"
+          ? "전체 모의고사"
+          : selectedSection === "listening"
+          ? "듣기 영역"
+          : selectedSection === "reading"
+          ? "독해 영역"
+          : "쓰기 영역"
+      })`,
+      subTitle: `${count}题 · ${Math.round(durationSeconds / 60)}分钟`,
+      subTitleKo: `${count}문항 · ${Math.round(durationSeconds / 60)}분`,
+      tag: currentExam.tag,
+      tagKo: currentExam.tagKo,
+      questions: finalQuestions,
+      duration: durationSeconds,
+      startTime: Date.now(),
+      answers: {},
+      markedQuestions: [],
+      currentQuestion: 0,
+      status: "in_progress",
+      answerMode: answerMode,
+      audioUrl: currentExam.audioUrl,
+      audioFileName: currentExam.audioFileName,
+    };
+
+    saveActiveExam(customExam);
+
+    if (rememberSettings) {
+      saveUserExamOptions({
+        selectedCountOption,
+        customCount,
+        selectedDurationOption: durationOption,
+        customDuration,
+        shuffleQuestions,
+        shuffleOptions,
+      });
+    }
+
+    router.push(`/exam/${activeExamId}`);
+  };
+
+  return (
+    <div className="flex-1 flex flex-col bg-slate-50/50 min-h-screen">
+      <Header />
+
+      <main className="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-10">
+        <div className="mb-6 flex items-center justify-between">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-slate-800 transition"
+          >
+            <ChevronLeft className="w-4 h-4" />
+            <span>{isKo ? "메인 홈으로 돌아가기" : "返回首页"}</span>
+          </Link>
+          <span className="text-xs text-slate-400 font-medium">
+            HSK Custom Exam Settings
+          </span>
+        </div>
+
+        <div className="bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-8">
+          {/* Title Header */}
+          <div className="border-b border-slate-100 pb-5">
+            <div className="flex items-center gap-2 mb-1.5">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-black bg-red-600 text-white">
+                HSK {currentExam.level}급
+              </span>
+              <span className="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
+                맞춤형 실전 모의고사 설정
+              </span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+              {isKo ? "시험 전 맞춤형 환경설정" : "考前个性化刷题配置"}
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              {isKo
+                ? "응시할 영역(듣기/독해/쓰기), 문항 수, 시험 시간, 문항 순서 셔플 등을 자유롭게 선택하여 시작하세요."
+                : "支持按专项题型抽取、设定自定义倒计时、题目与选项乱序以及即时解析练习模式。"}
+            </p>
+          </div>
+
+          {/* 1. Exam Paper Selector */}
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-2.5 flex items-center gap-1.5">
+              <BookOpen className="w-4 h-4 text-red-600" />
+              <span>{isKo ? "1. 응시할 기출 회차 선택" : "1. 选择考试试卷"}</span>
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              {exams.map((ex) => (
+                <button
+                  key={ex.id}
+                  type="button"
+                  onClick={() => setSelectedExamId(ex.id)}
+                  className={`p-3.5 rounded-2xl border text-left transition flex items-center justify-between ${
+                    selectedExamId === ex.id
+                      ? "border-red-500 bg-red-50/40 ring-2 ring-red-500/20"
+                      : "border-slate-200 bg-slate-50/70 hover:bg-white hover:border-slate-300"
+                  }`}
+                >
+                  <div>
+                    <span className="text-xs font-bold text-slate-800 block">
+                      {isKo ? ex.titleKo : ex.title}
+                    </span>
+                    <span className="text-[11px] text-slate-500">
+                      HSK {ex.level}급 · 총 {ex.questions.length}문항
+                    </span>
+                  </div>
+                  {selectedExamId === ex.id && (
+                    <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0" />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* 2. Section Scope (Part) */}
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-2.5 flex items-center gap-1.5">
+              <Layers className="w-4 h-4 text-blue-600" />
+              <span>{isKo ? "2. 응시 영역 / 专项题型" : "2. 考试范围与专项题型"}</span>
+            </label>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              {[
+                { id: "all", labelZh: "全卷模考", labelKo: "전체 영역 (100문항)", icon: Layers },
+                { id: "listening", labelZh: "仅做听力", labelKo: "듣기 영역 (1~45)", icon: Headphones },
+                { id: "reading", labelZh: "仅做阅读", labelKo: "독해 영역 (46~85)", icon: BookOpen },
+                { id: "writing", labelZh: "仅做书写", labelKo: "쓰기 영역 (86~100)", icon: FileEdit },
+              ].map((item) => {
+                const Icon = item.icon;
+                const isSelected = selectedSection === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setSelectedSection(item.id as any)}
+                    className={`p-3 rounded-2xl border text-center transition flex flex-col items-center justify-center gap-1.5 ${
+                      isSelected
+                        ? "border-red-500 bg-red-50/40 text-red-700 ring-2 ring-red-500/20"
+                        : "border-slate-200 bg-slate-50/70 text-slate-700 hover:bg-white"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span className="text-xs font-bold">{isKo ? item.labelKo : item.labelZh}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* 3. Number of Questions */}
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-2.5 flex items-center gap-1.5">
+              <Sliders className="w-4 h-4 text-purple-600" />
+              <span>
+                {isKo ? "3. 풀이할 문항 수" : "3. 抽取题目数量"} (최대 {poolQuestions.length}문항)
+              </span>
+            </label>
+            <div className="flex flex-wrap items-center gap-2">
+              {[
+                { id: "all", label: isKo ? `전체 (${poolQuestions.length}문항)` : `全部 (${poolQuestions.length}题)` },
+                { id: "10", label: isKo ? "10문항 빠른 풀이" : "10题精练" },
+                { id: "20", label: isKo ? "20문항" : "20题" },
+                { id: "30", label: isKo ? "30문항" : "30题" },
+                { id: "custom", label: isKo ? "직접 입력" : "自定义题数" },
+              ].map((cnt) => (
+                <button
+                  key={cnt.id}
+                  type="button"
+                  onClick={() => setSelectedCountOption(cnt.id)}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold border transition ${
+                    selectedCountOption === cnt.id
+                      ? "border-red-500 bg-red-50 text-red-700 shadow-xs"
+                      : "border-slate-200 bg-slate-50/70 text-slate-700 hover:bg-white"
+                  }`}
+                >
+                  {cnt.label}
+                </button>
+              ))}
+            </div>
+            {selectedCountOption === "custom" && (
+              <div className="mt-3 flex items-center gap-2">
+                <input
+                  type="number"
+                  min="1"
+                  max={poolQuestions.length}
+                  value={customCount}
+                  onChange={(e) => setCustomCount(Math.max(1, parseInt(e.target.value) || 1))}
+                  className="w-24 px-3 py-1.5 border border-slate-200 rounded-xl text-xs font-mono font-bold"
+                />
+                <span className="text-xs text-slate-500">
+                  {isKo ? "문항을 무작위 추출하여 시험을 진행합니다" : "道题目"}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* 4. Timer & Duration */}
+          <div>
+            <label className="text-xs font-bold text-slate-700 block mb-2.5 flex items-center gap-1.5">
+              <Clock className="w-4 h-4 text-amber-600" />
+              <span>{isKo ? "4. 시험 제한시간 / 倒计时设置" : "4. 考试时间与倒计时"}</span>
+            </label>
+            <div className="flex flex-wrap items-center gap-2">
+              {[
+                { id: 105, label: isKo ? "공식 권장 (105분)" : "官方标准 (105分)" },
+                { id: 60, label: isKo ? "60분" : "60分钟" },
+                { id: 45, label: isKo ? "45분" : "45分钟" },
+                { id: 30, label: isKo ? "30분" : "30分钟" },
+                { id: 0, label: isKo ? "무제한 (자율 풀이)" : "不限时间 (纯练习)" },
+              ].map((time) => (
+                <button
+                  key={time.id}
+                  type="button"
+                  onClick={() => setDurationOption(time.id)}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold border transition ${
+                    durationOption === time.id
+                      ? "border-red-500 bg-red-50 text-red-700 shadow-xs"
+                      : "border-slate-200 bg-slate-50/70 text-slate-700 hover:bg-white"
+                  }`}
+                >
+                  {time.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* 5. Exam Mode & Shuffling */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+            {/* Answer Mode */}
+            <div>
+              <label className="text-xs font-bold text-slate-700 block mb-2">
+                {isKo ? "풀이 모드" : "答题反馈模式"}
+              </label>
+              <div className="space-y-2">
+                <button
+                  type="button"
+                  onClick={() => setAnswerMode("official")}
+                  className={`w-full p-3 rounded-2xl border text-left transition ${
+                    answerMode === "official"
+                      ? "border-red-500 bg-red-50/40 text-red-900 ring-1 ring-red-500"
+                      : "border-slate-200 bg-slate-50/70 text-slate-700"
+                  }`}
+                >
+                  <p className="text-xs font-bold">
+                    {isKo ? "실전 모의고사 (Official CBT)" : "官方全真模考"}
+                  </p>
+                  <p className="text-[11px] text-slate-500 mt-0.5">
+                    {isKo
+                      ? "정답 및 해설을 숨기고 실제 시험처럼 풀이 후 최종 제출하여 성적표 확인"
+                      : "全真考场环境，交卷后统一生成报告与错题"}
+                  </p>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setAnswerMode("practice")}
+                  className={`w-full p-3 rounded-2xl border text-left transition ${
+                    answerMode === "practice"
+                      ? "border-red-500 bg-red-50/40 text-red-900 ring-1 ring-red-500"
+                      : "border-slate-200 bg-slate-50/70 text-slate-700"
+                  }`}
+                >
+                  <p className="text-xs font-bold">
+                    {isKo ? "학습 연습 모드 (Practice)" : "随做随看练习模式"}
+                  </p>
+                  <p className="text-[11px] text-slate-500 mt-0.5">
+                    {isKo
+                      ? "한 문제 풀 때마다 즉시 정답과 한국어 해설을 확인하며 학습"
+                      : "即时查看每题答案与深度解析"}
+                  </p>
+                </button>
+              </div>
+            </div>
+
+            {/* Shuffling Options */}
+            <div>
+              <label className="text-xs font-bold text-slate-700 block mb-2">
+                {isKo ? "무작위 셔플 옵션" : "防作弊与乱序设置"}
+              </label>
+              <div className="space-y-2.5">
+                <label className="flex items-center gap-2 p-3 rounded-2xl border border-slate-200 bg-slate-50/70 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={shuffleQuestions}
+                    onChange={(e) => setShuffleQuestions(e.target.checked)}
+                    className="rounded text-red-600 focus:ring-red-500"
+                  />
+                  <div>
+                    <span className="text-xs font-bold text-slate-800 block">
+                      {isKo ? "문항 순서 랜덤 셔플" : "题目顺序随机打乱"}
+                    </span>
+                    <span className="text-[10px] text-slate-500">
+                      {isKo ? "문제를 무작위 순서로 재배열합니다" : "打乱原有题号顺序"}
+                    </span>
+                  </div>
+                </label>
+
+                <label className="flex items-center gap-2 p-3 rounded-2xl border border-slate-200 bg-slate-50/70 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={shuffleOptions}
+                    onChange={(e) => setShuffleOptions(e.target.checked)}
+                    className="rounded text-red-600 focus:ring-red-500"
+                  />
+                  <div>
+                    <span className="text-xs font-bold text-slate-800 block">
+                      {isKo ? "보기(A/B/C/D) 순서 셔플" : "选项顺序随机打乱"}
+                    </span>
+                    <span className="text-[10px] text-slate-500">
+                      {isKo ? "선택지의 순서를 랜덤으로 바꿉니다" : "防止机械记忆选项位置"}
+                    </span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          {/* Submit & Remember Action Bar */}
+          <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <label className="flex items-center gap-2 text-xs font-bold text-slate-600 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={rememberSettings}
+                onChange={(e) => setRememberSettings(e.target.checked)}
+                className="rounded text-red-600 focus:ring-red-500"
+              />
+              <span>{isKo ? "이 맞춤형 설정을 다음 시험에도 기억하기" : "记住我的配置选项"}</span>
+            </label>
+
+            <button
+              type="button"
+              onClick={handleStartExam}
+              className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-black text-sm shadow-lg shadow-red-500/25 flex items-center justify-center gap-2 transition transform active:scale-95"
+            >
+              <Play className="w-4 h-4 fill-white" />
+              <span>{isKo ? "설정 적용 후 시험 시작하기" : "应用配置并开始考试"}</span>
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export default function SettingsPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-xs text-slate-400">Loading settings...</div>}>
+      <SettingsForm />
+    </Suspense>
+  );
+}

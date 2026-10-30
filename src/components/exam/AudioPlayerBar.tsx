@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { Play, Pause, RotateCcw, Volume2, VolumeX, Headphones, FastForward } from "lucide-react";
+import { Play, Pause, RotateCcw, Volume2, VolumeX, Headphones, FastForward, CheckCircle2 } from "lucide-react";
 import { formatSeconds } from "@/utils/timer";
 
 interface AudioPlayerBarProps {
@@ -22,6 +22,7 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
   const [playbackRate, setPlaybackRate] = useState(1.0);
   const [volume, setVolume] = useState(0.8);
   const [isMuted, setIsMuted] = useState(false);
+  const [jumpFeedback, setJumpFeedback] = useState<string | null>(null);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -35,10 +36,23 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("ended", handleEnded);
 
+    const handleCustomSeek = (e: any) => {
+      const targetTime = e.detail?.time;
+      if (typeof targetTime === "number" && audioRef.current) {
+        audioRef.current.currentTime = targetTime;
+        setCurrentTime(targetTime);
+        audioRef.current.play().then(() => setIsPlaying(true)).catch(console.error);
+        setJumpFeedback(`🎧 已跳转至 ${formatSeconds(targetTime)}`);
+        setTimeout(() => setJumpFeedback(null), 2500);
+      }
+    };
+    window.addEventListener("seek-audio-time", handleCustomSeek);
+
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("ended", handleEnded);
+      window.removeEventListener("seek-audio-time", handleCustomSeek);
     };
   }, []);
 
@@ -100,13 +114,21 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
   if (!audioUrl) return null;
 
   return (
-    <div className="bg-slate-900 text-white px-4 py-2.5 rounded-2xl shadow-lg border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+    <div className="bg-slate-900 text-white px-4 py-2.5 rounded-2xl shadow-lg border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs relative">
       <audio ref={audioRef} src={audioUrl} preload="metadata" />
+
+      {/* Jump Feedback Pill */}
+      {jumpFeedback && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white px-3 py-0.5 rounded-full text-[11px] font-bold shadow-md animate-in fade-in zoom-in-95 flex items-center gap-1 z-20">
+          <CheckCircle2 className="w-3.5 h-3.5" />
+          <span>{jumpFeedback}</span>
+        </div>
+      )}
 
       {/* Left: Audio Info & Icon */}
       <div className="flex items-center gap-2.5 min-w-0 w-full sm:w-auto">
-        <div className="w-8 h-8 rounded-lg bg-red-600/30 text-red-400 border border-red-500/30 flex items-center justify-center flex-shrink-0 animate-pulse">
-          <Headphones className="w-4 h-4" />
+        <div className="w-8 h-8 rounded-lg bg-red-600/30 text-red-400 border border-red-500/30 flex items-center justify-center flex-shrink-0">
+          <Headphones className="w-4 h-4 animate-pulse" />
         </div>
         <div className="min-w-0">
           <div className="font-bold text-slate-200 truncate flex items-center gap-1.5">
@@ -159,19 +181,19 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
         </button>
       </div>
 
-      {/* Right: Speed & Volume */}
-      <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
-        {/* Speed buttons */}
-        <div className="flex items-center bg-slate-800 rounded-lg p-0.5 border border-slate-700">
+      {/* Right: Playback Speed & Volume */}
+      <div className="flex items-center gap-3 shrink-0">
+        {/* Speed Toggles */}
+        <div className="flex items-center bg-slate-800 p-0.5 rounded-lg border border-slate-700">
           {[0.8, 1.0, 1.2].map((r) => (
             <button
               key={r}
               type="button"
               onClick={() => handleRateChange(r)}
-              className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold transition ${
+              className={`px-2 py-0.5 rounded text-[10px] font-bold font-mono transition ${
                 playbackRate === r
                   ? "bg-red-600 text-white"
-                  : "text-slate-400 hover:text-white"
+                  : "text-slate-400 hover:text-slate-200"
               }`}
             >
               {r}x
@@ -180,14 +202,14 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
         </div>
 
         {/* Volume */}
-        <div className="flex items-center gap-1.5">
+        <div className="hidden md:flex items-center gap-1.5">
           <button
             type="button"
             onClick={toggleMute}
-            className="text-slate-400 hover:text-white transition"
+            className="p-1 text-slate-400 hover:text-white transition"
           >
             {isMuted || volume === 0 ? (
-              <VolumeX className="w-3.5 h-3.5" />
+              <VolumeX className="w-3.5 h-3.5 text-rose-400" />
             ) : (
               <Volume2 className="w-3.5 h-3.5" />
             )}
@@ -199,7 +221,7 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
             step="0.05"
             value={isMuted ? 0 : volume}
             onChange={handleVolumeChange}
-            className="w-14 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-red-500"
+            className="w-16 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-red-500"
           />
         </div>
       </div>

@@ -1,5 +1,12 @@
 import { Exam, ExamResult, QuestionDetailResult, SectionScore } from "@/types/exam";
 
+export function normalizeSentence(str: string): string {
+  // Strip spaces and all Chinese/English punctuation for fair comparison
+  return (str || "")
+    .replace(/[\s\u3000\u3001\u3002\uff0c\uff01\uff1f\uff1b\uff1a\u201c\u201d\u2018\u2019\u3008\u3009\u300a\u300b,.!?:;'"\-–—~·]/g, "")
+    .toLowerCase();
+}
+
 export function calculateExamResult(exam: Exam): ExamResult {
   const questions = exam.questions;
   const answers = exam.answers || {};
@@ -16,12 +23,38 @@ export function calculateExamResult(exam: Exam): ExamResult {
   let totalAnswered = 0;
 
   for (const q of questions) {
-    const userAns = answers[q.id]?.trim();
+    const userAns = answers[q.id]?.trim() || "";
     const isUnanswered = !userAns || userAns.length === 0;
     if (!isUnanswered) totalAnswered++;
 
-    const officialAns = (q.officialAnswer || "").trim().toUpperCase();
-    const isCorrect = !isUnanswered && userAns.toUpperCase() === officialAns;
+    let isCorrect = false;
+    let effectiveAns = (q.officialAnswer || "").trim();
+
+    if (q.type === "order_words") {
+      // 连词成句
+      effectiveAns = q.standardSentence || q.officialAnswer || "";
+      const cleanUser = normalizeSentence(userAns);
+      const cleanStd = normalizeSentence(effectiveAns);
+      isCorrect = !isUnanswered && cleanUser.length > 0 && cleanUser === cleanStd;
+    } else if (q.type === "image_writing") {
+      // 看图造句 / 短文写作
+      effectiveAns = q.referenceEssay || q.standardSentence || q.officialAnswer || "（参考范文）";
+      if (!isUnanswered) {
+        const req = (q.requiredWord || "").trim();
+        if (!req) {
+          isCorrect = userAns.length >= 8;
+        } else {
+          const reqWords = req.split(/\s+/).filter(Boolean);
+          // 只要包含了指定词汇并且长度合规即算合格得分
+          const containsReq = reqWords.some((w) => userAns.includes(w));
+          isCorrect = containsReq && userAns.length >= 6;
+        }
+      }
+    } else {
+      // Choice questions
+      const officialClean = effectiveAns.toUpperCase();
+      isCorrect = !isUnanswered && userAns.toUpperCase() === officialClean;
+    }
 
     if (isCorrect) totalCorrect++;
 
@@ -34,10 +67,10 @@ export function calculateExamResult(exam: Exam): ExamResult {
     details.push({
       question: q,
       userAnswer: userAns,
-      effectiveAnswer: officialAns,
+      effectiveAnswer: effectiveAns,
       isCorrect,
       isUnanswered,
-      pointsEarned: isCorrect ? 1 : 0, // normalized later
+      pointsEarned: isCorrect ? 1 : 0,
       maxPoints: 1,
     });
   }

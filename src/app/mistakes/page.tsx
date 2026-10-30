@@ -3,13 +3,13 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Header from "@/components/common/Header";
+import ExportMistakesButton from "@/components/common/ExportMistakesButton";
 import {
   getMistakeBank,
   MistakeItem,
   toggleMistakeMastered,
   deleteMistakeItem,
   clearAllMistakes,
-  downloadMistakesAsMarkdown,
 } from "@/utils/mistakeBank";
 import { getLocale, Locale } from "@/utils/i18n";
 import {
@@ -17,7 +17,6 @@ import {
   BookmarkCheck,
   CheckCircle2,
   Trash2,
-  Download,
   Sparkles,
   BookOpen,
   Filter,
@@ -48,10 +47,6 @@ export default function MistakesPage() {
   const handleDelete = (id: string) => {
     deleteMistakeItem(id);
     setMistakes(getMistakeBank());
-  };
-
-  const handleExport = () => {
-    downloadMistakesAsMarkdown(filteredList, "Eloise_HSK_맞춤_오답노트");
   };
 
   const handleClear = () => {
@@ -164,17 +159,24 @@ export default function MistakesPage() {
               </button>
             </div>
 
-            {/* Markdown Export */}
-            <button
-              type="button"
-              onClick={handleExport}
-              disabled={filteredList.length === 0}
-              className="flex items-center gap-1.5 px-3.5 py-2 bg-slate-900 hover:bg-slate-800 disabled:opacity-50 text-white rounded-xl text-xs font-bold transition shadow-xs"
-              title="Markdown 파일로 오답노트 다운로드"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>MD 다운로드</span>
-            </button>
+            {/* Multi-format Export Button */}
+            <ExportMistakesButton
+              items={filteredList}
+              title="Eloise_HSK_맞춤_오답노트"
+              locale={locale}
+            />
+
+            {/* Clear All */}
+            {mistakes.length > 0 && (
+              <button
+                type="button"
+                onClick={handleClear}
+                className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition"
+                title="전체 오답노트 비우기"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            )}
           </div>
         </div>
 
@@ -198,19 +200,19 @@ export default function MistakesPage() {
                 <div
                   key={item.id}
                   className={`bg-white rounded-2xl border p-5 sm:p-6 shadow-xs transition ${
-                    item.mastered ? "border-slate-200 opacity-70" : "border-rose-200"
+                    item.mastered ? "border-slate-200 opacity-75" : "border-rose-200"
                   }`}
                 >
-                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100 flex-wrap gap-2">
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100 flex-wrap gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="w-7 h-7 rounded-lg bg-rose-600 text-white font-bold text-xs flex items-center justify-center">
+                      <span className="w-7 h-7 rounded-lg bg-red-600 text-white font-bold text-xs flex items-center justify-center">
                         #{idx + 1}
                       </span>
-                      <span className="text-xs font-bold text-slate-800">
-                        {item.examTitleKo || item.examTitle}
+                      <span className="text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg">
+                        HSK {item.level}급 · {q.sectionKo || q.section}
                       </span>
-                      <span className="text-[11px] text-slate-400">
-                        · HSK {item.level}급 {q.sectionKo || q.section}
+                      <span className="text-xs text-slate-400 hidden sm:inline">
+                        《{item.examTitleKo || item.examTitle}》
                       </span>
                     </div>
 
@@ -218,84 +220,90 @@ export default function MistakesPage() {
                       <button
                         type="button"
                         onClick={() => handleToggle(item.id)}
-                        className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold border transition ${
+                        className={`flex items-center gap-1 px-3 py-1 rounded-xl text-xs font-bold transition border ${
                           item.mastered
                             ? "bg-emerald-50 text-emerald-700 border-emerald-300"
-                            : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100"
+                            : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-emerald-50 hover:text-emerald-700"
                         }`}
                       >
                         <CheckCircle2 className="w-3.5 h-3.5" />
-                        <span>{item.mastered ? "마스터 완료" : "마스터 표시"}</span>
+                        <span>{item.mastered ? "마스터됨" : "마스터 표시"}</span>
                       </button>
 
                       <button
                         type="button"
                         onClick={() => handleDelete(item.id)}
-                        className="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-slate-100 transition"
+                        className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition"
                         title="이 오답 삭제"
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
+                        <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
 
-                  {/* Stem Content */}
-                  <div className="text-base text-slate-900 leading-relaxed font-normal whitespace-pre-line mb-4 font-sans">
+                  {/* Stem */}
+                  <div className="text-base text-slate-900 leading-relaxed font-normal whitespace-pre-line mb-3 font-sans">
                     {q.content}
                   </div>
 
-                  {/* Image */}
+                  {/* Image if present */}
                   {q.image && (
-                    <div className="my-3 p-2 bg-slate-50 border border-slate-200 rounded-xl inline-block max-w-full">
+                    <div className="my-2 p-2 bg-slate-50 border border-slate-200 rounded-xl inline-block max-w-full">
                       <img
                         src={q.image}
-                        alt="配图"
-                        className="max-h-48 max-w-full rounded object-contain"
+                        alt="插图"
+                        className="max-h-40 max-w-full rounded object-contain"
                       />
                     </div>
                   )}
 
+                  {/* Options */}
+                  {q.options && Object.keys(q.options).length > 0 && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+                      {Object.entries(q.options).map(([k, v]) => {
+                        const isUser = item.userAnswer === k;
+                        const isCor = item.correctAnswer === k;
+
+                        let badge = "border-slate-200 bg-slate-50/50 text-slate-700";
+                        if (isCor) badge = "border-emerald-300 bg-emerald-50 text-emerald-950 font-bold";
+                        else if (isUser) badge = "border-rose-300 bg-rose-50 text-rose-950 font-bold";
+
+                        return (
+                          <div
+                            key={k}
+                            className={`p-2.5 rounded-xl border text-xs flex items-start gap-2 ${badge}`}
+                          >
+                            <span className="font-bold w-5 h-5 rounded-full bg-white border border-slate-300 flex items-center justify-center shrink-0">
+                              {k}
+                            </span>
+                            <span className="pt-0.5">{v}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
                   {/* Answer Comparison */}
-                  <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs flex items-center gap-6 mb-4">
+                  <div className="bg-slate-50 rounded-xl p-3 text-xs mb-3 flex flex-wrap items-center gap-4 border border-slate-200">
                     <div>
-                      <span className="text-slate-400">내 답안: </span>
-                      <strong className="text-rose-600 text-sm font-bold">{item.userAnswer}</strong>
+                      <span className="text-slate-400 font-medium">내가 작성한 답안: </span>
+                      <span className="font-bold text-rose-600">{item.userAnswer}</span>
                     </div>
                     <div>
-                      <span className="text-slate-400">공식 정답: </span>
-                      <strong className="text-emerald-600 text-sm font-bold">{item.correctAnswer}</strong>
+                      <span className="text-slate-400 font-medium">공식 표준 정답: </span>
+                      <span className="font-bold text-emerald-600">{item.correctAnswer}</span>
                     </div>
                   </div>
 
                   {/* Korean Explanation */}
                   {q.explanationKo && (
-                    <div className="bg-white p-3.5 rounded-xl border border-slate-200 text-xs text-slate-800 leading-relaxed whitespace-pre-line mb-3 font-sans">
-                      <div className="font-bold text-red-600 mb-1 flex items-center gap-1">
-                        <span>💡 한국어 정답 해설 및 분석:</span>
+                    <div className="bg-blue-50/60 border border-blue-200/80 rounded-xl p-3.5 text-xs text-blue-950">
+                      <div className="font-bold flex items-center gap-1.5 text-blue-900 mb-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                        <span>💡 한국어 상세 해설 & 출제 포인트:</span>
                       </div>
-                      {q.explanationKo}
-                    </div>
-                  )}
-
-                  {/* Vocab Glossary */}
-                  {q.vocabList && q.vocabList.length > 0 && (
-                    <div className="bg-amber-50/70 p-3 rounded-xl border border-amber-200/80">
-                      <div className="font-bold text-amber-900 mb-1.5 flex items-center gap-1 text-xs">
-                        <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-                        <span>핵심 어휘 체크:</span>
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                        {q.vocabList.map((v, i) => (
-                          <div
-                            key={i}
-                            className="bg-white p-1.5 rounded-lg border border-amber-200/50 flex items-center justify-between"
-                          >
-                            <span className="font-bold text-slate-800">
-                              {v.word} <span className="font-mono text-amber-700 font-normal">[{v.pinyin}]</span>
-                            </span>
-                            <span className="text-slate-600">{v.meaning}</span>
-                          </div>
-                        ))}
+                      <div className="leading-relaxed whitespace-pre-line text-slate-700">
+                        {q.explanationKo}
                       </div>
                     </div>
                   )}

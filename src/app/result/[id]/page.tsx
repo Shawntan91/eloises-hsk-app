@@ -6,10 +6,12 @@ import Link from "next/link";
 import Header from "@/components/common/Header";
 import ScoreOverview from "@/components/result/ScoreOverview";
 import QuestionResultItem from "@/components/result/QuestionResultItem";
+import ExportMistakesButton from "@/components/common/ExportMistakesButton";
 import { ExamResult } from "@/types/exam";
 import { loadExamResult } from "@/utils/storage";
+import { convertQuestionDetailsToMistakes } from "@/utils/mistakeBank";
 import { getLocale, Locale } from "@/utils/i18n";
-import { ArrowLeft, BookOpen, BookmarkCheck, Loader2, RotateCcw } from "lucide-react";
+import { ArrowLeft, BookOpen, BookmarkCheck, Loader2 } from "lucide-react";
 
 export default function ResultPage() {
   const params = useParams();
@@ -43,9 +45,15 @@ export default function ResultPage() {
     );
   }
 
-  const displayedQuestions = filterWrongOnly
-    ? result.questionDetails.filter((d) => !d.isCorrect)
-    : result.questionDetails;
+  const wrongDetails = result.questionDetails.filter((d) => !d.isCorrect);
+  const displayedQuestions = filterWrongOnly ? wrongDetails : result.questionDetails;
+
+  const mistakesForExport = convertQuestionDetailsToMistakes(
+    result.examId,
+    result.titleKo || result.title,
+    result.level || 4,
+    wrongDetails
+  );
 
   return (
     <div className="flex-1 flex flex-col bg-slate-50 min-h-screen">
@@ -79,7 +87,7 @@ export default function ResultPage() {
             </span>
           </div>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 flex-wrap">
             {/* Filter Toggle */}
             <button
               type="button"
@@ -94,6 +102,16 @@ export default function ResultPage() {
                 ? `보기: 오답만 보기 (${result.wrongCount + result.unansweredCount}개)`
                 : "전체 문항 보기"}
             </button>
+
+            {/* Export mistakes from this exam */}
+            {mistakesForExport.length > 0 && (
+              <ExportMistakesButton
+                items={mistakesForExport}
+                title={`${result.titleKo || result.title}_오답`}
+                locale={locale}
+                variant="secondary"
+              />
+            )}
 
             {/* Link to Mistakes Notebook */}
             <Link
