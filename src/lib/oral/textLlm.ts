@@ -34,7 +34,12 @@ function extractErrorInfo(err: unknown): { status: number; message: string } {
   if (!err) return { status: 500, message: "Unknown error" };
   const obj = err as { status?: number; code?: number; message?: string };
   const msg = obj.message || String(err);
-  let status = typeof obj.status === "number" ? obj.status : typeof obj.code === "number" ? obj.code : 500;
+  let status =
+    typeof obj.status === "number"
+      ? obj.status
+      : typeof obj.code === "number"
+      ? obj.code
+      : 500;
 
   if (status === 500) {
     if (/\b503\b|UNAVAILABLE|high demand/i.test(msg)) status = 503;
@@ -47,9 +52,7 @@ function extractErrorInfo(err: unknown): { status: number; message: string } {
 
 function stripJsonFormatting(raw: string): string {
   let cleaned = raw.trim();
-  // Remove <think>...</think> blocks emitted by reasoning models if any
   cleaned = cleaned.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
-  // Remove markdown ```json ... ``` fences
   const fenceMatch = cleaned.match(/```(?:json)?\s*([\s\S]*?)```/i);
   if (fenceMatch && fenceMatch[1]) {
     cleaned = fenceMatch[1].trim();
@@ -165,7 +168,6 @@ async function tryGeminiWithFallbacks<T>(
   let lastError = "";
   let triedCount = 0;
 
-  // Try primary + explicit fallbacks first
   for (const model of candidates) {
     const maxAttempts = model === primary ? 2 : 1;
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
@@ -196,7 +198,6 @@ async function tryGeminiWithFallbacks<T>(
     }
   }
 
-  // If primary/explicit models hit 503/429/404 and no explicit fallback worked, auto-discover available models
   if (lastStatus === 503 || lastStatus === 429 || lastStatus === 404 || triedCount === 0) {
     const discovered = await discoverGeminiFallbackModels(ai);
     const extraCandidates = discovered
@@ -231,8 +232,9 @@ async function callOpenAiCompatibleJson<T>(params: {
   apiKey: string;
   model: string;
   options: StructuredLlmOptions;
+  extraBody?: Record<string, unknown>;
 }): Promise<T> {
-  const { baseUrl, apiKey, model, options } = params;
+  const { baseUrl, apiKey, model, options, extraBody } = params;
   const endpoint = `${baseUrl.replace(/\/+$/, "")}/chat/completions`;
 
   const messages = [
@@ -261,6 +263,7 @@ async function callOpenAiCompatibleJson<T>(params: {
         messages,
         temperature: options.temperature ?? 0.6,
         response_format: { type: "json_object" },
+        ...(extraBody || {}),
       }),
       signal: controller.signal,
     });
@@ -286,79 +289,172 @@ async function callOpenAiCompatibleJson<T>(params: {
   }
 }
 
-export async function generateOralStructuredJson<T>(
+async function tryDoubao<T>(
   options: StructuredLlmOptions
-): Promise<StructuredLlmResult<T>> {
-  const geminiKey = process.env.GEMINI_API_KEY?.trim();
+): Promise<{ result?: StructuredLlmResult<T>; lastStatus: number; lastError: string }> {
+  const apiKey = process.env.DOUBAO_API_KEY?.trim();
+  const model = process.env.DOUBAO_TEXT_MODEL?.trim();
+  if (!apiKey || !model) {
+    return { lastStatus: 500, lastError: "" };
+  }
+
+  const baseUrl =
+    process.env.DOUBAO_BASE_URL?.trim() ||
+    "https://ark.cn-beijing.volces.com/api/v3";
+
+  // Disable thinking for low-latency oral dialogue; retry without thinking field if model rejects it
+  try {
+    const data = await callOpenAiCompatibleJson<T>({
+      baseUrl,
+      apiKey,
+      model,
+      options,
+      extraBody: { thinking: { type: "disabled" } },
+    });
+    return { result: { data, provider: "doubao", model }, lastStatus: 200, lastError: "" };
+  } catch (err) {
+    const info = extractErrorInfo(err);
+    if (info.status === 400) {
+      try {
+        const data = await callOpenAiCompatibleJson<T>({
+          baseUrl,
+          apiKey,
+          model,
+          options,
+        });
+        return { result: { data, provider: "doubao", model }, lastStatus: 200, lastError: "" };
+      } catch (err2) {
+        const info2 = extractErrorInfo(err2);
+        return {
+          lastStatus: info2.status,
+          lastError: `[doubao:${model}] ${info2.message}`,
+        };
+      }
+    }
+    return {
+      lastStatus: info.status,
+      lastError: `[doubao:${model}] ${info.message}`,
+    };
+  }
+}
+
+async function tryGroq<T>(
+  options: StructuredLlmOptions
+): Promise<{ result?: StructuredLlmResult<T>; lastStatus: number; lastError: string }> {
   const groqKey = process.env.GROQ_API_KEY?.trim();
+  if (!groqKey) {
+    return { lastStatus: 500, lastError: "" };
+  }
+
+  // Prefer Qwen3-32B first on Groq for much stronger Chinese & Korean quality
+  const groqCandidates = Array.from(
+    new Set(
+      [
+        process.env.GROQ_TEXT_MODEL?.trim(),
+        "qwen/qwen3-32b",
+        "llama-3.3-70b-versatile",
+        "llama-3.1-8b-instant",
+      ].filter((m): m is string => Boolean(m))
+    )
+  );
 
   let lastStatus = 500;
   let lastError = "";
 
-  // 1. Primary: Google Gemini (with retry + auto fallback models)
-  if (geminiKey) {
-    const geminiAttempt = await tryGeminiWithFallbacks<T>(geminiKey, options);
-    if (geminiAttempt.result) {
-      return geminiAttempt.result;
+  for (const model of groqCandidates) {
+    const isQwen3 = model.toLowerCase().includes("qwen3");
+    try {
+      const data = await callOpenAiCompatibleJson<T>({
+        baseUrl: "https://api.groq.com/openai/v1",
+        apiKey: groqKey,
+        model,
+        options,
+        extraBody: isQwen3
+          ? { reasoning_format: "hidden", reasoning_effort: "none" }
+          : undefined,
+      });
+      console.info(`[textLlm] Served via Groq model=${model}`);
+      return {
+        result: { data, provider: "groq", model },
+        lastStatus: 200,
+        lastError: "",
+      };
+    } catch (err) {
+      const info = extractErrorInfo(err);
+      lastStatus = info.status;
+      lastError = `[groq:${model}] ${info.message}`;
+      console.warn(`[textLlm] ${lastError}`);
     }
-    lastStatus = geminiAttempt.lastStatus;
-    lastError = geminiAttempt.lastError;
   }
 
-  // 2. Fallback: Groq LLM (uses existing working GROQ_API_KEY)
-  if (groqKey) {
-    const groqCandidates = Array.from(
-      new Set(
-        [
-          process.env.GROQ_TEXT_MODEL?.trim(),
-          "llama-3.3-70b-versatile",
-          "qwen/qwen3-32b",
-          "llama-3.1-8b-instant",
-        ].filter((m): m is string => Boolean(m))
-      )
-    );
+  return { lastStatus, lastError };
+}
 
-    for (const model of groqCandidates) {
+export async function generateOralStructuredJson<T>(
+  options: StructuredLlmOptions
+): Promise<StructuredLlmResult<T>> {
+  const geminiKey = process.env.GEMINI_API_KEY?.trim();
+  const doubaoKey = process.env.DOUBAO_API_KEY?.trim();
+  const doubaoModel = process.env.DOUBAO_TEXT_MODEL?.trim();
+  const groqKey = process.env.GROQ_API_KEY?.trim();
+
+  const customKey = process.env.AI_API_KEY?.trim();
+  const customBase = process.env.AI_BASE_URL?.trim();
+  const customModel = process.env.AI_MODEL?.trim();
+
+  const order = (process.env.ORAL_LLM_ORDER || "gemini,doubao,groq,custom")
+    .split(",")
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean);
+
+  let lastStatus = 500;
+  let lastError = "";
+
+  for (const provider of order) {
+    if (provider === "gemini" && geminiKey) {
+      const res = await tryGeminiWithFallbacks<T>(geminiKey, options);
+      if (res.result) return res.result;
+      lastStatus = res.lastStatus;
+      lastError = res.lastError;
+    } else if (provider === "doubao" && doubaoKey && doubaoModel) {
+      const res = await tryDoubao<T>(options);
+      if (res.result) return res.result;
+      lastStatus = res.lastStatus;
+      lastError = res.lastError;
+      if (lastError) console.warn(`[textLlm] ${lastError}`);
+    } else if (provider === "groq" && groqKey) {
+      const res = await tryGroq<T>(options);
+      if (res.result) return res.result;
+      lastStatus = res.lastStatus;
+      lastError = res.lastError;
+    } else if (
+      provider === "custom" &&
+      customKey &&
+      customBase &&
+      customModel &&
+      !customKey.startsWith("AIzaSy")
+    ) {
       try {
         const data = await callOpenAiCompatibleJson<T>({
-          baseUrl: "https://api.groq.com/openai/v1",
-          apiKey: groqKey,
-          model,
+          baseUrl: customBase,
+          apiKey: customKey,
+          model: customModel,
           options,
         });
-        console.info(`[textLlm] Served via Groq fallback model=${model}`);
-        return { data, provider: "groq", model };
+        return { data, provider: "custom", model: customModel };
       } catch (err) {
         const info = extractErrorInfo(err);
         lastStatus = info.status;
-        lastError = `[groq:${model}] ${info.message}`;
-        console.warn(`[textLlm] ${lastError}`);
+        lastError = `[custom:${customModel}] ${info.message}`;
       }
     }
   }
 
-  // 3. Optional Fallback: Generic OpenAI-compatible AI_API_KEY if configured
-  const customKey = process.env.AI_API_KEY?.trim();
-  const customBase = process.env.AI_BASE_URL?.trim();
-  const customModel = process.env.AI_MODEL?.trim();
-  if (customKey && customBase && customModel && !customKey.startsWith("AIzaSy")) {
-    try {
-      const data = await callOpenAiCompatibleJson<T>({
-        baseUrl: customBase,
-        apiKey: customKey,
-        model: customModel,
-        options,
-      });
-      return { data, provider: "custom", model: customModel };
-    } catch (err) {
-      const info = extractErrorInfo(err);
-      lastStatus = info.status;
-      lastError = `[custom:${customModel}] ${info.message}`;
-    }
-  }
-
-  if (!geminiKey && !groqKey) {
-    throw new LlmServiceError("服务端未配置 GEMINI_API_KEY 或 GROQ_API_KEY。", 500);
+  if (!geminiKey && !(doubaoKey && doubaoModel) && !groqKey) {
+    throw new LlmServiceError(
+      "服务端未配置 GEMINI_API_KEY、DOUBAO_API_KEY 或 GROQ_API_KEY。",
+      500
+    );
   }
 
   if (lastStatus === 503 || lastStatus === 429) {
