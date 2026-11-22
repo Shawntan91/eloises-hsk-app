@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { BookOpen, Globe2, Award, BookmarkCheck, Sparkles, Layers, Menu, X, Palette, Sliders, UploadCloud, TrendingUp } from "lucide-react";
+import { BookOpen, Globe2, Award, BookmarkCheck, Sparkles, Layers, Menu, X, Palette, Sliders, UploadCloud, TrendingUp, MessageCircle } from "lucide-react";
 import { getLocale, setLocale, Locale, I18N } from "@/utils/i18n";
 import { getMistakeStats } from "@/utils/mistakeBank";
 import { isCurrentWeekReportViewed } from "@/utils/weeklyReport";
@@ -106,6 +106,15 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, rightElement })
           >
             <BookOpen className="w-3.5 h-3.5 text-amber-600" />
             <span>{locale === "zh" ? "词汇背诵" : "단어장 (1000단어)"}</span>
+          </Link>
+
+          {/* Oral Studio Link */}
+          <Link
+            href="/oral"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-bold transition shadow-xs"
+          >
+            <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+            <span>{locale === "zh" ? "生活口语" : "생활 회화"}</span>
           </Link>
 
           {/* Language Switcher */}
@@ -260,6 +269,13 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, rightElement })
               className="p-2.5 rounded-xl bg-amber-50 text-amber-800 text-center border border-amber-200"
             >
               📖 단어장 (1000단어)
+            </Link>
+            <Link
+              href="/oral"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 text-center border border-emerald-200"
+            >
+              💬 {locale === "zh" ? "生活口语" : "생활 회화"}
             </Link>
             <Link
               href="/report"
