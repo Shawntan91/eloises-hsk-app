@@ -39,12 +39,14 @@ interface LiveCallModeProps {
   scenario: OralScenario;
   isZh: boolean;
   onSwitchToRoleplay: () => void;
+  customTopic?: string;
 }
 
 export const LiveCallMode: React.FC<LiveCallModeProps> = ({
   scenario,
   isZh,
   onSwitchToRoleplay,
+  customTopic,
 }) => {
   const [connState, setConnState] = useState<LiveConnectionState>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -115,7 +117,10 @@ export const LiveCallMode: React.FC<LiveCallModeProps> = ({
       const tokenRes = await fetch("/api/oral/live-token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ scenarioId: scenario.id }),
+        body: JSON.stringify({
+          scenarioId: scenario.id,
+          customTopic: customTopic?.trim() || undefined,
+        }),
       });
       const tokenData = await tokenRes.json();
       if (!tokenRes.ok || !tokenData.token) {
@@ -289,20 +294,22 @@ export const LiveCallMode: React.FC<LiveCallModeProps> = ({
           </span>
         </div>
 
-        <div className="max-w-md mx-auto space-y-2">
-          <p className="text-xs font-extrabold text-slate-700">
-            {isZh ? "🎯 本次通话目标：" : "🎯 이번 통화 미션:"}
-          </p>
-          {scenario.goals.map((g) => (
-            <div
-              key={g.id}
-              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700"
-            >
-              <Circle className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
-              <span>{isZh ? g.zh : g.ko}</span>
-            </div>
-          ))}
-        </div>
+        {!scenario.isFreeTalk && scenario.goals.length > 0 && (
+          <div className="max-w-md mx-auto space-y-2">
+            <p className="text-xs font-extrabold text-slate-700">
+              {isZh ? "🎯 本次通话目标：" : "🎯 이번 통화 미션:"}
+            </p>
+            {scenario.goals.map((g) => (
+              <div
+                key={g.id}
+                className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700"
+              >
+                <Circle className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                <span>{isZh ? g.zh : g.ko}</span>
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="text-center pt-2">
           <button

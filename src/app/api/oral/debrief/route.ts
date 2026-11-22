@@ -96,6 +96,7 @@ export async function POST(req: NextRequest) {
       scenarioTitleKo: scenario.titleKo,
       goals: scenario.goals,
       transcriptText,
+      isFreeTalk: scenario.isFreeTalk,
     });
 
     const { data: parsed, provider, model } =

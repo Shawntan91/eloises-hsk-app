@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json().catch(() => ({}));
     const scenarioId = typeof body?.scenarioId === "string" ? body.scenarioId : "";
+    const customTopic = typeof body?.customTopic === "string" ? body.customTopic : undefined;
     const scenario = getOralScenarioById(scenarioId);
 
     if (!scenario) {
@@ -40,6 +41,8 @@ export async function POST(req: NextRequest) {
       scenarioTitleZh: scenario.titleZh,
       personaZh: scenario.personaZh,
       goals: scenario.goals,
+      isFreeTalk: scenario.isFreeTalk,
+      customTopic,
     });
 
     const ai = new GoogleGenAI({

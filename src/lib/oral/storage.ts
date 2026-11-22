@@ -10,6 +10,7 @@ export interface OralStorageAdapter {
   getPhrases(): Promise<OralPhraseItem[]>;
   savePhrase(item: Omit<OralPhraseItem, "id" | "createdAt" | "mastered">): Promise<OralPhraseItem>;
   togglePhraseMastered(id: string): Promise<void>;
+  reviewPhraseSM2(id: string, grade: 5 | 3 | 0): Promise<void>;
   deletePhrase(id: string): Promise<void>;
   hasPhrase(zh: string): Promise<boolean>;
 
@@ -67,6 +68,10 @@ export class LocalOralStorageAdapter implements OralStorageAdapter {
       id: `phrase_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
       mastered: false,
       createdAt: Date.now(),
+      interval: 0,
+      repetitions: 0,
+      easiness: 2.5,
+      nextReviewAt: Date.now(),
     };
     const next = [created, ...list];
     safeWriteJson(PHRASES_KEY, next, "oral-phrasebook-changed");
@@ -78,6 +83,41 @@ export class LocalOralStorageAdapter implements OralStorageAdapter {
     const next = list.map((p) =>
       p.id === id ? { ...p, mastered: !p.mastered } : p
     );
+    safeWriteJson(PHRASES_KEY, next, "oral-phrasebook-changed");
+  }
+
+  async reviewPhraseSM2(id: string, grade: 5 | 3 | 0): Promise<void> {
+    const list = await this.getPhrases();
+    const oneDayMs = 24 * 60 * 60 * 1000;
+    const next = list.map((p) => {
+      if (p.id !== id) return p;
+      let interval = p.interval ?? 0;
+      let repetitions = p.repetitions ?? 0;
+      let easiness = p.easiness ?? 2.5;
+
+      if (grade >= 3) {
+        if (repetitions === 0) interval = 1;
+        else if (repetitions === 1) interval = grade === 5 ? 6 : 3;
+        else interval = Math.round(interval * easiness);
+        repetitions++;
+      } else {
+        repetitions = 0;
+        interval = 1;
+      }
+
+      easiness = easiness + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
+      if (easiness < 1.3) easiness = 1.3;
+
+      return {
+        ...p,
+        interval,
+        repetitions,
+        easiness,
+        mastered: grade === 5 && repetitions >= 2 ? true : grade === 0 ? false : p.mastered,
+        lastReviewedAt: Date.now(),
+        nextReviewAt: Date.now() + interval * oneDayMs,
+      };
+    });
     safeWriteJson(PHRASES_KEY, next, "oral-phrasebook-changed");
   }
 

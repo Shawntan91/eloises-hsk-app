@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import Header from "@/components/common/Header";
 import { getLocale, Locale } from "@/utils/i18n";
 import { getOralScenarioById } from "@/data/oralScenarios";
@@ -21,13 +21,17 @@ import {
   Loader2,
 } from "lucide-react";
 
-export default function OralScenarioDetailPage() {
+function OralScenarioDetailContent() {
   const params = useParams<{ id: string }>();
+  const searchParams = useSearchParams();
   const scenarioId = params?.id || "";
+  const initialTopic = searchParams?.get("topic") || "";
   const scenario = getOralScenarioById(scenarioId);
 
   const [locale, setLocale] = useState<Locale>("ko");
-  const [mode, setMode] = useState<OralMode>("shadowing");
+  const [mode, setMode] = useState<OralMode>(
+    scenario?.isFreeTalk ? "roleplay" : "shadowing"
+  );
   const [authChecked, setAuthChecked] = useState(false);
   const [authorized, setAuthorized] = useState(true);
   /** 自选声音（null = 跟随场景默认声音），存在 localStorage 会随云同步 */
@@ -134,20 +138,22 @@ export default function OralScenarioDetailPage() {
                 </div>
               </div>
 
-              {/* 3-Tab Mode Selector (Phase 2 Live Tab pre-reserved) */}
+              {/* Mode Selector */}
               <div className="flex items-center bg-slate-200/70 p-1 rounded-2xl self-start sm:self-auto overflow-x-auto max-w-full">
-                <button
-                  type="button"
-                  onClick={() => setMode("shadowing")}
-                  className={`min-h-[40px] px-3 sm:px-4 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 whitespace-nowrap transition ${
-                    mode === "shadowing"
-                      ? "bg-white text-emerald-700 shadow-xs"
-                      : "text-slate-600 hover:text-slate-900"
-                  }`}
-                >
-                  <Headphones className="w-3.5 h-3.5" />
-                  <span>{isZh ? "听读保温" : "듣기·따라하기"}</span>
-                </button>
+                {!scenario.isFreeTalk && (
+                  <button
+                    type="button"
+                    onClick={() => setMode("shadowing")}
+                    className={`min-h-[40px] px-3 sm:px-4 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 whitespace-nowrap transition ${
+                      mode === "shadowing"
+                        ? "bg-white text-emerald-700 shadow-xs"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    <Headphones className="w-3.5 h-3.5" />
+                    <span>{isZh ? "听读保温" : "듣기·따라하기"}</span>
+                  </button>
+                )}
 
                 <button
                   type="button"
@@ -159,7 +165,15 @@ export default function OralScenarioDetailPage() {
                   }`}
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
-                  <span>{isZh ? "AI 实战" : "AI 롤플레이"}</span>
+                  <span>
+                    {scenario.isFreeTalk
+                      ? isZh
+                        ? "自由对话"
+                        : "자유 대화"
+                      : isZh
+                      ? "AI 实战"
+                      : "AI 롤플레이"}
+                  </span>
                 </button>
 
                 <button
@@ -188,7 +202,7 @@ export default function OralScenarioDetailPage() {
             )}
 
             {/* Active Mode View */}
-            {mode === "shadowing" && (
+            {mode === "shadowing" && !scenario.isFreeTalk && (
               <ShadowingMode
                 scenario={scenario}
                 isZh={isZh}
@@ -201,6 +215,7 @@ export default function OralScenarioDetailPage() {
                 scenario={scenario}
                 isZh={isZh}
                 voiceOverride={voiceOverride}
+                initialTopic={initialTopic}
               />
             )}
 
@@ -208,6 +223,7 @@ export default function OralScenarioDetailPage() {
               <LiveCallMode
                 scenario={scenario}
                 isZh={isZh}
+                customTopic={initialTopic}
                 onSwitchToRoleplay={() => setMode("roleplay")}
               />
             )}
@@ -215,5 +231,23 @@ export default function OralScenarioDetailPage() {
         )}
       </main>
     </div>
+  );
+}
+
+export default function OralScenarioDetailPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex-1 flex flex-col bg-slate-50/50 min-h-screen">
+          <Header />
+          <div className="flex items-center justify-center py-20 text-slate-500 gap-2 text-sm">
+            <Loader2 className="w-5 h-5 animate-spin text-emerald-600" />
+            <span>Loading...</span>
+          </div>
+        </div>
+      }
+    >
+      <OralScenarioDetailContent />
+    </Suspense>
   );
 }

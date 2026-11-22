@@ -23,6 +23,12 @@ import {
   stopAllOralAudio,
   unlockAudioPlayback,
 } from "@/lib/oral/audioClient";
+import {
+  alignCharacters,
+  calculateSpeechSimilarity,
+  getScoreRating,
+  CharDiff,
+} from "@/utils/speechScoring";
 import RubyText from "./RubyText";
 
 interface ShadowingModeProps {
@@ -47,9 +53,13 @@ export const ShadowingMode: React.FC<ShadowingModeProps> = ({
 
   const [savedSet, setSavedSet] = useState<Set<string>>(new Set());
 
-  // Local self-check mic recording per line
+  // Local self-check mic recording & STT pronunciation scoring per line
   const [recordingLineId, setRecordingLineId] = useState<string | null>(null);
+  const [scoringLineId, setScoringLineId] = useState<string | null>(null);
   const [recordedAudioMap, setRecordedAudioMap] = useState<Record<string, string>>({});
+  const [evalMap, setEvalMap] = useState<
+    Record<string, { spoken: string; score: number; diffs: CharDiff[] }>
+  >({});
   const [micError, setMicError] = useState<string | null>(null);
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -187,11 +197,12 @@ export const ShadowingMode: React.FC<ShadowingModeProps> = ({
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const { mimeType } = detectSupportedAudioMime();
+      const { mimeType, ext } = detectSupportedAudioMime();
       const recorder = mimeType
         ? new MediaRecorder(stream, { mimeType })
         : new MediaRecorder(stream);
 
+      const targetLine = scenario.script.find((l) => l.id === lineId);
       chunksRef.current = [];
       recorder.ondataavailable = (e) => {
         if (e.data && e.data.size > 0) {
@@ -199,16 +210,42 @@ export const ShadowingMode: React.FC<ShadowingModeProps> = ({
         }
       };
 
-      recorder.onstop = () => {
+      recorder.onstop = async () => {
         stream.getTracks().forEach((t) => t.stop());
+        setRecordingLineId(null);
         const blob = new Blob(chunksRef.current, {
           type: mimeType || "audio/webm",
         });
         if (blob.size > 0) {
           const url = URL.createObjectURL(blob);
           setRecordedAudioMap((prev) => ({ ...prev, [lineId]: url }));
+
+          // Run STT + character-level alignment scoring in background
+          if (targetLine && blob.size > 400) {
+            setScoringLineId(lineId);
+            try {
+              const fd = new FormData();
+              fd.append("file", blob, `shadowing.${ext}`);
+              const res = await fetch("/api/oral/stt", { method: "POST", body: fd });
+              if (res.ok) {
+                const data = await res.json();
+                const spoken = (data?.text || "").trim();
+                if (spoken) {
+                  const score = calculateSpeechSimilarity(targetLine.zh, spoken);
+                  const diffs = alignCharacters(targetLine.zh, spoken);
+                  setEvalMap((prev) => ({
+                    ...prev,
+                    [lineId]: { spoken, score, diffs },
+                  }));
+                }
+              }
+            } catch {
+              // ignore STT eval failure; local audio playback still works
+            } finally {
+              setScoringLineId(null);
+            }
+          }
         }
-        setRecordingLineId(null);
       };
 
       mediaRecorderRef.current = recorder;
@@ -427,11 +464,59 @@ export const ShadowingMode: React.FC<ShadowingModeProps> = ({
               </div>
 
               {recordedUrl && (
-                <div className="mt-3 pt-2.5 border-t border-slate-200/70 flex items-center gap-3">
-                  <span className="text-[11px] font-bold text-slate-500 shrink-0">
-                    {isZh ? "我的跟读回放：" : "내 녹음 듣기:"}
-                  </span>
-                  <audio src={recordedUrl} controls className="h-8 w-full max-w-xs" />
+                <div className="mt-3 pt-2.5 border-t border-slate-200/70 space-y-2">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[11px] font-bold text-slate-500 shrink-0">
+                      {isZh ? "我的跟读回放：" : "내 녹음 듣기:"}
+                    </span>
+                    <audio src={recordedUrl} controls className="h-8 w-full max-w-xs" />
+                    {scoringLineId === line.id && (
+                      <span className="text-[11px] font-bold text-emerald-600 inline-flex items-center gap-1">
+                        <Loader2 className="w-3 h-3 animate-spin" />
+                        {isZh ? "识别对比中..." : "발음 비교 중..."}
+                      </span>
+                    )}
+                  </div>
+
+                  {evalMap[line.id] && (
+                    <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-2.5 text-xs space-y-1.5">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex flex-wrap gap-0.5 font-bold text-sm">
+                          {evalMap[line.id].diffs.map((d, di) => (
+                            <span
+                              key={di}
+                              className={
+                                d.status === "correct"
+                                  ? "text-emerald-700"
+                                  : d.status === "error"
+                                  ? "text-rose-600 underline decoration-wavy"
+                                  : "text-amber-600 opacity-75"
+                              }
+                            >
+                              {d.char}
+                            </span>
+                          ))}
+                        </div>
+                        <span
+                          className={`px-2 py-0.5 rounded-full text-[11px] font-black shrink-0 ${
+                            evalMap[line.id].score >= 85
+                              ? "bg-emerald-100 text-emerald-800"
+                              : evalMap[line.id].score >= 60
+                              ? "bg-amber-100 text-amber-800"
+                              : "bg-rose-100 text-rose-800"
+                          }`}
+                        >
+                          {evalMap[line.id].score}% ·{" "}
+                          {isZh
+                            ? getScoreRating(evalMap[line.id].score).labelZh
+                            : getScoreRating(evalMap[line.id].score).labelKo}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-500">
+                        {isZh ? "识别到：" : "인식 결과:"} {evalMap[line.id].spoken}
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

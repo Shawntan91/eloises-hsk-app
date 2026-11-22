@@ -2,6 +2,12 @@ export type OralMode = "shadowing" | "roleplay" | "live";
 
 export type OralDifficulty = "HSK 4" | "HSK 4-5" | "HSK 5";
 
+export type OralCategory =
+  | "food_shopping"
+  | "travel_stay"
+  | "daily_errands"
+  | "social_work";
+
 export interface OralGoal {
   id: string;
   zh: string;
@@ -27,6 +33,8 @@ export interface OralQuickHint {
 
 export interface OralScenario {
   id: string;
+  category?: OralCategory;
+  isFreeTalk?: boolean;
   titleZh: string;
   titleKo: string;
   descZh: string;
@@ -79,6 +87,12 @@ export interface OralPhraseItem {
   source: "shadowing" | "roleplay" | "feedback" | "debrief";
   mastered: boolean;
   createdAt: number;
+  // Optional SM-2 Spaced Repetition fields
+  interval?: number;
+  repetitions?: number;
+  easiness?: number;
+  nextReviewAt?: number;
+  lastReviewedAt?: number;
 }
 
 export interface OralScenarioProgress {

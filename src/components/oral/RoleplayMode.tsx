@@ -43,13 +43,16 @@ interface RoleplayModeProps {
   isZh: boolean;
   /** 自选声音（null/undefined = 跟随场景默认声音） */
   voiceOverride?: string | null;
+  initialTopic?: string;
 }
 
 export const RoleplayMode: React.FC<RoleplayModeProps> = ({
   scenario,
   isZh,
   voiceOverride,
+  initialTopic = "",
 }) => {
+  const [customTopic, setCustomTopic] = useState(initialTopic);
   const [messages, setMessages] = useState<OralChatMessage[]>([
     {
       id: "opening",
@@ -160,6 +163,7 @@ export const RoleplayMode: React.FC<RoleplayModeProps> = ({
           history: historyForApi,
           userMessage: trimmed,
           completedGoalIds,
+          customTopic: customTopic.trim() || undefined,
         }),
       });
 
@@ -190,14 +194,23 @@ export const RoleplayMode: React.FC<RoleplayModeProps> = ({
       setCompletedGoalIds(nextGoals);
       setNextHintKo(chatRes.nextHintKo || "");
 
-      const complete =
-        Boolean(chatRes.isMissionComplete) ||
-        nextGoals.length >= scenario.goals.length;
+      const complete = scenario.isFreeTalk
+        ? false
+        : Boolean(chatRes.isMissionComplete) ||
+          (scenario.goals.length > 0 &&
+            nextGoals.length >= scenario.goals.length);
       setIsMissionComplete(complete);
 
-      await oralStorage.saveScenarioProgress(scenario.id, nextGoals, complete);
+      if (!scenario.isFreeTalk) {
+        await oralStorage.saveScenarioProgress(scenario.id, nextGoals, complete);
+      }
 
-      if (complete && !loggedCompletionRef.current) {
+      const userTurnCount = messages.filter((m) => m.role === "user").length + 1;
+      const shouldLogActivity = scenario.isFreeTalk
+        ? userTurnCount >= 3
+        : complete;
+
+      if (shouldLogActivity && !loggedCompletionRef.current) {
         loggedCompletionRef.current = true;
         const elapsedMin = Math.max(
           1,
@@ -409,16 +422,31 @@ export const RoleplayMode: React.FC<RoleplayModeProps> = ({
 
   return (
     <div className="flex flex-col h-[calc(100dvh-230px)] min-h-[500px] bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-      {/* Top Mission Progress Bar */}
+      {/* Top Mission Progress Bar or Free Talk Banner */}
       <div className="px-4 py-3 bg-slate-50/90 border-b border-slate-200 shrink-0">
         <div className="flex items-center justify-between gap-2 mb-2">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-extrabold text-slate-800">
-              {isZh ? "🎯 沟通目标进度" : "🎯 미션 달성 현황"}
-            </span>
-            <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">
-              {completedGoalIds.length} / {scenario.goals.length}
-            </span>
+          <div className="flex items-center gap-2 min-w-0">
+            {scenario.isFreeTalk ? (
+              <>
+                <span className="text-xs font-extrabold text-emerald-700 shrink-0">
+                  {isZh ? "✨ 自由对话模式" : "✨ 자유 대화 (프리토킹)"}
+                </span>
+                {customTopic.trim() && (
+                  <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 truncate max-w-[180px] sm:max-w-xs">
+                    {customTopic.trim()}
+                  </span>
+                )}
+              </>
+            ) : (
+              <>
+                <span className="text-xs font-extrabold text-slate-800">
+                  {isZh ? "🎯 沟通目标进度" : "🎯 미션 달성 현황"}
+                </span>
+                <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">
+                  {completedGoalIds.length} / {scenario.goals.length}
+                </span>
+              </>
+            )}
           </div>
 
           <div className="flex items-center gap-1.5">
@@ -457,35 +485,53 @@ export const RoleplayMode: React.FC<RoleplayModeProps> = ({
           </div>
         </div>
 
-        <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden mb-2">
-          <div
-            className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500"
-            style={{ width: `${progressPct}%` }}
-          />
-        </div>
-
-        <div className="flex flex-wrap gap-1.5">
-          {scenario.goals.map((g) => {
-            const done = completedGoalIds.includes(g.id);
-            return (
+        {scenario.isFreeTalk ? (
+          <div className="flex items-center gap-2">
+            <input
+              type="text"
+              value={customTopic}
+              onChange={(e) => setCustomTopic(e.target.value)}
+              placeholder={
+                isZh
+                  ? "自定义想聊的话题或情景（例如：聊聊最近看的剧 / 模拟砍价）..."
+                  : "원하는 대화 주제나 상황 입력 (예: 최근 본 드라마, 가격 흥정 연습)..."
+              }
+              className="flex-1 px-3 py-1.5 rounded-xl border border-slate-200 bg-white text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            />
+          </div>
+        ) : (
+          <>
+            <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden mb-2">
               <div
-                key={g.id}
-                className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium border ${
-                  done
-                    ? "bg-emerald-50 text-emerald-800 border-emerald-200 line-through decoration-emerald-400"
-                    : "bg-white text-slate-600 border-slate-200"
-                }`}
-              >
-                {done ? (
-                  <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
-                ) : (
-                  <Circle className="w-3 h-3 text-slate-300 shrink-0" />
-                )}
-                <span>{isZh ? g.zh : g.ko}</span>
-              </div>
-            );
-          })}
-        </div>
+                className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500"
+                style={{ width: `${progressPct}%` }}
+              />
+            </div>
+
+            <div className="flex flex-wrap gap-1.5">
+              {scenario.goals.map((g) => {
+                const done = completedGoalIds.includes(g.id);
+                return (
+                  <div
+                    key={g.id}
+                    className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium border ${
+                      done
+                        ? "bg-emerald-50 text-emerald-800 border-emerald-200 line-through decoration-emerald-400"
+                        : "bg-white text-slate-600 border-slate-200"
+                    }`}
+                  >
+                    {done ? (
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
+                    ) : (
+                      <Circle className="w-3 h-3 text-slate-300 shrink-0" />
+                    )}
+                    <span>{isZh ? g.zh : g.ko}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
 
       {/* Chat Messages Area */}

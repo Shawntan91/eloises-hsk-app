@@ -56,6 +56,7 @@ interface ChatRequestBody {
   history: Array<{ role: "user" | "assistant"; text: string }>;
   userMessage: string;
   completedGoalIds?: string[];
+  customTopic?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -94,6 +95,8 @@ export async function POST(req: NextRequest) {
       personaZh: scenario.personaZh,
       goals: scenario.goals,
       completedGoalIds: prevCompleted,
+      isFreeTalk: scenario.isFreeTalk,
+      customTopic: body.customTopic,
     });
 
     const llmMessages = [
@@ -137,10 +140,12 @@ export async function POST(req: NextRequest) {
       replyZh: parsed.replyZh || "好嘞，没问题！",
       replyKo: parsed.replyKo || "네, 문제없어요!",
       feedback: normalizedFeedback,
-      completedGoalIds: mergedGoalIds,
-      isMissionComplete:
-        Boolean(parsed.isMissionComplete) ||
-        mergedGoalIds.length >= scenario.goals.length,
+      completedGoalIds: scenario.isFreeTalk ? [] : mergedGoalIds,
+      isMissionComplete: scenario.isFreeTalk
+        ? false
+        : Boolean(parsed.isMissionComplete) ||
+          (scenario.goals.length > 0 &&
+            mergedGoalIds.length >= scenario.goals.length),
       nextHintKo: parsed.nextHintKo || "",
     };
 
