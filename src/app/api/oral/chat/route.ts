@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenAI, Type } from "@google/genai";
+import { Type } from "@google/genai";
 import { isOralRequestAuthorized } from "@/lib/oral/auth";
 import { buildRoleplaySystemPrompt } from "@/lib/oral/prompts";
 import { getOralScenarioById } from "@/data/oralScenarios";
+import { generateOralStructuredJson, LlmServiceError } from "@/lib/oral/textLlm";
 import { OralChatResponse } from "@/types/oral";
 
 const RESPONSE_SCHEMA = {
@@ -60,19 +61,8 @@ interface ChatRequestBody {
 export async function POST(req: NextRequest) {
   if (!isOralRequestAuthorized(req)) {
     return NextResponse.json(
-      { error: "unauthorized", message: "请先输入口令解锁生活口语模块。" },
+      { error: "unauthorized", message: "请先登录 HSK 账号后再使用生活口语模块。" },
       { status: 401 }
-    );
-  }
-
-  const apiKey = process.env.GEMINI_API_KEY?.trim();
-  if (!apiKey) {
-    return NextResponse.json(
-      {
-        error: "missing_gemini_key",
-        message: "服务端未配置 GEMINI_API_KEY。",
-      },
-      { status: 500 }
     );
   }
 
@@ -94,58 +84,76 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const prevCompleted = Array.isArray(body.completedGoalIds)
+      ? body.completedGoalIds
+      : [];
+
     const systemInstruction = buildRoleplaySystemPrompt({
       scenarioTitleZh: scenario.titleZh,
       scenarioTitleKo: scenario.titleKo,
       personaZh: scenario.personaZh,
       goals: scenario.goals,
-      completedGoalIds: body.completedGoalIds || [],
+      completedGoalIds: prevCompleted,
     });
 
-    const contents = [
+    const llmMessages = [
       ...(Array.isArray(body.history) ? body.history : []).map((m) => ({
-        role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: m.text }],
+        role: (m.role === "assistant" ? "assistant" : "user") as "user" | "assistant",
+        text: m.text,
       })),
-      {
-        role: "user",
-        parts: [{ text: userMessage }],
-      },
+      { role: "user" as const, text: userMessage },
     ];
 
-    const model = process.env.GEMINI_TEXT_MODEL || "gemini-2.5-flash";
-    const ai = new GoogleGenAI({ apiKey });
-
-    const response = await ai.models.generateContent({
-      model,
-      contents,
-      config: {
+    const { data: parsed, provider, model } =
+      await generateOralStructuredJson<OralChatResponse>({
         systemInstruction,
-        responseMimeType: "application/json",
+        messages: llmMessages,
         responseSchema: RESPONSE_SCHEMA,
         temperature: 0.7,
-      },
-    });
+      });
 
-    const rawText = response.text || "";
-    const parsed = JSON.parse(rawText) as OralChatResponse;
+    const validGoalIds = new Set(scenario.goals.map((g) => g.id));
+    const mergedGoalIds = Array.from(
+      new Set([
+        ...prevCompleted.filter((id) => validGoalIds.has(id)),
+        ...(Array.isArray(parsed.completedGoalIds)
+          ? parsed.completedGoalIds.filter((id) => validGoalIds.has(id))
+          : []),
+      ])
+    );
 
-    return NextResponse.json({
+    const normalizedFeedback =
+      parsed.feedback &&
+      typeof parsed.feedback.naturalZh === "string" &&
+      parsed.feedback.naturalZh.trim()
+        ? {
+            userSaid: parsed.feedback.userSaid || userMessage,
+            naturalZh: parsed.feedback.naturalZh.trim(),
+            explanationKo: parsed.feedback.explanationKo || "",
+          }
+        : null;
+
+    const payload: OralChatResponse = {
       replyZh: parsed.replyZh || "好嘞，没问题！",
       replyKo: parsed.replyKo || "네, 문제없어요!",
-      feedback: parsed.feedback || null,
-      completedGoalIds: Array.isArray(parsed.completedGoalIds)
-        ? parsed.completedGoalIds
-        : body.completedGoalIds || [],
-      isMissionComplete: Boolean(parsed.isMissionComplete),
+      feedback: normalizedFeedback,
+      completedGoalIds: mergedGoalIds,
+      isMissionComplete:
+        Boolean(parsed.isMissionComplete) ||
+        mergedGoalIds.length >= scenario.goals.length,
       nextHintKo: parsed.nextHintKo || "",
-    } satisfies OralChatResponse);
+    };
+
+    return NextResponse.json(payload, {
+      headers: { "X-Oral-LLM": `${provider}:${model}` },
+    });
   } catch (err: unknown) {
     console.error("[/api/oral/chat] error:", err);
+    const status = err instanceof LlmServiceError ? err.status : 500;
     const msg = err instanceof Error ? err.message : "AI 对话服务异常";
     return NextResponse.json(
-      { error: "chat_error", message: msg },
-      { status: 500 }
+      { error: status === 503 ? "service_overloaded" : "chat_error", message: msg },
+      { status }
     );
   }
 }
