@@ -41,11 +41,14 @@ import RubyText from "./RubyText";
 interface RoleplayModeProps {
   scenario: OralScenario;
   isZh: boolean;
+  /** 自选声音（null/undefined = 跟随场景默认声音） */
+  voiceOverride?: string | null;
 }
 
 export const RoleplayMode: React.FC<RoleplayModeProps> = ({
   scenario,
   isZh,
+  voiceOverride,
 }) => {
   const [messages, setMessages] = useState<OralChatMessage[]>([
     {
@@ -103,6 +106,8 @@ export const RoleplayMode: React.FC<RoleplayModeProps> = ({
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isProcessing]);
 
+  const activeVoice = voiceOverride ?? scenario.voiceName;
+
   const handlePlayMessage = async (
     msgId: string,
     text: string,
@@ -113,7 +118,7 @@ export const RoleplayMode: React.FC<RoleplayModeProps> = ({
     setPlayingMsgId(msgId);
     const res = await playOralTTS({
       text,
-      voice: scenario.voiceName,
+      voice: activeVoice,
       rate,
     });
     setPlayingMsgId(null);
@@ -216,7 +221,7 @@ export const RoleplayMode: React.FC<RoleplayModeProps> = ({
       setPlayingMsgId(assistantId);
       const ttsRes = await playOralTTS({
         text: chatRes.replyZh,
-        voice: scenario.voiceName,
+        voice: activeVoice,
         rate: 1.0,
       });
       setPlayingMsgId(null);

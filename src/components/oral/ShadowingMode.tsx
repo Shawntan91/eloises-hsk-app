@@ -28,11 +28,14 @@ import RubyText from "./RubyText";
 interface ShadowingModeProps {
   scenario: OralScenario;
   isZh: boolean;
+  /** 自选声音（null/undefined = 跟随场景默认声音，仅用于对方台词） */
+  voiceOverride?: string | null;
 }
 
 export const ShadowingMode: React.FC<ShadowingModeProps> = ({
   scenario,
   isZh,
+  voiceOverride,
 }) => {
   const [speed, setSpeed] = useState<0.8 | 1.0>(1.0);
   const [showPinyin, setShowPinyin] = useState(true);
@@ -72,6 +75,8 @@ export const ShadowingMode: React.FC<ShadowingModeProps> = ({
     };
   }, []);
 
+  const partnerVoice = voiceOverride ?? scenario.voiceName;
+
   const playSingleLine = async (line: OralScriptLine) => {
     unlockAudioPlayback();
     stopSequenceRef.current = true;
@@ -79,7 +84,7 @@ export const ShadowingMode: React.FC<ShadowingModeProps> = ({
 
     const voice =
       line.speaker === "partner"
-        ? scenario.voiceName
+        ? partnerVoice
         : "zh-CN-XiaoxiaoNeural";
 
     setPlayingLineId(line.id);
@@ -108,7 +113,7 @@ export const ShadowingMode: React.FC<ShadowingModeProps> = ({
 
     const voice =
       line.speaker === "partner"
-        ? scenario.voiceName
+        ? partnerVoice
         : "zh-CN-XiaoxiaoNeural";
 
     while (loopLineIdRef.current === line.id) {
@@ -144,7 +149,7 @@ export const ShadowingMode: React.FC<ShadowingModeProps> = ({
       setPlayingLineId(line.id);
       const voice =
         line.speaker === "partner"
-          ? scenario.voiceName
+          ? partnerVoice
           : "zh-CN-XiaoxiaoNeural";
       await playOralTTS({
         text: line.zh,

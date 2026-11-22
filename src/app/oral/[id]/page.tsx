@@ -11,6 +11,8 @@ import OralLoginGate from "@/components/oral/OralLoginGate";
 import ShadowingMode from "@/components/oral/ShadowingMode";
 import RoleplayMode from "@/components/oral/RoleplayMode";
 import LiveCallMode from "@/components/oral/LiveCallMode";
+import OralVoicePicker from "@/components/oral/OralVoicePicker";
+import { ORAL_VOICE_STORAGE_KEY } from "@/lib/oral/oralVoices";
 import {
   ArrowLeft,
   Headphones,
@@ -28,9 +30,17 @@ export default function OralScenarioDetailPage() {
   const [mode, setMode] = useState<OralMode>("shadowing");
   const [authChecked, setAuthChecked] = useState(false);
   const [authorized, setAuthorized] = useState(true);
+  /** 自选声音（null = 跟随场景默认声音），存在 localStorage 会随云同步 */
+  const [voiceOverride, setVoiceOverride] = useState<string | null>(null);
 
   useEffect(() => {
     setLocale(getLocale());
+    try {
+      const saved = window.localStorage.getItem(ORAL_VOICE_STORAGE_KEY);
+      if (saved) setVoiceOverride(saved);
+    } catch {
+      // ignore
+    }
     const handleLocaleChange = () => setLocale(getLocale());
     window.addEventListener("hsk-locale-changed", handleLocaleChange);
 
@@ -51,6 +61,19 @@ export default function OralScenarioDetailPage() {
       window.removeEventListener("hsk-locale-changed", handleLocaleChange);
     };
   }, []);
+
+  const handleVoiceChange = (next: string | null) => {
+    setVoiceOverride(next);
+    try {
+      if (next) {
+        window.localStorage.setItem(ORAL_VOICE_STORAGE_KEY, next);
+      } else {
+        window.localStorage.removeItem(ORAL_VOICE_STORAGE_KEY);
+      }
+    } catch {
+      // ignore
+    }
+  };
 
   const isZh = locale === "zh";
 
@@ -154,13 +177,31 @@ export default function OralScenarioDetailPage() {
               </div>
             </div>
 
+            {/* Voice Picker (shadowing + roleplay only; live call uses Gemini Live voices) */}
+            {mode !== "live" && (
+              <OralVoicePicker
+                value={voiceOverride}
+                scenarioVoice={scenario.voiceName}
+                isZh={isZh}
+                onChange={handleVoiceChange}
+              />
+            )}
+
             {/* Active Mode View */}
             {mode === "shadowing" && (
-              <ShadowingMode scenario={scenario} isZh={isZh} />
+              <ShadowingMode
+                scenario={scenario}
+                isZh={isZh}
+                voiceOverride={voiceOverride}
+              />
             )}
 
             {mode === "roleplay" && (
-              <RoleplayMode scenario={scenario} isZh={isZh} />
+              <RoleplayMode
+                scenario={scenario}
+                isZh={isZh}
+                voiceOverride={voiceOverride}
+              />
             )}
 
             {mode === "live" && (

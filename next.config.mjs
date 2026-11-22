@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    serverComponentsExternalPackages: ['pdf-parse', 'mammoth', 'katex', 'better-sqlite3'],
+    serverComponentsExternalPackages: ['pdf-parse', 'mammoth', 'katex', 'better-sqlite3', 'msedge-tts', 'ws'],
   },
 };
 
