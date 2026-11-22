@@ -38,3 +38,6 @@ transcode.ps1
 test*.mp3
 test*.m4a
 scripts/extract_words.py
+
+# cloud sync database (accounts + synced data, never commit)
+/data

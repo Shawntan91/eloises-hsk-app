@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { GlobalBackgroundRenderer } from "@/components/common/GlobalBackgroundRenderer";
 import PwaRegister from "@/components/common/PwaRegister";
+import CloudSyncBootstrap from "@/components/common/CloudSyncBootstrap";
 
 export const metadata: Metadata = {
   title: "Eloise's HSK APP | HSK 4급 & 5급 공식 실전 모의고사",
@@ -27,6 +28,7 @@ export default function RootLayout({
         <GlobalBackgroundRenderer />
         <PwaRegister />
         {children}
+        <CloudSyncBootstrap />
       </body>
     </html>
   );
