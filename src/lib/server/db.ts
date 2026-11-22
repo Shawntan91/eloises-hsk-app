@@ -12,6 +12,7 @@ let db: Database.Database | null = null;
  *  users    - 账号（HSK 站不开放注册，账号由管理员直接在库里建；无卡密）。
  *  sessions - 登录会话 token（HTTP-only cookie 下发）。
  *  kv       - 按 (user_id, key) 隔离的同步数据，后写胜出。
+ *  login_log - 成功登录记录（用户、IP、设备、时间），仅管理员在服务器上查看。
  */
 export function getDb(): Database.Database {
   if (db) return db;
@@ -42,6 +43,14 @@ export function getDb(): Database.Database {
     );
     CREATE INDEX IF NOT EXISTS idx_kv_user_updated ON kv(user_id, updated_at);
     CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
+    CREATE TABLE IF NOT EXISTS login_log (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL REFERENCES users(id),
+      ip TEXT NOT NULL,
+      user_agent TEXT,
+      created_at INTEGER NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_login_log_user_created ON login_log(user_id, created_at);
   `);
   return db;
 }

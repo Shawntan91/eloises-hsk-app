@@ -136,7 +136,16 @@ export function resetLoginFailures(ip: string): void {
   loginFailures.delete(ip);
 }
 
+/** Record a successful login (user, IP, device, time) for admin review only. */
+export function recordLogin(userId: number, ip: string, userAgent: string): void {
+  getDb()
+    .prepare('INSERT INTO login_log (user_id, ip, user_agent, created_at) VALUES (?, ?, ?, ?)')
+    .run(userId, ip, userAgent.slice(0, 512), Date.now());
+}
+
 export function getClientIp(req: NextRequest): string {
+  const cf = req.headers.get('cf-connecting-ip');
+  if (cf) return cf.trim();
   const forwarded = req.headers.get('x-forwarded-for');
   if (forwarded) return forwarded.split(',')[0].trim();
   return 'unknown';

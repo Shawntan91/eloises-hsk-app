@@ -7,6 +7,7 @@ import {
   isSecureRequest,
   getUserByUsername,
   loginAllowed,
+  recordLogin,
   recordLoginFailure,
   resetLoginFailures,
   verifyPassword,
@@ -35,6 +36,7 @@ export async function POST(req: NextRequest) {
 
     resetLoginFailures(ip);
     const token = createSession(row.id);
+    recordLogin(row.id, ip, req.headers.get('user-agent') ?? '');
     const res = NextResponse.json({ ok: true, user: { id: row.id, username: row.username } });
     res.cookies.set(SESSION_COOKIE, token, {
       httpOnly: true,
