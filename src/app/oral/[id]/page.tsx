@@ -7,7 +7,7 @@ import Header from "@/components/common/Header";
 import { getLocale, Locale } from "@/utils/i18n";
 import { getOralScenarioById } from "@/data/oralScenarios";
 import { OralMode } from "@/types/oral";
-import OralAuthGate from "@/components/oral/OralAuthGate";
+import OralLoginGate from "@/components/oral/OralLoginGate";
 import ShadowingMode from "@/components/oral/ShadowingMode";
 import RoleplayMode from "@/components/oral/RoleplayMode";
 import LiveCallMode from "@/components/oral/LiveCallMode";
@@ -88,7 +88,7 @@ export default function OralScenarioDetailPage() {
             <span>{isZh ? "加载中..." : "불러오는 중..."}</span>
           </div>
         ) : !authorized ? (
-          <OralAuthGate isZh={isZh} onAuthorized={() => setAuthorized(true)} />
+          <OralLoginGate isZh={isZh} onAuthorized={() => setAuthorized(true)} />
         ) : (
           <>
             {/* Top Bar + Mode Tabs */}

@@ -70,7 +70,16 @@ export default function CloudSyncBootstrap() {
     } catch {
       // 本地记录损坏时忽略，用默认位置
     }
-    return cleanup;
+    // 口语页未登录时点「去登录」会派发该事件，在此打开登录弹窗。
+    const openLogin = () => {
+      setModalMode('login');
+      setModalOpen(true);
+    };
+    window.addEventListener('hsk-open-login', openLogin);
+    return () => {
+      cleanup();
+      window.removeEventListener('hsk-open-login', openLogin);
+    };
   }, [clampPos]);
 
   useEffect(() => {

@@ -7,7 +7,7 @@ import { getLocale, Locale } from "@/utils/i18n";
 import { ORAL_SCENARIOS } from "@/data/oralScenarios";
 import { oralStorage } from "@/lib/oral/storage";
 import { OralScenarioProgress } from "@/types/oral";
-import OralAuthGate from "@/components/oral/OralAuthGate";
+import OralLoginGate from "@/components/oral/OralLoginGate";
 import PhrasebookView from "@/components/oral/PhrasebookView";
 import {
   MessageCircle,
@@ -88,7 +88,7 @@ export default function OralStudioPage() {
             <span>{isZh ? "加载中..." : "불러오는 중..."}</span>
           </div>
         ) : !authorized ? (
-          <OralAuthGate isZh={isZh} onAuthorized={() => setAuthorized(true)} />
+          <OralLoginGate isZh={isZh} onAuthorized={() => setAuthorized(true)} />
         ) : (
           <div className="space-y-6">
             {/* Hero Banner */}
