@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merry Christmas - 3D Particle Tree</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000000;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #gl {
+      z-index: 1;
+    }
+
+    #fx {
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .greeting {
+      position: fixed;
+      top: 8.5%;
+      left: 6.5%;
+      z-index: 3;
+      pointer-events: none;
+      font-family: "Apple Chancery", "Baskerville", "Georgia", "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(24px, 3.1vw, 48px);
+      letter-spacing: 0.03em;
+      color: rgba(255, 240, 246, 0.94);
+      -webkit-font-smoothing: antialiased;
+      text-shadow:
+        0 0 3px rgba(255, 228, 240, 0.72),
+        0 0 12px rgba(255, 190, 218, 0.36),
+        0 0 26px rgba(255, 165, 204, 0.16);
+      animation: greetingGlow 4.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes greetingGlow {
+      from {
+        opacity: 0.90;
+        text-shadow:
+          0 0 3px rgba(255, 228, 240, 0.65),
+          0 0 10px rgba(255, 190, 218, 0.30),
+          0 0 22px rgba(255, 165, 204, 0.14);
+      }
+      to {
+        opacity: 0.98;
+        text-shadow:
+          0 0 4px rgba(255, 236, 245, 0.85),
+          0 0 14px rgba(255, 196, 224, 0.44),
+          0 0 30px rgba(255, 172, 210, 0.22);
+      }
+    }
+
+    .hint {
+      position: fixed;
+      right: 18px;
+      bottom: 14px;
+      z-index: 4;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      font-size: 12px;
+      color: rgba(255, 240, 245, 0.34);
+      letter-spacing: 0.04em;
+      pointer-events: none;
+      transition: opacity 1.2s ease;
+    }
+
+    .hint.fade {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gl"></canvas>
+  <canvas id="fx"></canvas>
+  <div class="greeting">Merry Christmas, Eloise</div>
+  <div class="hint" id="hint">드래그하여 회전 · 스페이스 일시정지/계속 · F 전체 화면</div>
+
+  <script>
+    (() => {
+      const glCanvas = document.getElementById("gl");
+      const fxCanvas = document.getElementById("fx");
+      const fx = fxCanvas.getContext("2d");
+      const hint = document.getElementById("hint");
+
+      setTimeout(() => hint.classList.add("fade"), 4500);
+
+      const gl = glCanvas.getContext("webgl", {
+        alpha: false,
+        antialias: true,
+        powerPreference: "high-performance",
+      });
+
+      if (!gl) {
+        document.body.innerHTML =
+          '<p style="color:#fff;padding:24px;font-family:sans-serif">当前浏览器不支持 WebGL。</p>';
+        return;
+      }
+
+      // ---------------------------------------------------------
+      // Deterministic PRNG + Gaussian helper
+      // ---------------------------------------------------------
+      let seed = 20261225;
+      function rand() {
+        seed = (seed * 1664525 + 1013904223) >>> 0;
+        return seed / 4294967296;
+      }
+
+      function gaussian() {
+        const u1 = Math.max(1e-6, rand());
+        const u2 = rand();
+        return Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+      }
+
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
+
+      function mixColor(c1, c2, t) {
+        return [
+          lerp(c1[0], c2[0], t),
+          lerp(c1[1], c2[1], t),
+          lerp(c1[2], c2[2], t),
+        ];
+      }
+
+      // ---------------------------------------------------------
+      // Scene constants
+      // ---------------------------------------------------------
+      const TREE_HEIGHT = 4.55;
+      const TREE_RADIUS = 1.62;
+      const SPIRAL_TURNS = 4.55;
+      const STAR_Y = 5.08;
+
+      function treeRadiusAt(t) {
+        return TREE_RADIUS * Math.pow(Math.max(0, 1 - t), 0.85) * (1 + 0.05 * Math.sin(t * Math.PI));
+      }
+
+      // ---------------------------------------------------------
+      // High-density micro-particle system (~116,000 crisp particles)
+      // Attribute layout per particle (11 floats):
+      //   pos(3), color(3), size(1), meta(4: alpha, twinkleSpeed, phase, kind)
+      //   kind:
+      //     0.0 = crisp tree & floor stardust
+      //     1.0 = crisp drifting sky snow
+      //     1.5 = soft out-of-focus foreground bokeh snow
+      //     2.0 = glowing fairy-light orbs on tree
+      // ---------------------------------------------------------
+      const particles = [];
+
+      function pushParticle(x, y, z, color, size, alpha, twinkleSpeed, phase, kind) {
+        particles.push(
+          x, y, z,
+          color[0], color[1], color[2],
+          size,
+          alpha, twinkleSpeed, phase, kind
+        );
+      }
+
+      const C_WHITE = [1.0, 0.99, 1.0];
+      const C_BLUSH_LIGHT = [1.0, 0.88, 0.93];
+      const C_BLUSH_PINK = [0.96, 0.72, 0.83];
+      const C_ROSE_DUST = [0.85, 0.61, 0.72];
+      const C_CHAMPAGNE = [1.0, 0.90, 0.76];
+      const C_GOLD_LIGHT = [1.0, 0.86, 0.52];
+      const C_GOLD_WARM = [0.94, 0.72, 0.32];
+      const C_GOLD_DEEP = [0.76, 0.52, 0.20];
+
+      const endAngle = SPIRAL_TURNS * Math.PI * 2;
+
+      // 1a. Fine glowing bottom skirt ring (~4,200 crisp micro-particles)
+      const BASE_RING_COUNT = 4200;
+      for (let i = 0; i < BASE_RING_COUNT; i++) {
+        const theta = rand() * Math.PI * 2;
+        const r = TREE_RADIUS * 1.01 + gaussian() * 0.068;
+        const y = 0.05 + Math.abs(gaussian()) * 0.055;
+        const isSpark = rand() < 0.16;
+        const col = isSpark
+          ? C_WHITE
+          : rand() < 0.55
+          ? mixColor(C_WHITE, C_BLUSH_LIGHT, rand())
+          : mixColor(C_BLUSH_PINK, C_CHAMPAGNE, rand() * 0.45);
+        const size = isSpark ? lerp(3.6, 6.0, rand()) : lerp(2.2, 4.4, rand());
+        const alpha = isSpark ? lerp(0.65, 1.0, rand()) : lerp(0.26, 0.54, rand());
+        pushParticle(
+          r * Math.cos(theta), y, r * Math.sin(theta),
+          col, size, alpha, lerp(1.5, 4.4, rand()), rand() * 6.28, 0.0
+        );
+      }
+
+      // 1b. Soft silky ribbon undertone (~3,600 low-alpha rosy-blush bloom particles)
+      // Gives smooth luminous ribbon continuity underneath the crisp pinpoint stardust
+      const SILK_HALO_COUNT = 3600;
+      for (let i = 0; i < SILK_HALO_COUNT; i++) {
+        const t = Math.pow(rand(), 1.12) * 0.985;
+        const theta = t * endAngle + gaussian() * 0.06;
+        const ribbonW = lerp(0.11, 0.030, t);
+        const r = Math.max(0.02, treeRadiusAt(t) + gaussian() * ribbonW * 0.65);
+        const y = Math.max(0.03, TREE_HEIGHT * t + 0.05 + gaussian() * ribbonW * 0.55);
+        const col = mixColor(C_BLUSH_PINK, C_BLUSH_LIGHT, rand() * 0.55);
+        const size = lerp(9.0, 15.0, rand());
+        const alpha = lerp(0.045, 0.095, rand());
+        pushParticle(
+          r * Math.cos(theta), y, r * Math.sin(theta),
+          col, size, alpha, lerp(1.2, 3.0, rand()), rand() * 6.28, 1.8
+        );
+      }
+
+      // 1c. Ultra-fine silky spiral ribbon (~32,000 crisp pinpoint particles)
+      const SPIRAL_COUNT = 32000;
+      for (let i = 0; i < SPIRAL_COUNT; i++) {
+        const t = Math.pow(rand(), 1.12) * 0.985;
+        const theta = t * endAngle;
+        const baseR = treeRadiusAt(t);
+        const baseY = TREE_HEIGHT * t + 0.05;
+
+        const layer = rand();
+        const isSpark = layer < 0.14;
+        const isCore = !isSpark && layer < 0.64;
+        const ribbonW = lerp(0.125, 0.032, t);
+
+        const spreadR = isCore ? ribbonW * 0.38 : ribbonW * 1.25;
+        const spreadY = isCore ? ribbonW * 0.35 : ribbonW * 1.05;
+
+        const dr = gaussian() * spreadR;
+        const dy = gaussian() * spreadY;
+        const dTheta = gaussian() * 0.08;
+
+        const r = Math.max(0.02, baseR + dr);
+        const angle = theta + dTheta;
+        const x = r * Math.cos(angle);
+        const z = r * Math.sin(angle);
+        const y = Math.max(0.03, baseY + dy);
+
+        let col, size, alpha;
+        if (isSpark) {
+          col = mixColor(C_WHITE, C_CHAMPAGNE, rand() * 0.38);
+          size = lerp(3.4, 6.2, rand());
+          alpha = lerp(0.62, 1.0, rand());
+        } else if (isCore) {
+          col = mixColor(C_BLUSH_LIGHT, C_WHITE, rand() * 0.68);
+          size = lerp(2.2, 4.4, rand());
+          alpha = lerp(0.30, 0.58, rand());
+        } else {
+          col = mixColor(C_BLUSH_PINK, C_CHAMPAGNE, rand() * 0.35);
+          size = lerp(2.6, 5.2, rand());
+          alpha = lerp(0.18, 0.38, rand());
+        }
+
+        pushParticle(x, y, z, col, size, alpha, lerp(1.5, 4.8, rand()), rand() * 6.28, 0.0);
+      }
+
+      // 2. Fine slender golden connecting filament up to the star (~950 crisp particles)
+      const TOP_ARC_COUNT = 950;
+      const startY = TREE_HEIGHT * 0.982 + 0.05;
+      const startR = treeRadiusAt(0.982);
+      for (let i = 0; i < TOP_ARC_COUNT; i++) {
+        const u = i / TOP_ARC_COUNT;
+        const y = lerp(startY, STAR_Y - 0.07, u);
+        const rCenter = startR * (1 - u) + 0.082 * Math.sin(u * Math.PI);
+        const theta = endAngle + u * Math.PI * 1.1;
+        const jitter = 0.010 * (1 - 0.3 * u);
+
+        const x = rCenter * Math.cos(theta) + gaussian() * jitter;
+        const z = rCenter * Math.sin(theta) + gaussian() * jitter;
+        const col = mixColor(C_BLUSH_LIGHT, C_GOLD_LIGHT, Math.min(1, 0.40 + u * 0.70));
+        const size = lerp(2.0, 4.0, rand());
+        const alpha = lerp(0.38, 0.78, rand());
+        pushParticle(x, y, z, col, size, alpha, lerp(2.0, 4.5, rand()), rand() * 6.28, 0.0);
+      }
+
+      // 3. Velvety inner cone frost & rose-champagne shimmer (~28,000 crisp particles)
+      const BODY_COUNT = 28000;
+      for (let i = 0; i < BODY_COUNT; i++) {
+        const t = Math.pow(rand(), 1.10) * 0.96 + 0.015;
+        const maxR = treeRadiusAt(t);
+        const radialFrac = 0.22 + 0.77 * Math.pow(rand(), 0.36);
+        const r = maxR * radialFrac;
+        const theta = rand() * Math.PI * 2;
+        const y = TREE_HEIGHT * t + 0.05 + gaussian() * 0.032;
+
+        const x = r * Math.cos(theta);
+        const z = r * Math.sin(theta);
+
+        const pick = rand();
+        let col;
+        if (pick < 0.44) {
+          col = mixColor(C_ROSE_DUST, C_BLUSH_PINK, rand());
+        } else if (pick < 0.80) {
+          col = mixColor(C_BLUSH_LIGHT, C_CHAMPAGNE, rand());
+        } else {
+          col = mixColor(C_CHAMPAGNE, C_GOLD_LIGHT, rand() * 0.48);
+        }
+
+        const isGlitter = rand() < 0.15;
+        const size = isGlitter ? lerp(3.0, 5.6, rand()) : lerp(2.0, 4.2, rand());
+        const alpha = (isGlitter ? lerp(0.48, 0.88, rand()) : lerp(0.18, 0.42, rand())) * (0.58 + 0.42 * radialFrac);
+        pushParticle(x, y, z, col, size, alpha, lerp(1.3, 4.5, rand()), rand() * 6.28, 0.0);
+      }
+
+      // 4. Delicate luminous fairy-light pearls (~300 particles)
+      const ORB_COUNT = 300;
+      for (let i = 0; i < ORB_COUNT; i++) {
+        const onSpiral = rand() < 0.74;
+        const t = Math.pow(rand(), 1.16) * 0.91 + 0.015;
+        const baseR = treeRadiusAt(t);
+        let theta, r, y;
+
+        if (onSpiral) {
+          theta = t * endAngle + gaussian() * 0.13;
+          r = baseR + gaussian() * 0.035;
+          y = TREE_HEIGHT * t + 0.05 + gaussian() * 0.04;
+        } else {
+          theta = rand() * Math.PI * 2;
+          r = baseR * lerp(0.55, 0.98, rand());
+          y = TREE_HEIGHT * t + 0.05;
+        }
+
+        const isHero = rand() < 0.12;
+        const colPick = rand();
+        const col =
+          colPick < 0.45
+            ? C_WHITE
+            : colPick < 0.78
+            ? C_BLUSH_LIGHT
+            : C_GOLD_LIGHT;
+
+        const size = isHero ? lerp(14.0, 22.0, rand()) : lerp(7.5, 13.0, rand());
+        const alpha = isHero ? lerp(0.68, 0.95, rand()) : lerp(0.50, 0.82, rand());
+        pushParticle(
+          r * Math.cos(theta),
+          Math.max(0.05, y),
+          r * Math.sin(theta),
+          col,
+          size,
+          alpha,
+          lerp(2.2, 5.2, rand()),
+          rand() * 6.28,
+          2.0
+        );
+      }
+
+      // 5. Fine golden sand galaxy floor with concentric/spiral ripples (~52,000 crisp particles)
+      const FLOOR_COUNT = 52000;
+      const INNER_RING_R = 1.94;
+      const OUTER_FLOOR_R = 12.6;
+      const NUM_RINGS = 9;
+
+      for (let i = 0; i < FLOOR_COUNT; i++) {
+        const isRingWave = rand() < 0.80;
+        let r, theta;
+
+        if (isRingWave) {
+          const ringIdx = Math.floor(Math.pow(rand(), 0.86) * NUM_RINGS);
+          theta = rand() * Math.PI * 2;
+          const ringBase = INNER_RING_R + ringIdx * ((OUTER_FLOOR_R - INNER_RING_R) / (NUM_RINGS - 0.3));
+          const spiralOffset = 0.28 * Math.sin(theta * 2.0 + ringIdx * 1.15) + 0.12 * Math.cos(theta * 3.0 - ringIdx);
+          const bandSigma = lerp(0.14, 0.38, ringIdx / NUM_RINGS);
+          r = ringBase + spiralOffset + gaussian() * bandSigma;
+        } else {
+          theta = rand() * Math.PI * 2;
+          r = lerp(INNER_RING_R * 0.94, OUTER_FLOOR_R, Math.pow(rand(), 0.70));
+        }
+
+        if (r < 1.74) continue;
+
+        const normR = Math.max(0, Math.min(1, (r - INNER_RING_R) / (OUTER_FLOOR_R - INNER_RING_R)));
+        const radialFade = Math.pow(1.0 - normR, 1.02);
+
+        const x = r * Math.cos(theta);
+        const z = r * Math.sin(theta);
+        const y = -0.04 + 0.038 * Math.cos(r * 2.25 + theta) + gaussian() * 0.012;
+
+        const sparkRoll = rand();
+        let col;
+        if (sparkRoll < 0.16) {
+          col = mixColor(C_CHAMPAGNE, C_WHITE, 0.50);
+        } else if (sparkRoll < 0.66) {
+          col = mixColor(C_GOLD_LIGHT, C_GOLD_WARM, rand());
+        } else {
+          col = mixColor(C_GOLD_WARM, C_GOLD_DEEP, rand() * 0.80);
+        }
+
+        const isSpark = sparkRoll < 0.12;
+        const size = isSpark ? lerp(3.8, 6.8, rand()) : lerp(2.2, 4.8, rand());
+        const alpha = (isSpark ? lerp(0.85, 1.15, rand()) : lerp(0.45, 0.88, rand())) * (0.28 + 0.72 * radialFade);
+        pushParticle(x, y, z, col, size, alpha, lerp(1.5, 4.8, rand()), rand() * 6.28, 0.0);
+      }
+
+      // 6. Crisp starry snowfall + subtle soft bokeh foreground flakes (~3,600 particles)
+      const SNOW_COUNT = 3600;
+      for (let i = 0; i < SNOW_COUNT; i++) {
+        const x = lerp(-18.5, 18.5, rand());
+        const y = lerp(-2.0, 14.5, rand());
+        const z = lerp(-15.0, 11.5, rand());
+
+        const isBokeh = rand() < 0.08 && z > 2.0;
+        const isWarm = rand() < 0.22;
+        const col = isWarm
+          ? mixColor(C_CHAMPAGNE, C_GOLD_LIGHT, rand() * 0.55)
+          : mixColor(C_WHITE, C_BLUSH_LIGHT, rand() * 0.25);
+
+        const size = isBokeh ? lerp(11.0, 22.0, rand()) : lerp(2.5, 5.8, rand());
+        const alpha = isBokeh ? lerp(0.16, 0.34, rand()) : lerp(0.55, 1.10, rand());
+        pushParticle(x, y, z, col, size, alpha, lerp(0.9, 3.2, rand()), rand() * 6.28, isBokeh ? 1.5 : 1.0);
+      }
+
+      const data = new Float32Array(particles);
+      const STRIDE = 11 * 4;
+      const COUNT = particles.length / 11;
+
+      // ---------------------------------------------------------
+      // WebGL Shaders with crisp pinpoint profile vs optical bokeh
+      // ---------------------------------------------------------
+      const vsSource = `
+        attribute vec3 aPos;
+        attribute vec3 aColor;
+        attribute float aSize;
+        attribute vec4 aMeta; // alpha, speed, phase, kind
+
+        uniform mat4 uProj;
+        uniform mat4 uView;
+        uniform float uTime;
+        uniform float uAngle;
+        uniform float uPixelRatio;
+
+        varying vec3 vColor;
+        varying float vAlpha;
+        varying float vKind;
+
+        void main() {
+          vec3 p = aPos;
+          float kind = aMeta.w;
+
+          if (kind < 0.5 || kind > 1.75) {
+            float c = cos(uAngle);
+            float s = sin(uAngle);
+            p.xz = vec2(p.x * c - p.z * s, p.x * s + p.z * c);
+          } else {
+            float fallSpeed = 0.24 + 0.18 * fract(aMeta.z * 1.37);
+            p.y = mod(p.y - uTime * fallSpeed + 2.0, 16.5) - 2.0;
+            p.x += sin(uTime * 0.55 + aMeta.z) * 0.35;
+            p.z += cos(uTime * 0.42 + aMeta.z * 1.3) * 0.22;
+          }
+
+          vec4 viewPos = uView * vec4(p, 1.0);
+          gl_Position = uProj * viewPos;
+
+          float dist = max(1.0, -viewPos.z);
+          float pulse = 0.72 + 0.28 * sin(uTime * aMeta.y + aMeta.z);
+
+          float depthFade = (kind >= 0.75 && kind <= 1.65)
+            ? clamp(32.0 / (dist + 8.0), 0.75, 1.25)
+            : clamp(23.0 / (dist + 5.0), 0.46, 1.32);
+
+          gl_PointSize = clamp(aSize * uPixelRatio * (13.5 / dist), 1.0, 72.0);
+          vColor = aColor;
+          vAlpha = aMeta.x * pulse * depthFade;
+          vKind = kind;
+        }
+      `;
+
+      const fsSource = `
+        #ifdef GL_FRAGMENT_PRECISION_HIGH
+          precision highp float;
+        #else
+          precision mediump float;
+        #endif
+
+        varying vec3 vColor;
+        varying float vAlpha;
+        varying float vKind;
+
+        void main() {
+          vec2 uv = gl_PointCoord * 2.0 - 1.0;
+          float d2 = dot(uv, uv);
+          if (d2 > 1.0) discard;
+
+          float d = sqrt(d2);
+          float edge = smoothstep(1.0, 0.55, d);
+          float intensity;
+
+          if (vKind > 1.9) {
+            // Fairy-light pearls: bright crisp center + silky aura
+            float core = exp(-d2 * 10.0);
+            float halo = 0.36 * exp(-d2 * 3.0);
+            intensity = (core + halo) * edge * vAlpha;
+          } else if (vKind > 1.65) {
+            // Soft silky ribbon undertone
+            intensity = exp(-d2 * 3.0) * edge * vAlpha;
+          } else if (vKind > 1.25) {
+            // Foreground soft out-of-focus bokeh snow
+            float disc = 0.55 * exp(-d2 * 3.4) + 0.25 * smoothstep(0.95, 0.30, d);
+            intensity = disc * edge * vAlpha;
+          } else {
+            // Crisp high-definition pinpoint stardust (sharp without muddy blur)
+            float core = exp(-d2 * 6.5);
+            float halo = 0.14 * exp(-d2 * 3.2);
+            intensity = (core + halo) * edge * vAlpha;
+          }
+
+          gl_FragColor = vec4(vColor * intensity, intensity);
+        }
+      `;
+
+      function compileShader(type, src) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, src);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          throw new Error(gl.getShaderInfoLog(shader));
+        }
+        return shader;
+      }
+
+      const program = gl.createProgram();
+      gl.attachShader(program, compileShader(gl.VERTEX_SHADER, vsSource));
+      gl.attachShader(program, compileShader(gl.FRAGMENT_SHADER, fsSource));
+      gl.linkProgram(program);
+      gl.useProgram(program);
+
+      const buffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
+
+      function bindAttr(name, size, offset) {
+        const loc = gl.getAttribLocation(program, name);
+        gl.enableVertexAttribArray(loc);
+        gl.vertexAttribPointer(loc, size, gl.FLOAT, false, STRIDE, offset);
+      }
+
+      bindAttr("aPos", 3, 0);
+      bindAttr("aColor", 3, 12);
+      bindAttr("aSize", 1, 24);
+      bindAttr("aMeta", 4, 28);
+
+      const uProj = gl.getUniformLocation(program, "uProj");
+      const uView = gl.getUniformLocation(program, "uView");
+      const uTime = gl.getUniformLocation(program, "uTime");
+      const uAngle = gl.getUniformLocation(program, "uAngle");
+      const uPixelRatio = gl.getUniformLocation(program, "uPixelRatio");
+
+      // ---------------------------------------------------------
+      // Minimal 4x4 Matrix math
+      // ---------------------------------------------------------
+      function perspective(fovRad, aspect, near, far) {
+        const f = 1.0 / Math.tan(fovRad / 2);
+        const nf = 1 / (near - far);
+        return new Float32Array([
+          f / aspect, 0, 0, 0,
+          0, f, 0, 0,
+          0, 0, (far + near) * nf, -1,
+          0, 0, 2 * far * near * nf, 0,
+        ]);
+      }
+
+      function lookAt(eye, target, up) {
+        let zx = eye[0] - target[0];
+        let zy = eye[1] - target[1];
+        let zz = eye[2] - target[2];
+        const zLen = Math.hypot(zx, zy, zz) || 1;
+        zx /= zLen; zy /= zLen; zz /= zLen;
+
+        let xx = up[1] * zz - up[2] * zy;
+        let xy = up[2] * zx - up[0] * zz;
+        let xz = up[0] * zy - up[1] * zx;
+        const xLen = Math.hypot(xx, xy, xz) || 1;
+        xx /= xLen; xy /= xLen; xz /= xLen;
+
+        const yx = zy * xz - zz * xy;
+        const yy = zz * xx - zx * xz;
+        const yz = zx * xy - zy * xx;
+
+        return new Float32Array([
+          xx, yx, zx, 0,
+          xy, yy, zy, 0,
+          xz, yz, zz, 0,
+          -(xx * eye[0] + xy * eye[1] + xz * eye[2]),
+          -(yx * eye[0] + yy * eye[1] + yz * eye[2]),
+          -(zx * eye[0] + zy * eye[1] + zz * eye[2]),
+          1,
+        ]);
+      }
+
+      function projectPoint(point, viewMat, projMat, width, height) {
+        const x = point[0], y = point[1], z = point[2];
+        const vx = viewMat[0] * x + viewMat[4] * y + viewMat[8] * z + viewMat[12];
+        const vy = viewMat[1] * x + viewMat[5] * y + viewMat[9] * z + viewMat[13];
+        const vz = viewMat[2] * x + viewMat[6] * y + viewMat[10] * z + viewMat[14];
+        const vw = viewMat[3] * x + viewMat[7] * y + viewMat[11] * z + viewMat[15];
+
+        const cx = projMat[0] * vx + projMat[4] * vy + projMat[8] * vz + projMat[12] * vw;
+        const cy = projMat[1] * vx + projMat[5] * vy + projMat[9] * vz + projMat[13] * vw;
+        const cw = projMat[3] * vx + projMat[7] * vy + projMat[11] * vz + projMat[15] * vw;
+
+        if (cw <= 0.001) return null;
+        return {
+          x: (cx / cw * 0.5 + 0.5) * width,
+          y: (0.5 - cy / cw * 0.5) * height,
+          depth: -vz,
+        };
+      }
+
+      // ---------------------------------------------------------
+      // Crisp 5-pointed star topper with fine radial aura
+      // ---------------------------------------------------------
+      function drawStarTopper(sx, sy, scale, t) {
+        const pulse = 0.94 + 0.06 * Math.sin(t * 2.5);
+        const outerR = 13.0 * scale * pulse;
+        const innerR = outerR * 0.40;
+        const glowR = outerR * 4.0;
+
+        fx.save();
+        fx.globalCompositeOperation = "lighter";
+
+        const halo = fx.createRadialGradient(sx, sy, 0, sx, sy, glowR);
+        halo.addColorStop(0.0, "rgba(255, 252, 232, 0.90)");
+        halo.addColorStop(0.14, "rgba(255, 232, 152, 0.54)");
+        halo.addColorStop(0.36, "rgba(255, 198, 92, 0.16)");
+        halo.addColorStop(1.0, "rgba(255, 165, 50, 0.0)");
+        fx.fillStyle = halo;
+        fx.beginPath();
+        fx.arc(sx, sy, glowR, 0, Math.PI * 2);
+        fx.fill();
+
+        fx.save();
+        fx.translate(sx, sy);
+        fx.rotate(Math.sin(t * 0.7) * 0.03);
+        fx.beginPath();
+        for (let i = 0; i < 10; i++) {
+          const rad = i % 2 === 0 ? outerR : innerR;
+          const a = -Math.PI / 2 + (i * Math.PI) / 5;
+          const px = Math.cos(a) * rad;
+          const py = Math.sin(a) * rad;
+          if (i === 0) fx.moveTo(px, py);
+          else fx.lineTo(px, py);
+        }
+        fx.closePath();
+
+        const starGrad = fx.createRadialGradient(0, 0, 0, 0, 0, outerR);
+        starGrad.addColorStop(0.0, "rgba(255, 255, 255, 1.0)");
+        starGrad.addColorStop(0.45, "rgba(255, 246, 200, 0.96)");
+        starGrad.addColorStop(1.0, "rgba(255, 214, 112, 0.85)");
+        fx.shadowColor = "rgba(255, 224, 130, 0.85)";
+        fx.shadowBlur = 12 * scale;
+        fx.fillStyle = starGrad;
+        fx.fill();
+
+        const core = fx.createRadialGradient(0, 0, 0, 0, 0, outerR * 0.45);
+        core.addColorStop(0.0, "rgba(255, 255, 255, 0.98)");
+        core.addColorStop(1.0, "rgba(255, 255, 255, 0.0)");
+        fx.fillStyle = core;
+        fx.beginPath();
+        fx.arc(0, 0, outerR * 0.45, 0, Math.PI * 2);
+        fx.fill();
+        fx.restore();
+
+        fx.restore();
+      }
+
+      // ---------------------------------------------------------
+      // Resize & camera state
+      // ---------------------------------------------------------
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+      let projMat = null;
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        glCanvas.width = Math.floor(width * dpr);
+        glCanvas.height = Math.floor(height * dpr);
+        fxCanvas.width = Math.floor(width * dpr);
+        fxCanvas.height = Math.floor(height * dpr);
+        fx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        gl.viewport(0, 0, glCanvas.width, glCanvas.height);
+
+        const aspect = width / Math.max(1, height);
+        projMat = perspective((42 * Math.PI) / 180, aspect, 0.1, 100.0);
+      }
+
+      window.addEventListener("resize", resize);
+      resize();
+
+      // Interactive camera orbit & pause controls
+      let paused = false;
+      let dragOffsetYaw = 0;
+      let dragOffsetPitch = 0;
+      let isDragging = false;
+      let lastX = 0;
+      let lastY = 0;
+
+      window.addEventListener("pointerdown", (e) => {
+        isDragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+      });
+
+      window.addEventListener("pointermove", (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        dragOffsetYaw += dx * 0.0055;
+        dragOffsetPitch = Math.max(-0.22, Math.min(0.32, dragOffsetPitch + dy * 0.003));
+      });
+
+      window.addEventListener("pointerup", () => {
+        isDragging = false;
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (e.code === "Space") {
+          e.preventDefault();
+          paused = !paused;
+        } else if (e.key === "f" || e.key === "F") {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => {});
+          } else {
+            document.exitFullscreen().catch(() => {});
+          }
+        }
+      });
+
+      // ---------------------------------------------------------
+      // Main Render Loop
+      // ---------------------------------------------------------
+      gl.clearColor(0.0, 0.0, 0.0, 1.0);
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+      gl.disable(gl.DEPTH_TEST);
+
+      let simTime = 0;
+      let lastTs = performance.now();
+
+      function frame(ts) {
+        const dt = Math.min(0.05, (ts - lastTs) / 1000);
+        lastTs = ts;
+        if (!paused) {
+          simTime += dt;
+        }
+
+        const angle = simTime * 0.58 + dragOffsetYaw;
+
+        const baseElev = 0.385 + dragOffsetPitch;
+        const camDist = 15.6;
+        const target = [-0.28, 1.55, 0.0];
+        const eye = [
+          target[0],
+          target[1] + camDist * Math.sin(baseElev),
+          target[2] + camDist * Math.cos(baseElev),
+        ];
+
+        const viewMat = lookAt(eye, target, [0, 1, 0]);
+
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.uniformMatrix4fv(uProj, false, projMat);
+        gl.uniformMatrix4fv(uView, false, viewMat);
+        gl.uniform1f(uTime, simTime);
+        gl.uniform1f(uAngle, angle);
+        gl.uniform1f(uPixelRatio, dpr);
+        gl.drawArrays(gl.POINTS, 0, COUNT);
+
+        fx.clearRect(0, 0, width, height);
+        const starScreen = projectPoint([0, STAR_Y, 0], viewMat, projMat, width, height);
+        if (starScreen) {
+          const scale = (height / 720) * (15.6 / starScreen.depth);
+          drawStarTopper(starScreen.x, starScreen.y, scale, simTime);
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    })();
+  </script>
+</body>
+</html>
